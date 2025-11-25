@@ -1213,141 +1213,377 @@ struct BucketDetailView: View {
     }
 }
 
-struct MountainHeaderView: View {
+// MARK: - 2D Bucket Header View
+struct BucketHeaderView: View {
     @ObservedObject var item: BucketListItem
+    @State private var isExpanded: Bool = false  // 기본값: 접힘
 
-    var motivationalMessage: String {
-        let progress = item.totalProgress
-        if progress >= 80 {
-            return "거의 다 왔어요! 정상이 코앞이에요!"
-        } else if progress >= 60 {
-            return "절반 이상 올랐어요! 힘내세요!"
-        } else if progress >= 40 {
-            return "꾸준히 올라가고 있어요! 계속 가봐요!"
-        } else if progress >= 20 {
-            return "좋은 시작이에요! 한 걸음씩 나아가요!"
-        } else {
-            return "여정의 시작! 작은 발걸음도 소중해요!"
-        }
+    var completedMilestones: Int {
+        item.milestones.filter { $0.isCompleted }.count
     }
 
-    var estimatedCompletion: String {
-        guard !item.obstacles.isEmpty else { return "목표 설정 필요" }
+    var totalMilestones: Int {
+        item.milestones.count
+    }
 
-        let avgProgress = item.totalProgress
-        if avgProgress < 1 { return "진행 데이터 수집 중" }
+    var milestoneProgress: Double {
+        guard totalMilestones > 0 else { return 0 }
+        return Double(completedMilestones) / Double(totalMilestones)
+    }
 
-        let daysElapsed = item.dailyProgress.count
-        if daysElapsed < 3 { return "더 많은 데이터 필요" }
-
-        let progressPerDay = avgProgress / Double(daysElapsed)
-        let remainingProgress = 100 - avgProgress
-        let estimatedDays = Int(remainingProgress / progressPerDay)
-
-        if estimatedDays < 30 {
-            return "약 \(estimatedDays)일 남음"
-        } else if estimatedDays < 365 {
-            let months = estimatedDays / 30
-            return "약 \(months)개월 남음"
+    var motivationalMessage: String {
+        let progress = milestoneProgress * 100
+        if progress >= 100 {
+            return "축하해요! 모든 마일스톤을 달성했어요!"
+        } else if progress >= 80 {
+            return "거의 다 왔어요! 조금만 더!"
+        } else if progress >= 60 {
+            return "절반 이상 완료! 대단해요!"
+        } else if progress >= 40 {
+            return "순조롭게 진행 중이에요!"
+        } else if progress >= 20 {
+            return "좋은 시작이에요!"
+        } else if progress > 0 {
+            return "첫 걸음을 뗐어요!"
         } else {
-            let years = estimatedDays / 365
-            let remainingMonths = (estimatedDays % 365) / 30
-            if remainingMonths > 0 {
-                return "약 \(years)년 \(remainingMonths)개월 남음"
-            } else {
-                return "약 \(years)년 남음"
-            }
+            return "마일스톤을 완료해보세요!"
         }
     }
 
     var body: some View {
-        VStack(spacing: 15) {
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Image(systemName: item.thumbnail)
-                        Text(item.category.rawValue)
-                    }
-                    .foregroundColor(item.category.color)
-                    .font(.caption)
-
-                    Text("\(String(format: "%.1f", item.mountainHeight))km 산")
-                        .font(.title2)
-                        .fontWeight(.bold)
+        VStack(spacing: 0) {
+            // 접힌 상태: 컴팩트 헤더
+            Button(action: {
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    isExpanded.toggle()
                 }
+            }) {
+                HStack(spacing: 12) {
+                    // 썸네일 이미지 또는 아이콘
+                    if let bgImage = item.backgroundImage, UIImage(named: bgImage) != nil {
+                        Image(bgImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 50, height: 50)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    } else {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(item.category.color.opacity(0.3))
+                            .frame(width: 50, height: 50)
+                            .overlay(
+                                Image(systemName: item.thumbnail)
+                                    .font(.title2)
+                                    .foregroundColor(item.category.color)
+                            )
+                    }
 
-                Spacer()
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack(spacing: 6) {
+                            Image(systemName: item.thumbnail)
+                                .font(.caption2)
+                            Text(item.category.rawValue)
+                                .font(.caption)
+                                .fontWeight(.medium)
+                        }
+                        .foregroundColor(item.category.color)
 
-                if item.status == .climbing {
-                    VStack(alignment: .trailing, spacing: 4) {
-                        Text("진행률")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
+                        if item.status == .climbing && totalMilestones > 0 {
+                            // 진행률 바
+                            GeometryReader { geometry in
+                                ZStack(alignment: .leading) {
+                                    RoundedRectangle(cornerRadius: 3)
+                                        .fill(Color.gray.opacity(0.2))
+                                        .frame(height: 6)
 
-                        Text("\(Int(item.totalProgress))%")
-                            .font(.title)
+                                    RoundedRectangle(cornerRadius: 3)
+                                        .fill(
+                                            LinearGradient(
+                                                gradient: Gradient(colors: [.blue, .green]),
+                                                startPoint: .leading,
+                                                endPoint: .trailing
+                                            )
+                                        )
+                                        .frame(width: geometry.size.width * CGFloat(milestoneProgress), height: 6)
+                                }
+                            }
+                            .frame(height: 6)
+                        }
+                    }
+
+                    Spacer()
+
+                    // 진행률 표시
+                    if item.status == .climbing && totalMilestones > 0 {
+                        Text("\(Int(milestoneProgress * 100))%")
+                            .font(.title3)
                             .fontWeight(.bold)
                             .foregroundColor(.blue)
                     }
+
+                    // 펼치기/접기 아이콘
+                    Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.secondarySystemBackground))
+                )
+            }
+            .buttonStyle(PlainButtonStyle())
+
+            // 펼친 상태: 전체 헤더
+            if isExpanded {
+                VStack(spacing: 0) {
+                    // 배경 이미지 헤더
+                    ZStack(alignment: .bottomLeading) {
+                        // 배경 이미지
+                        if let bgImage = item.backgroundImage, UIImage(named: bgImage) != nil {
+                            Image(bgImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(height: 200)
+                                .clipped()
+                                .overlay(
+                                    LinearGradient(
+                                        gradient: Gradient(colors: [
+                                            Color.black.opacity(0.6),
+                                            Color.black.opacity(0.2),
+                                            Color.clear
+                                        ]),
+                                        startPoint: .bottom,
+                                        endPoint: .top
+                                    )
+                                )
+                        } else {
+                            // 기본 그라데이션 배경
+                            LinearGradient(
+                                gradient: Gradient(colors: [
+                                    item.category.color.opacity(0.8),
+                                    item.category.color.opacity(0.4)
+                                ]),
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                            .frame(height: 200)
+                        }
+
+                        // 타이틀 오버레이
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack {
+                                Image(systemName: item.thumbnail)
+                                    .font(.caption)
+                                Text(item.category.rawValue)
+                                    .font(.caption)
+                                    .fontWeight(.medium)
+                            }
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 5)
+                            .background(Color.white.opacity(0.9))
+                            .foregroundColor(item.category.color)
+                            .cornerRadius(12)
+
+                            if item.status == .climbing && totalMilestones > 0 {
+                                Text("\(Int(milestoneProgress * 100))% 완료")
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                            }
+                        }
+                        .padding()
+                    }
+                    .cornerRadius(15)
+                    .padding(.top, 12)
+
+                    // 마일스톤 진행 상황 (climbing 상태일 때만)
+                    if item.status == .climbing && totalMilestones > 0 {
+                        VStack(spacing: 16) {
+                            // 진행 메시지
+                            Text(motivationalMessage)
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                                .foregroundColor(.secondary)
+
+                            // 마일스톤 타임라인
+                            MilestoneTimelineView(milestones: item.milestones)
+
+                            // 진행 요약
+                            HStack(spacing: 20) {
+                                VStack(spacing: 2) {
+                                    Text("\(completedMilestones)")
+                                        .font(.title2)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.green)
+                                    Text("완료")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
+
+                                Divider()
+                                    .frame(height: 30)
+
+                                VStack(spacing: 2) {
+                                    Text("\(totalMilestones - completedMilestones)")
+                                        .font(.title2)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.orange)
+                                    Text("남음")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
+
+                                Divider()
+                                    .frame(height: 30)
+
+                                VStack(spacing: 2) {
+                                    Text("\(totalMilestones)")
+                                        .font(.title2)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.blue)
+                                    Text("전체")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                            .padding(.vertical, 12)
+                            .padding(.horizontal, 24)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(Color(.secondarySystemBackground))
+                            )
+                        }
+                        .padding(.top, 16)
+                    }
+                }
+                .transition(.opacity.combined(with: .move(edge: .top)))
+            }
+        }
+    }
+}
+
+// MARK: - 마일스톤 타임라인 뷰
+struct MilestoneTimelineView: View {
+    let milestones: [Milestone]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            // 진행 바
+            GeometryReader { geometry in
+                let totalWidth = geometry.size.width
+                let completedCount = milestones.filter { $0.isCompleted }.count
+                let progress = milestones.isEmpty ? 0 : CGFloat(completedCount) / CGFloat(milestones.count)
+
+                ZStack(alignment: .leading) {
+                    // 배경 트랙
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(Color.gray.opacity(0.2))
+                        .frame(height: 8)
+
+                    // 진행 바
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(
+                            LinearGradient(
+                                gradient: Gradient(colors: [.blue, .green]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .frame(width: totalWidth * progress, height: 8)
+                        .animation(.easeInOut(duration: 0.3), value: progress)
+
+                    // 마일스톤 마커들
+                    ForEach(Array(milestones.enumerated()), id: \.element.id) { index, milestone in
+                        let position = milestones.count > 1
+                            ? CGFloat(index) / CGFloat(milestones.count - 1)
+                            : 0.5
+
+                        Circle()
+                            .fill(milestone.isCompleted ? Color.green : Color.gray.opacity(0.4))
+                            .frame(width: 16, height: 16)
+                            .overlay(
+                                Circle()
+                                    .stroke(Color.white, lineWidth: 2)
+                            )
+                            .overlay(
+                                milestone.isCompleted
+                                    ? Image(systemName: "checkmark")
+                                        .font(.system(size: 8, weight: .bold))
+                                        .foregroundColor(.white)
+                                    : nil
+                            )
+                            .position(x: totalWidth * position, y: 4)
+                    }
                 }
             }
+            .frame(height: 16)
+            .padding(.horizontal, 8)
 
-            if item.status == .climbing {
-                MountainVisualization(
-                    progress: item.climbedPercentage,
-                    height: item.mountainHeight
-                )
-                .frame(height: 180)
-
-                VStack(spacing: 8) {
-                    Text(motivationalMessage)
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.blue)
-
-                    HStack(spacing: 20) {
-                        VStack(spacing: 2) {
-                            Text("정상까지")
-                                .font(.caption2)
-                                .foregroundColor(.secondary)
-                            Text("\(String(format: "%.0f", item.mountainHeight * 100000 - item.climbedDistance))cm")
-                                .font(.caption)
-                                .fontWeight(.semibold)
-                        }
-
-                        VStack(spacing: 2) {
-                            Text("예상 완료")
-                                .font(.caption2)
-                                .foregroundColor(.secondary)
-                            Text(estimatedCompletion)
-                                .font(.caption)
-                                .fontWeight(.semibold)
-                        }
-
-                        VStack(spacing: 2) {
-                            Text("현재 등반")
-                                .font(.caption2)
-                                .foregroundColor(.secondary)
-                            Text("\(String(format: "%.0f", item.climbedDistance))cm")
-                                .font(.caption)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.green)
+            // 마일스톤 미니 카드들 (스크롤)
+            if !milestones.isEmpty {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(Array(milestones.enumerated()), id: \.element.id) { index, milestone in
+                            MilestoneMiniCard(milestone: milestone, index: index + 1)
                         }
                     }
-                    .padding(.vertical, 8)
-                    .padding(.horizontal)
-                    .background(
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.blue.opacity(0.1))
-                    )
+                    .padding(.horizontal, 4)
                 }
             }
         }
-        .padding()
+    }
+}
+
+// MARK: - 마일스톤 미니 카드
+struct MilestoneMiniCard: View {
+    let milestone: Milestone
+    let index: Int
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            HStack(spacing: 4) {
+                Text("\(index)")
+                    .font(.caption2)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .frame(width: 18, height: 18)
+                    .background(milestone.isCompleted ? Color.green : Color.gray)
+                    .clipShape(Circle())
+
+                if milestone.isCompleted {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.caption)
+                        .foregroundColor(.green)
+                }
+            }
+
+            Text(milestone.title)
+                .font(.caption)
+                .fontWeight(.medium)
+                .lineLimit(2)
+                .foregroundColor(milestone.isCompleted ? .primary : .secondary)
+        }
+        .padding(10)
+        .frame(width: 120, alignment: .leading)
         .background(
-            RoundedRectangle(cornerRadius: 15)
-                .fill(Color(.secondarySystemBackground))
+            RoundedRectangle(cornerRadius: 10)
+                .fill(milestone.isCompleted
+                    ? Color.green.opacity(0.1)
+                    : Color(.secondarySystemBackground))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(milestone.isCompleted ? Color.green.opacity(0.3) : Color.clear, lineWidth: 1)
+                )
         )
+    }
+}
+
+// 기존 MountainHeaderView는 호환성을 위해 유지 (새 뷰로 대체)
+struct MountainHeaderView: View {
+    @ObservedObject var item: BucketListItem
+
+    var body: some View {
+        BucketHeaderView(item: item)
     }
 }
 
@@ -1588,6 +1824,9 @@ struct MilestoneRow: View {
     @State private var showingChecklist = false
     @State private var showingDeadlinePicker = false
     @State private var selectedDeadline = Date()
+    @State private var checklistItemForInput: ChecklistItem?
+    @State private var checklistItemForDetail: ChecklistItem?
+    @State private var evidenceText = ""
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -1705,28 +1944,64 @@ struct MilestoneRow: View {
                         .padding(.horizontal)
 
                     ForEach(milestone.checklist) { checklistItem in
-                        Button(action: {
-                            viewModel.toggleChecklistItem(item: item, milestone: milestone, checklistItem: checklistItem)
-                        }) {
-                            HStack(spacing: 12) {
-                                Image(systemName: checklistItem.isCompleted ? "checkmark.square.fill" : "square")
-                                    .foregroundColor(checklistItem.isCompleted ? .green : .gray)
-                                    .font(.system(size: 18))
+                        VStack(alignment: .leading, spacing: 0) {
+                            Button(action: {
+                                if checklistItem.isCompleted {
+                                    // 완료된 항목: 근거 보기 또는 완료 해제
+                                    checklistItemForDetail = checklistItem
+                                } else {
+                                    // 미완료 항목: 근거 입력 후 완료
+                                    evidenceText = ""
+                                    checklistItemForInput = checklistItem
+                                }
+                            }) {
+                                HStack(spacing: 12) {
+                                    Image(systemName: checklistItem.isCompleted ? "checkmark.square.fill" : "square")
+                                        .foregroundColor(checklistItem.isCompleted ? .green : .gray)
+                                        .font(.system(size: 18))
 
-                                Text(checklistItem.text)
-                                    .font(.subheadline)
-                                    .foregroundColor(checklistItem.isCompleted ? .secondary : .primary)
-                                    .strikethrough(checklistItem.isCompleted)
-                                    .multilineTextAlignment(.leading)
-                                    .fixedSize(horizontal: false, vertical: true)
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text(checklistItem.text)
+                                            .font(.subheadline)
+                                            .foregroundColor(checklistItem.isCompleted ? .secondary : .primary)
+                                            .strikethrough(checklistItem.isCompleted)
+                                            .multilineTextAlignment(.leading)
+                                            .fixedSize(horizontal: false, vertical: true)
 
-                                Spacer()
+                                        // 완료 날짜 표시
+                                        if checklistItem.isCompleted, let date = checklistItem.completedDate {
+                                            Text(date, style: .date)
+                                                .font(.caption2)
+                                                .foregroundColor(.green)
+                                        }
+                                    }
+
+                                    Spacer()
+
+                                    // 근거가 있으면 표시
+                                    if checklistItem.isCompleted && checklistItem.evidence != nil {
+                                        Image(systemName: "doc.text.fill")
+                                            .font(.caption)
+                                            .foregroundColor(.blue)
+                                    }
+                                }
+                                .padding(.horizontal)
+                                .padding(.vertical, 10)
+                                .background(checklistItem.isCompleted ? Color.green.opacity(0.05) : Color.clear)
                             }
-                            .padding(.horizontal)
-                            .padding(.vertical, 10)
-                            .background(checklistItem.isCompleted ? Color.green.opacity(0.05) : Color.clear)
+                            .buttonStyle(PlainButtonStyle())
+
+                            // 근거 미리보기 (한 줄)
+                            if checklistItem.isCompleted, let evidence = checklistItem.evidence, !evidence.isEmpty {
+                                Text(evidence)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                    .lineLimit(1)
+                                    .padding(.horizontal)
+                                    .padding(.leading, 30)
+                                    .padding(.bottom, 8)
+                            }
                         }
-                        .buttonStyle(PlainButtonStyle())
 
                         if checklistItem.id != milestone.checklist.last?.id {
                             Divider()
@@ -1755,6 +2030,40 @@ struct MilestoneRow: View {
                 },
                 onRemove: {
                     viewModel.setMilestoneDeadline(item: item, milestone: milestone, deadline: nil)
+                }
+            )
+        }
+        .sheet(item: $checklistItemForInput) { checklistItem in
+            EvidenceInputSheet(
+                checklistText: checklistItem.text,
+                evidenceText: $evidenceText,
+                onComplete: {
+                    viewModel.completeChecklistItem(
+                        item: item,
+                        milestone: milestone,
+                        checklistItem: checklistItem,
+                        evidence: evidenceText
+                    )
+                    checklistItemForInput = nil
+                },
+                onCancel: {
+                    checklistItemForInput = nil
+                }
+            )
+        }
+        .sheet(item: $checklistItemForDetail) { checklistItem in
+            EvidenceDetailSheet(
+                checklistItem: checklistItem,
+                onUncomplete: {
+                    viewModel.uncompleteChecklistItem(
+                        item: item,
+                        milestone: milestone,
+                        checklistItem: checklistItem
+                    )
+                    checklistItemForDetail = nil
+                },
+                onDismiss: {
+                    checklistItemForDetail = nil
                 }
             )
         }
@@ -1864,6 +2173,197 @@ struct QuickDateButton: View {
                 .padding(.vertical, 8)
                 .background(Color.blue.opacity(0.1))
                 .cornerRadius(8)
+        }
+    }
+}
+
+// MARK: - 체크리스트 근거 입력 시트
+struct EvidenceInputSheet: View {
+    let checklistText: String
+    @Binding var evidenceText: String
+    let onComplete: () -> Void
+    let onCancel: () -> Void
+    @FocusState private var isFocused: Bool
+
+    var body: some View {
+        NavigationView {
+            VStack(alignment: .leading, spacing: 20) {
+                // 체크리스트 항목 표시
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("완료할 항목")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+
+                    HStack(spacing: 12) {
+                        Image(systemName: "square")
+                            .foregroundColor(.gray)
+                        Text(checklistText)
+                            .font(.body)
+                    }
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .cornerRadius(10)
+                }
+                .padding(.horizontal)
+
+                // 근거 입력
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("완료 근거 / 배운 점")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+
+                    TextEditor(text: $evidenceText)
+                        .frame(minHeight: 120)
+                        .padding(8)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(10)
+                        .focused($isFocused)
+                        .overlay(
+                            Group {
+                                if evidenceText.isEmpty {
+                                    Text("이 항목을 완료한 근거나 배운 점을 기록해주세요...")
+                                        .foregroundColor(.gray.opacity(0.7))
+                                        .padding(12)
+                                        .allowsHitTesting(false)
+                                }
+                            },
+                            alignment: .topLeading
+                        )
+                }
+                .padding(.horizontal)
+
+                // 안내 텍스트
+                Text("나중에 이 기록을 다시 볼 수 있어요")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .padding(.horizontal)
+
+                Spacer()
+
+                // 완료 버튼
+                Button(action: onComplete) {
+                    HStack {
+                        Image(systemName: "checkmark.circle.fill")
+                        Text("완료로 표시")
+                    }
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(evidenceText.isEmpty ? Color.gray : Color.green)
+                    .cornerRadius(12)
+                }
+                .disabled(evidenceText.isEmpty)
+                .padding(.horizontal)
+                .padding(.bottom)
+            }
+            .navigationTitle("근거 기록")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("취소", action: onCancel)
+                }
+            }
+            .onAppear {
+                isFocused = true
+            }
+        }
+    }
+}
+
+// MARK: - 체크리스트 근거 상세 시트
+struct EvidenceDetailSheet: View {
+    let checklistItem: ChecklistItem
+    let onUncomplete: () -> Void
+    let onDismiss: () -> Void
+
+    var body: some View {
+        NavigationView {
+            VStack(alignment: .leading, spacing: 20) {
+                // 체크리스트 항목 표시
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("완료된 항목")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+
+                    HStack(spacing: 12) {
+                        Image(systemName: "checkmark.square.fill")
+                            .foregroundColor(.green)
+                        Text(checklistItem.text)
+                            .font(.body)
+                            .strikethrough()
+                            .foregroundColor(.secondary)
+                    }
+                    .padding()
+                    .background(Color.green.opacity(0.1))
+                    .cornerRadius(10)
+                }
+                .padding(.horizontal)
+
+                // 완료 날짜
+                if let date = checklistItem.completedDate {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("완료 날짜")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+
+                        HStack {
+                            Image(systemName: "calendar")
+                                .foregroundColor(.green)
+                            Text(date, style: .date)
+                                .font(.body)
+                        }
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(10)
+                    }
+                    .padding(.horizontal)
+                }
+
+                // 근거 표시
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("기록한 근거 / 배운 점")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+
+                    ScrollView {
+                        Text(checklistItem.evidence ?? "기록된 근거가 없습니다.")
+                            .font(.body)
+                            .foregroundColor(checklistItem.evidence != nil ? .primary : .secondary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding()
+                    }
+                    .frame(minHeight: 100)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(10)
+                }
+                .padding(.horizontal)
+
+                Spacer()
+
+                // 완료 해제 버튼
+                Button(action: onUncomplete) {
+                    HStack {
+                        Image(systemName: "arrow.uturn.backward")
+                        Text("완료 해제")
+                    }
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.orange)
+                    .cornerRadius(12)
+                }
+                .padding(.horizontal)
+                .padding(.bottom)
+            }
+            .navigationTitle("완료 기록")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("닫기", action: onDismiss)
+                }
+            }
         }
     }
 }

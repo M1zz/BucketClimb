@@ -90,6 +90,8 @@ struct ChecklistItem: Identifiable, Codable {
     var id = UUID()
     var text: String
     var isCompleted: Bool = false
+    var evidence: String? = nil  // 완료 근거/배운 점
+    var completedDate: Date? = nil  // 완료 일시
 }
 
 struct Milestone: Identifiable, Codable {
