@@ -6,6 +6,7 @@ struct BucketFillView: View {
     @EnvironmentObject var viewModel: BucketListViewModel
     @State private var showingAddSheet = false
     @State private var showingSettings = false
+    @State private var showingBrowser = false
     @State private var selectedCategory: BucketCategory?
     @AppStorage("lastSelectedTab") private var selectedTab = 0
     @State private var showingSuccessAlert = false
@@ -54,9 +55,16 @@ struct BucketFillView: View {
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { showingSettings = true }) {
-                        Image(systemName: "gearshape.fill")
-                            .font(.title3)
+                    HStack(spacing: 16) {
+                        Button(action: { showingBrowser = true }) {
+                            Image(systemName: "list.bullet.rectangle")
+                                .font(.title3)
+                        }
+
+                        Button(action: { showingSettings = true }) {
+                            Image(systemName: "gearshape.fill")
+                                .font(.title3)
+                        }
                     }
                 }
             }
@@ -65,6 +73,9 @@ struct BucketFillView: View {
             }
             .sheet(isPresented: $showingSettings) {
                 SettingsView()
+            }
+            .sheet(isPresented: $showingBrowser) {
+                AllBucketBrowserView()
             }
             .alert("담기 완료!", isPresented: $showingSuccessAlert) {
                 Button("확인", role: .cancel) { }
@@ -3535,5 +3546,195 @@ struct BucketMapView: View {
                 region.span = MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30)
             }
         }
+    }
+}
+
+// MARK: - All Bucket Browser View
+struct AllBucketBrowserView: View {
+    @EnvironmentObject var viewModel: BucketListViewModel
+    @Environment(\.dismiss) var dismiss
+    @State private var selectedCategory: BucketCategory = .travel
+    @State private var searchText = ""
+    @State private var showingSuccessAlert = false
+    @State private var addedBucketTitle = ""
+
+    var filteredItems: [BucketItem] {
+        let categoryItems: [BucketItem]
+        switch selectedCategory {
+        case .travel:
+            categoryItems = TravelBucket.allCases.map { BucketItem.travel($0) }
+        case .experience:
+            categoryItems = ExperienceBucket.allCases.map { BucketItem.experience($0) }
+        case .achievement:
+            categoryItems = AchievementBucket.allCases.map { BucketItem.achievement($0) }
+        case .health:
+            categoryItems = HealthBucket.allCases.map { BucketItem.health($0) }
+        case .learning:
+            categoryItems = LearningBucket.allCases.map { BucketItem.learning($0) }
+        case .relationship:
+            categoryItems = RelationshipBucket.allCases.map { BucketItem.relationship($0) }
+        }
+
+        if searchText.isEmpty {
+            return categoryItems
+        } else {
+            return categoryItems.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
+
+    var body: some View {
+        NavigationView {
+            VStack(spacing: 0) {
+                // Category Picker
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 12) {
+                        ForEach(BucketCategory.allCases, id: \.self) { category in
+                            CategoryChip(
+                                category: category,
+                                isSelected: selectedCategory == category
+                            ) {
+                                withAnimation(.easeInOut(duration: 0.2)) {
+                                    selectedCategory = category
+                                }
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 12)
+                }
+                .background(Color(.systemBackground))
+
+                // Bucket List
+                ScrollView {
+                    LazyVStack(spacing: 12) {
+                        ForEach(filteredItems, id: \.title) { item in
+                            BucketBrowserRow(item: item) {
+                                viewModel.addBucketItem(
+                                    title: item.title,
+                                    category: item.category,
+                                    thumbnail: item.thumbnail,
+                                    backgroundImage: item.backgroundImage
+                                )
+                                addedBucketTitle = item.title
+                                showingSuccessAlert = true
+                            }
+                        }
+                    }
+                    .padding()
+                }
+            }
+            .searchable(text: $searchText, prompt: "버킷리스트 검색")
+            .navigationTitle("전체 버킷리스트")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("닫기") {
+                        dismiss()
+                    }
+                }
+            }
+            .alert("담기 완료!", isPresented: $showingSuccessAlert) {
+                Button("확인", role: .cancel) { }
+            } message: {
+                Text("'\(addedBucketTitle)'\n내 버킷리스트에 담겼습니다!")
+            }
+        }
+    }
+}
+
+// MARK: - Category Chip
+struct CategoryChip: View {
+    let category: BucketCategory
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            HStack(spacing: 6) {
+                Image(systemName: category.icon)
+                    .font(.system(size: 14))
+                Text(category.rawValue)
+                    .font(.subheadline)
+                    .fontWeight(isSelected ? .semibold : .regular)
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 10)
+            .background(isSelected ? Color.blue : Color(.systemGray6))
+            .foregroundColor(isSelected ? .white : .primary)
+            .cornerRadius(20)
+        }
+    }
+}
+
+// MARK: - Bucket Browser Row
+struct BucketBrowserRow: View {
+    let item: BucketItem
+    let onAdd: () -> Void
+    @State private var isPressed = false
+
+    var body: some View {
+        HStack(spacing: 12) {
+            // Thumbnail
+            ZStack {
+                if !item.thumbnail.isEmpty {
+                    if item.thumbnail.hasPrefix("http") {
+                        AsyncImage(url: URL(string: item.thumbnail)) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        } placeholder: {
+                            Color.gray.opacity(0.3)
+                        }
+                    } else {
+                        Image(item.thumbnail)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    }
+                } else {
+                    Color.blue.opacity(0.2)
+                    Image(systemName: item.category.icon)
+                        .font(.title2)
+                        .foregroundColor(.blue)
+                }
+            }
+            .frame(width: 60, height: 60)
+            .cornerRadius(12)
+            .clipped()
+
+            // Title
+            VStack(alignment: .leading, spacing: 4) {
+                Text(item.title)
+                    .font(.body)
+                    .fontWeight(.medium)
+                    .lineLimit(2)
+
+                HStack(spacing: 4) {
+                    Image(systemName: item.category.icon)
+                        .font(.caption2)
+                    Text(item.category.rawValue)
+                        .font(.caption)
+                }
+                .foregroundColor(.secondary)
+            }
+
+            Spacer()
+
+            // Add Button
+            Button(action: onAdd) {
+                Image(systemName: "plus.circle.fill")
+                    .font(.title2)
+                    .foregroundColor(.blue)
+            }
+            .scaleEffect(isPressed ? 0.9 : 1.0)
+            .onLongPressGesture(minimumDuration: .infinity, pressing: { pressing in
+                withAnimation(.easeInOut(duration: 0.1)) {
+                    isPressed = pressing
+                }
+            }, perform: {})
+        }
+        .padding(12)
+        .background(Color(.systemBackground))
+        .cornerRadius(16)
+        .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 2)
     }
 }
