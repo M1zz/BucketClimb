@@ -712,6 +712,28 @@ class BucketListViewModel: ObservableObject {
         }
     }
 
+    func toggleChecklistItem(item: BucketListItem, milestone: Milestone, checklistItem: ChecklistItem) {
+        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
+           let milestoneIndex = bucketItems[itemIndex].milestones.firstIndex(where: { $0.id == milestone.id }),
+           let checklistIndex = bucketItems[itemIndex].milestones[milestoneIndex].checklist.firstIndex(where: { $0.id == checklistItem.id }) {
+
+            // 체크리스트 아이템 토글
+            bucketItems[itemIndex].milestones[milestoneIndex].checklist[checklistIndex].isCompleted.toggle()
+
+            // 모든 체크리스트가 완료되었는지 확인하고 마일스톤 자동 완료/해제
+            let allCompleted = bucketItems[itemIndex].milestones[milestoneIndex].allChecklistCompleted
+            if allCompleted && !bucketItems[itemIndex].milestones[milestoneIndex].isCompleted {
+                bucketItems[itemIndex].milestones[milestoneIndex].isCompleted = true
+                bucketItems[itemIndex].milestones[milestoneIndex].completedDate = Date()
+            } else if !allCompleted && bucketItems[itemIndex].milestones[milestoneIndex].isCompleted {
+                bucketItems[itemIndex].milestones[milestoneIndex].isCompleted = false
+                bucketItems[itemIndex].milestones[milestoneIndex].completedDate = nil
+            }
+
+            saveData()
+        }
+    }
+
     func addMilestone(item: BucketListItem, title: String, description: String, successCriteria: [String] = []) {
         if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
             let newCamp = Milestone(title: title, description: description, successCriteria: successCriteria)
@@ -723,200 +745,471 @@ class BucketListViewModel: ObservableObject {
     func generatePresetMilestones(for item: BucketListItem) {
         guard let index = bucketItems.firstIndex(where: { $0.id == item.id }) else { return }
 
-        let milestones: [Milestone]
+        let milestones = getMilestonesForBucket(title: item.title, category: item.category)
+        bucketItems[index].milestones = milestones
+        saveData()
+    }
 
-        switch item.title {
+    private func getMilestonesForBucket(title: String, category: BucketCategory) -> [Milestone] {
+        switch title {
+        // MARK: - 여행 카테고리
         case "아이슬란드에서 오로라 보기":
-            milestones = [
-                Milestone(
-                    title: "여행 정보 리서치",
-                    description: "레이캬비크 vs 북부 지역 비교, 최적 시즌 조사",
-                    successCriteria: [
-                        "오로라 관측 확률이 높은 시기를 알고 있나요? (9월~3월)",
-                        "레이캬비크와 북부(아쿠레이리) 중 어디로 갈지 결정했나요?",
-                        "평균 체류 일수를 정했나요? (최소 4-5일 권장)"
-                    ]
-                ),
-                Milestone(
-                    title: "예산 확보",
-                    description: "항공권, 숙소, 투어 비용 저축",
-                    successCriteria: [
-                        "총 필요 예산을 계산했나요? (약 200-300만원)",
-                        "매달 저축 금액을 정했나요?",
-                        "목표 금액의 80% 이상 모았나요?"
-                    ]
-                ),
-                Milestone(
-                    title: "항공권 예매",
-                    description: "왕복 항공권 구매",
-                    successCriteria: [
-                        "출발일과 귀국일이 확정되었나요?",
-                        "항공권을 결제했나요?",
-                        "좌석 배정을 확인했나요?"
-                    ]
-                ),
-                Milestone(
-                    title: "숙소 예약",
-                    description: "호텔 또는 게스트하우스 예약",
-                    successCriteria: [
-                        "숙소 위치가 오로라 관측에 적합한가요?",
-                        "전체 일정의 숙소를 모두 예약했나요?",
-                        "예약 확인서를 받았나요?"
-                    ]
-                ),
-                Milestone(
-                    title: "오로라 투어 예약",
-                    description: "현지 오로라 관측 투어 신청",
-                    successCriteria: [
-                        "평점 좋은 투어 업체를 선택했나요?",
-                        "투어 일정이 확정되었나요?",
-                        "취소 정책을 확인했나요?"
-                    ]
-                ),
-                Milestone(
-                    title: "준비물 체크",
-                    description: "방한복, 카메라, 여행자 보험 등",
-                    successCriteria: [
-                        "방한복과 방수복을 준비했나요?",
-                        "여행자 보험에 가입했나요?",
-                        "카메라 삼각대를 챙겼나요? (오로라 촬영용)"
-                    ]
-                )
+            return [
+                Milestone(title: "오로라 시즌 리서치", description: "9월~3월 중 최적의 방문 시기 조사", successCriteria: ["오로라 예보 앱/사이트를 알고 있나요?", "달이 없는 시기를 파악했나요?", "최소 4-5일 체류 계획을 세웠나요?"]),
+                Milestone(title: "예산 계획 및 저축", description: "총 250-350만원 예산 확보", successCriteria: ["항공료 약 100-150만원 예상했나요?", "숙박비 1박 15-25만원 계산했나요?", "투어비 및 식비를 포함했나요?"]),
+                Milestone(title: "항공권 예매", description: "경유편 또는 직항편 구매", successCriteria: ["스카이스캐너로 가격 비교했나요?", "경유지 시간이 적절한가요?", "수하물 규정을 확인했나요?"]),
+                Milestone(title: "숙소 예약", description: "레이캬비크 또는 북부 지역 숙소", successCriteria: ["빛 공해가 적은 위치인가요?", "오로라 알림 서비스가 있는 숙소인가요?", "취소 정책을 확인했나요?"]),
+                Milestone(title: "오로라 투어 예약", description: "전문 가이드 투어 또는 렌터카", successCriteria: ["투어 리뷰를 확인했나요?", "무료 재투어 정책이 있나요?", "방한 장비 대여 가능한가요?"]),
+                Milestone(title: "방한 장비 준비", description: "극한 추위 대비 의류 및 장비", successCriteria: ["영하 20도용 패딩이 있나요?", "핫팩과 방수 장갑을 준비했나요?", "삼각대와 카메라 배터리 여분이 있나요?"])
             ]
 
-        case "에베레스트 베이스캠프 트레킹":
-            milestones = [
-                Milestone(
-                    title: "체력 훈련 시작",
-                    description: "등산 및 유산소 운동으로 체력 기르기",
-                    successCriteria: [
-                        "주 3회 이상 등산을 하고 있나요?",
-                        "20kg 배낭을 메고 4시간 이상 걸을 수 있나요?",
-                        "고산 적응을 위한 체력이 준비되었나요?"
-                    ]
-                ),
-                Milestone(
-                    title: "트레킹 허가증 발급",
-                    description: "네팔 정부 허가 및 TIMS 카드 발급",
-                    successCriteria: [
-                        "사가르마타 국립공원 입장 허가증을 받았나요?",
-                        "TIMS(등산객 정보 관리) 카드를 발급받았나요?",
-                        "비자를 준비했나요?"
-                    ]
-                ),
-                Milestone(
-                    title: "트레킹 에이전시 선택",
-                    description: "가이드 및 포터 계약",
-                    successCriteria: [
-                        "신뢰할 수 있는 에이전시를 선택했나요?",
-                        "가이드와 포터 비용을 확인했나요?",
-                        "일정표를 받았나요?"
-                    ]
-                ),
-                Milestone(
-                    title: "장비 구입",
-                    description: "등산화, 침낭, 의류 등 필수 장비",
-                    successCriteria: [
-                        "4계절용 침낭을 준비했나요?",
-                        "등산화를 길들였나요? (최소 3회 이상 착용)",
-                        "고어텍스 방수 재킷이 있나요?"
-                    ]
-                ),
-                Milestone(
-                    title: "고산병 예방 준비",
-                    description: "약물 준비 및 적응 계획",
-                    successCriteria: [
-                        "고산병 예방약을 처방받았나요?",
-                        "고산병 증상을 알고 있나요?",
-                        "여행자 보험이 고산 트레킹을 보장하나요?"
-                    ]
-                )
+        case "산토리니에서 일몰 감상하기":
+            return [
+                Milestone(title: "최적 시즌 선택", description: "5-6월 또는 9-10월 방문 계획", successCriteria: ["성수기(7-8월) 피크 시즌을 피했나요?", "일몰 시간을 확인했나요?", "날씨 예보를 체크했나요?"]),
+                Milestone(title: "이아 마을 숙소 예약", description: "일몰 명소인 이아 마을 근처 숙소", successCriteria: ["칼데라 뷰 숙소를 예약했나요?", "일몰 포인트까지 도보 거리인가요?", "테라스가 있는 숙소인가요?"]),
+                Milestone(title: "항공편 및 페리 예약", description: "아테네 경유 또는 직항 + 페리", successCriteria: ["아테네에서 산토리니행 비행기 예매했나요?", "또는 페리 시간표를 확인했나요?", "공항/항구에서 숙소까지 이동 수단은?"]),
+                Milestone(title: "일몰 명소 리서치", description: "이아 성, 산토 와인 등 명소 파악", successCriteria: ["이아 성의 일몰 스팟을 알고 있나요?", "덜 붐비는 대안 장소를 알아봤나요?", "일몰 2시간 전 도착 계획인가요?"]),
+                Milestone(title: "그리스 요리 체험 계획", description: "현지 맛집 및 와이너리 예약", successCriteria: ["산토리니 와이너리 투어를 예약했나요?", "해산물 레스토랑을 리서치했나요?", "아마우디 베이 식당을 체크했나요?"])
             ]
 
-        case "프랑스어 유창하게 구사하기":
-            milestones = [
-                Milestone(
-                    title: "기초 문법 마스터",
-                    description: "A1-A2 레벨 문법 완성",
-                    successCriteria: [
-                        "현재, 과거, 미래 시제를 사용할 수 있나요?",
-                        "명사의 성과 수를 정확히 구분하나요?",
-                        "기본 동사 변화를 외웠나요?"
-                    ]
-                ),
-                Milestone(
-                    title: "어휘 1000개 암기",
-                    description: "일상 필수 어휘 습득",
-                    successCriteria: [
-                        "하루 10개 이상 새로운 단어를 배우고 있나요?",
-                        "100일 동안 꾸준히 학습했나요?",
-                        "Anki나 Quizlet으로 복습하고 있나요?"
-                    ]
-                ),
-                Milestone(
-                    title: "원어민 회화 연습",
-                    description: "주 2회 이상 원어민과 대화",
-                    successCriteria: [
-                        "언어 교환 파트너를 찾았나요?",
-                        "매주 최소 2시간 프랑스어로 대화하나요?",
-                        "일상 대화에서 막힘없이 말할 수 있나요?"
-                    ]
-                ),
-                Milestone(
-                    title: "DELF B2 시험 통과",
-                    description: "공인 어학 시험 합격",
-                    successCriteria: [
-                        "시험에 등록했나요?",
-                        "모의고사를 3회 이상 봤나요?",
-                        "합격 점수를 받았나요?"
-                    ]
-                ),
-                Milestone(
-                    title: "프랑스 책 완독",
-                    description: "원서 1권 읽기",
-                    successCriteria: [
-                        "읽을 책을 선택했나요? (Le Petit Prince 추천)",
-                        "매일 최소 10페이지 읽고 있나요?",
-                        "끝까지 완독했나요?"
-                    ]
-                )
+        case "뉴질랜드 남섬 일주하기":
+            return [
+                Milestone(title: "남섬 루트 계획", description: "크라이스트처치-퀸즈타운 루트 설계", successCriteria: ["최소 10-14일 일정을 확보했나요?", "주요 경유지를 정했나요?", "일일 이동 거리가 적절한가요?"]),
+                Milestone(title: "렌터카 예약", description: "4WD 또는 캠퍼밴 예약", successCriteria: ["국제운전면허증을 발급받았나요?", "보험 조건을 확인했나요?", "겨울철 체인 필요 여부를 확인했나요?"]),
+                Milestone(title: "숙소 예약", description: "주요 거점별 숙소 확보", successCriteria: ["퀸즈타운, 테카포, 밀포드 근처 숙소를 예약했나요?", "DOC 캠핑장을 예약했나요?", "성수기 사전 예약을 완료했나요?"]),
+                Milestone(title: "밀포드 사운드 크루즈", description: "피오르드 크루즈 투어 예약", successCriteria: ["크루즈 업체를 선택했나요?", "날씨에 따른 취소 정책을 확인했나요?", "카약 또는 헬기 옵션을 고려했나요?"]),
+                Milestone(title: "액티비티 예약", description: "번지점프, 스카이다이빙 등", successCriteria: ["퀸즈타운 번지점프를 예약했나요?", "프란츠 조셉 빙하 하이킹을 예약했나요?", "테카포 별 관측 투어를 예약했나요?"]),
+                Milestone(title: "장비 및 준비물", description: "등산화, 방수복, 카메라 등", successCriteria: ["트레킹화를 준비했나요?", "방수 재킷을 챙겼나요?", "여행자 보험에 액티비티가 포함되나요?"])
+            ]
+
+        case "스위스 융프라우 등반하기":
+            return [
+                Milestone(title: "융프라우 지역 리서치", description: "인터라켄, 그린델발트 지역 조사", successCriteria: ["융프라우요흐 vs 쉴트호른 차이를 아나요?", "최적 방문 시즌(6-9월)을 확인했나요?", "날씨 예보 확인 방법을 아나요?"]),
+                Milestone(title: "스위스 패스 구매", description: "교통 패스 종류 비교 및 구매", successCriteria: ["스위스 트래블 패스를 알아봤나요?", "융프라우 VIP 패스를 비교했나요?", "할인 혜택을 확인했나요?"]),
+                Milestone(title: "숙소 예약", description: "그린델발트 또는 인터라켄 숙소", successCriteria: ["산 전망 숙소를 예약했나요?", "기차역 접근성을 확인했나요?", "조식 포함 여부를 확인했나요?"]),
+                Milestone(title: "등산 루트 선택", description: "아이거 트레일 또는 퍼스트 클리프워크", successCriteria: ["본인 체력에 맞는 코스를 선택했나요?", "소요 시간을 확인했나요?", "케이블카 운행 시간을 확인했나요?"]),
+                Milestone(title: "고산 준비", description: "고산병 예방 및 장비", successCriteria: ["해발 3,454m 융프라우요흐 고산 적응을 준비했나요?", "선글라스와 선크림을 챙겼나요?", "따뜻한 옷을 준비했나요? (여름에도 추움)"])
+            ]
+
+        case "몰디브에서 수상 방갈로 숙박":
+            return [
+                Milestone(title: "리조트 선택", description: "예산과 위치에 맞는 리조트 선택", successCriteria: ["올인클루시브 vs 조식만 비교했나요?", "말레 공항에서의 이동 수단을 확인했나요?", "하우스 리프 유무를 확인했나요?"]),
+                Milestone(title: "수상 빌라 예약", description: "오버워터 빌라 사전 예약", successCriteria: ["선셋 뷰 vs 선라이즈 뷰를 선택했나요?", "프라이빗 풀 옵션을 고려했나요?", "최소 3박 이상 예약했나요?"]),
+                Milestone(title: "항공편 예약", description: "말레 국제공항행 항공권", successCriteria: ["경유편 시간을 확인했나요?", "리조트 체크인 시간에 맞추었나요?", "수상비행기 연결을 확인했나요?"]),
+                Milestone(title: "스노클링/다이빙 준비", description: "장비 및 투어 예약", successCriteria: ["스노클링 장비를 준비했나요?", "다이빙 자격증이 있나요?", "만타레이 포인트 투어를 예약했나요?"]),
+                Milestone(title: "여행 준비물", description: "수영복, 선크림, 방수 카메라", successCriteria: ["래쉬가드를 준비했나요?", "SPF50+ 산호초 안전 선크림이 있나요?", "방수 카메라나 케이스를 준비했나요?"])
+            ]
+
+        case "일본 벚꽃 시즌 교토 여행":
+            return [
+                Milestone(title: "벚꽃 개화 시기 확인", description: "3월 말~4월 초 개화 예측 추적", successCriteria: ["일본 기상청 개화 예보를 확인했나요?", "만개 시기를 예측했나요?", "교토 지역 개화일을 체크했나요?"]),
+                Milestone(title: "숙소 조기 예약", description: "벚꽃 시즌 숙소 3-6개월 전 예약", successCriteria: ["기온 지역 료칸을 알아봤나요?", "취소 가능한 숙소를 예약했나요?", "교통 편리한 위치인가요?"]),
+                Milestone(title: "JR 패스 구매", description: "일본 철도 패스 결정", successCriteria: ["JR 간사이 패스를 알아봤나요?", "교토 내 버스 패스를 확인했나요?", "패스 수령 방법을 확인했나요?"]),
+                Milestone(title: "벚꽃 명소 리스트", description: "마루야마 공원, 철학의 길 등", successCriteria: ["야간 라이트업 장소를 알고 있나요?", "덜 붐비는 숨은 명소를 찾았나요?", "방문 순서를 계획했나요?"]),
+                Milestone(title: "교토 맛집 예약", description: "가이세키, 말차 디저트 등", successCriteria: ["미슐랭 레스토랑을 예약했나요?", "말차 카페를 리스트업했나요?", "유명 맛집 대기 시간을 확인했나요?"])
+            ]
+
+        case "프랑스 파리 에펠탑 방문":
+            return [
+                Milestone(title: "파리 여행 계획", description: "3-5일 파리 일정 수립", successCriteria: ["주요 관광지 동선을 계획했나요?", "뮤지엄 패스 구매를 고려했나요?", "에펠탑 방문 요일을 정했나요?"]),
+                Milestone(title: "에펠탑 입장권 예매", description: "온라인 사전 예약 필수", successCriteria: ["공식 사이트에서 예매했나요?", "정상 vs 2층 티켓을 선택했나요?", "엘리베이터 vs 계단을 결정했나요?"]),
+                Milestone(title: "숙소 예약", description: "에펠탑 전망 또는 접근성 좋은 위치", successCriteria: ["7구 또는 16구 숙소를 알아봤나요?", "메트로역 접근성을 확인했나요?", "에펠탑 뷰 숙소를 고려했나요?"]),
+                Milestone(title: "파리 명소 계획", description: "루브르, 오르세, 몽마르트르 등", successCriteria: ["루브르 박물관 예약을 했나요?", "세느강 크루즈를 알아봤나요?", "개선문 입장을 계획했나요?"]),
+                Milestone(title: "야경 감상 계획", description: "에펠탑 반짝임 타이밍", successCriteria: ["매시 정각 반짝임 시간을 아나요?", "트로카데로 광장 위치를 아나요?", "야경 촬영 장비를 준비했나요?"])
+            ]
+
+        case "이탈리아 베네치아 곤돌라 타기":
+            return [
+                Milestone(title: "베네치아 여행 계획", description: "2-3일 베네치아 일정", successCriteria: ["아쿠아 알타(침수) 시즌을 피했나요?", "산마르코 광장 방문을 계획했나요?", "무라노/부라노 섬 방문을 고려했나요?"]),
+                Milestone(title: "곤돌라 예약", description: "공식 곤돌라 탑승 계획", successCriteria: ["공식 가격(80유로/30분)을 확인했나요?", "석양 시간대를 예약했나요?", "세레나데 옵션을 고려했나요?"]),
+                Milestone(title: "숙소 예약", description: "산마르코 또는 리알토 근처", successCriteria: ["수상 택시 접근성을 확인했나요?", "운하 전망 숙소를 알아봤나요?", "조식 포함 여부를 확인했나요?"]),
+                Milestone(title: "바포레토 패스", description: "수상버스 이용권 구매", successCriteria: ["1-3일 패스 중 선택했나요?", "공항-시내 노선을 확인했나요?", "주요 정류장을 파악했나요?"]),
+                Milestone(title: "이탈리아 맛집", description: "씨푸드 리스토, 젤라또 등", successCriteria: ["베네치아 특산 요리를 알고 있나요?", "관광지 바가지를 피하는 법을 아나요?", "현지인 추천 맛집을 찾았나요?"])
+            ]
+
+        case "체코 프라하 구시가지 산책":
+            return [
+                Milestone(title: "프라하 여행 계획", description: "2-4일 프라하 일정", successCriteria: ["구시가지, 말라스트라나 일정을 세웠나요?", "최적 방문 시즌을 확인했나요?", "크리스마스 마켓 시즌을 고려했나요?"]),
+                Milestone(title: "주요 명소 리스트", description: "천문시계, 카를교, 프라하성", successCriteria: ["천문시계 작동 시간을 아나요?", "프라하성 입장권을 예매했나요?", "카를교 일출 시간을 확인했나요?"]),
+                Milestone(title: "숙소 예약", description: "구시가지 도보 거리 숙소", successCriteria: ["구시가 광장 근처 숙소를 찾았나요?", "트램역 접근성을 확인했나요?", "조용한 골목 숙소를 고려했나요?"]),
+                Milestone(title: "체코 맥주 투어", description: "필스너 우르켈, 현지 펍 투어", successCriteria: ["체코 맥주 종류를 알고 있나요?", "현지 맥주홀을 리서치했나요?", "맥주 박물관 방문을 계획했나요?"]),
+                Milestone(title: "주변 도시 계획", description: "체스키 크룸로프 당일치기", successCriteria: ["버스/기차 시간표를 확인했나요?", "체스키 크룸로프 성을 알아봤나요?", "쿠트나호라 방문을 고려했나요?"])
+            ]
+
+        case "크로아티아 플리트비체 국립공원":
+            return [
+                Milestone(title: "방문 시즌 선택", description: "5-6월 또는 9-10월 추천", successCriteria: ["성수기 혼잡을 피했나요?", "폭포수량이 많은 시기를 확인했나요?", "날씨 예보를 체크했나요?"]),
+                Milestone(title: "입장권 예매", description: "온라인 사전 예약 필수", successCriteria: ["공식 사이트에서 예매했나요?", "입장 시간대를 선택했나요?", "1일권 vs 2일권을 결정했나요?"]),
+                Milestone(title: "코스 선택", description: "A-H 코스 중 선택", successCriteria: ["체력에 맞는 코스를 선택했나요?", "소요 시간을 확인했나요?", "보트/셔틀 포함 여부를 확인했나요?"]),
+                Milestone(title: "숙소 예약", description: "공원 근처 또는 자그레브", successCriteria: ["공원 입구 근처 숙소를 찾았나요?", "자그레브에서 이동 계획을 세웠나요?", "렌터카 필요 여부를 결정했나요?"]),
+                Milestone(title: "준비물 챙기기", description: "트레킹화, 우비, 카메라", successCriteria: ["미끄럼 방지 신발을 준비했나요?", "방수 재킷을 챙겼나요?", "삼각대를 준비했나요? (폭포 촬영용)"])
+            ]
+
+        case "노르웨이 피오르드 크루즈":
+            return [
+                Milestone(title: "피오르드 선택", description: "게이랑에르, 송네, 하당에르 비교", successCriteria: ["UNESCO 게이랑에르를 고려했나요?", "송네피오르드 규모를 확인했나요?", "방문 시즌을 결정했나요?"]),
+                Milestone(title: "크루즈 예약", description: "후티루텐 또는 로컬 페리", successCriteria: ["크루즈 타입을 선택했나요?", "소요 시간을 확인했나요?", "식사 포함 여부를 확인했나요?"]),
+                Milestone(title: "노르웨이 인 어 넛셸", description: "인기 패키지 투어 고려", successCriteria: ["베르겐-오슬로 루트를 확인했나요?", "플롬 산악열차를 포함했나요?", "패키지 가격을 비교했나요?"]),
+                Milestone(title: "숙소 및 교통", description: "베르겐 또는 오슬로 기점", successCriteria: ["베르겐 브뤼겐 지구 숙소를 알아봤나요?", "국내선 항공을 고려했나요?", "렌터카 필요 여부를 결정했나요?"]),
+                Milestone(title: "하이킹 계획", description: "트롤퉁가, 프레이케스톨렌", successCriteria: ["체력에 맞는 코스를 선택했나요?", "가이드 투어를 고려했나요?", "날씨에 따른 대안을 준비했나요?"])
+            ]
+
+        case "캐나다 밴프 국립공원 여행":
+            return [
+                Milestone(title: "밴프 여행 계획", description: "5-7일 로키산맥 일정", successCriteria: ["밴프, 재스퍼 일정을 세웠나요?", "최적 시즌(6-9월)을 확인했나요?", "콜롬비아 아이스필드를 포함했나요?"]),
+                Milestone(title: "렌터카 예약", description: "캘거리 공항 픽업", successCriteria: ["4WD 차량을 예약했나요?", "보험 조건을 확인했나요?", "내비게이션을 준비했나요?"]),
+                Milestone(title: "숙소 예약", description: "밴프 타운 또는 레이크 루이스", successCriteria: ["성수기 사전 예약을 했나요?", "샤토 레이크 루이스를 고려했나요?", "캠핑장을 알아봤나요?"]),
+                Milestone(title: "하이킹 코스 선택", description: "모레인 레이크, 레이크 루이스", successCriteria: ["빅 비하이브 트레일을 알아봤나요?", "곰 스프레이를 준비했나요?", "트레일 컨디션을 확인했나요?"]),
+                Milestone(title: "야생동물 관찰 준비", description: "엘크, 곰, 무스 관찰", successCriteria: ["야생동물 안전 수칙을 아나요?", "쌍안경을 준비했나요?", "이른 아침/저녁 관찰 계획인가요?"])
+            ]
+
+        case "페루 마추픽추 방문하기":
+            return [
+                Milestone(title: "마추픽추 리서치", description: "잉카 역사 및 방문 정보", successCriteria: ["건기(5-10월)에 방문 계획인가요?", "입장 인원 제한을 확인했나요?", "고산병 대비를 준비했나요?"]),
+                Milestone(title: "입장권 예매", description: "공식 사이트 사전 예약 필수", successCriteria: ["마추픽추 입장권을 예매했나요?", "와이나픽추 등반 추가를 고려했나요?", "시간대를 선택했나요?"]),
+                Milestone(title: "쿠스코 적응 일정", description: "고산 적응 2-3일", successCriteria: ["쿠스코에서 2일 이상 머물 계획인가요?", "코카차를 준비했나요?", "고산병 약을 처방받았나요?"]),
+                Milestone(title: "이동 수단 결정", description: "잉카 트레일 vs 기차", successCriteria: ["잉카 트레일 4일 트레킹을 고려했나요?", "페루레일 예약을 했나요?", "아구아스 칼리엔테스 숙소를 예약했나요?"]),
+                Milestone(title: "가이드 투어 예약", description: "공인 가이드 동행", successCriteria: ["영어/스페인어 가이드를 예약했나요?", "투어 포함 사항을 확인했나요?", "팁 문화를 파악했나요?"])
+            ]
+
+        case "미국 그랜드 캐년 보기":
+            return [
+                Milestone(title: "림 선택", description: "사우스 림 vs 노스 림 결정", successCriteria: ["사우스 림(접근 용이)을 선택했나요?", "노스 림은 5-10월만 개방됨을 아나요?", "웨스트 림 스카이워크를 고려했나요?"]),
+                Milestone(title: "국립공원 패스", description: "아메리카 더 뷰티풀 패스", successCriteria: ["연간 패스 구매를 고려했나요?", "입장료를 확인했나요?", "다른 국립공원 방문을 계획했나요?"]),
+                Milestone(title: "숙소 예약", description: "공원 내 롯지 또는 투사얀", successCriteria: ["브라이트 엔젤 롯지를 알아봤나요?", "6개월 전 예약을 시도했나요?", "캠핑장을 고려했나요?"]),
+                Milestone(title: "하이킹 계획", description: "림 트레일 또는 내려가기", successCriteria: ["브라이트 엔젤 트레일을 알아봤나요?", "물과 간식을 충분히 준비할 계획인가요?", "일출/일몰 뷰포인트를 정했나요?"]),
+                Milestone(title: "헬기 투어 고려", description: "공중에서 협곡 감상", successCriteria: ["헬기 투어 업체를 비교했나요?", "가격대를 확인했나요?", "사진 촬영 좌석을 요청할 계획인가요?"])
+            ]
+
+        case "브라질 이과수 폭포 보기":
+            return [
+                Milestone(title: "방문국 선택", description: "브라질 측 vs 아르헨티나 측", successCriteria: ["양쪽 모두 방문 계획인가요?", "브라질 비자가 필요한지 확인했나요?", "최소 2일 일정을 확보했나요?"]),
+                Milestone(title: "숙소 예약", description: "포스 두 이과수 시내", successCriteria: ["공원 근처 숙소를 예약했나요?", "셔틀 서비스가 있는 호텔인가요?", "양국 방문에 편리한 위치인가요?"]),
+                Milestone(title: "폭포 투어 예약", description: "보트 투어, 헬기 투어", successCriteria: ["마쿠코 사파리(보트)를 예약했나요?", "헬기 투어를 고려했나요?", "방수 가방을 준비했나요?"]),
+                Milestone(title: "국경 이동 계획", description: "브라질-아르헨티나 왕복", successCriteria: ["여권을 항상 소지할 계획인가요?", "국경 이동 방법을 확인했나요?", "양국 입장료를 준비했나요?"]),
+                Milestone(title: "준비물 챙기기", description: "방수 장비, 선크림", successCriteria: ["우비 또는 방수 재킷을 준비했나요?", "여분의 옷을 챙겼나요?", "방수 신발을 준비했나요?"])
+            ]
+
+        case "호주 대보초 스노클링":
+            return [
+                Milestone(title: "출발지 선택", description: "케언스 vs 포트더글라스", successCriteria: ["케언스가 더 다양한 투어를 제공함을 아나요?", "화이트선데이즈를 고려했나요?", "최적 시즌(6-10월)을 확인했나요?"]),
+                Milestone(title: "스노클링 투어 예약", description: "당일 또는 1박 크루즈", successCriteria: ["외부 리프 투어를 예약했나요?", "스노클링 장비 포함인가요?", "라이브어보드를 고려했나요?"]),
+                Milestone(title: "다이빙 자격증", description: "PADI 오픈워터 취득 고려", successCriteria: ["다이빙을 원하면 자격증이 필요해요", "케언스 현지 교육을 고려했나요?", "체험 다이빙 옵션을 알아봤나요?"]),
+                Milestone(title: "해양 생물 학습", description: "산호, 물고기 종류 공부", successCriteria: ["니모(클라운피시)를 찾을 수 있나요?", "거북이 관찰 포인트를 아나요?", "해양 보호 수칙을 이해했나요?"]),
+                Milestone(title: "준비물 챙기기", description: "래쉬가드, 수중카메라", successCriteria: ["SPF50+ 산호 안전 선크림을 준비했나요?", "고프로 또는 수중카메라가 있나요?", "멀미약을 챙겼나요?"])
+            ]
+
+        case "터키 카파도키아 열기구":
+            return [
+                Milestone(title: "열기구 시즌 확인", description: "4-10월이 최적", successCriteria: ["날씨로 인한 취소 가능성을 아나요?", "최소 2일 이상 체류 계획인가요?", "일출 비행을 원하나요?"]),
+                Milestone(title: "열기구 업체 예약", description: "안전 기록 확인 필수", successCriteria: ["리뷰가 좋은 업체를 선택했나요?", "보험 포함 여부를 확인했나요?", "조종사 경력을 확인했나요?"]),
+                Milestone(title: "숙소 예약", description: "괴레메 동굴 호텔", successCriteria: ["동굴 호텔 체험을 계획했나요?", "테라스에서 열기구 뷰가 가능한가요?", "열기구 픽업 서비스가 있나요?"]),
+                Milestone(title: "카파도키아 투어", description: "그린투어, 레드투어", successCriteria: ["지하도시 방문을 계획했나요?", "로즈밸리 하이킹을 고려했나요?", "ATV 투어를 알아봤나요?"]),
+                Milestone(title: "이스탄불 연계", description: "국내선 또는 야간버스", successCriteria: ["카이세리 공항 이용을 계획했나요?", "이스탄불-카파도키아 이동을 예약했나요?", "네브셰히르 공항 옵션을 확인했나요?"])
+            ]
+
+        case "캄보디아 앙코르와트 일출":
+            return [
+                Milestone(title: "앙코르 패스 구매", description: "1일/3일/7일권 선택", successCriteria: ["최소 3일권을 추천 - 주요 사원이 많아요", "온라인 구매 가능 여부를 확인했나요?", "사진 촬영용 여권 사진이 있나요?"]),
+                Milestone(title: "일출 포인트 선택", description: "연꽃 연못 vs 왼쪽 타워", successCriteria: ["일출 30분 전 도착 계획인가요?", "건기(11-4월)에 방문하나요?", "삼각대를 준비했나요?"]),
+                Milestone(title: "시엠립 숙소", description: "올드마켓 근처 추천", successCriteria: ["툭툭 기사 연결 숙소인가요?", "펍스트리트 접근성을 확인했나요?", "풀빌라를 고려했나요?"]),
+                Milestone(title: "앙코르 투어 계획", description: "스몰서킷, 빅서킷", successCriteria: ["앙코르톰, 타프롬을 포함했나요?", "반테이스레이를 계획했나요?", "프놈쿨렌을 고려했나요?"]),
+                Milestone(title: "가이드 및 교통", description: "프라이빗 가이드 추천", successCriteria: ["한국어 가이드를 찾아봤나요?", "툭툭 vs 에어컨 차량을 선택했나요?", "일일 비용을 확인했나요?"])
+            ]
+
+        // MARK: - 경험 카테고리
+        case "스카이다이빙 체험하기":
+            return [
+                Milestone(title: "스카이다이빙 종류 결정", description: "탠덤 vs 솔로 자격증", successCriteria: ["첫 경험이면 탠덤을 추천해요", "AFF 코스 자격증을 고려하나요?", "최소 고도를 확인했나요? (4,000m 추천)"]),
+                Milestone(title: "드롭존 선택", description: "국내 vs 해외 명소", successCriteria: ["국내(양평, 서산)를 알아봤나요?", "해외(두바이, 호주, 뉴질랜드)를 고려했나요?", "리뷰와 안전 기록을 확인했나요?"]),
+                Milestone(title: "예약 및 비용", description: "탠덤 기준 20-40만원", successCriteria: ["영상 촬영 옵션을 추가했나요?", "취소 정책을 확인했나요?", "날씨로 인한 연기 가능성을 알고 있나요?"]),
+                Milestone(title: "당일 준비", description: "복장 및 컨디션 관리", successCriteria: ["전날 음주를 피할 계획인가요?", "편한 운동화를 준비했나요?", "식사는 가볍게 할 계획인가요?"]),
+                Milestone(title: "두려움 극복", description: "멘탈 준비", successCriteria: ["영상을 보며 마음의 준비를 했나요?", "호흡법을 연습했나요?", "즐기겠다는 마음가짐이 되었나요?"])
+            ]
+
+        case "번지점프 도전하기":
+            return [
+                Milestone(title: "장소 선택", description: "국내 vs 해외 번지", successCriteria: ["국내(가평, 통영)를 알아봤나요?", "뉴질랜드 퀸즈타운을 고려했나요?", "마카오 타워(233m)를 알고 있나요?"]),
+                Milestone(title: "높이 선택", description: "50m부터 시작 권장", successCriteria: ["처음이면 50-80m를 추천해요", "점프 스타일(전방, 후방)을 결정했나요?", "물로 뛰어드는 타입을 고려했나요?"]),
+                Milestone(title: "예약하기", description: "온라인 또는 현장 예약", successCriteria: ["예약 가능한 날짜를 확인했나요?", "대기 시간을 고려했나요?", "영상 촬영 옵션이 있나요?"]),
+                Milestone(title: "건강 체크", description: "심장, 혈압 확인", successCriteria: ["심장 질환이 없나요?", "고혈압이 있으면 의사 상담을 했나요?", "임산부가 아닌지 확인했나요?"]),
+                Milestone(title: "멘탈 준비", description: "두려움 극복하기", successCriteria: ["영상을 보며 시뮬레이션했나요?", "심호흡 연습을 했나요?", "3초 안에 뛰어내릴 결심이 섰나요?"])
+            ]
+
+        case "스쿠버다이빙 자격증 취득":
+            return [
+                Milestone(title: "다이빙 단체 선택", description: "PADI vs SSI vs NAUI", successCriteria: ["PADI가 가장 국제적으로 인정받아요", "온라인 이론 학습이 가능한가요?", "현지 교육 비용을 비교했나요?"]),
+                Milestone(title: "오픈워터 교육 등록", description: "3-4일 소요", successCriteria: ["국내(강원도, 제주)를 고려했나요?", "해외(필리핀, 태국)가 더 저렴해요", "교육비에 장비 대여가 포함인가요?"]),
+                Milestone(title: "이론 학습", description: "수압, 감압, 안전 수칙", successCriteria: ["PADI eLearning을 완료했나요?", "감압병에 대해 이해했나요?", "핸드시그널을 외웠나요?"]),
+                Milestone(title: "수영장 실습", description: "제한수역 다이빙", successCriteria: ["마스크 물빼기를 할 수 있나요?", "레귤레이터 되찾기를 연습했나요?", "중성부력을 연습했나요?"]),
+                Milestone(title: "해양 실습", description: "4회 오픈워터 다이빙", successCriteria: ["18m 깊이까지 다이빙했나요?", "버디 시스템을 이해했나요?", "로그북을 작성했나요?"])
+            ]
+
+        case "패러글라이딩 체험":
+            return [
+                Milestone(title: "체험 장소 선택", description: "국내 명소 리서치", successCriteria: ["양평, 단양, 문경을 알아봤나요?", "해외(인터라켄, 포카라)를 고려했나요?", "고도와 비행시간을 비교했나요?"]),
+                Milestone(title: "업체 선택 및 예약", description: "안전 기록 확인", successCriteria: ["자격증 있는 조종사인지 확인했나요?", "보험 가입 여부를 확인했나요?", "후기를 충분히 읽었나요?"]),
+                Milestone(title: "날씨 확인", description: "바람과 구름 조건", successCriteria: ["예약일 기상 예보를 확인했나요?", "바람이 너무 강하면 취소됨을 아나요?", "대체 날짜를 확보했나요?"]),
+                Milestone(title: "복장 준비", description: "편한 운동복과 운동화", successCriteria: ["긴 바지를 입을 계획인가요?", "운동화를 준비했나요?", "선글라스를 챙겼나요?"]),
+                Milestone(title: "비행 즐기기", description: "사진과 영상 촬영", successCriteria: ["고프로 또는 촬영 옵션을 추가했나요?", "조종사에게 포토 스팟을 요청했나요?", "착륙 자세를 배웠나요?"])
+            ]
+
+        case "서핑 배우기":
+            return [
+                Milestone(title: "서핑 스팟 선택", description: "국내 서핑 명소", successCriteria: ["양양 죽도해변을 알고 있나요?", "부산 송정해변을 고려했나요?", "제주 중문해변을 알아봤나요?"]),
+                Milestone(title: "서핑 스쿨 등록", description: "초보자 그룹 레슨", successCriteria: ["그룹 vs 프라이빗 레슨을 선택했나요?", "보드와 슈트 대여가 포함인가요?", "레슨 시간(2시간 추천)을 확인했나요?"]),
+                Milestone(title: "기초 이론 학습", description: "파도, 조류, 에티켓", successCriteria: ["서핑 에티켓을 알고 있나요?", "이안류 대처법을 배웠나요?", "파도 읽는 법을 이해했나요?"]),
+                Milestone(title: "팝업 연습", description: "보드 위에 일어서기", successCriteria: ["집에서 팝업 연습을 했나요?", "자세가 안정적인가요?", "무릎 자세에서 일어설 수 있나요?"]),
+                Milestone(title: "첫 파도 타기", description: "화이트워시에서 연습", successCriteria: ["거품 파도에서 연습했나요?", "5초 이상 보드 위에 섰나요?", "방향 전환을 시도했나요?"])
+            ]
+
+        case "요트 항해 체험":
+            return [
+                Milestone(title: "요트 체험 종류 선택", description: "세일링 vs 모터 요트", successCriteria: ["세일링 요트의 낭만을 원하나요?", "모터 요트의 편안함을 원하나요?", "체험 시간(반나절/종일)을 정했나요?"]),
+                Milestone(title: "출항지 선택", description: "마리나 리서치", successCriteria: ["해운대, 여수, 통영을 알아봤나요?", "제주 요트 투어를 고려했나요?", "해외(푸켓, 두브로브니크)를 고려했나요?"]),
+                Milestone(title: "요트 렌탈 예약", description: "스키퍼 포함 여부", successCriteria: ["선장 동승 옵션을 선택했나요?", "식음료 포함 여부를 확인했나요?", "일몰 크루즈를 고려했나요?"]),
+                Milestone(title: "멀미 대비", description: "멀미약 준비", successCriteria: ["멀미약을 미리 복용할 계획인가요?", "생강 사탕을 준비했나요?", "가벼운 식사를 할 계획인가요?"]),
+                Milestone(title: "항해 즐기기", description: "선상 활동 준비", successCriteria: ["수영복을 준비했나요?", "선크림과 선글라스를 챙겼나요?", "방수 가방을 준비했나요?"])
+            ]
+
+        case "미슐랭 3스타 레스토랑 방문":
+            return [
+                Milestone(title: "레스토랑 선택", description: "미슐랭 가이드 리서치", successCriteria: ["방문하고 싶은 도시를 정했나요?", "요리 스타일(프렌치, 일식 등)을 선택했나요?", "예산을 확인했나요? (인당 30-50만원)"]),
+                Milestone(title: "예약하기", description: "최소 1-3개월 전 예약", successCriteria: ["공식 웹사이트에서 예약했나요?", "특별한 날(생일 등)을 알렸나요?", "식이 제한을 미리 알렸나요?"]),
+                Milestone(title: "드레스 코드 확인", description: "스마트 캐주얼 이상", successCriteria: ["남성: 재킷 필요 여부를 확인했나요?", "여성: 드레스 코드를 확인했나요?", "편한 구두를 준비했나요?"]),
+                Milestone(title: "메뉴 선택", description: "테이스팅 코스 추천", successCriteria: ["풀코스 vs 런치 코스를 선택했나요?", "와인 페어링을 추가했나요?", "알레르기를 미리 알렸나요?"]),
+                Milestone(title: "다이닝 에티켓", description: "파인다이닝 매너", successCriteria: ["나이프와 포크 사용법을 아나요?", "냅킨 에티켓을 알고 있나요?", "팁 문화를 확인했나요?"])
+            ]
+
+        // MARK: - 성취 카테고리
+        case "풀코스 마라톤 완주하기":
+            return [
+                Milestone(title: "기초 체력 만들기", description: "주 3회 이상 달리기 시작", successCriteria: ["현재 10km를 뛸 수 있나요?", "러닝화를 구입했나요?", "러닝 앱을 설치했나요?"]),
+                Milestone(title: "하프 마라톤 완주", description: "21.0975km 도전", successCriteria: ["하프 마라톤 대회에 등록했나요?", "2시간 30분 내 완주할 수 있나요?", "페이스 조절을 연습했나요?"]),
+                Milestone(title: "30km 장거리 훈련", description: "LSD(Long Slow Distance) 훈련", successCriteria: ["30km를 3시간 30분 내 뛸 수 있나요?", "보급(물, 젤) 전략을 세웠나요?", "벽(30km 지점)을 경험했나요?"]),
+                Milestone(title: "풀코스 대회 등록", description: "서울, 춘천, 경주 등", successCriteria: ["목표 대회를 선정했나요?", "대회 3-4개월 전 등록했나요?", "목표 기록을 설정했나요?"]),
+                Milestone(title: "테이퍼링", description: "대회 2주 전 훈련량 감소", successCriteria: ["운동량을 50% 줄였나요?", "탄수화물 로딩을 계획했나요?", "대회 준비물을 체크했나요?"]),
+                Milestone(title: "완주 전략", description: "페이스와 보급 계획", successCriteria: ["목표 페이스(분/km)를 정했나요?", "에너지젤 섭취 타이밍을 정했나요?", "부정출발 방지를 위해 일찍 출발하나요?"])
+            ]
+
+        case "철인3종 경기 완주":
+            return [
+                Milestone(title: "수영 실력 향상", description: "자유형 1.5km 완영", successCriteria: ["400m를 쉬지 않고 수영할 수 있나요?", "오픈워터 수영 경험이 있나요?", "젖은 수트를 입고 수영해봤나요?"]),
+                Milestone(title: "사이클 훈련", description: "40km 사이클 완주", successCriteria: ["로드바이크를 보유하고 있나요?", "클릿 페달 사용에 익숙한가요?", "시속 30km 이상 유지 가능한가요?"]),
+                Milestone(title: "달리기 훈련", description: "10km 달리기 완주", successCriteria: ["사이클 후 바로 달릴 수 있나요?", "브릭 트레이닝을 해봤나요?", "50분 내 10km 가능한가요?"]),
+                Milestone(title: "복합 훈련", description: "3종목 연속 훈련", successCriteria: ["전환(트랜지션) 연습을 했나요?", "수영→사이클 전환 시간은?", "사이클→런 전환 시간은?"]),
+                Milestone(title: "대회 등록", description: "스프린트 또는 올림픽 코스", successCriteria: ["첫 대회는 스프린트 코스를 추천해요", "대회 규정을 숙지했나요?", "장비 점검을 완료했나요?"]),
+                Milestone(title: "영양 전략", description: "경기 중 보급 계획", successCriteria: ["수분 보충 계획을 세웠나요?", "젤/바 섭취 타이밍을 정했나요?", "경기 전 식사 메뉴를 정했나요?"])
+            ]
+
+        case "책 100권 읽기":
+            return [
+                Milestone(title: "독서 습관 만들기", description: "매일 30분 독서", successCriteria: ["매일 같은 시간에 읽고 있나요?", "독서 공간을 정했나요?", "스마트폰을 멀리 두고 읽나요?"]),
+                Milestone(title: "첫 10권 완독", description: "2개월 내 목표", successCriteria: ["읽고 싶은 책 리스트가 있나요?", "독서 기록 앱/노트를 사용하나요?", "10권 완독했나요?"]),
+                Milestone(title: "장르 다양화", description: "소설, 비소설, 자기계발 등", successCriteria: ["다양한 장르를 시도하고 있나요?", "불편한 장르도 도전했나요?", "30권 완독했나요?"]),
+                Milestone(title: "독서 모임 참여", description: "생각 나누기", successCriteria: ["독서 모임을 찾아봤나요?", "온라인 독서 커뮤니티에 가입했나요?", "50권 완독했나요?"]),
+                Milestone(title: "독서 속도 향상", description: "월 3-4권 읽기", successCriteria: ["한 달에 3권 이상 읽고 있나요?", "출퇴근 시간을 활용하나요?", "75권 완독했나요?"]),
+                Milestone(title: "100권 달성", description: "독서 마라톤 완주", successCriteria: ["100권 리스트를 작성했나요?", "가장 인상 깊은 책 10권을 꼽을 수 있나요?", "다음 목표를 세웠나요?"])
+            ]
+
+        case "유튜브 구독자 10만 달성":
+            return [
+                Milestone(title: "채널 컨셉 정하기", description: "니치 시장 선택", successCriteria: ["어떤 주제로 채널을 운영할지 정했나요?", "타겟 시청자층을 정의했나요?", "경쟁 채널을 분석했나요?"]),
+                Milestone(title: "첫 영상 10개 업로드", description: "콘텐츠 제작 시작", successCriteria: ["편집 프로그램을 배웠나요?", "썸네일 제작 방법을 익혔나요?", "업로드 주기를 정했나요?"]),
+                Milestone(title: "구독자 1,000명 달성", description: "수익 창출 조건 1", successCriteria: ["커뮤니티와 소통하고 있나요?", "SEO 최적화를 적용했나요?", "콜투액션을 활용하고 있나요?"]),
+                Milestone(title: "시청 시간 4,000시간", description: "수익 창출 조건 2", successCriteria: ["평균 시청 지속시간을 확인하나요?", "10분 이상 영상을 제작하나요?", "시리즈 콘텐츠를 만들었나요?"]),
+                Milestone(title: "구독자 10,000명 달성", description: "실버 버튼을 향해", successCriteria: ["바이럴 영상이 있었나요?", "협업을 시도했나요?", "숏폼(Shorts)을 활용하고 있나요?"]),
+                Milestone(title: "10만 구독자 달성", description: "실버 버튼 획득", successCriteria: ["일관된 업로드를 유지하고 있나요?", "커뮤니티 탭을 활용하나요?", "수익 다각화를 계획했나요?"])
+            ]
+
+        case "창업해서 첫 매출 내기":
+            return [
+                Milestone(title: "사업 아이디어 검증", description: "시장 조사 및 고객 인터뷰", successCriteria: ["해결하고 싶은 문제를 정의했나요?", "잠재 고객 10명과 인터뷰했나요?", "경쟁사를 분석했나요?"]),
+                Milestone(title: "MVP 제작", description: "최소 기능 제품 개발", successCriteria: ["핵심 기능만 포함한 제품을 만들었나요?", "프로토타입을 테스트했나요?", "피드백을 반영했나요?"]),
+                Milestone(title: "사업자 등록", description: "법적 준비", successCriteria: ["사업자 유형을 결정했나요?", "사업자등록증을 발급받았나요?", "통장을 개설했나요?"]),
+                Milestone(title: "마케팅 시작", description: "첫 고객 확보", successCriteria: ["SNS 채널을 개설했나요?", "첫 광고를 집행했나요?", "랜딩 페이지를 만들었나요?"]),
+                Milestone(title: "첫 매출 달성", description: "유료 고객 확보", successCriteria: ["첫 결제를 받았나요?", "고객 피드백을 받았나요?", "재구매를 유도했나요?"])
+            ]
+
+        case "연봉 1억 달성하기":
+            return [
+                Milestone(title: "현재 위치 분석", description: "연봉, 역량, 시장가치 파악", successCriteria: ["현재 연봉 수준을 알고 있나요?", "업계 평균 연봉을 조사했나요?", "필요한 역량을 파악했나요?"]),
+                Milestone(title: "역량 개발 계획", description: "고연봉 스킬 습득", successCriteria: ["수요가 높은 기술을 배우고 있나요?", "자격증/학위를 계획했나요?", "포트폴리오를 만들고 있나요?"]),
+                Milestone(title: "네트워크 확장", description: "업계 인맥 구축", successCriteria: ["링크드인 프로필을 최적화했나요?", "업계 행사에 참여하나요?", "멘토를 찾았나요?"]),
+                Milestone(title: "이직/승진 준비", description: "기회 모색", successCriteria: ["이력서를 업데이트했나요?", "헤드헌터와 연락했나요?", "면접 준비를 했나요?"]),
+                Milestone(title: "연봉 협상", description: "목표 연봉 달성", successCriteria: ["협상 전략을 세웠나요?", "시장가치를 근거로 제시했나요?", "대안(BATNA)을 준비했나요?"])
+            ]
+
+        // MARK: - 학습 카테고리
+        case "영어 유창하게 구사하기":
+            return [
+                Milestone(title: "기초 문법 마스터", description: "시제, 조동사, 전치사", successCriteria: ["12시제를 이해하고 있나요?", "관계대명사를 사용할 수 있나요?", "기초 문법책을 완독했나요?"]),
+                Milestone(title: "어휘력 확장", description: "일상 필수 단어 3,000개", successCriteria: ["매일 새로운 단어를 외우고 있나요?", "플래시카드 앱을 활용하나요?", "문장 속에서 단어를 학습하나요?"]),
+                Milestone(title: "리스닝 훈련", description: "영어 듣기 실력 향상", successCriteria: ["영어 팟캐스트를 듣고 있나요?", "자막 없이 드라마를 보나요?", "딕테이션 연습을 하나요?"]),
+                Milestone(title: "스피킹 연습", description: "원어민과 대화", successCriteria: ["화상영어를 하고 있나요?", "영어 말하기 앱을 사용하나요?", "매일 영어로 혼잣말 하나요?"]),
+                Milestone(title: "공인 시험 점수", description: "TOEIC/IELTS 목표 달성", successCriteria: ["목표 점수를 설정했나요?", "모의고사를 풀어봤나요?", "시험에 등록했나요?"])
+            ]
+
+        case "중국어 HSK 6급 취득":
+            return [
+                Milestone(title: "병음과 성조 마스터", description: "발음 기초 완성", successCriteria: ["4성조를 정확히 구분하나요?", "병음을 보고 발음할 수 있나요?", "받아쓰기가 가능한가요?"]),
+                Milestone(title: "HSK 4급 통과", description: "중급 수준 달성", successCriteria: ["1,200개 필수 어휘를 외웠나요?", "기본 문장 구조를 이해하나요?", "HSK 4급 모의고사를 풀어봤나요?"]),
+                Milestone(title: "HSK 5급 통과", description: "고급 수준 진입", successCriteria: ["2,500개 어휘를 외웠나요?", "중국어 뉴스를 읽을 수 있나요?", "HSK 5급 시험에 응시했나요?"]),
+                Milestone(title: "원어민 회화 연습", description: "스피킹 실력 향상", successCriteria: ["중국어 원어민 친구가 있나요?", "중국어 드라마를 자막 없이 보나요?", "중국어로 일상 대화가 가능한가요?"]),
+                Milestone(title: "HSK 6급 시험 응시", description: "최고급 자격 취득", successCriteria: ["5,000개 어휘를 마스터했나요?", "작문 연습을 충분히 했나요?", "시험 접수를 완료했나요?"])
+            ]
+
+        case "일본어 JLPT N1 취득":
+            return [
+                Milestone(title: "히라가나/가타카나 암기", description: "기초 문자 마스터", successCriteria: ["히라가나 46자를 외웠나요?", "가타카나 46자를 외웠나요?", "탁음, 반탁음을 구분하나요?"]),
+                Milestone(title: "JLPT N3 통과", description: "중급 수준", successCriteria: ["한자 650자를 외웠나요?", "문법 패턴을 이해하나요?", "N3 모의고사를 풀어봤나요?"]),
+                Milestone(title: "JLPT N2 통과", description: "준상급 수준", successCriteria: ["한자 1,000자를 외웠나요?", "뉴스를 읽고 이해할 수 있나요?", "N2 시험에 응시했나요?"]),
+                Milestone(title: "독해/청해 강화", description: "N1 수준 준비", successCriteria: ["일본 소설을 읽고 있나요?", "NHK 뉴스를 청취하나요?", "과거 기출문제를 풀어봤나요?"]),
+                Milestone(title: "JLPT N1 합격", description: "최상급 자격 취득", successCriteria: ["한자 2,000자를 마스터했나요?", "문법/어휘 문제집을 완료했나요?", "시험 접수를 완료했나요?"])
+            ]
+
+        case "코딩 마스터하기":
+            return [
+                Milestone(title: "프로그래밍 언어 선택", description: "Python/JavaScript 등", successCriteria: ["배우고 싶은 언어를 정했나요?", "학습 목적이 명확한가요?", "개발 환경을 설정했나요?"]),
+                Milestone(title: "기초 문법 학습", description: "변수, 조건문, 반복문", successCriteria: ["변수와 자료형을 이해하나요?", "if/else 문을 작성할 수 있나요?", "for/while 루프를 사용할 수 있나요?"]),
+                Milestone(title: "프로젝트 제작", description: "첫 프로그램 완성", successCriteria: ["간단한 프로젝트를 완료했나요?", "GitHub에 코드를 올렸나요?", "오류를 디버깅할 수 있나요?"]),
+                Milestone(title: "자료구조/알고리즘", description: "코딩테스트 준비", successCriteria: ["배열, 리스트, 딕셔너리를 이해하나요?", "정렬, 탐색 알고리즘을 알고 있나요?", "코딩테스트 문제를 풀어봤나요?"]),
+                Milestone(title: "실전 프로젝트", description: "포트폴리오 구축", successCriteria: ["실제 사용자가 있는 앱을 만들었나요?", "협업 경험이 있나요?", "포트폴리오를 완성했나요?"])
+            ]
+
+        case "바리스타 자격증 취득":
+            return [
+                Milestone(title: "커피 기초 지식", description: "원두, 로스팅, 추출", successCriteria: ["아라비카와 로부스타 차이를 아나요?", "로스팅 단계를 이해하나요?", "추출 변수를 알고 있나요?"]),
+                Milestone(title: "에스프레소 추출", description: "머신 사용법 숙달", successCriteria: ["에스프레소 머신을 다룰 수 있나요?", "탬핑 압력을 일정하게 유지하나요?", "추출 시간을 조절할 수 있나요?"]),
+                Milestone(title: "우유 스티밍", description: "라떼아트 기초", successCriteria: ["우유 거품을 잘 만들 수 있나요?", "마이크로폼을 만들 수 있나요?", "하트 모양 라떼아트를 할 수 있나요?"]),
+                Milestone(title: "바리스타 교육 수료", description: "공인 교육 기관", successCriteria: ["바리스타 교육 기관에 등록했나요?", "실습 시간을 채웠나요?", "이론 시험을 준비했나요?"]),
+                Milestone(title: "자격 시험 응시", description: "2급/1급 취득", successCriteria: ["필기 시험을 통과했나요?", "실기 시험을 연습했나요?", "자격증을 취득했나요?"])
+            ]
+
+        // MARK: - 건강 카테고리
+        case "체중 10kg 감량":
+            return [
+                Milestone(title: "현재 상태 측정", description: "체중, 체지방률 기록", successCriteria: ["시작 체중을 기록했나요?", "체지방률을 측정했나요?", "목표 체중을 설정했나요?"]),
+                Milestone(title: "식단 관리 시작", description: "칼로리 적자 만들기", successCriteria: ["하루 섭취 칼로리를 계산했나요?", "식단 기록 앱을 사용하나요?", "단백질 섭취량을 확인하나요?"]),
+                Milestone(title: "운동 루틴 수립", description: "유산소 + 근력 운동", successCriteria: ["주 3회 이상 운동하나요?", "유산소 운동을 30분 이상 하나요?", "근력 운동을 병행하나요?"]),
+                Milestone(title: "5kg 감량 달성", description: "중간 목표", successCriteria: ["5kg을 감량했나요?", "정체기를 경험했나요?", "식단/운동을 조정했나요?"]),
+                Milestone(title: "10kg 감량 달성", description: "최종 목표", successCriteria: ["목표 체중에 도달했나요?", "체지방률이 감소했나요?", "유지 계획을 세웠나요?"])
+            ]
+
+        case "복근 만들기":
+            return [
+                Milestone(title: "체지방률 확인", description: "복근 visible 조건", successCriteria: ["현재 체지방률을 알고 있나요?", "남성 12% 이하, 여성 18% 이하가 목표예요", "체지방 측정 방법을 알고 있나요?"]),
+                Milestone(title: "식단 관리", description: "단백질 위주 클린 식단", successCriteria: ["하루 단백질 체중×1.6g 섭취하나요?", "가공식품을 줄였나요?", "물을 충분히 마시나요?"]),
+                Milestone(title: "코어 운동 시작", description: "플랭크, 크런치, 레그레이즈", successCriteria: ["플랭크 1분을 버틸 수 있나요?", "매일 복근 운동을 하나요?", "다양한 복근 운동을 알고 있나요?"]),
+                Milestone(title: "전신 운동 병행", description: "기초대사량 높이기", successCriteria: ["스쿼트, 데드리프트를 하나요?", "주 3회 이상 웨이트 트레이닝을 하나요?", "유산소 운동을 병행하나요?"]),
+                Milestone(title: "복근 visible", description: "식스팩 완성", successCriteria: ["복근이 보이기 시작했나요?", "체지방률 목표에 도달했나요?", "유지 루틴을 만들었나요?"])
+            ]
+
+        case "금연 1년 달성":
+            return [
+                Milestone(title: "금연 결심", description: "동기 부여 및 계획", successCriteria: ["금연 이유를 명확히 했나요?", "금연 시작일을 정했나요?", "주변에 알렸나요?"]),
+                Milestone(title: "금연 보조제 준비", description: "니코틴 패치, 껌 등", successCriteria: ["금연 보조제를 구입했나요?", "금연 클리닉을 알아봤나요?", "대체 행동을 정했나요?"]),
+                Milestone(title: "금연 1주일", description: "니코틴 금단 극복", successCriteria: ["첫 3일을 버텼나요?", "금단 증상을 관리하고 있나요?", "흡연 욕구를 견디는 방법을 알고 있나요?"]),
+                Milestone(title: "금연 1개월", description: "습관 변화", successCriteria: ["한 달 동안 단 한 대도 피우지 않았나요?", "흡연 유발 상황을 피하고 있나요?", "스트레스 해소법을 찾았나요?"]),
+                Milestone(title: "금연 1년 달성", description: "완전한 비흡연자", successCriteria: ["1년 동안 금연을 유지했나요?", "흡연 욕구가 거의 없어졌나요?", "건강 개선을 느끼나요?"])
+            ]
+
+        case "명상 100일 연속":
+            return [
+                Milestone(title: "명상 방법 선택", description: "호흡, 마음챙김, 가이드", successCriteria: ["명상 앱(Calm, 헤드스페이스)을 설치했나요?", "명상 시간(아침/저녁)을 정했나요?", "명상 장소를 정했나요?"]),
+                Milestone(title: "10일 연속 달성", description: "습관 형성 시작", successCriteria: ["매일 같은 시간에 명상하나요?", "5분 이상 명상하나요?", "명상 기록을 하고 있나요?"]),
+                Milestone(title: "30일 연속 달성", description: "습관 정착", successCriteria: ["30일 연속 명상했나요?", "명상 시간을 10분으로 늘렸나요?", "집중력 향상을 느끼나요?"]),
+                Milestone(title: "60일 연속 달성", description: "깊은 명상 경험", successCriteria: ["명상 중 잡념이 줄었나요?", "스트레스 감소를 느끼나요?", "명상 시간을 15-20분으로 늘렸나요?"]),
+                Milestone(title: "100일 연속 달성", description: "명상 마스터", successCriteria: ["100일을 완주했나요?", "명상이 일상의 일부가 되었나요?", "다양한 명상 기법을 시도했나요?"])
+            ]
+
+        // MARK: - 관계 카테고리
+        case "부모님과 세계여행":
+            return [
+                Milestone(title: "부모님 건강 체크", description: "장거리 여행 가능 여부", successCriteria: ["부모님 건강 상태를 확인했나요?", "필요한 상비약을 체크했나요?", "여행자 보험을 알아봤나요?"]),
+                Milestone(title: "여행지 선정", description: "부모님 취향 반영", successCriteria: ["부모님이 가고 싶은 곳을 물어봤나요?", "이동 거리와 편의를 고려했나요?", "계절을 고려했나요?"]),
+                Milestone(title: "여행 경비 마련", description: "예산 계획 및 저축", successCriteria: ["총 비용을 계산했나요?", "매달 저축 금액을 정했나요?", "항공권 특가를 모니터링하나요?"]),
+                Milestone(title: "일정 및 예약", description: "항공, 숙소, 투어", successCriteria: ["부모님 체력에 맞는 일정인가요?", "휴식 시간을 충분히 포함했나요?", "접근성 좋은 숙소를 예약했나요?"]),
+                Milestone(title: "함께 여행 떠나기", description: "추억 만들기", successCriteria: ["여행 준비를 완료했나요?", "사진을 많이 찍을 계획인가요?", "부모님의 버킷리스트를 확인했나요?"])
+            ]
+
+        case "결혼식 올리기":
+            return [
+                Milestone(title: "프러포즈", description: "결혼 약속", successCriteria: ["상대방과 결혼 의사를 확인했나요?", "프러포즈 계획을 세웠나요?", "반지를 준비했나요?"]),
+                Milestone(title: "양가 상견례", description: "가족 소개", successCriteria: ["상견례 날짜를 잡았나요?", "장소를 예약했나요?", "대화 주제를 준비했나요?"]),
+                Milestone(title: "예식장 예약", description: "날짜와 장소 확정", successCriteria: ["원하는 날짜에 예약 가능한가요?", "예산에 맞는 장소인가요?", "계약금을 납부했나요?"]),
+                Milestone(title: "웨딩 준비", description: "드레스, 스냅, 청첩장", successCriteria: ["웨딩드레스/턱시도를 정했나요?", "스냅 촬영을 예약했나요?", "청첩장을 발송했나요?"]),
+                Milestone(title: "결혼식 당일", description: "인생의 가장 아름다운 날", successCriteria: ["리허설을 완료했나요?", "하객 명단을 최종 확인했나요?", "신혼여행 계획을 세웠나요?"])
+            ]
+
+        case "반려동물 입양하기":
+            return [
+                Milestone(title: "반려동물 종류 결정", description: "강아지, 고양이, 기타", successCriteria: ["생활 환경에 맞는 동물을 선택했나요?", "알레르기 여부를 확인했나요?", "가족 모두 동의했나요?"]),
+                Milestone(title: "입양처 선택", description: "보호소 또는 브리더", successCriteria: ["유기동물 입양을 고려했나요?", "신뢰할 수 있는 입양처인가요?", "건강 상태를 확인했나요?"]),
+                Milestone(title: "용품 준비", description: "케이지, 사료, 장난감", successCriteria: ["필수 용품 리스트를 작성했나요?", "사료 종류를 정했나요?", "동물병원을 알아봤나요?"]),
+                Milestone(title: "집 환경 조성", description: "안전한 공간 만들기", successCriteria: ["위험한 물건을 치웠나요?", "전용 공간을 마련했나요?", "화장실/배변패드를 준비했나요?"]),
+                Milestone(title: "입양 및 적응", description: "새 가족 맞이하기", successCriteria: ["입양 절차를 완료했나요?", "동물등록을 했나요?", "적응 기간을 계획했나요?"])
+            ]
+
+        case "평생 친구 10명 만들기":
+            return [
+                Milestone(title: "친구의 정의 생각하기", description: "어떤 친구를 원하는가", successCriteria: ["진정한 친구의 기준을 세웠나요?", "현재 친한 친구가 몇 명인가요?", "어떤 관계를 원하는지 생각했나요?"]),
+                Milestone(title: "새로운 사람 만나기", description: "동호회, 모임 참여", successCriteria: ["관심사 기반 모임에 참여하나요?", "적극적으로 대화를 시도하나요?", "연락처를 교환했나요?"]),
+                Milestone(title: "관계 유지하기", description: "정기적인 연락", successCriteria: ["친구들에게 먼저 연락하나요?", "생일/기념일을 챙기나요?", "힘들 때 연락할 친구가 있나요?"]),
+                Milestone(title: "깊은 대화 나누기", description: "진솔한 관계 형성", successCriteria: ["속마음을 나눌 수 있나요?", "서로의 고민을 들어주나요?", "약점을 보여줄 수 있나요?"]),
+                Milestone(title: "평생 친구 확인", description: "10명의 든든한 친구", successCriteria: ["오래 연락이 끊겨도 어색하지 않은 친구가 있나요?", "어려울 때 도움을 요청할 수 있나요?", "서로의 성장을 응원하나요?"])
             ]
 
         default:
-            // 기본 템플릿
-            milestones = [
-                Milestone(
-                    title: "정보 수집 및 계획 수립",
-                    description: "목표 달성을 위한 로드맵 작성",
-                    successCriteria: [
-                        "필요한 자원을 파악했나요?",
-                        "구체적인 일정을 세웠나요?",
-                        "예산을 계산했나요?"
-                    ]
-                ),
-                Milestone(
-                    title: "필요 자원 확보",
-                    description: "시간, 돈, 기술 등 준비",
-                    successCriteria: [
-                        "필요한 자금의 80% 이상을 모았나요?",
-                        "필요한 시간을 확보했나요?",
-                        "필요한 지식을 습득했나요?"
-                    ]
-                ),
-                Milestone(
-                    title: "실행 준비 완료",
-                    description: "마지막 점검 및 시작 준비",
-                    successCriteria: [
-                        "모든 준비물을 체크했나요?",
-                        "일정이 확정되었나요?",
-                        "시작할 준비가 되었나요?"
-                    ]
-                )
+            return getDefaultMilestones(for: category)
+        }
+    }
+
+    private func getDefaultMilestones(for category: BucketCategory) -> [Milestone] {
+        switch category {
+        case .travel:
+            return [
+                Milestone(title: "여행 정보 조사", description: "목적지, 시즌, 예산 리서치", successCriteria: ["최적의 방문 시기를 알고 있나요?", "대략적인 예산을 계산했나요?", "주요 관광지를 파악했나요?"]),
+                Milestone(title: "예산 마련", description: "여행 경비 저축", successCriteria: ["목표 금액을 설정했나요?", "매달 저축 금액을 정했나요?", "예산의 80% 이상 모았나요?"]),
+                Milestone(title: "항공권/숙소 예약", description: "주요 예약 완료", successCriteria: ["항공권을 예매했나요?", "숙소를 예약했나요?", "여행자 보험에 가입했나요?"]),
+                Milestone(title: "여행 준비물", description: "짐 꾸리기", successCriteria: ["체크리스트를 작성했나요?", "필수 준비물을 챙겼나요?", "여권/비자를 확인했나요?"])
+            ]
+        case .experience:
+            return [
+                Milestone(title: "체험 정보 조사", description: "업체, 비용, 준비물 파악", successCriteria: ["신뢰할 수 있는 업체를 찾았나요?", "비용을 확인했나요?", "필요한 조건을 파악했나요?"]),
+                Milestone(title: "예약하기", description: "날짜와 시간 확정", successCriteria: ["예약을 완료했나요?", "취소 정책을 확인했나요?", "동행자를 확정했나요?"]),
+                Milestone(title: "사전 준비", description: "필요한 것들 챙기기", successCriteria: ["복장을 준비했나요?", "건강 상태를 확인했나요?", "주의사항을 숙지했나요?"]),
+                Milestone(title: "체험 완료", description: "버킷리스트 달성", successCriteria: ["체험을 완료했나요?", "사진/영상을 남겼나요?", "소감을 기록했나요?"])
+            ]
+        case .achievement:
+            return [
+                Milestone(title: "목표 구체화", description: "달성 기준 명확히", successCriteria: ["측정 가능한 목표인가요?", "기한을 설정했나요?", "현실적인 목표인가요?"]),
+                Milestone(title: "계획 수립", description: "단계별 실행 계획", successCriteria: ["세부 계획을 세웠나요?", "필요한 자원을 파악했나요?", "장애물을 예상했나요?"]),
+                Milestone(title: "꾸준한 실행", description: "매일/매주 실천", successCriteria: ["계획대로 실행하고 있나요?", "진행 상황을 기록하나요?", "중간 점검을 하나요?"]),
+                Milestone(title: "목표 달성", description: "최종 목표 완수", successCriteria: ["목표를 달성했나요?", "성취감을 느끼나요?", "다음 목표를 세웠나요?"])
+            ]
+        case .learning:
+            return [
+                Milestone(title: "학습 계획 수립", description: "커리큘럼 및 일정", successCriteria: ["학습 자료를 선정했나요?", "일일 학습 시간을 정했나요?", "목표 수준을 설정했나요?"]),
+                Milestone(title: "기초 학습", description: "기본기 다지기", successCriteria: ["기초 개념을 이해했나요?", "꾸준히 학습하고 있나요?", "복습을 하고 있나요?"]),
+                Milestone(title: "심화 학습", description: "실력 향상", successCriteria: ["응용 문제를 풀 수 있나요?", "실전 경험을 쌓고 있나요?", "약점을 보완하고 있나요?"]),
+                Milestone(title: "목표 달성", description: "자격증/실력 인증", successCriteria: ["목표 수준에 도달했나요?", "실력을 검증받았나요?", "지속적인 발전을 계획했나요?"])
+            ]
+        case .health:
+            return [
+                Milestone(title: "현재 상태 파악", description: "건강 지표 측정", successCriteria: ["현재 상태를 기록했나요?", "목표를 설정했나요?", "실현 가능한 목표인가요?"]),
+                Milestone(title: "계획 수립", description: "운동/식단 계획", successCriteria: ["구체적인 계획을 세웠나요?", "전문가 조언을 받았나요?", "필요한 도구를 준비했나요?"]),
+                Milestone(title: "습관 형성", description: "21일 연속 실천", successCriteria: ["매일 실천하고 있나요?", "기록을 남기고 있나요?", "변화를 느끼나요?"]),
+                Milestone(title: "목표 달성", description: "건강 목표 완수", successCriteria: ["목표에 도달했나요?", "유지 계획을 세웠나요?", "건강해진 것을 느끼나요?"])
+            ]
+        case .relationship:
+            return [
+                Milestone(title: "관계 목표 정의", description: "원하는 관계 모습", successCriteria: ["어떤 관계를 원하는지 명확한가요?", "현재 관계 상태를 파악했나요?", "개선점을 알고 있나요?"]),
+                Milestone(title: "시간 투자", description: "함께하는 시간 확보", successCriteria: ["정기적으로 시간을 내나요?", "질 높은 시간을 보내나요?", "대화를 충분히 하나요?"]),
+                Milestone(title: "관계 개선 노력", description: "소통과 이해", successCriteria: ["상대방의 입장을 이해하려 하나요?", "감사를 표현하나요?", "갈등을 건강하게 해결하나요?"]),
+                Milestone(title: "목표 관계 달성", description: "원하던 관계 형성", successCriteria: ["관계가 개선되었나요?", "서로 만족하나요?", "지속적인 노력을 계획했나요?"])
             ]
         }
-
-        bucketItems[index].milestones = milestones
-        saveData()
     }
 
     func deleteMilestone(item: BucketListItem, milestone: Milestone) {
@@ -939,9 +1232,17 @@ class BucketListViewModel: ObservableObject {
         }
     }
 
-    func addObstacle(item: BucketListItem, type: ObstacleType, description: String, targetValue: Double, unit: String) {
+    func setMilestoneDeadline(item: BucketListItem, milestone: Milestone, deadline: Date?) {
+        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
+           let milestoneIndex = bucketItems[itemIndex].milestones.firstIndex(where: { $0.id == milestone.id }) {
+            bucketItems[itemIndex].milestones[milestoneIndex].deadline = deadline
+            saveData()
+        }
+    }
+
+    func addObstacle(item: BucketListItem, type: ObstacleType, description: String, targetValue: Double, unit: String, relatedMilestoneId: UUID? = nil, customNote: String? = nil) {
         if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
-            let newObstacle = Obstacle(type: type, description: description, currentValue: 0, targetValue: targetValue, unit: unit)
+            let newObstacle = Obstacle(type: type, description: description, currentValue: 0, targetValue: targetValue, unit: unit, relatedMilestoneId: relatedMilestoneId, customNote: customNote)
             bucketItems[index].obstacles.append(newObstacle)
             saveData()
         }

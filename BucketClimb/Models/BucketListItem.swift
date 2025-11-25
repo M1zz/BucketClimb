@@ -57,6 +57,8 @@ struct Obstacle: Identifiable, Codable, Hashable {
     var currentValue: Double
     var targetValue: Double
     var unit: String
+    var relatedMilestoneId: UUID?
+    var customNote: String?
 
     var progress: Double {
         guard targetValue > 0 else { return 0 }
@@ -84,13 +86,99 @@ enum ObstacleType: String, Codable {
     case timing = "📅 타이밍"
 }
 
+struct ChecklistItem: Identifiable, Codable {
+    var id = UUID()
+    var text: String
+    var isCompleted: Bool = false
+}
+
 struct Milestone: Identifiable, Codable {
     var id = UUID()
     var title: String
     var description: String
-    var successCriteria: [String]
+    var successCriteria: [String] // 기존 호환성 유지
+    var checklist: [ChecklistItem] // 새로운 체크리스트
     var isCompleted: Bool = false
     var completedDate: Date?
+    var deadline: Date? // 데드라인
+
+    init(id: UUID = UUID(), title: String, description: String, successCriteria: [String], isCompleted: Bool = false, completedDate: Date? = nil, deadline: Date? = nil) {
+        self.id = id
+        self.title = title
+        self.description = description
+        self.successCriteria = successCriteria
+        // successCriteria를 checklist로 자동 변환
+        self.checklist = successCriteria.map { ChecklistItem(text: $0, isCompleted: false) }
+        self.isCompleted = isCompleted
+        self.completedDate = completedDate
+        self.deadline = deadline
+    }
+
+    // 모든 체크리스트가 완료되었는지 확인
+    var allChecklistCompleted: Bool {
+        !checklist.isEmpty && checklist.allSatisfy { $0.isCompleted }
+    }
+
+    // 체크리스트 진행률
+    var checklistProgress: Double {
+        guard !checklist.isEmpty else { return 0 }
+        let completed = checklist.filter { $0.isCompleted }.count
+        return Double(completed) / Double(checklist.count)
+    }
+
+    // 데드라인 상태
+    var deadlineStatus: DeadlineStatus {
+        guard let deadline = deadline else { return .none }
+        let now = Date()
+        let calendar = Calendar.current
+
+        if isCompleted {
+            return .completed
+        }
+
+        let daysRemaining = calendar.dateComponents([.day], from: now, to: deadline).day ?? 0
+
+        if daysRemaining < 0 {
+            return .overdue
+        } else if daysRemaining == 0 {
+            return .today
+        } else if daysRemaining <= 3 {
+            return .soon(days: daysRemaining)
+        } else {
+            return .upcoming(days: daysRemaining)
+        }
+    }
+}
+
+enum DeadlineStatus {
+    case none
+    case completed
+    case overdue
+    case today
+    case soon(days: Int)
+    case upcoming(days: Int)
+
+    var color: Color {
+        switch self {
+        case .none: return .gray
+        case .completed: return .green
+        case .overdue: return .red
+        case .today: return .orange
+        case .soon: return .yellow
+        case .upcoming: return .blue
+        }
+    }
+
+    var text: String {
+        switch self {
+        case .none: return ""
+        case .completed: return "완료됨"
+        case .overdue: return "기한 초과"
+        case .today: return "오늘까지"
+        case .soon(let days): return "D-\(days)"
+        case .upcoming(let days): return "D-\(days)"
+        }
+    }
 }
 
 struct DailyProgress: Identifiable, Codable {
