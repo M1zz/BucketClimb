@@ -12,6 +12,7 @@
 		2A000004000000000000000000000004 /* BucketListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000004000000000000000000000014 /* BucketListItem.swift */; };
 		2A000005000000000000000000000005 /* BucketListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000005000000000000000000000015 /* BucketListViewModel.swift */; };
 		2A000006000000000000000000000006 /* AllViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000006000000000000000000000016 /* AllViews.swift */; };
+		2A000007000000000000000000000007 /* TreasureKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000007000000000000000000000017 /* TreasureKeyView.swift */; };
 		580DFD2D2ED5E8D6008F8FC9 /* TravelBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580DFD2C2ED5E8D6008F8FC9 /* TravelBucket.swift */; };
 		580DFD2E2ED5E8D6008F8FC9 /* HealthBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580DFD292ED5E8D6008F8FC9 /* HealthBucket.swift */; };
 		580DFD2F2ED5E8D6008F8FC9 /* BucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580DFD272ED5E8D6008F8FC9 /* BucketItem.swift */; };
@@ -29,6 +30,7 @@
 		2A000004000000000000000000000014 /* BucketListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListItem.swift; sourceTree = "<group>"; };
 		2A000005000000000000000000000015 /* BucketListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListViewModel.swift; sourceTree = "<group>"; };
 		2A000006000000000000000000000016 /* AllViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllViews.swift; sourceTree = "<group>"; };
+		2A000007000000000000000000000017 /* TreasureKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureKeyView.swift; sourceTree = "<group>"; };
 		580DFD262ED5E8D6008F8FC9 /* AchievementBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementBucket.swift; sourceTree = "<group>"; };
 		580DFD272ED5E8D6008F8FC9 /* BucketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketItem.swift; sourceTree = "<group>"; };
 		580DFD282ED5E8D6008F8FC9 /* ExperienceBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceBucket.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				2A000003000000000000000000000013 /* ContentView.swift */,
 				2A000006000000000000000000000016 /* AllViews.swift */,
+				2A000007000000000000000000000017 /* TreasureKeyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				580DFD322ED5E8D6008F8FC9 /* LearningBucket.swift in Sources */,
 				580DFD332ED5E8D6008F8FC9 /* RelationshipBucket.swift in Sources */,
 				2A000006000000000000000000000006 /* AllViews.swift in Sources */,
+				2A000007000000000000000000000007 /* TreasureKeyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

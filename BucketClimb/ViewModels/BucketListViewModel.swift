@@ -8,12 +8,18 @@ class BucketListViewModel: ObservableObject {
             UserDefaults.standard.set(showArchiveTab, forKey: "ShowArchiveTab")
         }
     }
+    @Published var useForgeView: Bool = false {
+        didSet {
+            UserDefaults.standard.set(useForgeView, forKey: "UseForgeView")
+        }
+    }
 
     private let saveKey = "SavedBucketList"
 
     init() {
         loadData()
         showArchiveTab = UserDefaults.standard.bool(forKey: "ShowArchiveTab")
+        useForgeView = UserDefaults.standard.bool(forKey: "UseForgeView")
     }
 
     var myBucketLists: [BucketListItem] {

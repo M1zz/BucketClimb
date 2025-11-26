@@ -306,27 +306,15 @@ struct BucketFillView: View {
     @State private var showingAddSheet = false
     @State private var showingSettings = false
     @State private var showingBrowser = false
+    @State private var showingRecommendations = false
+    @State private var showingTreasureKey = false
     @State private var selectedCategory: BucketCategory?
-    @AppStorage("lastSelectedTab") private var selectedTab = 0
     @State private var showingSuccessAlert = false
     @State private var addedBucketTitle = ""
 
     var body: some View {
         NavigationView {
-            TabView(selection: $selectedTab) {
-                RecommendationsView(
-                    showingAddSheet: $showingAddSheet,
-                    selectedCategory: $selectedCategory,
-                    selectedTab: $selectedTab,
-                    showingSuccessAlert: $showingSuccessAlert,
-                    addedBucketTitle: $addedBucketTitle
-                )
-                    .tag(0)
-
-                MyBucketListView(showingAddSheet: $showingAddSheet)
-                    .tag(1)
-            }
-            .tabViewStyle(.page(indexDisplayMode: .never))
+            MyBucketListView(showingAddSheet: $showingAddSheet)
             .background(
                 LinearGradient(
                     gradient: Gradient(colors: [Color.blue.opacity(0.05), Color.purple.opacity(0.05)]),
@@ -335,26 +323,21 @@ struct BucketFillView: View {
                 )
                 .ignoresSafeArea()
             )
-            .navigationTitle("꿈 모으기")
+            .navigationTitle("꿈 키우기")
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    HStack(spacing: 20) {
-                        Button(action: { withAnimation { selectedTab = 0 } }) {
-                            Text("추천")
-                                .font(.headline)
-                                .foregroundColor(selectedTab == 0 ? .blue : .gray)
-                        }
-
-                        Button(action: { withAnimation { selectedTab = 1 } }) {
-                            Text("내 버킷리스트")
-                                .font(.headline)
-                                .foregroundColor(selectedTab == 1 ? .blue : .gray)
-                        }
-                    }
-                }
-
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack(spacing: 16) {
+                        Button(action: { showingTreasureKey = true }) {
+                            Image(systemName: "key.horizontal.fill")
+                                .font(.title3)
+                                .foregroundColor(.orange)
+                        }
+
+                        Button(action: { showingRecommendations = true }) {
+                            Image(systemName: "sparkles")
+                                .font(.title3)
+                        }
+
                         Button(action: { showingBrowser = true }) {
                             Image(systemName: "list.bullet.rectangle")
                                 .font(.title3)
@@ -375,6 +358,13 @@ struct BucketFillView: View {
             }
             .sheet(isPresented: $showingBrowser) {
                 AllBucketBrowserView()
+            }
+            .fullScreenCover(isPresented: $showingRecommendations) {
+                RecommendationsSheetView()
+            }
+            .fullScreenCover(isPresented: $showingTreasureKey) {
+                TreasureKeyMainView()
+                    .environmentObject(viewModel)
             }
             .alert("담기 완료!", isPresented: $showingSuccessAlert) {
                 Button("확인", role: .cancel) { }
@@ -471,6 +461,507 @@ struct RecommendationsView: View {
     }
 }
 
+// MARK: - Recommendations Sheet View (App Store Today Style Feed)
+struct RecommendationsSheetView: View {
+    @EnvironmentObject var viewModel: BucketListViewModel
+    @Environment(\.dismiss) var dismiss
+    @State private var loadedBuckets: [BucketItem] = []
+    @State private var showingSuccessAlert = false
+    @State private var addedBucketTitle = ""
+    @State private var isLoading = false
+    @State private var allBucketsShuffled: [BucketItem] = []
+    @State private var currentLoadIndex = 0
+    @State private var selectedBucket: BucketItem?
+    @State private var showDetailView = false
+    @Namespace private var animation
+    private let batchSize = 5
+    private let prefetchThreshold = 4
+
+    private var todayDateString: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "M월 d일 EEEE"
+        return formatter.string(from: Date())
+    }
+
+    var body: some View {
+        ZStack {
+            // Background
+            Color(.systemGroupedBackground)
+                .ignoresSafeArea()
+
+            VStack(spacing: 0) {
+                // Header - App Store Today Style
+                HStack(alignment: .bottom) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(todayDateString)
+                            .font(.caption)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.secondary)
+                            .textCase(.uppercase)
+
+                        Text("추천")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                    }
+
+                    Spacer()
+
+                    Button(action: { dismiss() }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.title)
+                            .foregroundColor(.secondary)
+                    }
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 16)
+                .padding(.bottom, 12)
+                .background(Color(.systemBackground))
+                .opacity(showDetailView ? 0 : 1)
+
+                // Feed
+                ScrollView(.vertical, showsIndicators: false) {
+                    LazyVStack(spacing: 24) {
+                        ForEach(Array(loadedBuckets.enumerated()), id: \.element.title) { index, bucket in
+                            RecommendationCard(
+                                bucketItem: bucket,
+                                namespace: animation,
+                                isSource: selectedBucket?.title != bucket.title
+                            ) {
+                                withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+                                    selectedBucket = bucket
+                                    showDetailView = true
+                                }
+                            } onAdd: {
+                                viewModel.addBucketItem(
+                                    title: bucket.title,
+                                    category: bucket.category,
+                                    thumbnail: bucket.thumbnail,
+                                    backgroundImage: bucket.backgroundImage
+                                )
+                                addedBucketTitle = bucket.title
+                                showingSuccessAlert = true
+                            }
+                            .onAppear {
+                                if index >= loadedBuckets.count - prefetchThreshold {
+                                    loadMoreBuckets()
+                                }
+                            }
+                        }
+
+                        if isLoading {
+                            ProgressView()
+                                .padding(.vertical, 20)
+                        }
+
+                        Spacer()
+                            .frame(height: 40)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 16)
+                }
+                .opacity(showDetailView ? 0 : 1)
+            }
+
+            // Detail View Overlay
+            if showDetailView, let bucket = selectedBucket {
+                BucketDetailPreviewView(
+                    bucketItem: bucket,
+                    namespace: animation,
+                    isShowing: $showDetailView
+                ) {
+                    viewModel.addBucketItem(
+                        title: bucket.title,
+                        category: bucket.category,
+                        thumbnail: bucket.thumbnail,
+                        backgroundImage: bucket.backgroundImage
+                    )
+                    addedBucketTitle = bucket.title
+                    showingSuccessAlert = true
+                }
+            }
+        }
+        .alert("담기 완료!", isPresented: $showingSuccessAlert) {
+            Button("확인", role: .cancel) { }
+        } message: {
+            Text("'\(addedBucketTitle)'\n내 버킷리스트에 담겼습니다!")
+        }
+        .onAppear {
+            if loadedBuckets.isEmpty {
+                initializeBuckets()
+            }
+        }
+    }
+
+    private func initializeBuckets() {
+        allBucketsShuffled = viewModel.allBucketItems.shuffled()
+        currentLoadIndex = 0
+        loadMoreBuckets()
+    }
+
+    private func loadMoreBuckets() {
+        guard !isLoading else { return }
+        guard currentLoadIndex < allBucketsShuffled.count else { return }
+
+        isLoading = true
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            let endIndex = min(currentLoadIndex + batchSize, allBucketsShuffled.count)
+            let newBuckets = Array(allBucketsShuffled[currentLoadIndex..<endIndex])
+            loadedBuckets.append(contentsOf: newBuckets)
+            currentLoadIndex = endIndex
+            isLoading = false
+        }
+    }
+}
+
+// MARK: - Recommendation Card (App Store Today Style)
+struct RecommendationCard: View {
+    let bucketItem: BucketItem
+    var namespace: Namespace.ID
+    var isSource: Bool = true
+    let onTap: () -> Void
+    let onAdd: () -> Void
+
+    @State private var isAdded = false
+
+    private var displayImage: String {
+        if UIImage(named: bucketItem.backgroundImage) != nil {
+            return bucketItem.backgroundImage
+        } else {
+            let hash = abs(bucketItem.title.hashValue)
+            let imageNumber = (hash % 5) + 1
+            return "default\(imageNumber)"
+        }
+    }
+
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack {
+                // Background Image
+                Image(displayImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .clipped()
+                    .matchedGeometryEffect(id: "image_\(bucketItem.title)", in: namespace, isSource: isSource)
+
+                // Gradient Overlay
+                LinearGradient(
+                    gradient: Gradient(stops: [
+                        .init(color: .black.opacity(0.4), location: 0),
+                        .init(color: .clear, location: 0.35),
+                        .init(color: .clear, location: 0.55),
+                        .init(color: .black.opacity(0.7), location: 1)
+                    ]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .matchedGeometryEffect(id: "gradient_\(bucketItem.title)", in: namespace, isSource: isSource)
+
+                // Content Overlay
+                VStack(alignment: .leading, spacing: 0) {
+                    // Top: Category Tag
+                    HStack {
+                        Text(bucketItem.category.rawValue.uppercased())
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white.opacity(0.9))
+                            .tracking(1.2)
+                            .matchedGeometryEffect(id: "category_\(bucketItem.title)", in: namespace, isSource: isSource)
+
+                        Spacer()
+
+                        if isAdded {
+                            HStack(spacing: 4) {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.caption)
+                                Text("담김")
+                                    .font(.caption)
+                                    .fontWeight(.semibold)
+                            }
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 5)
+                            .background(Color.green.opacity(0.8))
+                            .cornerRadius(12)
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.top, 20)
+
+                    Spacer()
+
+                    // Bottom: Title & Subtitle
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(bucketItem.title)
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 1)
+                            .lineLimit(2)
+                            .matchedGeometryEffect(id: "title_\(bucketItem.title)", in: namespace, isSource: isSource)
+
+                        Text("탭해서 자세히 보기")
+                            .font(.subheadline)
+                            .foregroundColor(.white.opacity(0.85))
+                            .shadow(color: .black.opacity(0.3), radius: 1, x: 0, y: 1)
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.bottom, 20)
+                }
+            }
+        }
+        .frame(height: 420)
+        .cornerRadius(20)
+        .matchedGeometryEffect(id: "card_\(bucketItem.title)", in: namespace, isSource: isSource)
+        .shadow(color: .black.opacity(0.15), radius: 12, x: 0, y: 5)
+        .onTapGesture {
+            onTap()
+        }
+    }
+}
+
+// MARK: - Bucket Detail Preview View (App Store Expansion Style)
+struct BucketDetailPreviewView: View {
+    let bucketItem: BucketItem
+    var namespace: Namespace.ID
+    @Binding var isShowing: Bool
+    let onAdd: () -> Void
+
+    @State private var isAdded = false
+    @State private var scrollOffset: CGFloat = 0
+
+    private var displayImage: String {
+        if UIImage(named: bucketItem.backgroundImage) != nil {
+            return bucketItem.backgroundImage
+        } else {
+            let hash = abs(bucketItem.title.hashValue)
+            let imageNumber = (hash % 5) + 1
+            return "default\(imageNumber)"
+        }
+    }
+
+    var body: some View {
+        ZStack(alignment: .top) {
+            // Background
+            Color(.systemBackground)
+                .ignoresSafeArea()
+
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(spacing: 0) {
+                    // Hero Image Section
+                    GeometryReader { geometry in
+                        let minY = geometry.frame(in: .global).minY
+                        let height: CGFloat = max(450 - minY * 0.5, 300)
+
+                        ZStack(alignment: .bottom) {
+                            Image(displayImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: geometry.size.width, height: height)
+                                .clipped()
+                                .matchedGeometryEffect(id: "image_\(bucketItem.title)", in: namespace, isSource: false)
+
+                            LinearGradient(
+                                gradient: Gradient(stops: [
+                                    .init(color: .clear, location: 0.3),
+                                    .init(color: .black.opacity(0.8), location: 1)
+                                ]),
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                            .matchedGeometryEffect(id: "gradient_\(bucketItem.title)", in: namespace, isSource: false)
+
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text(bucketItem.category.rawValue.uppercased())
+                                    .font(.caption)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white.opacity(0.9))
+                                    .tracking(1.2)
+                                    .matchedGeometryEffect(id: "category_\(bucketItem.title)", in: namespace, isSource: false)
+
+                                Text(bucketItem.title)
+                                    .font(.largeTitle)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 1)
+                                    .matchedGeometryEffect(id: "title_\(bucketItem.title)", in: namespace, isSource: false)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(24)
+                        }
+                        .frame(height: height)
+                    }
+                    .frame(height: 450)
+                    .matchedGeometryEffect(id: "card_\(bucketItem.title)", in: namespace, isSource: false)
+
+                    // Content Section
+                    VStack(alignment: .leading, spacing: 24) {
+                        // Add to Bucket Button
+                        Button(action: {
+                            if !isAdded {
+                                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                    isAdded = true
+                                }
+                                onAdd()
+                            }
+                        }) {
+                            HStack {
+                                Image(systemName: isAdded ? "checkmark.circle.fill" : "plus.circle.fill")
+                                    .font(.title3)
+                                Text(isAdded ? "내 버킷리스트에 담김" : "내 버킷리스트에 담기")
+                                    .fontWeight(.semibold)
+                            }
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 16)
+                            .background(isAdded ? Color.green : Color.blue)
+                            .cornerRadius(14)
+                        }
+                        .disabled(isAdded)
+
+                        // Milestones Section
+                        if bucketItem.hasCustomMilestones && !bucketItem.milestones.isEmpty {
+                            VStack(alignment: .leading, spacing: 16) {
+                                HStack {
+                                    Image(systemName: "flag.fill")
+                                        .foregroundColor(.orange)
+                                    Text("마일스톤")
+                                        .font(.title2)
+                                        .fontWeight(.bold)
+                                }
+
+                                Text("이 버킷리스트를 달성하기 위한 단계별 목표입니다")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+
+                                ForEach(Array(bucketItem.milestones.enumerated()), id: \.element.id) { index, milestone in
+                                    MilestonePreviewCard(milestone: milestone, index: index + 1)
+                                }
+                            }
+                            .padding(.top, 8)
+                        } else {
+                            // Default description if no milestones
+                            VStack(alignment: .leading, spacing: 16) {
+                                HStack {
+                                    Image(systemName: "sparkles")
+                                        .foregroundColor(.purple)
+                                    Text("이 꿈에 대해서")
+                                        .font(.title2)
+                                        .fontWeight(.bold)
+                                }
+
+                                Text("버킷리스트에 담으면 나만의 마일스톤을 설정하고 꿈을 향해 한 걸음씩 나아갈 수 있어요.")
+                                    .font(.body)
+                                    .foregroundColor(.secondary)
+                                    .lineSpacing(4)
+
+                                HStack(spacing: 12) {
+                                    InfoBadge(icon: "mountain.2.fill", text: "도전")
+                                    InfoBadge(icon: bucketItem.category.icon, text: bucketItem.category.rawValue)
+                                }
+                            }
+                            .padding(.top, 8)
+                        }
+
+                        Spacer()
+                            .frame(height: 100)
+                    }
+                    .padding(20)
+                    .background(Color(.systemBackground))
+                }
+            }
+
+            // Close Button
+            HStack {
+                Spacer()
+                Button(action: {
+                    withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+                        isShowing = false
+                    }
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .shadow(color: .black.opacity(0.3), radius: 4, x: 0, y: 2)
+                }
+                .padding(.trailing, 20)
+                .padding(.top, 60)
+            }
+        }
+        .ignoresSafeArea()
+    }
+}
+
+// MARK: - Milestone Preview Card
+struct MilestonePreviewCard: View {
+    let milestone: Milestone
+    let index: Int
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 16) {
+            // Step Number
+            ZStack {
+                Circle()
+                    .fill(Color.blue.opacity(0.15))
+                    .frame(width: 36, height: 36)
+
+                Text("\(index)")
+                    .font(.subheadline)
+                    .fontWeight(.bold)
+                    .foregroundColor(.blue)
+            }
+
+            VStack(alignment: .leading, spacing: 6) {
+                Text(milestone.title)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+
+                Text(milestone.description)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .lineLimit(2)
+
+                if !milestone.successCriteria.isEmpty {
+                    HStack(spacing: 4) {
+                        Image(systemName: "checklist")
+                            .font(.caption)
+                        Text("\(milestone.successCriteria.count)개의 체크리스트")
+                            .font(.caption)
+                    }
+                    .foregroundColor(.blue)
+                    .padding(.top, 4)
+                }
+            }
+        }
+        .padding(16)
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(12)
+    }
+}
+
+// MARK: - Info Badge
+struct InfoBadge: View {
+    let icon: String
+    let text: String
+
+    var body: some View {
+        HStack(spacing: 6) {
+            Image(systemName: icon)
+                .font(.caption)
+            Text(text)
+                .font(.caption)
+                .fontWeight(.medium)
+        }
+        .foregroundColor(.secondary)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(8)
+    }
+}
+
 // MARK: - My Bucket List View
 struct MyBucketListView: View {
     @EnvironmentObject var viewModel: BucketListViewModel
@@ -481,20 +972,20 @@ struct MyBucketListView: View {
     }
 
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(spacing: 0) {
-                    if allMyBuckets.isEmpty {
-                        VStack(spacing: 20) {
-                            Spacer()
-                                .frame(height: 100)
+        ScrollView {
+            VStack(spacing: 0) {
+                if allMyBuckets.isEmpty {
+                    VStack(spacing: 24) {
+                        Spacer()
+                            .frame(height: 80)
 
-                            Image(systemName: "heart.circle")
-                                .font(.system(size: 60))
-                                .foregroundColor(.purple.opacity(0.5))
+                        Image(systemName: "heart.circle")
+                            .font(.system(size: 70))
+                            .foregroundColor(.purple.opacity(0.4))
 
+                        VStack(spacing: 12) {
                             Text("아직 꿈이 시작되지 않았어요")
-                                .font(.title3)
+                                .font(.title2)
                                 .fontWeight(.bold)
                                 .foregroundColor(.primary)
 
@@ -502,93 +993,81 @@ struct MyBucketListView: View {
                                 .font(.body)
                                 .foregroundColor(.secondary)
                                 .multilineTextAlignment(.center)
+                                .lineSpacing(4)
+                        }
 
-                            Button(action: { showingAddSheet = true }) {
-                                HStack {
-                                    Image(systemName: "sparkles")
-                                    Text("첫 번째 꿈 담기")
-                                        .fontWeight(.semibold)
-                                }
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 24)
-                                .padding(.vertical, 12)
-                                .background(
-                                    LinearGradient(
-                                        gradient: Gradient(colors: [Color.purple, Color.pink]),
-                                        startPoint: .leading,
-                                        endPoint: .trailing
-                                    )
-                                )
-                                .cornerRadius(12)
+                        Button(action: { showingAddSheet = true }) {
+                            HStack(spacing: 8) {
+                                Image(systemName: "sparkles")
+                                Text("첫 번째 꿈 담기")
+                                    .fontWeight(.semibold)
                             }
-                            .padding(.top, 20)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 28)
+                            .padding(.vertical, 14)
+                            .background(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [Color.purple, Color.pink]),
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .cornerRadius(14)
+                            .shadow(color: .purple.opacity(0.3), radius: 8, x: 0, y: 4)
+                        }
+                        .padding(.top, 12)
+
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 24)
+                } else {
+                    VStack(alignment: .leading, spacing: 0) {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("\(allMyBuckets.count)개의 꿈이 자라고 있어요")
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+
+                                Text("하나씩 꽃피워 나가볼까요?")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
 
                             Spacer()
-                        }
-                        .frame(maxWidth: .infinity)
-                    } else {
-                        VStack(alignment: .leading, spacing: 0) {
-                            HStack {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text("\(allMyBuckets.count)개의 꿈이 자라고 있어요")
-                                        .font(.title3)
-                                        .fontWeight(.bold)
 
-                                    Text("하나씩 꽃피워 나가볼까요?")
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
-                                }
-
-                                Spacer()
-
-                                Button(action: { showingAddSheet = true }) {
-                                    Image(systemName: "plus.circle.fill")
-                                        .font(.title2)
-                                        .foregroundColor(.purple)
-                                }
+                            Button(action: { showingAddSheet = true }) {
+                                Image(systemName: "plus.circle.fill")
+                                    .font(.title2)
+                                    .foregroundColor(.purple)
                             }
-                            .padding(.horizontal, 20)
-                            .padding(.top, 20)
-                            .padding(.bottom, 16)
+                        }
+                        .padding(.horizontal, 20)
+                        .padding(.top, 16)
+                        .padding(.bottom, 12)
 
+                        LazyVStack(spacing: 12) {
                             ForEach(allMyBuckets) { item in
                                 NavigationLink(destination: BucketDetailView(item: item)) {
                                     MyBucketItemRow(item: item)
+                                        .padding(16)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 16)
+                                                .fill(Color(.systemBackground))
+                                                .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
+                                        )
                                 }
                                 .buttonStyle(PlainButtonStyle())
-                                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                    Button(role: .destructive) {
-                                        viewModel.deleteBucket(item: item)
-                                    } label: {
-                                        Label("삭제", systemImage: "trash")
-                                    }
-
-                                    if item.status == .inBucket {
-                                        Button {
-                                            viewModel.startClimbing(item: item)
-                                        } label: {
-                                            Label("등반", systemImage: "flag.fill")
-                                        }
-                                        .tint(.blue)
-                                    } else if item.status == .climbing {
-                                        Button {
-                                            viewModel.completeBucket(item: item)
-                                        } label: {
-                                            Label("완료", systemImage: "checkmark")
-                                        }
-                                        .tint(.green)
-                                    }
-                                }
                             }
-
-                            // 하단 여백
-                            Spacer()
-                                .frame(height: 20)
                         }
+                        .padding(.horizontal, 16)
+
+                        // 하단 여백
+                        Spacer()
+                            .frame(height: 24)
                     }
                 }
             }
-            .navigationBarHidden(true)
         }
     }
 }
@@ -725,7 +1204,7 @@ struct MyBucketItemRow: View {
                         .font(.headline)
                         .foregroundColor(.primary)
 
-                    Text("\(String(format: "%.1f", item.mountainHeight))km 산")
+                    Text(item.category.rawValue)
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -1197,18 +1676,18 @@ struct ClimbingItemCard: View {
                     Text(item.title)
                         .font(.headline)
                         .foregroundColor(.primary)
-                    
-                    Text("\(String(format: "%.1f", item.mountainHeight))km 산 등반 중")
+
+                    Text("\(item.category.rawValue) 도전 중")
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
-                
+
                 Spacer()
             }
-            
+
             MountainVisualization(
                 progress: item.climbedPercentage,
-                height: item.mountainHeight
+                height: 8.8
             )
             .frame(height: 120)
             
@@ -3090,7 +3569,7 @@ struct DailyProgressSection: View {
                     .padding()
             } else {
                 ForEach(item.dailyProgress.suffix(10).reversed()) { progress in
-                    DailyProgressRow(progress: progress, mountainHeight: item.mountainHeight)
+                    DailyProgressRow(progress: progress)
                         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                             Button(role: .destructive) {
                                 viewModel.deleteDailyProgress(item: item, progress: progress)
@@ -3113,33 +3592,23 @@ struct DailyProgressSection: View {
 
 struct DailyProgressRow: View {
     let progress: DailyProgress
-    let mountainHeight: Double
-    
+
     var body: some View {
         HStack(spacing: 12) {
-            Image(systemName: "arrow.up.circle.fill")
+            Image(systemName: "checkmark.circle.fill")
                 .foregroundColor(.green)
                 .font(.title3)
-            
+
             VStack(alignment: .leading, spacing: 4) {
                 Text(progress.action)
                     .font(.subheadline)
-                
+
                 Text(progress.date, style: .date)
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
-            
+
             Spacer()
-            
-            Text("+\(Int(progress.distance))cm")
-                .font(.caption)
-                .fontWeight(.semibold)
-                .foregroundColor(.green)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .background(Color.green.opacity(0.1))
-                .cornerRadius(6)
         }
         .padding()
         .background(
@@ -3152,20 +3621,20 @@ struct DailyProgressRow: View {
 
 struct CompletionSummaryView: View {
     @ObservedObject var item: BucketListItem
-    
+
     var body: some View {
         VStack(spacing: 15) {
             Image(systemName: "trophy.fill")
                 .font(.system(size: 60))
                 .foregroundColor(.yellow)
-            
+
             Text("축하합니다! 🎉")
                 .font(.title)
                 .fontWeight(.bold)
-            
-            Text("\(String(format: "%.1f", item.mountainHeight))km 산을 정복했어요!")
+
+            Text("버킷리스트를 달성했어요!")
                 .foregroundColor(.secondary)
-            
+
             if let date = item.dateCompleted {
                 Text("완료일: \(date, style: .date)")
                     .font(.caption)
@@ -3250,8 +3719,7 @@ struct AddProgressSheet: View {
               value > 0 else { return 0 }
 
         let progressIncrease = (value / obstacle.targetValue) * 100
-        let distancePerPercent = (item.mountainHeight * 100000) / 100
-        return progressIncrease * distancePerPercent
+        return progressIncrease
     }
 
     var body: some View {
@@ -4381,6 +4849,23 @@ struct SettingsView: View {
                 }
 
                 Section {
+                    Toggle(isOn: $viewModel.useForgeView) {
+                        HStack(spacing: 12) {
+                            Image(systemName: "key.horizontal.fill")
+                                .foregroundColor(.orange)
+                                .font(.title3)
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("꿈 대장간으로 보기")
+                                    .font(.headline)
+
+                                Text("버킷리스트를 열쇠와 보물상자로 시각화합니다")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    }
+
                     Toggle(isOn: $viewModel.showArchiveTab) {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("아카이브 탭 표시")
@@ -4394,7 +4879,7 @@ struct SettingsView: View {
                 } header: {
                     Text("화면 설정")
                 } footer: {
-                    Text("토글을 켜면 하단에 아카이브 탭이 추가됩니다. 끄면 설정에서만 접근할 수 있습니다.")
+                    Text("꿈 대장간을 켜면 메인 화면이 열쇠 메타포로 바뀝니다. 아카이브 탭을 켜면 하단에 별도 탭이 추가됩니다.")
                 }
 
                 Section {
