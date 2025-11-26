@@ -1,6 +1,305 @@
 import SwiftUI
 import MapKit
 
+// MARK: - Sky Lantern Animation View
+struct SkyLanternView: View {
+    let onDismiss: () -> Void
+    @State private var lanterns: [Lantern] = []
+    @State private var showMessage = false
+    @State private var messageOpacity = 0.0
+
+    struct Lantern: Identifiable {
+        let id = UUID()
+        var x: CGFloat
+        var y: CGFloat
+        var scale: CGFloat
+        var opacity: Double
+        var delay: Double
+    }
+
+    var body: some View {
+        ZStack {
+            // Dark gradient background (night sky)
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color(red: 0.05, green: 0.05, blue: 0.15),
+                    Color(red: 0.1, green: 0.1, blue: 0.25),
+                    Color(red: 0.15, green: 0.1, blue: 0.3)
+                ]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .ignoresSafeArea()
+
+            // Stars
+            ForEach(0..<50, id: \.self) { i in
+                Circle()
+                    .fill(Color.white.opacity(Double.random(in: 0.3...0.8)))
+                    .frame(width: CGFloat.random(in: 1...3))
+                    .position(
+                        x: CGFloat.random(in: 0...UIScreen.main.bounds.width),
+                        y: CGFloat.random(in: 0...UIScreen.main.bounds.height * 0.6)
+                    )
+            }
+
+            // Lanterns
+            ForEach(lanterns) { lantern in
+                LanternShape()
+                    .position(x: lantern.x, y: lantern.y)
+                    .scaleEffect(lantern.scale)
+                    .opacity(lantern.opacity)
+            }
+
+            // Celebration message
+            VStack(spacing: 20) {
+                if showMessage {
+                    Text("🎊")
+                        .font(.system(size: 60))
+
+                    Text("꿈을 이루셨군요!")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+
+                    Text("당신의 꿈이 밤하늘의 풍등처럼\n아름답게 빛나고 있어요")
+                        .font(.title3)
+                        .foregroundColor(.white.opacity(0.9))
+                        .multilineTextAlignment(.center)
+
+                    Button(action: onDismiss) {
+                        Text("계속하기")
+                            .font(.headline)
+                            .foregroundColor(.orange)
+                            .padding(.horizontal, 40)
+                            .padding(.vertical, 15)
+                            .background(Color.white)
+                            .cornerRadius(25)
+                    }
+                    .padding(.top, 30)
+                }
+            }
+            .opacity(messageOpacity)
+        }
+        .onAppear {
+            startLanternAnimation()
+        }
+    }
+
+    func startLanternAnimation() {
+        // Create multiple lanterns
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
+
+        for i in 0..<8 {
+            let lantern = Lantern(
+                x: CGFloat.random(in: screenWidth * 0.2...screenWidth * 0.8),
+                y: screenHeight + 100,
+                scale: CGFloat.random(in: 0.6...1.0),
+                opacity: 0,
+                delay: Double(i) * 0.3
+            )
+            lanterns.append(lantern)
+        }
+
+        // Animate each lantern
+        for i in lanterns.indices {
+            let delay = lanterns[i].delay
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                withAnimation(.easeOut(duration: 0.5)) {
+                    lanterns[i].opacity = 1
+                }
+
+                withAnimation(.easeInOut(duration: 4).delay(0)) {
+                    lanterns[i].y = -100
+                    lanterns[i].x += CGFloat.random(in: -50...50)
+                }
+
+                withAnimation(.easeIn(duration: 1).delay(3)) {
+                    lanterns[i].opacity = 0
+                }
+            }
+        }
+
+        // Show message after lanterns start
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            showMessage = true
+            withAnimation(.easeIn(duration: 0.8)) {
+                messageOpacity = 1
+            }
+        }
+    }
+}
+
+// MARK: - Lantern Shape
+struct LanternShape: View {
+    @State private var glowOpacity = 0.5
+
+    var body: some View {
+        ZStack {
+            // Glow effect
+            Ellipse()
+                .fill(
+                    RadialGradient(
+                        gradient: Gradient(colors: [
+                            Color.orange.opacity(0.8),
+                            Color.orange.opacity(0.3),
+                            Color.clear
+                        ]),
+                        center: .center,
+                        startRadius: 10,
+                        endRadius: 40
+                    )
+                )
+                .frame(width: 80, height: 80)
+                .opacity(glowOpacity)
+
+            // Lantern body
+            VStack(spacing: 0) {
+                // Top cap
+                Capsule()
+                    .fill(Color.orange.opacity(0.9))
+                    .frame(width: 15, height: 8)
+
+                // Main body
+                Ellipse()
+                    .fill(
+                        LinearGradient(
+                            gradient: Gradient(colors: [
+                                Color.orange,
+                                Color.red.opacity(0.8)
+                            ]),
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
+                    .frame(width: 40, height: 50)
+                    .overlay(
+                        Ellipse()
+                            .fill(Color.yellow.opacity(0.5))
+                            .frame(width: 20, height: 25)
+                            .offset(y: -5)
+                    )
+            }
+        }
+        .onAppear {
+            withAnimation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true)) {
+                glowOpacity = 0.9
+            }
+        }
+    }
+}
+
+// MARK: - Flower Bloom Progress View
+struct FlowerBloomView: View {
+    let progress: Double // 0.0 ~ 1.0
+
+    var bloomStage: Int {
+        switch progress {
+        case 0..<0.2: return 0  // Seed
+        case 0.2..<0.4: return 1  // Sprout
+        case 0.4..<0.6: return 2  // Stem with leaves
+        case 0.6..<0.8: return 3  // Bud
+        case 0.8..<1.0: return 4  // Blooming
+        default: return 5  // Full bloom
+        }
+    }
+
+    var stageDescription: String {
+        switch bloomStage {
+        case 0: return "씨앗을 심었어요"
+        case 1: return "새싹이 돋았어요"
+        case 2: return "줄기가 자라고 있어요"
+        case 3: return "꽃봉오리가 맺혔어요"
+        case 4: return "곧 활짝 필 거예요"
+        default: return "꿈이 활짝 피었어요!"
+        }
+    }
+
+    var stageIcon: String {
+        switch bloomStage {
+        case 0: return "leaf.circle"
+        case 1: return "leaf.arrow.triangle.circlepath"
+        case 2: return "leaf"
+        case 3: return "camera.macro"
+        case 4: return "sparkle"
+        default: return "sparkles"
+        }
+    }
+
+    var stageColor: Color {
+        switch bloomStage {
+        case 0: return .brown
+        case 1: return .green.opacity(0.6)
+        case 2: return .green
+        case 3: return .pink.opacity(0.6)
+        case 4: return .pink
+        default: return .pink
+        }
+    }
+
+    var body: some View {
+        VStack(spacing: 8) {
+            // Flower animation
+            ZStack {
+                Circle()
+                    .fill(stageColor.opacity(0.15))
+                    .frame(width: 60, height: 60)
+
+                Image(systemName: stageIcon)
+                    .font(.system(size: 28))
+                    .foregroundColor(stageColor)
+                    .scaleEffect(bloomStage == 5 ? 1.2 : 1.0)
+                    .animation(.spring(response: 0.5), value: bloomStage)
+            }
+
+            Text(stageDescription)
+                .font(.caption)
+                .fontWeight(.medium)
+                .foregroundColor(stageColor)
+        }
+    }
+}
+
+// MARK: - Dreamy Question Cards
+struct DreamyQuestionCard: View {
+    let question: String
+    let placeholder: String
+    @Binding var answer: String
+    let icon: String
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 8) {
+                Image(systemName: icon)
+                    .font(.title3)
+                    .foregroundColor(.purple.opacity(0.8))
+
+                Text(question)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+            }
+
+            TextField(placeholder, text: $answer)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color.purple.opacity(0.05))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.purple.opacity(0.2), lineWidth: 1)
+                        )
+                )
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(.systemBackground))
+                .shadow(color: .purple.opacity(0.1), radius: 10, x: 0, y: 5)
+        )
+    }
+}
+
 // MARK: - Bucket Fill View
 struct BucketFillView: View {
     @EnvironmentObject var viewModel: BucketListViewModel
@@ -100,7 +399,7 @@ struct RecommendationsView: View {
         ScrollView {
             VStack(spacing: 30) {
                 VStack(alignment: .leading, spacing: 15) {
-                    Text("이런 꿈은 어때요?")
+                    Text("오늘, 어떤 꿈을 꾸고 싶으세요?")
                         .font(.title2)
                         .fontWeight(.bold)
                         .padding(.horizontal)
@@ -137,20 +436,26 @@ struct RecommendationsView: View {
                 }
 
                 VStack(spacing: 12) {
-                    Text("마음에 드는 꿈을 담아보세요")
+                    Text("당신만의 특별한 꿈이 있나요?")
                         .font(.headline)
                         .foregroundColor(.secondary)
 
                     Button(action: { showingAddSheet = true }) {
                         HStack {
-                            Image(systemName: "plus.circle.fill")
-                            Text("직접 추가하기")
+                            Image(systemName: "sparkles")
+                            Text("나만의 꿈 담기")
                                 .fontWeight(.semibold)
                         }
                         .foregroundColor(.white)
                         .padding(.horizontal, 24)
                         .padding(.vertical, 12)
-                        .background(Color.blue)
+                        .background(
+                            LinearGradient(
+                                gradient: Gradient(colors: [Color.purple, Color.blue]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
                         .cornerRadius(12)
                     }
                 }
@@ -184,30 +489,36 @@ struct MyBucketListView: View {
                             Spacer()
                                 .frame(height: 100)
 
-                            Image(systemName: "tray")
+                            Image(systemName: "heart.circle")
                                 .font(.system(size: 60))
-                                .foregroundColor(.gray)
+                                .foregroundColor(.purple.opacity(0.5))
 
-                            Text("아직 담은 꿈이 없어요")
+                            Text("아직 꿈이 시작되지 않았어요")
                                 .font(.title3)
                                 .fontWeight(.bold)
                                 .foregroundColor(.primary)
 
-                            Text("추천 탭에서 마음에 드는 꿈을 선택하거나\n직접 추가해보세요")
+                            Text("가슴 뛰는 무언가를 떠올려보세요\n그것이 바로 당신의 첫 번째 꿈이 될 거예요")
                                 .font(.body)
                                 .foregroundColor(.secondary)
                                 .multilineTextAlignment(.center)
 
                             Button(action: { showingAddSheet = true }) {
                                 HStack {
-                                    Image(systemName: "plus.circle.fill")
-                                    Text("꿈 추가하기")
+                                    Image(systemName: "sparkles")
+                                    Text("첫 번째 꿈 담기")
                                         .fontWeight(.semibold)
                                 }
                                 .foregroundColor(.white)
                                 .padding(.horizontal, 24)
                                 .padding(.vertical, 12)
-                                .background(Color.blue)
+                                .background(
+                                    LinearGradient(
+                                        gradient: Gradient(colors: [Color.purple, Color.pink]),
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                )
                                 .cornerRadius(12)
                             }
                             .padding(.top, 20)
@@ -218,16 +529,22 @@ struct MyBucketListView: View {
                     } else {
                         VStack(alignment: .leading, spacing: 0) {
                             HStack {
-                                Text("\(allMyBuckets.count)개의 꿈")
-                                    .font(.title3)
-                                    .fontWeight(.bold)
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("\(allMyBuckets.count)개의 꿈이 자라고 있어요")
+                                        .font(.title3)
+                                        .fontWeight(.bold)
+
+                                    Text("하나씩 꽃피워 나가볼까요?")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
 
                                 Spacer()
 
                                 Button(action: { showingAddSheet = true }) {
                                     Image(systemName: "plus.circle.fill")
                                         .font(.title2)
-                                        .foregroundColor(.blue)
+                                        .foregroundColor(.purple)
                                 }
                             }
                             .padding(.horizontal, 20)
@@ -368,29 +685,29 @@ struct MyBucketItemRow: View {
         Group {
             if item.status == .climbing {
                 HStack(spacing: 4) {
-                    Image(systemName: "figure.hiking")
+                    Image(systemName: "leaf.fill")
                         .font(.caption2)
-                    Text("등반중")
+                    Text("자라는 중")
                         .font(.caption2)
                         .fontWeight(.semibold)
                 }
-                .foregroundColor(.orange)
+                .foregroundColor(.green)
                 .padding(.horizontal, 8)
                 .padding(.vertical, 4)
-                .background(Color.orange.opacity(0.15))
+                .background(Color.green.opacity(0.15))
                 .cornerRadius(8)
             } else {
                 HStack(spacing: 4) {
-                    Image(systemName: "tray")
+                    Image(systemName: "sparkle")
                         .font(.caption2)
-                    Text("미시작")
+                    Text("씨앗")
                         .font(.caption2)
                         .fontWeight(.semibold)
                 }
-                .foregroundColor(.gray)
+                .foregroundColor(.purple.opacity(0.7))
                 .padding(.horizontal, 8)
                 .padding(.vertical, 4)
-                .background(Color.gray.opacity(0.15))
+                .background(Color.purple.opacity(0.1))
                 .cornerRadius(8)
             }
         }
@@ -418,38 +735,64 @@ struct MyBucketItemRow: View {
                 statusBadge
             }
 
-            // 등반중인 경우 진행률 표시
+            // 등반중인 경우 꽃 피우기 진행 표시
             if item.status == .climbing {
-                VStack(spacing: 8) {
-                    HStack {
-                        Text("진행률")
+                HStack(spacing: 12) {
+                    FlowerBloomView(progress: item.totalProgress / 100)
+
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(progressMessage)
                             .font(.caption)
                             .foregroundColor(.secondary)
 
-                        Spacer()
+                        GeometryReader { geometry in
+                            ZStack(alignment: .leading) {
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(Color.gray.opacity(0.2))
+                                    .frame(height: 6)
 
-                        Text("\(Int(item.totalProgress))%")
-                            .font(.caption)
-                            .fontWeight(.bold)
-                            .foregroundColor(.blue)
-                    }
-
-                    GeometryReader { geometry in
-                        ZStack(alignment: .leading) {
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(Color.gray.opacity(0.2))
-                                .frame(height: 6)
-
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(Color.blue)
-                                .frame(width: geometry.size.width * CGFloat(item.totalProgress / 100), height: 6)
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [.green, .pink]),
+                                            startPoint: .leading,
+                                            endPoint: .trailing
+                                        )
+                                    )
+                                    .frame(width: geometry.size.width * CGFloat(item.totalProgress / 100), height: 6)
+                            }
                         }
+                        .frame(height: 6)
                     }
-                    .frame(height: 6)
                 }
             }
         }
-        .padding()
+    }
+
+    var progressMessage: String {
+        let progress = item.totalProgress
+        if progress == 0 {
+            return "아직 모든 가능성이 열려있어요"
+        } else if progress < 25 {
+            return "첫 발걸음을 내디뎠어요"
+        } else if progress < 50 {
+            return "조금씩 꿈에 다가가고 있어요"
+        } else if progress < 75 {
+            return "절반이나 왔어요, 멋져요!"
+        } else if progress < 100 {
+            return "거의 다 왔어요!"
+        } else {
+            return "꿈이 활짝 피었어요!"
+        }
+    }
+}
+
+struct MyBucketItemRowContainer: View {
+    @ObservedObject var item: BucketListItem
+
+    var body: some View {
+        MyBucketItemRow(item: item)
+            .padding()
         .background(
             RoundedRectangle(cornerRadius: 12)
                 .fill(Color(.systemBackground))
@@ -470,72 +813,59 @@ struct AddBucketSheet: View {
     @State private var category: BucketCategory = .travel
     @State private var location: LocationInfo?
     @State private var showingLocationSearch = false
-    
+    @State private var currentStep = 0
+    @State private var dreamReason = ""
+    @State private var dreamFeeling = ""
+
     var body: some View {
         NavigationView {
-            Form {
-                Section("꿈의 제목") {
-                    TextField("예: 아이슬란드에서 오로라 보기", text: $title)
-                }
-
-                Section("카테고리") {
-                    Picker("카테고리", selection: $category) {
-                        ForEach(BucketCategory.allCases, id: \.self) { cat in
-                            HStack {
-                                Image(systemName: cat.icon)
-                                Text(cat.rawValue)
-                            }
-                            .tag(cat)
+            ScrollView {
+                VStack(spacing: 24) {
+                    // Step indicator
+                    HStack(spacing: 8) {
+                        ForEach(0..<3) { step in
+                            Circle()
+                                .fill(step <= currentStep ? Color.purple : Color.gray.opacity(0.3))
+                                .frame(width: 8, height: 8)
                         }
                     }
-                    .pickerStyle(.menu)
-                }
+                    .padding(.top)
 
-                if category == .travel {
-                    Section("위치 (선택사항)") {
-                        if let loc = location {
-                            HStack {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(loc.name)
-                                        .font(.headline)
-                                    if let address = loc.address {
-                                        Text(address)
-                                            .font(.caption)
-                                            .foregroundColor(.secondary)
-                                    }
-                                }
-                                Spacer()
-                                Button(action: { location = nil }) {
-                                    Image(systemName: "xmark.circle.fill")
-                                        .foregroundColor(.gray)
-                                }
-                            }
-                        } else {
-                            Button(action: { showingLocationSearch = true }) {
-                                HStack {
-                                    Image(systemName: "magnifyingglass")
-                                    Text("장소 검색")
-                                }
-                            }
-                        }
+                    // Main content based on step
+                    switch currentStep {
+                    case 0:
+                        dreamInputStep
+                    case 1:
+                        categoryStep
+                    case 2:
+                        feelingStep
+                    default:
+                        EmptyView()
                     }
+
+                    Spacer()
+
+                    // Navigation buttons
+                    navigationButtons
                 }
+                .padding()
             }
-            .navigationTitle("새로운 꿈 추가")
+            .background(
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color.purple.opacity(0.05),
+                        Color.pink.opacity(0.05)
+                    ]),
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
+            )
+            .navigationTitle(stepTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("취소") { dismiss() }
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("추가") {
-                        if !title.isEmpty {
-                            viewModel.addBucketItem(title: title, category: category, location: location)
-                            dismiss()
-                        }
-                    }
-                    .disabled(title.isEmpty)
                 }
             }
             .onAppear {
@@ -549,6 +879,198 @@ struct AddBucketSheet: View {
                 }
             }
         }
+    }
+
+    var stepTitle: String {
+        switch currentStep {
+        case 0: return "꿈을 담아볼까요?"
+        case 1: return "어떤 종류의 꿈인가요?"
+        case 2: return "이 꿈이 특별한 이유"
+        default: return ""
+        }
+    }
+
+    var dreamInputStep: some View {
+        VStack(spacing: 24) {
+            Image(systemName: "sparkles")
+                .font(.system(size: 50))
+                .foregroundColor(.purple.opacity(0.6))
+
+            Text("어떤 꿈을 꾸고 계세요?")
+                .font(.title2)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
+
+            Text("언젠가 꼭 하고 싶은 것,\n상상만 해도 설레는 그것을 적어주세요")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+
+            TextField("예: 오로라 아래서 프로포즈 하기", text: $title)
+                .font(.body)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.systemBackground))
+                        .shadow(color: .purple.opacity(0.1), radius: 5)
+                )
+                .padding(.top, 20)
+        }
+    }
+
+    var categoryStep: some View {
+        VStack(spacing: 24) {
+            Image(systemName: category.icon)
+                .font(.system(size: 50))
+                .foregroundColor(category.color)
+
+            Text("이 꿈은 어떤 모험인가요?")
+                .font(.title2)
+                .fontWeight(.bold)
+
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
+                ForEach(BucketCategory.allCases, id: \.self) { cat in
+                    Button(action: { category = cat }) {
+                        VStack(spacing: 8) {
+                            Image(systemName: cat.icon)
+                                .font(.title2)
+                            Text(cat.rawValue)
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(category == cat ? cat.color.opacity(0.2) : Color(.systemBackground))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(category == cat ? cat.color : Color.clear, lineWidth: 2)
+                                )
+                        )
+                        .foregroundColor(category == cat ? cat.color : .primary)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                }
+            }
+
+            if category == .travel {
+                Button(action: { showingLocationSearch = true }) {
+                    HStack {
+                        Image(systemName: location == nil ? "map" : "mappin.circle.fill")
+                            .foregroundColor(location == nil ? .gray : .blue)
+                        Text(location?.name ?? "장소 검색하기 (선택)")
+                            .foregroundColor(location == nil ? .secondary : .primary)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.secondary)
+                    }
+                    .padding()
+                    .background(Color(.systemBackground))
+                    .cornerRadius(12)
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
+        }
+    }
+
+    var feelingStep: some View {
+        VStack(spacing: 24) {
+            Image(systemName: "heart.fill")
+                .font(.system(size: 50))
+                .foregroundColor(.pink.opacity(0.6))
+
+            Text("이 꿈을 이루면\n어떤 기분일 것 같아요?")
+                .font(.title2)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
+
+            TextField("예: 평생 잊지 못할 순간이 될 것 같아요", text: $dreamFeeling)
+                .font(.body)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.systemBackground))
+                        .shadow(color: .pink.opacity(0.1), radius: 5)
+                )
+
+            Text("왜 이 꿈이 특별한가요?")
+                .font(.headline)
+                .padding(.top, 20)
+
+            TextField("예: 사랑하는 사람과 함께 하고 싶어서", text: $dreamReason)
+                .font(.body)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.systemBackground))
+                        .shadow(color: .pink.opacity(0.1), radius: 5)
+                )
+
+            Text("💡 이 기록은 나중에 꿈을 향해 나아갈 때\n힘이 되어줄 거예요")
+                .font(.caption)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.top, 8)
+        }
+    }
+
+    var navigationButtons: some View {
+        HStack(spacing: 16) {
+            if currentStep > 0 {
+                Button(action: {
+                    withAnimation { currentStep -= 1 }
+                }) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                        Text("이전")
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.gray.opacity(0.1))
+                    .foregroundColor(.primary)
+                    .cornerRadius(12)
+                }
+            }
+
+            Button(action: {
+                if currentStep < 2 {
+                    withAnimation { currentStep += 1 }
+                } else {
+                    saveDream()
+                }
+            }) {
+                HStack {
+                    Text(currentStep == 2 ? "꿈 심기" : "다음")
+                    Image(systemName: currentStep == 2 ? "sparkles" : "chevron.right")
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(
+                    LinearGradient(
+                        gradient: Gradient(colors: [Color.purple, Color.pink]),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                )
+                .foregroundColor(.white)
+                .cornerRadius(12)
+            }
+            .disabled(currentStep == 0 && title.isEmpty)
+        }
+    }
+
+    func saveDream() {
+        guard !title.isEmpty else { return }
+        var notes = ""
+        if !dreamFeeling.isEmpty {
+            notes += "이 꿈을 이루면: \(dreamFeeling)\n"
+        }
+        if !dreamReason.isEmpty {
+            notes += "특별한 이유: \(dreamReason)"
+        }
+        viewModel.addBucketItem(title: title, category: category, location: location, notes: notes)
+        dismiss()
     }
 }
 
@@ -805,21 +1327,21 @@ struct MountainVisualization: View {
 // MARK: - Archive View
 struct ArchiveView: View {
     @EnvironmentObject var viewModel: BucketListViewModel
-    
+
     var body: some View {
         NavigationView {
             ZStack {
                 if viewModel.itemsCompleted.isEmpty {
                     VStack(spacing: 20) {
-                        Image(systemName: "trophy.fill")
+                        Image(systemName: "sparkles")
                             .font(.system(size: 80))
-                            .foregroundColor(.yellow)
-                        
-                        Text("아직 완료한 꿈이 없어요")
+                            .foregroundColor(.purple.opacity(0.5))
+
+                        Text("아직 피어난 꿈이 없어요")
                             .font(.title2)
                             .fontWeight(.bold)
-                        
-                        Text("첫 번째 꿈을 이루고\n여기에 빛나는 기억을 남겨보세요")
+
+                        Text("첫 번째 꿈이 활짝 피면\n이곳에 아름다운 기억이 남을 거예요")
                             .multilineTextAlignment(.center)
                             .foregroundColor(.secondary)
                     }
@@ -829,9 +1351,9 @@ struct ArchiveView: View {
                         VStack(spacing: 20) {
                             StatsCard(completedCount: viewModel.itemsCompleted.count)
                                 .padding()
-                            
+
                             VStack(alignment: .leading, spacing: 15) {
-                                Text("완료한 꿈들")
+                                Text("피어난 꿈들 🌸")
                                     .font(.title3)
                                     .fontWeight(.bold)
                                     .padding(.horizontal)
@@ -854,32 +1376,40 @@ struct ArchiveView: View {
                     }
                 }
             }
-            .navigationTitle("아카이브")
+            .navigationTitle("피어난 꿈들")
         }
     }
 }
 
 struct StatsCard: View {
     let completedCount: Int
-    
+
     var body: some View {
         VStack(spacing: 15) {
             HStack {
-                Image(systemName: "trophy.fill")
+                Image(systemName: "sparkles")
                     .font(.title)
-                    .foregroundColor(.yellow)
-                
+                    .foregroundColor(.pink)
+
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("완료한 꿈")
+                    Text("활짝 핀 꿈")
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    
-                    Text("\(completedCount)개")
+
+                    Text("\(completedCount)개의 꽃")
                         .font(.title)
                         .fontWeight(.bold)
                 }
-                
+
                 Spacer()
+
+                FlowerBloomView(progress: 1.0)
+            }
+
+            if completedCount > 0 {
+                Text("당신은 이미 \(completedCount)개의 꿈을 피워냈어요!")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
             }
         }
         .padding()
@@ -887,7 +1417,7 @@ struct StatsCard: View {
             RoundedRectangle(cornerRadius: 15)
                 .fill(
                     LinearGradient(
-                        gradient: Gradient(colors: [Color.yellow.opacity(0.2), Color.orange.opacity(0.2)]),
+                        gradient: Gradient(colors: [Color.pink.opacity(0.15), Color.purple.opacity(0.15)]),
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -895,46 +1425,52 @@ struct StatsCard: View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: 15)
-                .stroke(Color.yellow.opacity(0.3), lineWidth: 2)
+                .stroke(Color.pink.opacity(0.3), lineWidth: 2)
         )
     }
 }
 
 struct CompletedItemCard: View {
     @ObservedObject var item: BucketListItem
-    
+
     var formattedDate: String {
         guard let date = item.dateCompleted else { return "" }
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 M월 d일"
         return formatter.string(from: date)
     }
-    
+
     var body: some View {
         HStack(spacing: 15) {
             ZStack {
                 Circle()
-                    .fill(item.category.color.opacity(0.2))
+                    .fill(
+                        LinearGradient(
+                            gradient: Gradient(colors: [Color.pink.opacity(0.3), Color.purple.opacity(0.3)]),
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
                     .frame(width: 60, height: 60)
-                
-                Image(systemName: "trophy.fill")
+
+                Image(systemName: "sparkles")
                     .font(.title2)
-                    .foregroundColor(item.category.color)
+                    .foregroundColor(.pink)
             }
-            
+
             VStack(alignment: .leading, spacing: 6) {
                 Text(item.title)
                     .font(.headline)
                     .foregroundColor(.primary)
-                
-                Text(formattedDate)
+
+                Text(formattedDate + "에 피어남")
                     .font(.caption)
                     .foregroundColor(.secondary)
-                
+
                 HStack(spacing: 4) {
-                    Image(systemName: "mountain.2.fill")
+                    Image(systemName: "heart.fill")
                         .font(.caption)
-                    Text("\(String(format: "%.1f", item.mountainHeight))km 정복")
+                    Text("꿈을 이루었어요")
                         .font(.caption)
                 }
                 .foregroundColor(.green)
@@ -965,6 +1501,7 @@ struct BucketDetailView: View {
     @State private var showingEditTitleSheet = false
     @State private var showingAddObstacleSheet = false
     @State private var showingAddMilestoneSheet = false
+    @State private var showingLanternAnimation = false
     @Environment(\.dismiss) var dismiss
 
     var hasMilestones: Bool {
@@ -982,19 +1519,31 @@ struct BucketDetailView: View {
                     .padding()
 
                 if item.status == .inBucket {
-                    Button(action: {
-                        viewModel.startClimbing(item: item)
-                    }) {
-                        HStack {
-                            Image(systemName: "flag.fill")
-                            Text("등반 시작하기")
-                                .fontWeight(.semibold)
+                    VStack(spacing: 12) {
+                        Text("이 꿈을 키워볼 준비가 되셨나요?")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+
+                        Button(action: {
+                            viewModel.startClimbing(item: item)
+                        }) {
+                            HStack {
+                                Image(systemName: "leaf.fill")
+                                Text("꿈 키우기 시작")
+                                    .fontWeight(.semibold)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [Color.green, Color.blue]),
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .foregroundColor(.white)
+                            .cornerRadius(12)
                         }
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
                     }
                     .padding(.horizontal)
                 }
@@ -1003,11 +1552,15 @@ struct BucketDetailView: View {
                     // 마일스톤 작성 (최우선)
                     if !phase1Completed {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("마일스톤 작성")
-                                .font(.title3)
-                                .fontWeight(.bold)
+                            HStack(spacing: 8) {
+                                Image(systemName: "sparkle")
+                                    .foregroundColor(.purple)
+                                Text("이 꿈을 향한 첫 발걸음은?")
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                            }
 
-                            Text("이 꿈을 이루기 위한 구체적인 단계들을 작성해보세요.")
+                            Text("꿈을 이루기 위한 설레는 단계들을 상상해보세요")
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                         }
@@ -1023,12 +1576,18 @@ struct BucketDetailView: View {
                             }) {
                                 HStack {
                                     Image(systemName: "plus.circle.fill")
-                                    Text(hasMilestones ? "마일스톤 추가" : "첫 마일스톤 추가하기")
+                                    Text(hasMilestones ? "설레는 순간 추가" : "첫 번째 순간 상상하기")
                                         .fontWeight(.semibold)
                                 }
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                                .background(Color.blue)
+                                .background(
+                                    LinearGradient(
+                                        gradient: Gradient(colors: [Color.purple, Color.blue]),
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                )
                                 .foregroundColor(.white)
                                 .cornerRadius(12)
                             }
@@ -1039,7 +1598,7 @@ struct BucketDetailView: View {
                                 }) {
                                     HStack {
                                         Image(systemName: "checkmark.circle.fill")
-                                        Text("작성 완료")
+                                        Text("준비 완료!")
                                             .fontWeight(.semibold)
                                     }
                                     .frame(maxWidth: .infinity)
@@ -1060,11 +1619,15 @@ struct BucketDetailView: View {
                             .padding(.vertical, 10)
 
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("마일스톤 달성하기")
-                                .font(.title3)
-                                .fontWeight(.bold)
+                            HStack(spacing: 8) {
+                                Image(systemName: "leaf.fill")
+                                    .foregroundColor(.green)
+                                Text("꿈을 향해 한 걸음씩")
+                                    .font(.title3)
+                                    .fontWeight(.bold)
+                            }
 
-                            Text("작성한 마일스톤들을 하나씩 달성해나가세요!")
+                            Text("하나씩 이루어가는 순간들이 모여 꽃이 됩니다")
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                         }
@@ -1076,9 +1639,9 @@ struct BucketDetailView: View {
                             showingAddObstacleSheet = true
                         }) {
                             HStack(spacing: 10) {
-                                Image(systemName: "exclamationmark.triangle.fill")
-                                    .foregroundColor(.orange)
-                                Text("어려움 기록하기")
+                                Image(systemName: "cloud.fill")
+                                    .foregroundColor(.gray)
+                                Text("이 꿈 앞에 놓인 것들")
                                     .fontWeight(.semibold)
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -1088,10 +1651,10 @@ struct BucketDetailView: View {
                             .padding()
                             .background(
                                 RoundedRectangle(cornerRadius: 12)
-                                    .fill(Color.orange.opacity(0.1))
+                                    .fill(Color.gray.opacity(0.1))
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 12)
-                                            .stroke(Color.orange.opacity(0.3), lineWidth: 1)
+                                            .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                                     )
                             )
                         }
@@ -1112,7 +1675,7 @@ struct BucketDetailView: View {
                         }) {
                             HStack {
                                 Image(systemName: "plus.circle.fill")
-                                Text("오늘의 진행 기록하기")
+                                Text("오늘 한 발걸음 기록하기")
                                     .fontWeight(.semibold)
                             }
                             .frame(maxWidth: .infinity)
@@ -1127,13 +1690,19 @@ struct BucketDetailView: View {
                             showingCompleteAlert = true
                         }) {
                             HStack {
-                                Image(systemName: "checkmark.circle.fill")
-                                Text("등반 완료!")
+                                Image(systemName: "sparkles")
+                                Text("꿈이 피었어요!")
                                     .fontWeight(.semibold)
                             }
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.orange)
+                            .background(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [Color.pink, Color.purple]),
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
                             .foregroundColor(.white)
                             .cornerRadius(12)
                         }
@@ -1193,23 +1762,29 @@ struct BucketDetailView: View {
         .sheet(isPresented: $showingAddMilestoneSheet) {
             AddMilestoneSheet(item: item)
         }
-        .alert("등반 완료!", isPresented: $showingCompleteAlert) {
-            Button("취소", role: .cancel) { }
-            Button("완료") {
-                viewModel.completeBucket(item: item)
-                dismiss()
+        .alert("꿈이 활짝 피었어요!", isPresented: $showingCompleteAlert) {
+            Button("아직이에요", role: .cancel) { }
+            Button("네, 피었어요!") {
+                showingLanternAnimation = true
             }
         } message: {
-            Text("이 버킷리스트를 완료하시겠어요? 아카이브로 이동됩니다.")
+            Text("정말 이 꿈을 이루셨나요?\n이 순간을 함께 축하해요!")
         }
-        .alert("삭제하시겠어요?", isPresented: $showingDeleteAlert) {
+        .alert("정말 삭제할까요?", isPresented: $showingDeleteAlert) {
             Button("취소", role: .cancel) { }
             Button("삭제", role: .destructive) {
                 viewModel.deleteBucket(item: item)
                 dismiss()
             }
         } message: {
-            Text("이 버킷리스트를 삭제하면 모든 진행 내역이 사라집니다.")
+            Text("이 꿈과 함께한 모든 기록이 사라져요.\n정말 괜찮으신가요?")
+        }
+        .fullScreenCover(isPresented: $showingLanternAnimation) {
+            SkyLanternView {
+                showingLanternAnimation = false
+                viewModel.completeBucket(item: item)
+                dismiss()
+            }
         }
     }
 }
@@ -3566,55 +4141,162 @@ struct AddMilestoneSheet: View {
 
     @State private var title = ""
     @State private var description = ""
+    @State private var currentQuestion = 0
+
+    let imaginationQuestions = [
+        ("그 순간, 당신은 어디에 있을까요?", "장소나 상황을 상상해보세요"),
+        ("누구와 함께 하고 싶나요?", "혼자여도 괜찮아요"),
+        ("어떤 기분이 들 것 같아요?", "그 순간의 감정을 상상해보세요"),
+        ("무엇이 보이고 들릴까요?", "오감으로 느껴보세요")
+    ]
 
     var body: some View {
         NavigationView {
-            Form {
-                Section {
-                    TextField("마일스톤 이름", text: $title)
-                } header: {
-                    Text("제목")
-                } footer: {
-                    Text("예: '레이캬비크 vs 북부 리서치', '월 30만원 저축 시작'")
-                        .font(.caption)
-                }
+            ScrollView {
+                VStack(spacing: 24) {
+                    // Header with sparkle animation
+                    VStack(spacing: 12) {
+                        Image(systemName: "sparkle")
+                            .font(.system(size: 50))
+                            .foregroundColor(.purple.opacity(0.6))
 
-                Section {
-                    TextField("구체적인 행동", text: $description)
-                } header: {
-                    Text("설명")
-                } footer: {
-                    Text("이 마일스톤을 달성하기 위해 무엇을 해야 하나요?")
-                        .font(.caption)
-                }
+                        Text("설레는 순간을 상상해보세요")
+                            .font(.title2)
+                            .fontWeight(.bold)
 
-                Section {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("💡 팁")
-                            .font(.headline)
-                            .foregroundColor(.blue)
-
-                        Text("• 작고 구체적인 단계로 나누세요")
-                        Text("• 실제로 실행 가능한 행동으로 작성하세요")
-                        Text("• 완료 여부를 명확히 판단할 수 있어야 합니다")
+                        Text("이 꿈을 향해 가는 길에\n어떤 순간들이 기다리고 있을까요?")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
                     }
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                    .padding(.top, 20)
+
+                    // Imagination questions carousel
+                    VStack(alignment: .leading, spacing: 16) {
+                        HStack {
+                            ForEach(0..<imaginationQuestions.count, id: \.self) { index in
+                                Circle()
+                                    .fill(index == currentQuestion ? Color.purple : Color.gray.opacity(0.3))
+                                    .frame(width: 8, height: 8)
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .center)
+
+                        Button(action: {
+                            withAnimation {
+                                currentQuestion = (currentQuestion + 1) % imaginationQuestions.count
+                            }
+                        }) {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(imaginationQuestions[currentQuestion].0)
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.purple)
+                                    Text(imaginationQuestions[currentQuestion].1)
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
+                                Spacer()
+                                Image(systemName: "arrow.right.circle")
+                                    .foregroundColor(.purple.opacity(0.5))
+                            }
+                            .padding()
+                            .background(Color.purple.opacity(0.1))
+                            .cornerRadius(12)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                    .padding(.horizontal)
+
+                    // Main input fields
+                    VStack(alignment: .leading, spacing: 20) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("이 순간의 이름")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+
+                            TextField("예: 오로라를 처음 보는 순간", text: $title)
+                                .padding()
+                                .background(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .fill(Color(.systemBackground))
+                                        .shadow(color: .purple.opacity(0.1), radius: 5)
+                                )
+                        }
+
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("이 순간을 위해 할 일")
+                                .font(.headline)
+                                .foregroundColor(.primary)
+
+                            TextField("예: 오로라 예보 앱 설치하고 날씨 체크하기", text: $description)
+                                .padding()
+                                .background(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .fill(Color(.systemBackground))
+                                        .shadow(color: .purple.opacity(0.1), radius: 5)
+                                )
+                        }
+                    }
+                    .padding(.horizontal)
+
+                    // Encouragement message
+                    VStack(spacing: 8) {
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(.pink.opacity(0.5))
+                        Text("작은 순간들이 모여 큰 꿈이 됩니다")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.top, 10)
+
+                    Spacer()
+
+                    // Save button
+                    Button(action: {
+                        viewModel.addMilestone(item: item, title: title, description: description)
+                        dismiss()
+                    }) {
+                        HStack {
+                            Image(systemName: "sparkles")
+                            Text("이 순간 담기")
+                        }
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(
+                            LinearGradient(
+                                gradient: Gradient(colors: [Color.purple, Color.pink]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .cornerRadius(12)
+                    }
+                    .disabled(title.isEmpty || description.isEmpty)
+                    .opacity(title.isEmpty || description.isEmpty ? 0.5 : 1)
+                    .padding(.horizontal)
+                    .padding(.bottom, 20)
                 }
             }
-            .navigationTitle("마일스톤 추가")
+            .background(
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color.purple.opacity(0.05),
+                        Color.pink.opacity(0.05)
+                    ]),
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
+            )
+            .navigationTitle("설레는 순간")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("취소") { dismiss() }
-                }
-
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("추가") {
-                        viewModel.addMilestone(item: item, title: title, description: description)
-                        dismiss()
-                    }
-                    .disabled(title.isEmpty || description.isEmpty)
                 }
             }
         }

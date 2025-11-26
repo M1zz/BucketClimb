@@ -48,8 +48,11 @@ class BucketListViewModel: ObservableObject {
         return result.map { ($0.title, $0.category, $0.thumbnail, $0.backgroundImage) }
     }
 
-    func addBucketItem(title: String, category: BucketCategory, thumbnail: String? = nil, backgroundImage: String? = nil, location: LocationInfo? = nil) {
+    func addBucketItem(title: String, category: BucketCategory, thumbnail: String? = nil, backgroundImage: String? = nil, location: LocationInfo? = nil, notes: String? = nil) {
         let newItem = BucketListItem(title: title, category: category, thumbnail: thumbnail, backgroundImage: backgroundImage, location: location)
+        if let notes = notes, !notes.isEmpty {
+            newItem.notes = notes
+        }
         bucketItems.append(newItem)
         saveData()
     }
@@ -58,6 +61,7 @@ class BucketListViewModel: ObservableObject {
         if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
             bucketItems[index].status = .climbing
             bucketItems[index].dateStarted = Date()
+            objectWillChange.send()
             saveData()
             // 프리셋 마일스톤 자동 생성
             generatePresetMilestones(for: bucketItems[index])
@@ -67,6 +71,7 @@ class BucketListViewModel: ObservableObject {
     func completeMilestonesPhase(item: BucketListItem) {
         if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
             bucketItems[index].milestonesPhaseCompleted = true
+            objectWillChange.send()
             saveData()
         }
     }
@@ -75,6 +80,7 @@ class BucketListViewModel: ObservableObject {
         if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
             bucketItems[index].status = .completed
             bucketItems[index].dateCompleted = Date()
+            objectWillChange.send()
             saveData()
         }
     }
