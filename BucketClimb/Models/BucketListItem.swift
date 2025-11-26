@@ -275,9 +275,9 @@ class BucketListItem: Identifiable, Codable, ObservableObject {
     }
     
     var totalProgress: Double {
-        guard !obstacles.isEmpty else { return 0 }
-        let sum = obstacles.reduce(0.0) { $0 + $1.progress }
-        return sum / Double(obstacles.count)
+        guard !milestones.isEmpty else { return 0 }
+        let completedCount = milestones.filter { $0.isCompleted }.count
+        return Double(completedCount) / Double(milestones.count) * 100
     }
     
     var climbedDistance: Double {

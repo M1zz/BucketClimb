@@ -172,6 +172,31 @@ class BucketListViewModel: ObservableObject {
         // 완료되지 않은 경우는 UI에서 근거 입력 모달을 통해 completeChecklistItem 호출
     }
 
+    // 체크리스트 항목 추가
+    func addChecklistItem(item: BucketListItem, milestone: Milestone, text: String) {
+        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
+           let milestoneIndex = bucketItems[itemIndex].milestones.firstIndex(where: { $0.id == milestone.id }) {
+            let newItem = ChecklistItem(text: text)
+            bucketItems[itemIndex].milestones[milestoneIndex].checklist.append(newItem)
+            bucketItems[itemIndex].milestones[milestoneIndex].successCriteria.append(text)
+            saveData()
+        }
+    }
+
+    // 체크리스트 항목 삭제
+    func deleteChecklistItem(item: BucketListItem, milestone: Milestone, checklistItem: ChecklistItem) {
+        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
+           let milestoneIndex = bucketItems[itemIndex].milestones.firstIndex(where: { $0.id == milestone.id }),
+           let checklistIndex = bucketItems[itemIndex].milestones[milestoneIndex].checklist.firstIndex(where: { $0.id == checklistItem.id }) {
+            let text = bucketItems[itemIndex].milestones[milestoneIndex].checklist[checklistIndex].text
+            bucketItems[itemIndex].milestones[milestoneIndex].checklist.remove(at: checklistIndex)
+            if let criteriaIndex = bucketItems[itemIndex].milestones[milestoneIndex].successCriteria.firstIndex(of: text) {
+                bucketItems[itemIndex].milestones[milestoneIndex].successCriteria.remove(at: criteriaIndex)
+            }
+            saveData()
+        }
+    }
+
     func addMilestone(item: BucketListItem, title: String, description: String, successCriteria: [String] = []) {
         if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
             let newCamp = Milestone(title: title, description: description, successCriteria: successCriteria)
@@ -298,6 +323,23 @@ class BucketListViewModel: ObservableObject {
         if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
            let milestoneIndex = bucketItems[itemIndex].milestones.firstIndex(where: { $0.id == milestone.id }) {
             bucketItems[itemIndex].milestones[milestoneIndex].deadline = deadline
+            saveData()
+        }
+    }
+
+    func reorderMilestones(item: BucketListItem, fromOffsets: IndexSet, toOffset: Int) {
+        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }) {
+            bucketItems[itemIndex].milestones.move(fromOffsets: fromOffsets, toOffset: toOffset)
+            saveData()
+        }
+    }
+
+    func moveMilestone(item: BucketListItem, milestone: Milestone, direction: Int) {
+        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
+           let milestoneIndex = bucketItems[itemIndex].milestones.firstIndex(where: { $0.id == milestone.id }) {
+            let newIndex = milestoneIndex + direction
+            guard newIndex >= 0 && newIndex < bucketItems[itemIndex].milestones.count else { return }
+            bucketItems[itemIndex].milestones.swapAt(milestoneIndex, newIndex)
             saveData()
         }
     }

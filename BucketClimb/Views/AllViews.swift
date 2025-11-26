@@ -1000,23 +1000,18 @@ struct BucketDetailView: View {
                 }
 
                 if item.status == .climbing {
-                    // Phase 1: 마일스톤 작성 (최우선)
+                    // 마일스톤 작성 (최우선)
                     if !phase1Completed {
-                        VStack(alignment: .leading, spacing: 12) {
-                            HStack {
-                                Image(systemName: "1.circle.fill")
-                                    .font(.title2)
-                                    .foregroundColor(.blue)
-                                Text("Phase 1: 마일스톤 작성")
-                                    .font(.title3)
-                                    .fontWeight(.bold)
-                            }
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("마일스톤 작성")
+                                .font(.title3)
+                                .fontWeight(.bold)
 
                             Text("이 꿈을 이루기 위한 구체적인 단계들을 작성해보세요.")
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
-                                .padding(.leading, 36)
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal)
 
                         MilestonesSection(item: item)
@@ -1059,26 +1054,21 @@ struct BucketDetailView: View {
                         .padding(.bottom)
                     }
 
-                    // Phase 2: 장애물과 일일 진행 (마일스톤 작성 완료 후)
+                    // 마일스톤 달성하기 (마일스톤 작성 완료 후)
                     if phase1Completed {
                         Divider()
                             .padding(.vertical, 10)
 
-                        VStack(alignment: .leading, spacing: 12) {
-                            HStack {
-                                Image(systemName: "2.circle.fill")
-                                    .font(.title2)
-                                    .foregroundColor(.green)
-                                Text("Phase 2: 마일스톤 달성하기")
-                                    .font(.title3)
-                                    .fontWeight(.bold)
-                            }
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("마일스톤 달성하기")
+                                .font(.title3)
+                                .fontWeight(.bold)
 
                             Text("작성한 마일스톤들을 하나씩 달성해나가세요!")
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
-                                .padding(.leading, 36)
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal)
 
                         // 어려움 기록하기 버튼
@@ -1717,6 +1707,7 @@ struct MilestonesSection: View {
     @EnvironmentObject var viewModel: BucketListViewModel
     @ObservedObject var item: BucketListItem
     @State private var showingEditSheet: Milestone?
+    @State private var showingReorderSheet = false
 
     var completedCount: Int {
         item.milestones.filter { $0.isCompleted }.count
@@ -1741,6 +1732,17 @@ struct MilestonesSection: View {
 
                 Spacer()
 
+                if totalCount > 1 {
+                    Button(action: { showingReorderSheet = true }) {
+                        Image(systemName: "arrow.up.arrow.down")
+                            .font(.subheadline)
+                            .foregroundColor(.blue)
+                            .padding(6)
+                            .background(Color.blue.opacity(0.1))
+                            .cornerRadius(6)
+                    }
+                }
+
                 if totalCount > 0 {
                     Text("\(completedCount)/\(totalCount) 완료")
                         .font(.caption)
@@ -1752,34 +1754,6 @@ struct MilestonesSection: View {
                             Capsule()
                                 .fill(completedCount == totalCount ? Color.green.opacity(0.15) : Color.blue.opacity(0.15))
                         )
-                }
-            }
-
-            // 진행률 바
-            if totalCount > 0 {
-                VStack(alignment: .leading, spacing: 6) {
-                    GeometryReader { geometry in
-                        ZStack(alignment: .leading) {
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(Color.gray.opacity(0.2))
-                                .frame(height: 8)
-
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(
-                                    LinearGradient(
-                                        gradient: Gradient(colors: [Color.blue, Color.green]),
-                                        startPoint: .leading,
-                                        endPoint: .trailing
-                                    )
-                                )
-                                .frame(width: geometry.size.width * CGFloat(progressPercentage / 100), height: 8)
-                        }
-                    }
-                    .frame(height: 8)
-
-                    Text(String(format: "%.0f%%", progressPercentage))
-                        .font(.caption2)
-                        .foregroundColor(.secondary)
                 }
             }
 
@@ -1825,6 +1799,68 @@ struct MilestonesSection: View {
         .sheet(item: $showingEditSheet) { milestone in
             EditMilestoneSheet(item: item, milestone: milestone)
         }
+        .sheet(isPresented: $showingReorderSheet) {
+            MilestoneReorderSheet(item: item)
+        }
+    }
+}
+
+// MARK: - 마일스톤 순서 변경 시트
+struct MilestoneReorderSheet: View {
+    @EnvironmentObject var viewModel: BucketListViewModel
+    @Environment(\.dismiss) var dismiss
+    @ObservedObject var item: BucketListItem
+
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(item.milestones) { milestone in
+                    HStack(spacing: 12) {
+                        Image(systemName: "line.3.horizontal")
+                            .foregroundColor(.gray)
+
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack(spacing: 6) {
+                                Image(systemName: milestone.isCompleted ? "checkmark.circle.fill" : "circle")
+                                    .foregroundColor(milestone.isCompleted ? .green : .gray)
+                                    .font(.subheadline)
+
+                                Text(milestone.title)
+                                    .font(.body)
+                                    .fontWeight(.medium)
+                                    .strikethrough(milestone.isCompleted)
+                                    .foregroundColor(milestone.isCompleted ? .secondary : .primary)
+                            }
+
+                            if !milestone.description.isEmpty {
+                                Text(milestone.description)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                    .lineLimit(1)
+                            }
+                        }
+
+                        Spacer()
+                    }
+                    .padding(.vertical, 4)
+                }
+                .onMove { from, to in
+                    viewModel.reorderMilestones(item: item, fromOffsets: from, toOffset: to)
+                }
+            }
+            .listStyle(.insetGrouped)
+            .environment(\.editMode, .constant(.active))
+            .navigationTitle("순서 변경")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("완료") {
+                        dismiss()
+                    }
+                    .fontWeight(.semibold)
+                }
+            }
+        }
     }
 }
 
@@ -1838,6 +1874,8 @@ struct MilestoneRow: View {
     @State private var checklistItemForInput: ChecklistItem?
     @State private var checklistItemForDetail: ChecklistItem?
     @State private var evidenceText = ""
+    @State private var showingAddChecklist = false
+    @State private var newChecklistText = ""
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -1927,97 +1965,165 @@ struct MilestoneRow: View {
 
                 Spacer()
 
-                // 체크리스트 펼치기 버튼
-                if !milestone.checklist.isEmpty {
-                    Button(action: {
-                        withAnimation(.easeInOut(duration: 0.2)) {
-                            showingChecklist.toggle()
-                        }
-                    }) {
-                        HStack(spacing: 4) {
-                            Image(systemName: showingChecklist ? "chevron.up" : "checklist")
-                                .font(.system(size: 14, weight: .medium))
-                        }
-                        .foregroundColor(.blue)
-                        .padding(8)
-                        .background(Color.blue.opacity(0.1))
-                        .cornerRadius(8)
+                // 체크리스트 펼치기 버튼 (항상 표시)
+                Button(action: {
+                    withAnimation(.easeInOut(duration: 0.2)) {
+                        showingChecklist.toggle()
                     }
-                    .buttonStyle(PlainButtonStyle())
+                }) {
+                    HStack(spacing: 4) {
+                        Image(systemName: showingChecklist ? "chevron.up" : "checklist")
+                            .font(.system(size: 14, weight: .medium))
+                        if milestone.checklist.isEmpty {
+                            Text("+")
+                                .font(.system(size: 12, weight: .bold))
+                        }
+                    }
+                    .foregroundColor(.blue)
+                    .padding(8)
+                    .background(Color.blue.opacity(0.1))
+                    .cornerRadius(8)
                 }
+                .buttonStyle(PlainButtonStyle())
             }
             .padding()
 
             // 체크리스트 섹션
-            if showingChecklist && !milestone.checklist.isEmpty {
+            if showingChecklist {
                 VStack(alignment: .leading, spacing: 0) {
                     Divider()
                         .padding(.horizontal)
 
-                    ForEach(milestone.checklist) { checklistItem in
-                        VStack(alignment: .leading, spacing: 0) {
-                            Button(action: {
-                                if checklistItem.isCompleted {
-                                    // 완료된 항목: 근거 보기 또는 완료 해제
-                                    checklistItemForDetail = checklistItem
-                                } else {
-                                    // 미완료 항목: 근거 입력 후 완료
-                                    evidenceText = ""
-                                    checklistItemForInput = checklistItem
-                                }
-                            }) {
+                    if !milestone.checklist.isEmpty {
+                        ForEach(milestone.checklist) { checklistItem in
+                            VStack(alignment: .leading, spacing: 0) {
                                 HStack(spacing: 12) {
-                                    Image(systemName: checklistItem.isCompleted ? "checkmark.square.fill" : "square")
-                                        .foregroundColor(checklistItem.isCompleted ? .green : .gray)
-                                        .font(.system(size: 18))
+                                    Button(action: {
+                                        if checklistItem.isCompleted {
+                                            checklistItemForDetail = checklistItem
+                                        } else {
+                                            evidenceText = ""
+                                            checklistItemForInput = checklistItem
+                                        }
+                                    }) {
+                                        HStack(spacing: 12) {
+                                            Image(systemName: checklistItem.isCompleted ? "checkmark.square.fill" : "square")
+                                                .foregroundColor(checklistItem.isCompleted ? .green : .gray)
+                                                .font(.system(size: 18))
 
-                                    VStack(alignment: .leading, spacing: 2) {
-                                        Text(checklistItem.text)
-                                            .font(.subheadline)
-                                            .foregroundColor(checklistItem.isCompleted ? .secondary : .primary)
-                                            .strikethrough(checklistItem.isCompleted)
-                                            .multilineTextAlignment(.leading)
-                                            .fixedSize(horizontal: false, vertical: true)
+                                            VStack(alignment: .leading, spacing: 2) {
+                                                Text(checklistItem.text)
+                                                    .font(.subheadline)
+                                                    .foregroundColor(checklistItem.isCompleted ? .secondary : .primary)
+                                                    .strikethrough(checklistItem.isCompleted)
+                                                    .multilineTextAlignment(.leading)
+                                                    .fixedSize(horizontal: false, vertical: true)
 
-                                        // 완료 날짜 표시
-                                        if checklistItem.isCompleted, let date = checklistItem.completedDate {
-                                            Text(date, style: .date)
-                                                .font(.caption2)
-                                                .foregroundColor(.green)
+                                                if checklistItem.isCompleted, let date = checklistItem.completedDate {
+                                                    Text(date, style: .date)
+                                                        .font(.caption2)
+                                                        .foregroundColor(.green)
+                                                }
+                                            }
+
+                                            Spacer()
+
+                                            if checklistItem.isCompleted && checklistItem.evidence != nil {
+                                                Image(systemName: "doc.text.fill")
+                                                    .font(.caption)
+                                                    .foregroundColor(.blue)
+                                            }
                                         }
                                     }
+                                    .buttonStyle(PlainButtonStyle())
 
-                                    Spacer()
-
-                                    // 근거가 있으면 표시
-                                    if checklistItem.isCompleted && checklistItem.evidence != nil {
-                                        Image(systemName: "doc.text.fill")
-                                            .font(.caption)
-                                            .foregroundColor(.blue)
+                                    // 삭제 버튼
+                                    if !checklistItem.isCompleted {
+                                        Button(action: {
+                                            viewModel.deleteChecklistItem(item: item, milestone: milestone, checklistItem: checklistItem)
+                                        }) {
+                                            Image(systemName: "xmark.circle.fill")
+                                                .font(.system(size: 16))
+                                                .foregroundColor(.gray.opacity(0.5))
+                                        }
+                                        .buttonStyle(PlainButtonStyle())
                                     }
                                 }
                                 .padding(.horizontal)
                                 .padding(.vertical, 10)
                                 .background(checklistItem.isCompleted ? Color.green.opacity(0.05) : Color.clear)
+
+                                if checklistItem.isCompleted, let evidence = checklistItem.evidence, !evidence.isEmpty {
+                                    Text(evidence)
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                        .lineLimit(1)
+                                        .padding(.horizontal)
+                                        .padding(.leading, 30)
+                                        .padding(.bottom, 8)
+                                }
+                            }
+
+                            if checklistItem.id != milestone.checklist.last?.id {
+                                Divider()
+                                    .padding(.leading, 50)
+                            }
+                        }
+
+                        Divider()
+                            .padding(.horizontal)
+                    }
+
+                    // 체크리스트 추가 UI
+                    if showingAddChecklist {
+                        HStack(spacing: 12) {
+                            Image(systemName: "square")
+                                .foregroundColor(.gray)
+                                .font(.system(size: 18))
+
+                            TextField("새 체크포인트 입력", text: $newChecklistText)
+                                .font(.subheadline)
+                                .textFieldStyle(PlainTextFieldStyle())
+
+                            if !newChecklistText.isEmpty {
+                                Button(action: {
+                                    viewModel.addChecklistItem(item: item, milestone: milestone, text: newChecklistText)
+                                    newChecklistText = ""
+                                }) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundColor(.green)
+                                        .font(.system(size: 20))
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                            }
+
+                            Button(action: {
+                                showingAddChecklist = false
+                                newChecklistText = ""
+                            }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundColor(.gray)
+                                    .font(.system(size: 20))
                             }
                             .buttonStyle(PlainButtonStyle())
-
-                            // 근거 미리보기 (한 줄)
-                            if checklistItem.isCompleted, let evidence = checklistItem.evidence, !evidence.isEmpty {
-                                Text(evidence)
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                                    .lineLimit(1)
-                                    .padding(.horizontal)
-                                    .padding(.leading, 30)
-                                    .padding(.bottom, 8)
+                        }
+                        .padding(.horizontal)
+                        .padding(.vertical, 10)
+                    } else {
+                        Button(action: {
+                            showingAddChecklist = true
+                        }) {
+                            HStack(spacing: 8) {
+                                Image(systemName: "plus.circle.fill")
+                                    .foregroundColor(.blue)
+                                Text("체크포인트 추가")
+                                    .font(.subheadline)
+                                    .foregroundColor(.blue)
                             }
+                            .padding(.horizontal)
+                            .padding(.vertical, 12)
                         }
-
-                        if checklistItem.id != milestone.checklist.last?.id {
-                            Divider()
-                                .padding(.leading, 50)
-                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
                 .background(Color(.systemGray6).opacity(0.5))
@@ -2975,20 +3081,27 @@ struct AddObstacleSheet: View {
     }
 
     private var detailInputSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Image(systemName: "pencil.circle.fill")
-                    .foregroundColor(.purple)
-                Text("상세 내용")
+                Image(systemName: typeIcon)
+                    .foregroundColor(typeColor)
+                Text(typeTitle)
                     .font(.headline)
             }
 
-            TextField("어떤 어려움인가요?", text: $description)
-                .padding()
-                .background(Color.gray.opacity(0.1))
-                .cornerRadius(10)
-
-            targetAndUnitFields
+            // 유형별 다른 입력 폼
+            switch type {
+            case .money:
+                moneyInputFields
+            case .time:
+                timeInputFields
+            case .skill:
+                skillInputFields
+            case .knowledge:
+                knowledgeInputFields
+            case .timing:
+                timingInputFields
+            }
 
             TextField("추가 메모 (선택사항)", text: $customNote)
                 .padding()
@@ -2999,31 +3112,330 @@ struct AddObstacleSheet: View {
         .background(Color(.systemBackground))
         .cornerRadius(12)
         .shadow(color: .black.opacity(0.05), radius: 5)
+        .onChange(of: type) { _ in
+            // 유형 변경 시 기본값 설정
+            setDefaultValuesForType()
+        }
     }
 
-    private var targetAndUnitFields: some View {
-        HStack(spacing: 10) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text("목표치")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                TextField("숫자", text: $targetValue)
-                    .keyboardType(.decimalPad)
-                    .padding()
-                    .background(Color.gray.opacity(0.1))
-                    .cornerRadius(10)
-            }
+    private var typeIcon: String {
+        switch type {
+        case .money: return "wonsign.circle.fill"
+        case .time: return "clock.fill"
+        case .skill: return "figure.strengthtraining.traditional"
+        case .knowledge: return "book.fill"
+        case .timing: return "calendar.circle.fill"
+        }
+    }
+
+    private var typeColor: Color {
+        switch type {
+        case .money: return .green
+        case .time: return .orange
+        case .skill: return .red
+        case .knowledge: return .blue
+        case .timing: return .purple
+        }
+    }
+
+    private var typeTitle: String {
+        switch type {
+        case .money: return "필요 비용"
+        case .time: return "필요 시간"
+        case .skill: return "필요 체력/스킬"
+        case .knowledge: return "필요 지식"
+        case .timing: return "타이밍/시기"
+        }
+    }
+
+    private func setDefaultValuesForType() {
+        switch type {
+        case .money:
+            unit = "원"
+            if description.isEmpty { description = "" }
+        case .time:
+            unit = "일"
+            if description.isEmpty { description = "" }
+        case .skill:
+            unit = "달성"
+            targetValue = "1"
+            if description.isEmpty { description = "" }
+        case .knowledge:
+            unit = "완료"
+            targetValue = "1"
+            if description.isEmpty { description = "" }
+        case .timing:
+            unit = "확보"
+            targetValue = "1"
+            if description.isEmpty { description = "" }
+        }
+    }
+
+    // MARK: - 비용 입력 필드
+    private var moneyInputFields: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            TextField("무엇에 필요한 비용인가요?", text: $description)
+                .padding()
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(10)
 
             VStack(alignment: .leading, spacing: 4) {
-                Text("단위")
+                Text("목표 금액")
                     .font(.caption)
                     .foregroundColor(.secondary)
-                TextField("원, 일, 회 등", text: $unit)
-                    .padding()
+
+                HStack {
+                    TextField("금액", text: $targetValue)
+                        .keyboardType(.numberPad)
+                        .padding()
+                        .background(Color.gray.opacity(0.1))
+                        .cornerRadius(10)
+
+                    Text("원")
+                        .foregroundColor(.secondary)
+                        .padding(.horizontal, 8)
+                }
+            }
+
+            // 금액 빠른 선택
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    ForEach(["100000", "500000", "1000000", "2000000", "5000000"], id: \.self) { amount in
+                        Button(action: {
+                            targetValue = amount
+                            unit = "원"
+                        }) {
+                            Text(formatMoney(amount))
+                                .font(.caption)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 8)
+                                .background(targetValue == amount ? Color.green.opacity(0.2) : Color.gray.opacity(0.1))
+                                .foregroundColor(targetValue == amount ? .green : .primary)
+                                .cornerRadius(8)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                }
+            }
+        }
+    }
+
+    private func formatMoney(_ value: String) -> String {
+        guard let num = Int(value) else { return value }
+        if num >= 10000 {
+            return "\(num / 10000)만원"
+        }
+        return "\(num)원"
+    }
+
+    // MARK: - 시간 입력 필드
+    private var timeInputFields: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            TextField("어떤 시간이 필요한가요?", text: $description)
+                .padding()
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(10)
+
+            HStack(spacing: 12) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("기간")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+
+                    TextField("숫자", text: $targetValue)
+                        .keyboardType(.numberPad)
+                        .padding()
+                        .background(Color.gray.opacity(0.1))
+                        .cornerRadius(10)
+                }
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("단위")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+
+                    Picker("단위", selection: $unit) {
+                        Text("시간").tag("시간")
+                        Text("일").tag("일")
+                        Text("주").tag("주")
+                        Text("개월").tag("개월")
+                    }
+                    .pickerStyle(.menu)
+                    .padding(8)
                     .background(Color.gray.opacity(0.1))
                     .cornerRadius(10)
+                }
+                .frame(width: 100)
             }
-            .frame(width: 100)
+
+            // 시간 빠른 선택
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    ForEach([("1", "일"), ("7", "일"), ("14", "일"), ("1", "개월"), ("3", "개월"), ("6", "개월")], id: \.0) { value, unitValue in
+                        Button(action: {
+                            targetValue = value
+                            unit = unitValue
+                        }) {
+                            Text("\(value)\(unitValue)")
+                                .font(.caption)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 8)
+                                .background(targetValue == value && unit == unitValue ? Color.orange.opacity(0.2) : Color.gray.opacity(0.1))
+                                .foregroundColor(targetValue == value && unit == unitValue ? .orange : .primary)
+                                .cornerRadius(8)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                }
+            }
+        }
+    }
+
+    // MARK: - 체력/스킬 입력 필드
+    private var skillInputFields: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            TextField("어떤 체력/스킬이 필요한가요?", text: $description)
+                .padding()
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(10)
+
+            VStack(alignment: .leading, spacing: 8) {
+                Text("목표 수준")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+
+                // 스킬 레벨 선택
+                HStack(spacing: 8) {
+                    ForEach(["초급", "중급", "고급", "전문가"], id: \.self) { level in
+                        Button(action: {
+                            description = description.isEmpty ? level + " 수준 달성" : description
+                            targetValue = "1"
+                            unit = "달성"
+                        }) {
+                            Text(level)
+                                .font(.subheadline)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 10)
+                                .background(Color.red.opacity(0.1))
+                                .foregroundColor(.red)
+                                .cornerRadius(8)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                }
+            }
+
+            Text("💡 구체적인 목표: '\(description.isEmpty ? "예: 5km 달리기 가능" : description)'")
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
+    }
+
+    // MARK: - 지식 입력 필드
+    private var knowledgeInputFields: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            TextField("어떤 지식/정보가 필요한가요?", text: $description)
+                .padding()
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(10)
+
+            VStack(alignment: .leading, spacing: 8) {
+                Text("학습 유형")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
+                    ForEach(["정보 수집", "강의/교육", "자격증 취득", "실습/연습"], id: \.self) { knowledgeType in
+                        Button(action: {
+                            if description.isEmpty {
+                                description = knowledgeType
+                            }
+                            targetValue = "1"
+                            unit = "완료"
+                        }) {
+                            HStack {
+                                Image(systemName: knowledgeTypeIcon(knowledgeType))
+                                Text(knowledgeType)
+                                    .font(.subheadline)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 10)
+                            .background(Color.blue.opacity(0.1))
+                            .foregroundColor(.blue)
+                            .cornerRadius(8)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                }
+            }
+
+            Text("💡 예: '현지 언어 기초 학습', '운전면허 취득'")
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
+    }
+
+    private func knowledgeTypeIcon(_ type: String) -> String {
+        switch type {
+        case "정보 수집": return "magnifyingglass"
+        case "강의/교육": return "graduationcap"
+        case "자격증 취득": return "rosette"
+        case "실습/연습": return "hammer"
+        default: return "book"
+        }
+    }
+
+    // MARK: - 타이밍 입력 필드
+    private var timingInputFields: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            TextField("어떤 시기/타이밍이 필요한가요?", text: $description)
+                .padding()
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(10)
+
+            VStack(alignment: .leading, spacing: 8) {
+                Text("타이밍 유형")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
+                    ForEach(["시즌/계절", "휴가 기간", "특별 이벤트", "예약 시기"], id: \.self) { timingType in
+                        Button(action: {
+                            if description.isEmpty {
+                                description = timingType + " 확보"
+                            }
+                            targetValue = "1"
+                            unit = "확보"
+                        }) {
+                            HStack {
+                                Image(systemName: timingTypeIcon(timingType))
+                                Text(timingType)
+                                    .font(.subheadline)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 10)
+                            .background(Color.purple.opacity(0.1))
+                            .foregroundColor(.purple)
+                            .cornerRadius(8)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                }
+            }
+
+            Text("💡 예: '오로라 시즌 (9-3월)', '벚꽃 시기'")
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
+    }
+
+    private func timingTypeIcon(_ type: String) -> String {
+        switch type {
+        case "시즌/계절": return "leaf"
+        case "휴가 기간": return "airplane"
+        case "특별 이벤트": return "star"
+        case "예약 시기": return "calendar.badge.clock"
+        default: return "calendar"
         }
     }
 
@@ -3674,27 +4086,18 @@ struct BucketBrowserRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            // Thumbnail
+            // Thumbnail (backgroundImage 사용)
             ZStack {
-                if !item.thumbnail.isEmpty {
-                    if item.thumbnail.hasPrefix("http") {
-                        AsyncImage(url: URL(string: item.thumbnail)) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                        } placeholder: {
-                            Color.gray.opacity(0.3)
-                        }
-                    } else {
-                        Image(item.thumbnail)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    }
+                if !item.backgroundImage.isEmpty, UIImage(named: item.backgroundImage) != nil {
+                    Image(item.backgroundImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
                 } else {
-                    Color.blue.opacity(0.2)
-                    Image(systemName: item.category.icon)
+                    // backgroundImage가 없으면 카테고리 색상 + 아이콘
+                    item.category.color.opacity(0.2)
+                    Image(systemName: item.thumbnail.isEmpty ? item.category.icon : item.thumbnail)
                         .font(.title2)
-                        .foregroundColor(.blue)
+                        .foregroundColor(item.category.color)
                 }
             }
             .frame(width: 60, height: 60)
@@ -3709,7 +4112,7 @@ struct BucketBrowserRow: View {
                     .lineLimit(2)
 
                 HStack(spacing: 4) {
-                    Image(systemName: item.category.icon)
+                    Image(systemName: item.thumbnail.isEmpty ? item.category.icon : item.thumbnail)
                         .font(.caption2)
                     Text(item.category.rawValue)
                         .font(.caption)
