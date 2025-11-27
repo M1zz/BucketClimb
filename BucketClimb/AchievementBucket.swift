@@ -227,90 +227,90 @@ enum AchievementBucket: String, Codable, CaseIterable {
 
     private static let milestonesData: [Self: [Milestone]] = [
         .풀코스_마라톤_완주하기: [
-            Milestone(title: "기초 체력 만들기", description: "주 3회 이상 달리기 시작", successCriteria: ["현재 10km를 뛸 수 있나요?", "러닝화를 구입했나요?", "러닝 앱을 설치했나요?"]),
-            Milestone(title: "하프 마라톤 완주", description: "21.0975km 도전", successCriteria: ["하프 마라톤 대회에 등록했나요?", "2시간 30분 내 완주할 수 있나요?", "페이스 조절을 연습했나요?"]),
-            Milestone(title: "30km 장거리 훈련", description: "LSD(Long Slow Distance) 훈련", successCriteria: ["30km를 3시간 30분 내 뛸 수 있나요?", "보급(물, 젤) 전략을 세웠나요?", "벽(30km 지점)을 경험했나요?"]),
-            Milestone(title: "풀코스 대회 등록", description: "서울, 춘천, 경주 등", successCriteria: ["목표 대회를 선정했나요?", "대회 3-4개월 전 등록했나요?", "목표 기록을 설정했나요?"]),
-            Milestone(title: "테이퍼링", description: "대회 2주 전 훈련량 감소", successCriteria: ["운동량을 50% 줄였나요?", "탄수화물 로딩을 계획했나요?", "대회 준비물을 체크했나요?"]),
-            Milestone(title: "완주 전략", description: "페이스와 보급 계획", successCriteria: ["목표 페이스(분/km)를 정했나요?", "에너지젤 섭취 타이밍을 정했나요?", "부정출발 방지를 위해 일찍 출발하나요?"])
+            Milestone(title: "기초 체력 만들기", description: "주 3회 이상 달리기 시작", successCriteria: ["현재 몇 km까지 뛸 수 있고, 10km 달성을 위해 어떤 계획을 세웠나요?", "어떤 러닝화를 선택했고, 그 이유는 무엇인가요?", "어떤 러닝 앱을 사용하고, 가장 유용한 기능은 무엇인가요?"]),
+            Milestone(title: "하프 마라톤 완주", description: "21.0975km 도전", successCriteria: ["어떤 하프 마라톤 대회를 선택했고, 그 대회를 고른 이유는 무엇인가요?", "현재 하프 예상 완주 시간은 얼마이고, 어떻게 향상시킬 계획인가요?", "페이스 조절 연습 중 발견한 나만의 리듬이나 노하우가 있다면 무엇인가요?"]),
+            Milestone(title: "30km 장거리 훈련", description: "LSD(Long Slow Distance) 훈련", successCriteria: ["30km 훈련 중 가장 힘들었던 순간은 언제였고, 어떻게 극복했나요?", "나만의 보급 전략(물, 젤, 음식)은 무엇이고, 왜 그렇게 정했나요?", "'벽'을 만났을 때 느낌은 어땠고, 다음에는 어떻게 대비할 건가요?"]),
+            Milestone(title: "풀코스 대회 등록", description: "서울, 춘천, 경주 등", successCriteria: ["어떤 대회를 목표로 선정했고, 그 대회만의 매력은 무엇인가요?", "대회까지 남은 기간 동안의 훈련 계획을 어떻게 세웠나요?", "목표 기록은 얼마이고, 그 기록이 나에게 어떤 의미가 있나요?"]),
+            Milestone(title: "테이퍼링", description: "대회 2주 전 훈련량 감소", successCriteria: ["운동량을 줄이면서 느끼는 신체적, 심리적 변화는 무엇인가요?", "탄수화물 로딩을 위한 구체적인 식단 계획은 어떻게 되나요?", "대회 당일 필요한 준비물 체크리스트를 작성해보세요"]),
+            Milestone(title: "완주 전략", description: "페이스와 보급 계획", successCriteria: ["목표 페이스(분/km)는 얼마이고, 구간별로 어떻게 분배할 계획인가요?", "에너지젤이나 보급품 섭취 타이밍과 방법을 구체적으로 적어보세요", "레이스 당일 아침 루틴은 어떻게 계획하고 있나요?"]),
         ],
         .철인3종_경기_완주하기: [
-            Milestone(title: "수영 실력 향상", description: "자유형 1.5km 완영", successCriteria: ["400m를 쉬지 않고 수영할 수 있나요?", "오픈워터 수영 경험이 있나요?", "젖은 수트를 입고 수영해봤나요?"]),
-            Milestone(title: "사이클 훈련", description: "40km 사이클 완주", successCriteria: ["로드바이크를 보유하고 있나요?", "클릿 페달 사용에 익숙한가요?", "시속 30km 이상 유지 가능한가요?"]),
-            Milestone(title: "달리기 훈련", description: "10km 달리기 완주", successCriteria: ["사이클 후 바로 달릴 수 있나요?", "브릭 트레이닝을 해봤나요?", "50분 내 10km 가능한가요?"]),
-            Milestone(title: "복합 훈련", description: "3종목 연속 훈련", successCriteria: ["전환(트랜지션) 연습을 했나요?", "수영→사이클 전환 시간은?", "사이클→런 전환 시간은?"]),
-            Milestone(title: "대회 등록", description: "스프린트 또는 올림픽 코스", successCriteria: ["첫 대회는 스프린트 코스를 추천해요", "대회 규정을 숙지했나요?", "장비 점검을 완료했나요?"]),
-            Milestone(title: "영양 전략", description: "경기 중 보급 계획", successCriteria: ["수분 보충 계획을 세웠나요?", "젤/바 섭취 타이밍을 정했나요?", "경기 전 식사 메뉴를 정했나요?"])
+            Milestone(title: "수영 실력 향상", description: "자유형 1.5km 완영", successCriteria: ["현재 쉬지 않고 수영할 수 있는 최대 거리는 얼마이고, 400m 달성을 위한 훈련 계획은?", "오픈워터 수영에 대한 기대와 불안은 무엇이고, 어떻게 준비하고 있나요?", "웻수트를 입고 수영하면서 느낀 점과 적응 노하우가 있다면?"]),
+            Milestone(title: "사이클 훈련", description: "40km 사이클 완주", successCriteria: ["어떤 로드바이크를 선택했고, 그 이유는 무엇인가요?", "클릿 페달 사용 중 어려웠던 점과 극복한 방법은?", "현재 평균 속도와 향상을 위한 구체적인 훈련 계획을 적어보세요"]),
+            Milestone(title: "달리기 훈련", description: "10km 달리기 완주", successCriteria: ["사이클 직후 달리기의 느낌과 적응을 위해 어떤 노력을 했나요?", "브릭 트레이닝에서 배운 가장 중요한 교훈은 무엇인가요?", "10km 목표 시간과 그 기록을 달성하기 위한 전략은?"]),
+            Milestone(title: "복합 훈련", description: "3종목 연속 훈련", successCriteria: ["전환 구간에서 발견한 나만의 효율적인 팁을 공유해주세요", "수영→사이클 전환 시 가장 신경 쓰는 부분과 목표 시간은?", "사이클→런 전환 시 몸의 변화와 대처법을 설명해주세요"]),
+            Milestone(title: "대회 등록", description: "스프린트 또는 올림픽 코스", successCriteria: ["어떤 대회와 코스를 선택했고, 그 이유는 무엇인가요?", "대회 규정 중 특히 주의할 점이나 새롭게 알게 된 것은?", "장비 점검 체크리스트와 가장 중요하게 생각하는 장비는?"]),
+            Milestone(title: "영양 전략", description: "경기 중 보급 계획", successCriteria: ["경기 중 수분/전해질 보충 계획을 구체적으로 작성해보세요", "에너지젤이나 보충제 섭취 타이밍과 그 이유는?", "경기 전날과 당일 아침 식사 메뉴는 무엇이고 왜 그렇게 정했나요?"])
         ],
         .책_100권_읽기: [
-            Milestone(title: "독서 습관 만들기", description: "매일 30분 독서", successCriteria: ["매일 같은 시간에 읽고 있나요?", "독서 공간을 정했나요?", "스마트폰을 멀리 두고 읽나요?"]),
-            Milestone(title: "첫 10권 완독", description: "2개월 내 목표", successCriteria: ["읽고 싶은 책 리스트가 있나요?", "독서 기록 앱/노트를 사용하나요?", "10권 완독했나요?"]),
-            Milestone(title: "장르 다양화", description: "소설, 비소설, 자기계발 등", successCriteria: ["다양한 장르를 시도하고 있나요?", "불편한 장르도 도전했나요?", "30권 완독했나요?"]),
-            Milestone(title: "독서 모임 참여", description: "생각 나누기", successCriteria: ["독서 모임을 찾아봤나요?", "온라인 독서 커뮤니티에 가입했나요?", "50권 완독했나요?"]),
-            Milestone(title: "독서 속도 향상", description: "월 3-4권 읽기", successCriteria: ["한 달에 3권 이상 읽고 있나요?", "출퇴근 시간을 활용하나요?", "75권 완독했나요?"]),
-            Milestone(title: "100권 달성", description: "독서 마라톤 완주", successCriteria: ["100권 리스트를 작성했나요?", "가장 인상 깊은 책 10권을 꼽을 수 있나요?", "다음 목표를 세웠나요?"])
+            Milestone(title: "독서 습관 만들기", description: "매일 30분 독서", successCriteria: ["언제, 어디서 독서하는 것이 가장 편하고, 왜 그런가요?", "나만의 독서 공간은 어떤 모습이고, 어떤 환경을 조성했나요?", "독서 중 방해 요소를 줄이기 위해 어떤 방법을 시도해봤나요?"]),
+            Milestone(title: "첫 10권 완독", description: "2개월 내 목표", successCriteria: ["읽고 싶은 책 10권과 각각 선정한 이유를 적어보세요", "독서 기록은 어떤 방식으로 하고, 어떤 내용을 주로 기록하나요?", "완독한 책 중 가장 기억에 남는 책과 그 이유는?"]),
+            Milestone(title: "장르 다양화", description: "소설, 비소설, 자기계발 등", successCriteria: ["새롭게 도전해본 장르와 그에 대한 솔직한 감상은?", "평소 읽지 않던 장르에서 발견한 새로운 즐거움이나 배움은?", "지금까지 읽은 책들 중 장르별 베스트를 꼽아보세요"]),
+            Milestone(title: "독서 모임 참여", description: "생각 나누기", successCriteria: ["어떤 독서 모임이나 커뮤니티에 참여하고 있고, 어떻게 찾았나요?", "다른 사람들과 책에 대해 이야기하면서 얻은 새로운 시각이나 인사이트는?", "독서 모임에서 추천받은 책 중 인상적이었던 것은?"]),
+            Milestone(title: "독서 속도 향상", description: "월 3-4권 읽기", successCriteria: ["독서량을 늘리기 위해 어떤 방법이나 습관을 들였나요?", "자투리 시간을 활용하는 나만의 독서 팁이 있다면?", "빠르게 읽은 책과 천천히 읽은 책의 차이점은 무엇인가요?"]),
+            Milestone(title: "100권 달성", description: "독서 마라톤 완주", successCriteria: ["100권 독서 여정에서 가장 의미있었던 순간은 언제였나요?", "인생을 바꾼 책 TOP 10과 각각의 선정 이유를 적어보세요", "100권을 통해 얻은 가장 큰 변화나 깨달음은 무엇인가요?"])
         ],
         .유튜브_구독자_10만_달성하기: [
-            Milestone(title: "채널 컨셉 정하기", description: "니치 시장 선택", successCriteria: ["어떤 주제로 채널을 운영할지 정했나요?", "타겟 시청자층을 정의했나요?", "경쟁 채널을 분석했나요?"]),
-            Milestone(title: "첫 영상 10개 업로드", description: "콘텐츠 제작 시작", successCriteria: ["편집 프로그램을 배웠나요?", "썸네일 제작 방법을 익혔나요?", "업로드 주기를 정했나요?"]),
-            Milestone(title: "구독자 1,000명 달성", description: "수익 창출 조건 1", successCriteria: ["커뮤니티와 소통하고 있나요?", "SEO 최적화를 적용했나요?", "콜투액션을 활용하고 있나요?"]),
-            Milestone(title: "시청 시간 4,000시간", description: "수익 창출 조건 2", successCriteria: ["평균 시청 지속시간을 확인하나요?", "10분 이상 영상을 제작하나요?", "시리즈 콘텐츠를 만들었나요?"]),
-            Milestone(title: "구독자 10,000명 달성", description: "실버 버튼을 향해", successCriteria: ["바이럴 영상이 있었나요?", "협업을 시도했나요?", "숏폼(Shorts)을 활용하고 있나요?"]),
-            Milestone(title: "10만 구독자 달성", description: "실버 버튼 획득", successCriteria: ["일관된 업로드를 유지하고 있나요?", "커뮤니티 탭을 활용하나요?", "수익 다각화를 계획했나요?"])
+            Milestone(title: "채널 컨셉 정하기", description: "니치 시장 선택", successCriteria: ["어떤 주제로 채널을 운영하기로 했고, 그 주제를 선택한 특별한 이유는?", "타겟 시청자는 어떤 사람들이고, 그들에게 어떤 가치를 주고 싶나요?", "분석한 경쟁 채널의 장단점과 나만의 차별화 전략은?"]),
+            Milestone(title: "첫 영상 10개 업로드", description: "콘텐츠 제작 시작", successCriteria: ["어떤 편집 프로그램을 선택했고, 가장 유용한 기능은 무엇인가요?", "클릭을 유도하는 썸네일 제작 노하우를 공유해주세요", "업로드 주기와 그 주기를 선택한 이유는?"]),
+            Milestone(title: "구독자 1,000명 달성", description: "수익 창출 조건 1", successCriteria: ["시청자들과 어떤 방식으로 소통하고, 가장 효과적인 방법은 무엇이었나요?", "SEO 최적화를 위해 어떤 노력을 하고, 효과가 있었던 것은?", "콜투액션의 효과를 높이기 위해 어떤 전략을 사용하나요?"]),
+            Milestone(title: "시청 시간 4,000시간", description: "수익 창출 조건 2", successCriteria: ["시청 지속시간을 높이기 위해 어떤 콘텐츠 전략을 사용하나요?", "긴 영상 제작 시 시청자 이탈을 막기 위한 나만의 방법은?", "시리즈 콘텐츠의 주제와 기획 의도를 설명해주세요"]),
+            Milestone(title: "구독자 10,000명 달성", description: "실버 버튼을 향해", successCriteria: ["가장 성공한 영상과 그 이유를 분석해보세요", "협업 경험에서 배운 점과 앞으로의 협업 계획은?", "숏폼 콘텐츠 전략과 일반 영상과의 차이점은?"]),
+            Milestone(title: "10만 구독자 달성", description: "실버 버튼 획득", successCriteria: ["10만 달성까지의 여정에서 가장 힘들었던 순간과 극복 방법은?", "커뮤니티 탭을 어떻게 활용하고, 효과적인 콘텐츠는?", "수익 다각화를 위해 어떤 계획을 세우고 있나요?"])
         ],
         .창업해서_첫_매출_내기: [
-            Milestone(title: "사업 아이디어 검증", description: "시장 조사 및 고객 인터뷰", successCriteria: ["해결하고 싶은 문제를 정의했나요?", "잠재 고객 10명과 인터뷰했나요?", "경쟁사를 분석했나요?"]),
-            Milestone(title: "MVP 제작", description: "최소 기능 제품 개발", successCriteria: ["핵심 기능만 포함한 제품을 만들었나요?", "프로토타입을 테스트했나요?", "피드백을 반영했나요?"]),
-            Milestone(title: "사업자 등록", description: "법적 준비", successCriteria: ["사업자 유형을 결정했나요?", "사업자등록증을 발급받았나요?", "통장을 개설했나요?"]),
-            Milestone(title: "마케팅 시작", description: "첫 고객 확보", successCriteria: ["SNS 채널을 개설했나요?", "첫 광고를 집행했나요?", "랜딩 페이지를 만들었나요?"]),
-            Milestone(title: "첫 매출 달성", description: "유료 고객 확보", successCriteria: ["첫 결제를 받았나요?", "고객 피드백을 받았나요?", "재구매를 유도했나요?"])
+            Milestone(title: "사업 아이디어 검증", description: "시장 조사 및 고객 인터뷰", successCriteria: ["해결하고자 하는 문제는 무엇이고, 왜 이 문제가 중요하다고 생각하나요?", "잠재 고객 인터뷰에서 발견한 가장 중요한 인사이트는 무엇인가요?", "경쟁사 분석을 통해 발견한 시장의 기회와 나의 차별점은?"]),
+            Milestone(title: "MVP 제작", description: "최소 기능 제품 개발", successCriteria: ["MVP에 포함시킨 핵심 기능과 제외한 기능은 무엇이고, 그 이유는?", "프로토타입 테스트에서 가장 큰 배움이나 놀라웠던 점은?", "고객 피드백 중 가장 반영하기 어려웠던 것과 해결 방법은?"]),
+            Milestone(title: "사업자 등록", description: "법적 준비", successCriteria: ["어떤 사업자 유형을 선택했고, 그 이유는 무엇인가요?", "사업자 등록 과정에서 어려웠던 점이나 새롭게 알게 된 것은?", "사업 운영을 위해 어떤 법적/행정적 준비를 더 해야 하나요?"]),
+            Milestone(title: "마케팅 시작", description: "첫 고객 확보", successCriteria: ["타겟 고객에게 효과적이었던 마케팅 채널과 그 이유는?", "첫 광고의 성과와 거기서 배운 교훈은 무엇인가요?", "랜딩 페이지의 핵심 메시지와 전환율 향상을 위한 노력은?"]),
+            Milestone(title: "첫 매출 달성", description: "유료 고객 확보", successCriteria: ["첫 결제를 받았을 때의 느낌과 그 고객은 어떻게 찾아왔나요?", "초기 고객의 피드백 중 가장 가치있었던 것과 개선한 점은?", "재구매나 추천을 유도하기 위해 어떤 전략을 사용했나요?"])
         ],
         .연봉_1억_달성하기: [
-            Milestone(title: "현재 위치 분석", description: "연봉, 역량, 시장가치 파악", successCriteria: ["현재 연봉 수준을 알고 있나요?", "업계 평균 연봉을 조사했나요?", "필요한 역량을 파악했나요?"]),
-            Milestone(title: "역량 개발 계획", description: "고연봉 스킬 습득", successCriteria: ["수요가 높은 기술을 배우고 있나요?", "자격증/학위를 계획했나요?", "포트폴리오를 만들고 있나요?"]),
-            Milestone(title: "네트워크 확장", description: "업계 인맥 구축", successCriteria: ["링크드인 프로필을 최적화했나요?", "업계 행사에 참여하나요?", "멘토를 찾았나요?"]),
-            Milestone(title: "이직/승진 준비", description: "기회 모색", successCriteria: ["이력서를 업데이트했나요?", "헤드헌터와 연락했나요?", "면접 준비를 했나요?"]),
-            Milestone(title: "연봉 협상", description: "목표 연봉 달성", successCriteria: ["협상 전략을 세웠나요?", "시장가치를 근거로 제시했나요?", "대안(BATNA)을 준비했나요?"])
+            Milestone(title: "현재 위치 분석", description: "연봉, 역량, 시장가치 파악", successCriteria: ["현재 연봉과 업계 평균을 비교했을 때 나의 위치는 어디이고, 그 이유는?", "1억 달성을 위해 가장 필요한 역량과 그것을 선택한 근거는?", "나의 강점과 보완해야 할 약점을 구체적으로 적어보세요"]),
+            Milestone(title: "역량 개발 계획", description: "고연봉 스킬 습득", successCriteria: ["어떤 기술/역량을 배우고 있고, 왜 이것이 고연봉으로 이어질 것이라 생각하나요?", "계획 중인 자격증이나 학위와 그것이 가져올 기대 효과는?", "포트폴리오에 담을 핵심 성과와 그 의미를 설명해주세요"]),
+            Milestone(title: "네트워크 확장", description: "업계 인맥 구축", successCriteria: ["링크드인이나 업계 네트워크에서 나를 어떻게 포지셔닝하고 있나요?", "최근 참여한 업계 행사에서 얻은 인사이트나 인연은?", "멘토나 롤모델이 있다면 누구이고, 그 사람에게서 무엇을 배우고 싶나요?"]),
+            Milestone(title: "이직/승진 준비", description: "기회 모색", successCriteria: ["이력서에서 가장 강조하는 성과와 그 의미를 설명해주세요", "원하는 회사/포지션과 그곳을 목표로 하는 이유는?", "면접에서 나를 차별화할 수 있는 스토리나 경험은?"]),
+            Milestone(title: "연봉 협상", description: "목표 연봉 달성", successCriteria: ["나의 시장가치를 증명할 수 있는 근거 자료와 성과는?", "협상에서 사용할 전략과 원하는 연봉 범위는?", "협상이 잘 안 될 경우를 대비한 대안(BATNA)은 무엇인가요?"])
         ],
         .에베레스트_베이스캠프_트레킹하기: [
-            Milestone(title: "체력 훈련", description: "고산 트레킹 준비", successCriteria: ["주 3회 이상 등산을 하고 있나요?", "10km 이상 하이킹이 가능한가요?", "계단 오르기 훈련을 하나요?"]),
-            Milestone(title: "고소 적응 계획", description: "고산병 예방", successCriteria: ["고소 적응에 대해 공부했나요?", "천천히 오르는 일정을 계획했나요?", "다이아목스에 대해 알아봤나요?"]),
-            Milestone(title: "장비 준비", description: "트레킹 장비 구비", successCriteria: ["고산용 침낭(-20도)을 준비했나요?", "트레킹 부츠를 길들였나요?", "레이어링 의류를 준비했나요?"])
+            Milestone(title: "체력 훈련", description: "고산 트레킹 준비", successCriteria: ["현재 등산 훈련 루틴과 가장 도전적이었던 산행 경험을 공유해주세요", "장거리 하이킹 중 체력 관리를 위해 어떤 전략을 사용하나요?", "계단 오르기나 고지대 훈련을 하면서 느낀 몸의 변화는?"]),
+            Milestone(title: "고소 적응 계획", description: "고산병 예방", successCriteria: ["고소 적응에 대해 배운 것과 가장 중요하다고 생각하는 원칙은?", "천천히 오르는 일정을 어떻게 계획했고, 예비일은 얼마나 잡았나요?", "고산병 증상과 대처법에 대해 알게 된 내용을 정리해보세요"]),
+            Milestone(title: "장비 준비", description: "트레킹 장비 구비", successCriteria: ["준비한 장비 목록과 각 장비를 선택한 기준은 무엇인가요?", "트레킹 부츠를 길들이면서 배운 점과 발 관리 팁은?", "레이어링 시스템을 어떻게 구성했고, 그 이유는?"]),
         ],
         .하프_마라톤_완주하기: [
-            Milestone(title: "기초 체력 만들기", description: "10km 달리기", successCriteria: ["5km를 30분 내 뛸 수 있나요?", "주 3회 이상 달리고 있나요?", "러닝화를 구입했나요?"]),
-            Milestone(title: "15km 훈련", description: "거리 늘리기", successCriteria: ["15km를 1시간 40분 내 뛸 수 있나요?", "페이스 조절을 연습하나요?", "중간 보급 연습을 했나요?"]),
-            Milestone(title: "대회 등록", description: "하프 마라톤 도전", successCriteria: ["목표 대회를 선정했나요?", "목표 기록을 정했나요?", "대회 복장을 준비했나요?"])
+            Milestone(title: "기초 체력 만들기", description: "10km 달리기", successCriteria: ["현재 5km 기록과 10km 목표 달성을 위한 구체적인 훈련 계획은?", "달리기 훈련 루틴을 공유하고, 가장 효과적인 훈련법은 무엇인가요?", "어떤 러닝화를 선택했고, 그 이유와 착화감은 어떤가요?"]),
+            Milestone(title: "15km 훈련", description: "거리 늘리기", successCriteria: ["장거리 달리기에서 발견한 나만의 페이스 조절 노하우는?", "중간 보급(물, 에너지젤 등) 전략과 타이밍은 어떻게 정했나요?", "15km 훈련 중 가장 힘들었던 구간과 극복 방법은?"]),
+            Milestone(title: "대회 등록", description: "하프 마라톤 도전", successCriteria: ["어떤 대회를 선택했고, 그 대회의 특별한 매력은 무엇인가요?", "목표 기록과 그 기록이 나에게 가지는 의미는?", "대회 당일 복장과 준비물 체크리스트를 작성해보세요"])
         ],
         ._100km_울트라_마라톤_완주하기: [
-            Milestone(title: "풀코스 완주", description: "42.195km 경험", successCriteria: ["풀코스 마라톤을 완주했나요?", "4시간 30분 내 완주 가능한가요?", "장거리 페이스 유지가 되나요?"]),
-            Milestone(title: "50km 경험", description: "울트라 입문", successCriteria: ["50km 대회에 참가했나요?", "야간 주행 경험이 있나요?", "영양 보급 전략을 세웠나요?"]),
-            Milestone(title: "100km 준비", description: "정신력 훈련", successCriteria: ["80km 이상 훈련을 했나요?", "수면 전략을 계획했나요?", "페이서를 구했나요?"])
+            Milestone(title: "풀코스 완주", description: "42.195km 경험", successCriteria: ["풀코스 마라톤 완주 경험과 그때의 기록, 느낀 점을 공유해주세요", "장거리 달리기에서 안정적인 페이스를 유지하는 나만의 방법은?", "풀코스에서 배운 것 중 울트라에 적용할 수 있는 교훈은?"]),
+            Milestone(title: "50km 경험", description: "울트라 입문", successCriteria: ["50km 대회 경험과 일반 마라톤과의 가장 큰 차이점은 무엇이었나요?", "야간 주행의 어려움과 대처법, 필요한 장비에 대해 적어보세요", "장거리 영양 보급 전략(섭취 시기, 음식 종류, 양)을 구체적으로 설명해주세요"]),
+            Milestone(title: "100km 준비", description: "정신력 훈련", successCriteria: ["지금까지 완주한 최장 거리와 그때 느낀 신체적, 정신적 한계는?", "100km 중 수면/휴식 전략은 어떻게 계획하고 있나요?", "페이서나 크루를 어떻게 구성할 계획이고, 그들에게 기대하는 역할은?"])
         ],
         .등산_100대_명산_완등하기: [
-            Milestone(title: "등산 시작", description: "10대 명산 완등", successCriteria: ["등산 장비를 구비했나요?", "등산 앱을 설치했나요?", "10개 명산을 완등했나요?"]),
-            Milestone(title: "중급 도전", description: "50대 명산 완등", successCriteria: ["어려운 산에 도전하고 있나요?", "등산 기록을 정리하나요?", "50개 명산을 완등했나요?"]),
-            Milestone(title: "100대 완등", description: "목표 달성", successCriteria: ["전국 각지 산을 다니고 있나요?", "사계절 등산을 하나요?", "100개 명산을 완등했나요?"])
+            Milestone(title: "등산 시작", description: "10대 명산 완등", successCriteria: ["현재 보유한 등산 장비와 각각의 선택 이유를 적어보세요", "어떤 등산 앱을 사용하고, 가장 유용한 기능은 무엇인가요?", "완등한 10개 명산과 각 산에서 가장 인상 깊었던 점을 기록해보세요"]),
+            Milestone(title: "중급 도전", description: "50대 명산 완등", successCriteria: ["가장 도전적이었던 산과 그 산을 오르며 배운 점은?", "나만의 등산 기록 방법과 기록하면서 느끼는 보람은?", "지금까지의 여정에서 발견한 등산의 매력과 변화된 점은?"]),
+            Milestone(title: "100대 완등", description: "목표 달성", successCriteria: ["전국 명산 여행 중 가장 기억에 남는 지역과 그 이유는?", "사계절 중 가장 좋아하는 등산 시즌과 그 이유는?", "100대 명산 완등 후 다음 목표와 등산이 나에게 준 의미는?"])
         ],
         .킬리만자로_등정하기: [
-            Milestone(title: "체력 준비", description: "고산 등반 체력", successCriteria: ["주 4회 이상 운동하나요?", "계단 오르기 1시간이 가능한가요?", "무거운 배낭 훈련을 하나요?"]),
-            Milestone(title: "루트 선택", description: "등반 루트 결정", successCriteria: ["마차메, 렘보샤 등 루트를 조사했나요?", "6-7일 일정을 계획했나요?", "현지 가이드를 예약했나요?"]),
-            Milestone(title: "장비 및 건강", description: "등반 준비 완료", successCriteria: ["고산 장비를 준비했나요?", "예방접종을 완료했나요?", "여행자 보험에 가입했나요?"])
+            Milestone(title: "체력 준비", description: "고산 등반 체력", successCriteria: ["현재 운동 루틴과 고산 등반에 대비한 체력 훈련 계획을 설명해주세요", "계단 오르기나 언덕 훈련 중 발견한 나의 체력 상태와 개선점은?", "무거운 배낭(15-20kg)을 메고 훈련하면서 느낀 점과 적응 방법은?"]),
+            Milestone(title: "루트 선택", description: "등반 루트 결정", successCriteria: ["어떤 루트를 선택했고, 각 루트의 장단점을 조사한 결과는?", "일정을 어떻게 계획했고, 고소 적응을 위해 어떤 전략을 세웠나요?", "가이드 팀을 어떻게 선택했고, 그들에게 기대하는 역할은?"]),
+            Milestone(title: "장비 및 건강", description: "등반 준비 완료", successCriteria: ["준비한 장비 목록과 각 장비를 선택한 기준을 설명해주세요", "필요한 예방접종 목록과 건강 준비 상태를 점검해보세요", "여행자 보험에서 중요하게 확인한 보장 내용은 무엇인가요?"])
         ],
         .후지산_등정하기: [
-            Milestone(title: "시즌 확인", description: "등산 시기 선택", successCriteria: ["7-9월 개방 시즌을 확인했나요?", "산장 예약을 했나요?", "날씨를 체크하나요?"]),
-            Milestone(title: "루트 선택", description: "등산로 결정", successCriteria: ["요시다, 스바시리 등 루트를 선택했나요?", "5합목 접근 방법을 알아봤나요?", "고산병 대비를 했나요?"]),
-            Milestone(title: "장비 준비", description: "등반 장비", successCriteria: ["헤드램프를 준비했나요?", "방한 장비를 챙겼나요?", "등산 스틱을 준비했나요?"])
+            Milestone(title: "시즌 확인", description: "등산 시기 선택", successCriteria: ["언제 등정할 계획이고, 그 시기를 선택한 이유는 무엇인가요?", "어떤 산장을 예약했고, 산장 선택 시 고려한 점은?", "일기예보와 등산 컨디션 확인을 위해 어떤 정보 소스를 활용하나요?"]),
+            Milestone(title: "루트 선택", description: "등산로 결정", successCriteria: ["어떤 루트를 선택했고, 각 루트를 조사하면서 알게 된 특징은?", "5합목까지의 접근 방법과 전체 일정을 어떻게 계획했나요?", "고산병 예방을 위한 준비와 증상 대처 계획을 적어보세요"]),
+            Milestone(title: "장비 준비", description: "등반 장비", successCriteria: ["준비한 장비 목록과 각 장비의 중요성을 설명해주세요", "새벽 등정(고라이코)을 위한 방한 대비와 복장 계획은?", "등산 중 필요한 물품(식량, 물 등)과 양을 어떻게 계획했나요?"])
         ],
         .북한산_100회_등반하기: [
-            Milestone(title: "등반 시작", description: "코스 파악", successCriteria: ["다양한 코스를 알고 있나요?", "등산 기록 앱을 사용하나요?", "10회 등반을 완료했나요?"]),
-            Milestone(title: "꾸준한 등반", description: "50회 달성", successCriteria: ["주 1회 이상 등반하나요?", "사계절 등반을 하나요?", "50회 등반을 완료했나요?"]),
-            Milestone(title: "100회 달성", description: "목표 완수", successCriteria: ["암벽 코스도 시도했나요?", "야간 등반 경험이 있나요?", "100회 등반을 완료했나요?"])
+            Milestone(title: "등반 시작", description: "코스 파악", successCriteria: ["지금까지 경험한 북한산 코스들과 각 코스의 특징을 정리해보세요", "등산 기록 앱이나 방법을 통해 무엇을 기록하고, 어떤 인사이트를 얻고 있나요?", "초기 10회 등반에서 가장 기억에 남는 순간과 배운 점은?"]),
+            Milestone(title: "꾸준한 등반", description: "50회 달성", successCriteria: ["꾸준한 등반을 위해 어떤 루틴이나 동기부여 방법을 사용하나요?", "계절별로 북한산의 다른 매력과 주의해야 할 점을 공유해주세요", "50회 등반을 하면서 체력이나 정신적으로 변화된 점은?"]),
+            Milestone(title: "100회 달성", description: "목표 완수", successCriteria: ["도전해본 특별한 코스(암벽, 야간 등)와 그 경험에서 얻은 것은?", "100회 등반 중 가장 힘들었던 순간과 가장 행복했던 순간은?", "100회 완등이 나에게 주는 의미와 다음 목표는 무엇인가요?"])
         ],
         .사이클_국토_종주하기: [
-            Milestone(title: "자전거 준비", description: "장거리 라이딩 준비", successCriteria: ["로드바이크 또는 투어링 바이크가 있나요?", "100km 라이딩 경험이 있나요?", "기본 정비를 할 수 있나요?"]),
-            Milestone(title: "4대강 인증", description: "구간별 완주", successCriteria: ["낙동강 자전거길을 완주했나요?", "인증 스탬프를 모으고 있나요?", "1박 이상 라이딩 경험이 있나요?"]),
-            Milestone(title: "국토 종주", description: "전 구간 완주", successCriteria: ["인천-부산 루트를 계획했나요?", "숙박 장소를 예약했나요?", "국토종주 인증서를 받았나요?"])
+            Milestone(title: "자전거 준비", description: "장거리 라이딩 준비", successCriteria: ["어떤 자전거를 선택했고, 장거리 라이딩에 적합한 세팅을 어떻게 했나요?", "지금까지 완주한 최장 거리와 그때의 경험을 공유해주세요", "자전거 기본 정비(펑크 수리, 변속 조절 등)를 배운 과정과 노하우는?"]),
+            Milestone(title: "4대강 인증", description: "구간별 완주", successCriteria: ["완주한 4대강 자전거길과 각 구간의 특징 및 추천 포인트는?", "인증 스탬프를 모으면서 느낀 성취감과 동기부여가 되는 점은?", "1박 이상 라이딩에서 배운 점과 필요한 준비물은?"]),
+            Milestone(title: "국토 종주", description: "전 구간 완주", successCriteria: ["구체적인 일정과 하루 목표 거리, 선택한 이유를 설명해주세요", "숙박, 식사, 보급 계획은 어떻게 세웠나요?", "국토 종주를 통해 얻고 싶은 것과 이 도전의 의미는?"])
         ],
         .제주_올레길_완주하기: [
             Milestone(title: "올레길 시작", description: "코스 파악", successCriteria: ["26개 코스 정보를 확인했나요?", "올레 패스포트를 구입했나요?", "5개 코스를 완주했나요?"]),

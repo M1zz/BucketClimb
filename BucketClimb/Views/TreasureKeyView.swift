@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 // MARK: - Navigation Bar Title Color Modifier
 
@@ -768,17 +769,24 @@ struct KeyProgressView: View {
                 HStack(spacing: 2) {
                     ForEach(teeth) { tooth in
                         VStack(spacing: 0) {
-                            // 상단 톱니 부분
-                            RoundedRectangle(cornerRadius: 2)
-                                .fill(tooth.isCompleted ?
-                                      LinearGradient(colors: [.keyGold, .keyBronze], startPoint: .top, endPoint: .bottom) :
-                                      LinearGradient(colors: [Color.gray.opacity(0.3), Color.gray.opacity(0.2)], startPoint: .top, endPoint: .bottom)
-                                )
-                                .frame(width: size.toothWidth, height: size.toothHeight)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 2)
-                                        .stroke(tooth.isCompleted ? Color.keyGold.opacity(0.5) : Color.gray.opacity(0.3), lineWidth: 1)
-                                )
+                            // 상단 톱니 부분 + 패턴
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 2)
+                                    .fill(tooth.isCompleted ?
+                                          LinearGradient(colors: [.keyGold, .keyBronze], startPoint: .top, endPoint: .bottom) :
+                                          LinearGradient(colors: [Color.gray.opacity(0.3), Color.gray.opacity(0.2)], startPoint: .top, endPoint: .bottom)
+                                    )
+                                    .frame(width: size.toothWidth, height: size.toothHeight)
+
+                                // 미니 패턴
+                                MiniToothPattern(category: tooth.category, isCompleted: tooth.isCompleted)
+                                    .frame(width: size.toothWidth, height: size.toothHeight)
+                                    .clipShape(RoundedRectangle(cornerRadius: 2))
+
+                                RoundedRectangle(cornerRadius: 2)
+                                    .stroke(tooth.isCompleted ? Color.keyGold.opacity(0.5) : Color.gray.opacity(0.3), lineWidth: 1)
+                                    .frame(width: size.toothWidth, height: size.toothHeight)
+                            }
 
                             // 하단 연결 부분
                             Rectangle()
@@ -899,7 +907,7 @@ struct LargeKeyView: View {
     }
 }
 
-// 가로 방향 톱니 뷰
+// 가로 방향 톱니 뷰 (패턴 포함)
 struct HorizontalToothView: View {
     let tooth: Tooth
     @State private var appear = false
@@ -914,31 +922,39 @@ struct HorizontalToothView: View {
                 )
                 .frame(width: 12, height: 20)
 
-            // 톱니 몸체
-            VStack(spacing: 0) {
-                RoundedRectangle(cornerRadius: 3)
+            // 톱니 몸체 + 패턴
+            ZStack {
+                // 베이스
+                RoundedRectangle(cornerRadius: 4)
                     .fill(tooth.isCompleted ?
                           LinearGradient(colors: [.keyGold, .keyBronze], startPoint: .top, endPoint: .bottom) :
                           LinearGradient(colors: [Color.gray.opacity(0.4), Color.gray.opacity(0.2)], startPoint: .top, endPoint: .bottom)
                     )
                     .frame(width: 40, height: 50)
-                    .overlay(
-                        VStack(spacing: 2) {
-                            Image(systemName: tooth.category.icon)
-                                .font(.system(size: 14))
-                                .foregroundColor(tooth.isCompleted ? .forgeBackground : .gray)
 
-                            if tooth.isCompleted {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.green)
-                            }
-                        }
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 3)
-                            .stroke(tooth.isCompleted ? Color.keyGold.opacity(0.5) : Color.gray.opacity(0.3), lineWidth: 1.5)
-                    )
+                // 카테고리별 패턴
+                ToothPatternView(category: tooth.category, isCompleted: tooth.isCompleted)
+                    .frame(width: 40, height: 50)
+                    .clipShape(RoundedRectangle(cornerRadius: 4))
+
+                // 아이콘과 체크마크
+                VStack(spacing: 2) {
+                    Image(systemName: tooth.category.icon)
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(tooth.isCompleted ? .forgeBackground : .gray)
+                        .shadow(color: tooth.isCompleted ? .keyGold.opacity(0.5) : .clear, radius: 2)
+
+                    if tooth.isCompleted {
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.system(size: 12))
+                            .foregroundColor(.green)
+                    }
+                }
+
+                // 테두리
+                RoundedRectangle(cornerRadius: 4)
+                    .stroke(tooth.isCompleted ? Color.keyGold.opacity(0.6) : Color.gray.opacity(0.3), lineWidth: 1.5)
+                    .frame(width: 40, height: 50)
             }
         }
         .scaleEffect(appear ? 1.0 : 0.8)
@@ -946,6 +962,309 @@ struct HorizontalToothView: View {
         .onAppear {
             withAnimation(.spring(response: 0.5, dampingFraction: 0.7).delay(Double.random(in: 0...0.3))) {
                 appear = true
+            }
+        }
+    }
+}
+
+// 카테고리별 톱니 패턴 (ToothCategory용)
+struct ToothPatternView: View {
+    let category: ToothCategory
+    let isCompleted: Bool
+
+    var patternColor: Color {
+        isCompleted ? Color.forgeBackground.opacity(0.3) : Color.white.opacity(0.05)
+    }
+
+    var body: some View {
+        GeometryReader { geo in
+            switch category {
+            case .money:
+                // 예산: 대각선 줄무늬
+                DiagonalStripes(color: patternColor, lineWidth: 2, spacing: 6)
+
+            case .time:
+                // 시간: 물결 패턴
+                WavePattern(color: patternColor, amplitude: 3, frequency: 3)
+
+            case .skill:
+                // 스킬: 별 패턴
+                StarPattern(color: patternColor, size: 8)
+
+            case .resource:
+                // 자원: 도트 패턴
+                DotPattern(color: patternColor, dotSize: 3, spacing: 8)
+
+            case .permission:
+                // 허가: 체크 패턴
+                CheckPattern(color: patternColor)
+
+            case .health:
+                // 건강: 하트 패턴
+                HeartPattern(color: patternColor, size: 6)
+            }
+        }
+    }
+}
+
+// 대각선 줄무늬 패턴
+struct DiagonalStripes: View {
+    let color: Color
+    let lineWidth: CGFloat
+    let spacing: CGFloat
+
+    var body: some View {
+        GeometryReader { geo in
+            Path { path in
+                let count = Int((geo.size.width + geo.size.height) / spacing)
+                for i in 0..<count {
+                    let offset = CGFloat(i) * spacing
+                    path.move(to: CGPoint(x: offset - geo.size.height, y: 0))
+                    path.addLine(to: CGPoint(x: offset, y: geo.size.height))
+                }
+            }
+            .stroke(color, lineWidth: lineWidth)
+        }
+    }
+}
+
+// 물결 패턴
+struct WavePattern: View {
+    let color: Color
+    let amplitude: CGFloat
+    let frequency: CGFloat
+
+    var body: some View {
+        GeometryReader { geo in
+            Path { path in
+                let rowCount = Int(geo.size.height / 10)
+                for row in 0..<rowCount {
+                    let y = CGFloat(row) * 10 + 5
+                    path.move(to: CGPoint(x: 0, y: y))
+                    for x in stride(from: 0, to: geo.size.width, by: 2) {
+                        let wave = sin(x / geo.size.width * .pi * frequency) * amplitude
+                        path.addLine(to: CGPoint(x: x, y: y + wave))
+                    }
+                }
+            }
+            .stroke(color, lineWidth: 1.5)
+        }
+    }
+}
+
+// 별 패턴
+struct StarPattern: View {
+    let color: Color
+    let size: CGFloat
+
+    var body: some View {
+        GeometryReader { geo in
+            let cols = Int(geo.size.width / (size * 2))
+            let rows = Int(geo.size.height / (size * 2))
+
+            ForEach(0..<rows, id: \.self) { row in
+                ForEach(0..<cols, id: \.self) { col in
+                    if (row + col) % 2 == 0 {
+                        Image(systemName: "star.fill")
+                            .font(.system(size: size))
+                            .foregroundColor(color)
+                            .position(
+                                x: CGFloat(col) * size * 2 + size,
+                                y: CGFloat(row) * size * 2 + size
+                            )
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 도트 패턴
+struct DotPattern: View {
+    let color: Color
+    let dotSize: CGFloat
+    let spacing: CGFloat
+
+    var body: some View {
+        GeometryReader { geo in
+            let cols = Int(geo.size.width / spacing)
+            let rows = Int(geo.size.height / spacing)
+
+            ForEach(0..<rows, id: \.self) { row in
+                ForEach(0..<cols, id: \.self) { col in
+                    Circle()
+                        .fill(color)
+                        .frame(width: dotSize, height: dotSize)
+                        .position(
+                            x: CGFloat(col) * spacing + spacing / 2,
+                            y: CGFloat(row) * spacing + spacing / 2
+                        )
+                }
+            }
+        }
+    }
+}
+
+// 하트 패턴
+struct HeartPattern: View {
+    let color: Color
+    let size: CGFloat
+
+    var body: some View {
+        GeometryReader { geo in
+            let cols = Int(geo.size.width / (size * 2.5))
+            let rows = Int(geo.size.height / (size * 2.5))
+
+            ForEach(0..<rows, id: \.self) { row in
+                ForEach(0..<cols, id: \.self) { col in
+                    Image(systemName: "heart.fill")
+                        .font(.system(size: size))
+                        .foregroundColor(color)
+                        .position(
+                            x: CGFloat(col) * size * 2.5 + size,
+                            y: CGFloat(row) * size * 2.5 + size
+                        )
+                }
+            }
+        }
+    }
+}
+
+// 원형 패턴
+struct CirclePattern: View {
+    let color: Color
+    let circleSize: CGFloat
+    let spacing: CGFloat
+
+    var body: some View {
+        GeometryReader { geo in
+            let cols = Int(geo.size.width / spacing)
+            let rows = Int(geo.size.height / spacing)
+
+            ForEach(0..<rows, id: \.self) { row in
+                ForEach(0..<cols, id: \.self) { col in
+                    Circle()
+                        .stroke(color, lineWidth: 1)
+                        .frame(width: circleSize, height: circleSize)
+                        .position(
+                            x: CGFloat(col) * spacing + spacing / 2,
+                            y: CGFloat(row) * spacing + spacing / 2
+                        )
+                }
+            }
+        }
+    }
+}
+
+// 미니 톱니 패턴 (KeyProgressView용 - 작은 사이즈)
+struct MiniToothPattern: View {
+    let category: ToothCategory
+    let isCompleted: Bool
+
+    var patternColor: Color {
+        isCompleted ? Color.forgeBackground.opacity(0.25) : Color.white.opacity(0.08)
+    }
+
+    var body: some View {
+        GeometryReader { geo in
+            switch category {
+            case .money:
+                // 예산: 단순 대각선
+                Path { path in
+                    path.move(to: CGPoint(x: 0, y: geo.size.height))
+                    path.addLine(to: CGPoint(x: geo.size.width, y: 0))
+                    path.move(to: CGPoint(x: 0, y: geo.size.height * 0.5))
+                    path.addLine(to: CGPoint(x: geo.size.width * 0.5, y: 0))
+                }
+                .stroke(patternColor, lineWidth: 1.5)
+
+            case .time:
+                // 시간: 가로선
+                Path { path in
+                    for i in 1..<4 {
+                        let y = geo.size.height * CGFloat(i) / 4
+                        path.move(to: CGPoint(x: 2, y: y))
+                        path.addLine(to: CGPoint(x: geo.size.width - 2, y: y))
+                    }
+                }
+                .stroke(patternColor, lineWidth: 1)
+
+            case .skill:
+                // 스킬: 중앙 마름모
+                Path { path in
+                    let cx = geo.size.width / 2
+                    let cy = geo.size.height / 2
+                    let s: CGFloat = min(geo.size.width, geo.size.height) * 0.3
+                    path.move(to: CGPoint(x: cx, y: cy - s))
+                    path.addLine(to: CGPoint(x: cx + s, y: cy))
+                    path.addLine(to: CGPoint(x: cx, y: cy + s))
+                    path.addLine(to: CGPoint(x: cx - s, y: cy))
+                    path.closeSubpath()
+                }
+                .stroke(patternColor, lineWidth: 1.5)
+
+            case .resource:
+                // 자원: 점 3개
+                HStack(spacing: 2) {
+                    ForEach(0..<3, id: \.self) { _ in
+                        Circle()
+                            .fill(patternColor)
+                            .frame(width: 3, height: 3)
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+            case .permission:
+                // 허가: 체크 모양
+                Path { path in
+                    let cx = geo.size.width / 2
+                    let cy = geo.size.height / 2
+                    let s: CGFloat = min(geo.size.width, geo.size.height) * 0.2
+                    path.move(to: CGPoint(x: cx - s, y: cy))
+                    path.addLine(to: CGPoint(x: cx - s * 0.3, y: cy + s * 0.7))
+                    path.addLine(to: CGPoint(x: cx + s, y: cy - s * 0.5))
+                }
+                .stroke(patternColor, lineWidth: 1.5)
+
+            case .health:
+                // 건강: + 모양
+                Path { path in
+                    let cx = geo.size.width / 2
+                    let cy = geo.size.height / 2
+                    let s: CGFloat = min(geo.size.width, geo.size.height) * 0.25
+                    path.move(to: CGPoint(x: cx - s, y: cy))
+                    path.addLine(to: CGPoint(x: cx + s, y: cy))
+                    path.move(to: CGPoint(x: cx, y: cy - s))
+                    path.addLine(to: CGPoint(x: cx, y: cy + s))
+                }
+                .stroke(patternColor, lineWidth: 1.5)
+            }
+        }
+    }
+}
+
+// 체크 패턴 (permission용)
+struct CheckPattern: View {
+    let color: Color
+
+    var body: some View {
+        GeometryReader { geo in
+            let cols = Int(geo.size.width / 12)
+            let rows = Int(geo.size.height / 12)
+
+            ForEach(0..<rows, id: \.self) { row in
+                ForEach(0..<cols, id: \.self) { col in
+                    if (row + col) % 2 == 0 {
+                        Path { path in
+                            let x = CGFloat(col) * 12 + 3
+                            let y = CGFloat(row) * 12 + 6
+                            path.move(to: CGPoint(x: x, y: y))
+                            path.addLine(to: CGPoint(x: x + 2, y: y + 3))
+                            path.addLine(to: CGPoint(x: x + 6, y: y - 2))
+                        }
+                        .stroke(color, lineWidth: 1.5)
+                    }
+                }
             }
         }
     }
@@ -1563,6 +1882,8 @@ struct CurrentStepSection: View {
     @State private var currentChecklistIndex = 0
     @State private var userAnswer = ""
     @State private var showAnswerField = false
+    @State private var selectedPhoto: PhotosPickerItem?
+    @State private var selectedImage: UIImage?
 
     // 현재 진행해야 할 단계 (완료되지 않은 첫 번째)
     var currentTooth: Tooth? {
@@ -1633,9 +1954,11 @@ struct CurrentStepSection: View {
                     totalQuestions: totalQuestions,
                     userAnswer: $userAnswer,
                     showAnswerField: $showAnswerField,
-                    onAnswer: { answer in
-                        // 답변 저장
-                        saveAnswer(for: tooth, questionIndex: currentChecklistIndex, answer: answer)
+                    selectedPhoto: $selectedPhoto,
+                    selectedImage: $selectedImage,
+                    onAnswer: { answer, image in
+                        // 답변 저장 (사진 포함)
+                        saveAnswer(for: tooth, questionIndex: currentChecklistIndex, answer: answer, image: image)
 
                         // 다음 질문으로 이동 또는 완료
                         if currentChecklistIndex < totalQuestions - 1 {
@@ -1643,6 +1966,8 @@ struct CurrentStepSection: View {
                                 currentChecklistIndex += 1
                                 userAnswer = ""
                                 showAnswerField = false
+                                selectedPhoto = nil
+                                selectedImage = nil
                             }
                         } else {
                             // 모든 체크리스트 완료 -> 마일스톤 완료
@@ -1650,6 +1975,8 @@ struct CurrentStepSection: View {
                             currentChecklistIndex = 0
                             userAnswer = ""
                             showAnswerField = false
+                            selectedPhoto = nil
+                            selectedImage = nil
                         }
                     },
                     onSkipToComplete: {
@@ -1658,6 +1985,8 @@ struct CurrentStepSection: View {
                         currentChecklistIndex = 0
                         userAnswer = ""
                         showAnswerField = false
+                        selectedPhoto = nil
+                        selectedImage = nil
                     }
                 )
             } else {
@@ -1680,23 +2009,55 @@ struct CurrentStepSection: View {
             currentChecklistIndex = 0
             userAnswer = ""
             showAnswerField = false
+            selectedPhoto = nil
+            selectedImage = nil
         }
     }
 
-    // 답변 저장
-    func saveAnswer(for tooth: Tooth, questionIndex: Int, answer: String) {
+    // 답변 저장 (사진 포함)
+    func saveAnswer(for tooth: Tooth, questionIndex: Int, answer: String, image: UIImage?) {
         guard let item = bucketItem,
               let milestone = currentMilestone,
               questionIndex < milestone.successCriteria.count else { return }
 
         let question = milestone.successCriteria[questionIndex]
-        let record = "[\(tooth.title)] \(question)\n→ \(answer)"
 
-        // 기존 notes에 추가
+        // 사진 저장
+        var photoFileName: String? = nil
+        if let image = image {
+            photoFileName = saveImageToDocuments(image: image, itemId: item.id)
+            if let fileName = photoFileName {
+                item.photos.append(fileName)
+            }
+        }
+
+        // 기록 저장 (사진 파일명 포함)
+        var record = "[\(tooth.title)] \(question)\n→ \(answer)"
+        if let fileName = photoFileName {
+            record += "\n📷 \(fileName)"
+        }
+
         if item.notes.isEmpty {
             item.notes = record
         } else {
             item.notes += "\n\n" + record
+        }
+    }
+
+    // 사진을 Documents 디렉토리에 저장
+    func saveImageToDocuments(image: UIImage, itemId: UUID) -> String? {
+        guard let data = image.jpegData(compressionQuality: 0.7) else { return nil }
+
+        let fileName = "\(itemId.uuidString)_\(Date().timeIntervalSince1970).jpg"
+        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let filePath = documentsPath.appendingPathComponent(fileName)
+
+        do {
+            try data.write(to: filePath)
+            return fileName
+        } catch {
+            print("Failed to save image: \(error)")
+            return nil
         }
     }
 }
@@ -1711,7 +2072,9 @@ struct CurrentStepCard: View {
     let totalQuestions: Int
     @Binding var userAnswer: String
     @Binding var showAnswerField: Bool
-    let onAnswer: (String) -> Void
+    @Binding var selectedPhoto: PhotosPickerItem?
+    @Binding var selectedImage: UIImage?
+    let onAnswer: (String, UIImage?) -> Void
     let onSkipToComplete: () -> Void
 
     var body: some View {
@@ -1778,7 +2141,7 @@ struct CurrentStepCard: View {
 
                     // 답변 입력 필드
                     if showAnswerField {
-                        VStack(alignment: .leading, spacing: 8) {
+                        VStack(alignment: .leading, spacing: 12) {
                             TextField("내 답변...", text: $userAnswer, axis: .vertical)
                                 .textFieldStyle(.plain)
                                 .padding()
@@ -1787,9 +2150,67 @@ struct CurrentStepCard: View {
                                 .foregroundColor(.white)
                                 .lineLimit(2...4)
 
+                            // 사진 선택 영역
+                            HStack(spacing: 12) {
+                                // 선택된 사진 미리보기
+                                if let image = selectedImage {
+                                    ZStack(alignment: .topTrailing) {
+                                        Image(uiImage: image)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 80, height: 80)
+                                            .clipShape(RoundedRectangle(cornerRadius: 10))
+
+                                        // 삭제 버튼
+                                        Button(action: {
+                                            withAnimation {
+                                                selectedPhoto = nil
+                                                selectedImage = nil
+                                            }
+                                        }) {
+                                            Image(systemName: "xmark.circle.fill")
+                                                .font(.system(size: 20))
+                                                .foregroundColor(.white)
+                                                .background(Circle().fill(Color.black.opacity(0.5)))
+                                        }
+                                        .offset(x: 6, y: -6)
+                                    }
+                                }
+
+                                // 사진 추가 버튼
+                                PhotosPicker(selection: $selectedPhoto, matching: .images) {
+                                    VStack(spacing: 4) {
+                                        Image(systemName: selectedImage == nil ? "photo.badge.plus" : "arrow.triangle.2.circlepath")
+                                            .font(.title2)
+                                        Text(selectedImage == nil ? "사진 추가" : "변경")
+                                            .font(.caption2)
+                                    }
+                                    .foregroundColor(.keyGold)
+                                    .frame(width: 80, height: 80)
+                                    .background(Color.keyGold.opacity(0.15))
+                                    .cornerRadius(10)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.keyGold.opacity(0.3), style: StrokeStyle(lineWidth: 1, dash: [5]))
+                                    )
+                                }
+                                .onChange(of: selectedPhoto) { newItem in
+                                    Task {
+                                        if let data = try? await newItem?.loadTransferable(type: Data.self),
+                                           let uiImage = UIImage(data: data) {
+                                            await MainActor.run {
+                                                selectedImage = uiImage
+                                            }
+                                        }
+                                    }
+                                }
+
+                                Spacer()
+                            }
+
                             // 완료 버튼
                             Button(action: {
-                                onAnswer(userAnswer.isEmpty ? "확인함" : userAnswer)
+                                onAnswer(userAnswer.isEmpty ? "확인함" : userAnswer, selectedImage)
                             }) {
                                 HStack {
                                     Image(systemName: "checkmark")
@@ -2095,18 +2516,24 @@ struct ForgeNotesSection: View {
     @ObservedObject var item: BucketListItem
     @State private var showAllRecords = false
 
-    // 기록을 파싱해서 질문-답변 쌍으로 변환
-    var records: [(milestone: String, question: String, answer: String)] {
+    // 기록을 파싱해서 질문-답변-사진 쌍으로 변환
+    var records: [(milestone: String, question: String, answer: String, photoFilename: String?)] {
         guard !item.notes.isEmpty else { return [] }
 
-        var result: [(String, String, String)] = []
+        var result: [(String, String, String, String?)] = []
         let blocks = item.notes.components(separatedBy: "\n\n")
 
         for block in blocks {
             let lines = block.components(separatedBy: "\n")
             if lines.count >= 2 {
                 let firstLine = lines[0]
-                let answerLine = lines[1]
+                var answerLine = lines[1]
+                var photoFilename: String? = nil
+
+                // 사진 정보 파싱 (📷 filename.jpg 형식)
+                if lines.count >= 3 && lines[2].hasPrefix("📷 ") {
+                    photoFilename = String(lines[2].dropFirst(2)).trimmingCharacters(in: .whitespaces)
+                }
 
                 // [마일스톤] 질문 형식 파싱
                 if firstLine.hasPrefix("["),
@@ -2115,7 +2542,7 @@ struct ForgeNotesSection: View {
                     let question = String(firstLine[firstLine.index(after: endBracket)...]).trimmingCharacters(in: .whitespaces)
                     let answer = answerLine.hasPrefix("→ ") ? String(answerLine.dropFirst(2)) : answerLine
 
-                    result.append((milestone, question, answer))
+                    result.append((milestone, question, answer, photoFilename))
                 }
             }
         }
@@ -2196,48 +2623,68 @@ struct ForgeNotesSection: View {
 
 // 기록 미리보기 카드
 struct RecordPreviewCard: View {
-    let record: (milestone: String, question: String, answer: String)
+    let record: (milestone: String, question: String, answer: String, photoFilename: String?)
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            // 마일스톤 태그
-            Text(record.milestone)
-                .font(.caption2)
-                .fontWeight(.medium)
-                .foregroundColor(.keyGold)
-                .padding(.horizontal, 6)
-                .padding(.vertical, 2)
-                .background(Color.keyGold.opacity(0.2))
-                .cornerRadius(4)
+        HStack(spacing: 12) {
+            VStack(alignment: .leading, spacing: 8) {
+                // 마일스톤 태그
+                Text(record.milestone)
+                    .font(.caption2)
+                    .fontWeight(.medium)
+                    .foregroundColor(.keyGold)
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 2)
+                    .background(Color.keyGold.opacity(0.2))
+                    .cornerRadius(4)
 
-            // 질문
-            Text(record.question)
-                .font(.caption)
-                .foregroundColor(.gray)
-                .lineLimit(1)
+                // 질문
+                Text(record.question)
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                    .lineLimit(1)
 
-            // 답변
-            Text(record.answer)
-                .font(.subheadline)
-                .foregroundColor(.white)
-                .lineLimit(2)
+                // 답변
+                Text(record.answer)
+                    .font(.subheadline)
+                    .foregroundColor(.white)
+                    .lineLimit(2)
+            }
+
+            Spacer()
+
+            // 사진 썸네일
+            if let photoFilename = record.photoFilename,
+               let image = loadImageFromDocuments(filename: photoFilename) {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 50, height: 50)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(12)
         .background(Color.white.opacity(0.05))
         .cornerRadius(10)
     }
+
+    private func loadImageFromDocuments(filename: String) -> UIImage? {
+        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let imagePath = documentsPath.appendingPathComponent(filename)
+        return UIImage(contentsOfFile: imagePath.path)
+    }
 }
 
 // 전체 기록 뷰
 struct AllRecordsView: View {
-    let records: [(milestone: String, question: String, answer: String)]
+    let records: [(milestone: String, question: String, answer: String, photoFilename: String?)]
     let itemTitle: String
     @Environment(\.dismiss) var dismiss
 
     // 마일스톤별로 그룹화
-    var groupedRecords: [(milestone: String, items: [(question: String, answer: String)])] {
-        var dict: [String: [(String, String)]] = [:]
+    var groupedRecords: [(milestone: String, items: [(question: String, answer: String, photoFilename: String?)])] {
+        var dict: [String: [(String, String, String?)]] = [:]
         var order: [String] = []
 
         for record in records {
@@ -2245,7 +2692,7 @@ struct AllRecordsView: View {
                 dict[record.milestone] = []
                 order.append(record.milestone)
             }
-            dict[record.milestone]?.append((record.question, record.answer))
+            dict[record.milestone]?.append((record.question, record.answer, record.photoFilename))
         }
 
         return order.map { milestone in
@@ -2275,6 +2722,7 @@ struct AllRecordsView: View {
                                     RecordDetailCard(
                                         question: item.0,
                                         answer: item.1,
+                                        photoFilename: item.2,
                                         index: index + 1
                                     )
                                 }
@@ -2307,7 +2755,9 @@ struct AllRecordsView: View {
 struct RecordDetailCard: View {
     let question: String
     let answer: String
+    let photoFilename: String?
     let index: Int
+    @State private var showFullImage = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -2336,11 +2786,78 @@ struct RecordDetailCard: View {
                     .font(.body)
                     .foregroundColor(.white)
             }
+
+            // 사진
+            if let photoFilename = photoFilename,
+               let image = loadImageFromDocuments(filename: photoFilename) {
+                Button(action: { showFullImage = true }) {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 150)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.keyGold.opacity(0.3), lineWidth: 1)
+                        )
+                }
+                .sheet(isPresented: $showFullImage) {
+                    PhotoFullScreenView(image: image)
+                }
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
         .background(Color.white.opacity(0.05))
         .cornerRadius(12)
+    }
+
+    private func loadImageFromDocuments(filename: String) -> UIImage? {
+        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let imagePath = documentsPath.appendingPathComponent(filename)
+        return UIImage(contentsOfFile: imagePath.path)
+    }
+}
+
+// 사진 전체화면 보기
+struct PhotoFullScreenView: View {
+    let image: UIImage
+    @Environment(\.dismiss) var dismiss
+    @State private var scale: CGFloat = 1.0
+
+    var body: some View {
+        NavigationStack {
+            GeometryReader { geo in
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .scaleEffect(scale)
+                    .gesture(
+                        MagnificationGesture()
+                            .onChanged { value in
+                                scale = value
+                            }
+                            .onEnded { _ in
+                                withAnimation {
+                                    scale = max(1.0, min(scale, 3.0))
+                                }
+                            }
+                    )
+            }
+            .background(Color.black.ignoresSafeArea())
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { dismiss() }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.title2)
+                            .foregroundColor(.white.opacity(0.7))
+                    }
+                }
+            }
+        }
     }
 }
 
