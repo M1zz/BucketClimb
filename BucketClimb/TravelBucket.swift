@@ -229,532 +229,532 @@ enum TravelBucket: String, Codable, CaseIterable {
 
     private static let milestonesData: [Self: [Milestone]] = [
         .아이슬란드에서_오로라_보기: [
-            Milestone(title: "오로라 시즌 리서치", description: "9월~3월 중 최적의 방문 시기 조사", successCriteria: ["오로라 예보 앱/사이트를 알고 있나요?", "달이 없는 시기를 파악했나요?", "최소 4-5일 체류 계획을 세웠나요?"]),
-            Milestone(title: "예산 계획 및 저축", description: "총 250-350만원 예산 확보", successCriteria: ["항공료 약 100-150만원 예상했나요?", "숙박비 1박 15-25만원 계산했나요?", "투어비 및 식비를 포함했나요?"]),
-            Milestone(title: "항공권 예매", description: "경유편 또는 직항편 구매", successCriteria: ["스카이스캐너로 가격 비교했나요?", "경유지 시간이 적절한가요?", "수하물 규정을 확인했나요?"]),
-            Milestone(title: "숙소 예약", description: "레이캬비크 또는 북부 지역 숙소", successCriteria: ["빛 공해가 적은 위치인가요?", "오로라 알림 서비스가 있는 숙소인가요?", "취소 정책을 확인했나요?"]),
-            Milestone(title: "오로라 투어 예약", description: "전문 가이드 투어 또는 렌터카", successCriteria: ["투어 리뷰를 확인했나요?", "무료 재투어 정책이 있나요?", "방한 장비 대여 가능한가요?"]),
-            Milestone(title: "방한 장비 준비", description: "극한 추위 대비 의류 및 장비", successCriteria: ["영하 20도용 패딩이 있나요?", "핫팩과 방수 장갑을 준비했나요?", "삼각대와 카메라 배터리 여분이 있나요?"])
+            Milestone(title: "오로라 시즌 리서치", description: "9월~3월 중 최적의 방문 시기 조사", successCriteria: ["오로라 예보를 확인하기 위해 알아본 앱이나 사이트를 기록해보세요", "달이 없는 최적의 시기를 파악한 과정을 공유해보세요", "4-5일 체류 계획을 세우며 기대하는 것들을 설명해보세요"]),
+            Milestone(title: "예산 계획 및 저축", description: "총 250-350만원 예산 확보", successCriteria: ["항공료 예산을 계획하며 비교한 옵션들을 기록해보세요", "숙박비 계산 과정과 선택한 숙소 타입을 공유해보세요", "투어비와 식비를 포함한 전체 예산 계획을 설명해보세요"]),
+            Milestone(title: "항공권 예매", description: "경유편 또는 직항편 구매", successCriteria: ["항공권 가격을 비교하며 찾은 최적의 옵션을 기록해보세요", "선택한 경유지와 그 이유를 공유해보세요", "수하물 규정을 확인하며 준비한 것들을 설명해보세요"]),
+            Milestone(title: "숙소 예약", description: "레이캬비크 또는 북부 지역 숙소", successCriteria: ["빛 공해가 적은 위치를 선택한 이유를 기록해보세요", "오로라 알림 서비스가 있는 숙소를 찾은 과정을 공유해보세요", "취소 정책을 확인하며 고려한 점들을 설명해보세요"]),
+            Milestone(title: "오로라 투어 예약", description: "전문 가이드 투어 또는 렌터카", successCriteria: ["투어 리뷰를 확인하며 선택한 업체를 기록해보세요", "무료 재투어 정책 등 특별한 혜택을 공유해보세요", "방한 장비 대여 계획을 설명해보세요"]),
+            Milestone(title: "방한 장비 준비", description: "극한 추위 대비 의류 및 장비", successCriteria: ["극한 추위를 대비해 준비한 방한복을 기록해보세요", "핫팩과 방수 장갑 등 준비물을 공유해보세요", "오로라 촬영을 위해 준비한 장비들을 설명해보세요"])
         ],
         .산토리니에서_일몰_감상하기: [
-            Milestone(title: "최적 시즌 선택", description: "5-6월 또는 9-10월 방문 계획", successCriteria: ["성수기(7-8월) 피크 시즌을 피했나요?", "일몰 시간을 확인했나요?", "날씨 예보를 체크했나요?"]),
-            Milestone(title: "이아 마을 숙소 예약", description: "일몰 명소인 이아 마을 근처 숙소", successCriteria: ["칼데라 뷰 숙소를 예약했나요?", "일몰 포인트까지 도보 거리인가요?", "테라스가 있는 숙소인가요?"]),
-            Milestone(title: "항공편 및 페리 예약", description: "아테네 경유 또는 직항 + 페리", successCriteria: ["아테네에서 산토리니행 비행기 예매했나요?", "또는 페리 시간표를 확인했나요?", "공항/항구에서 숙소까지 이동 수단은?"]),
-            Milestone(title: "일몰 명소 리서치", description: "이아 성, 산토 와인 등 명소 파악", successCriteria: ["이아 성의 일몰 스팟을 알고 있나요?", "덜 붐비는 대안 장소를 알아봤나요?", "일몰 2시간 전 도착 계획인가요?"]),
-            Milestone(title: "그리스 요리 체험 계획", description: "현지 맛집 및 와이너리 예약", successCriteria: ["산토리니 와이너리 투어를 예약했나요?", "해산물 레스토랑을 리서치했나요?", "아마우디 베이 식당을 체크했나요?"])
+            Milestone(title: "최적 시즌 선택", description: "5-6월 또는 9-10월 방문 계획", successCriteria: ["성수기를 피해 선택한 방문 시기와 이유를 기록해보세요", "일몰 시간을 확인하며 계획한 일정을 공유해보세요", "날씨 예보를 체크하며 느낀 기대감을 설명해보세요"]),
+            Milestone(title: "이아 마을 숙소 예약", description: "일몰 명소인 이아 마을 근처 숙소", successCriteria: ["칼데라 뷰 숙소를 선택한 이유를 기록해보세요", "일몰 포인트까지의 거리와 위치를 공유해보세요", "테라스가 있는 숙소에서 기대하는 것들을 설명해보세요"]),
+            Milestone(title: "항공편 및 페리 예약", description: "아테네 경유 또는 직항 + 페리", successCriteria: ["산토리니까지의 이동 경로를 기록해보세요", "페리와 비행기 중 선택한 이유를 공유해보세요", "공항/항구에서 숙소까지 이동 계획을 설명해보세요"]),
+            Milestone(title: "일몰 명소 리서치", description: "이아 성, 산토 와인 등 명소 파악", successCriteria: ["이아 성의 일몰 스팟에서 기대하는 것을 기록해보세요", "덜 붐비는 숨은 명소를 찾은 과정을 공유해보세요", "일몰을 완벽히 감상하기 위한 계획을 설명해보세요"]),
+            Milestone(title: "그리스 요리 체험 계획", description: "현지 맛집 및 와이너리 예약", successCriteria: ["산토리니 와이너리 투어 계획을 기록해보세요", "맛보고 싶은 해산물 요리와 레스토랑을 공유해보세요", "아마우디 베이에서 기대하는 경험을 설명해보세요"])
         ],
         .뉴질랜드_남섬_일주하기: [
-            Milestone(title: "남섬 루트 계획", description: "크라이스트처치-퀸즈타운 루트 설계", successCriteria: ["최소 10-14일 일정을 확보했나요?", "주요 경유지를 정했나요?", "일일 이동 거리가 적절한가요?"]),
-            Milestone(title: "렌터카 예약", description: "4WD 또는 캠퍼밴 예약", successCriteria: ["국제운전면허증을 발급받았나요?", "보험 조건을 확인했나요?", "겨울철 체인 필요 여부를 확인했나요?"]),
-            Milestone(title: "숙소 예약", description: "주요 거점별 숙소 확보", successCriteria: ["퀸즈타운, 테카포, 밀포드 근처 숙소를 예약했나요?", "DOC 캠핑장을 예약했나요?", "성수기 사전 예약을 완료했나요?"]),
-            Milestone(title: "밀포드 사운드 크루즈", description: "피오르드 크루즈 투어 예약", successCriteria: ["크루즈 업체를 선택했나요?", "날씨에 따른 취소 정책을 확인했나요?", "카약 또는 헬기 옵션을 고려했나요?"]),
-            Milestone(title: "액티비티 예약", description: "번지점프, 스카이다이빙 등", successCriteria: ["퀸즈타운 번지점프를 예약했나요?", "프란츠 조셉 빙하 하이킹을 예약했나요?", "테카포 별 관측 투어를 예약했나요?"]),
-            Milestone(title: "장비 및 준비물", description: "등산화, 방수복, 카메라 등", successCriteria: ["트레킹화를 준비했나요?", "방수 재킷을 챙겼나요?", "여행자 보험에 액티비티가 포함되나요?"])
+            Milestone(title: "남섬 루트 계획", description: "크라이스트처치-퀸즈타운 루트 설계", successCriteria: ["10-14일 일정을 세우며 포함한 주요 장소들을 기록해보세요", "선택한 경유지와 그 이유를 공유해보세요", "일일 이동 거리를 계획한 과정을 설명해보세요"]),
+            Milestone(title: "렌터카 예약", description: "4WD 또는 캠퍼밴 예약", successCriteria: ["국제운전면허증 발급 과정을 기록해보세요", "선택한 차량 타입과 보험 조건을 공유해보세요", "겨울철 대비 준비사항을 설명해보세요"]),
+            Milestone(title: "숙소 예약", description: "주요 거점별 숙소 확보", successCriteria: ["퀸즈타운, 테카포 등 예약한 숙소들을 기록해보세요", "DOC 캠핑장 이용 계획을 공유해보세요", "성수기 사전 예약 경험을 설명해보세요"]),
+            Milestone(title: "밀포드 사운드 크루즈", description: "피오르드 크루즈 투어 예약", successCriteria: ["선택한 크루즈 업체와 그 이유를 기록해보세요", "날씨에 따른 대비 계획을 공유해보세요", "카약이나 헬기 옵션 선택 여부를 설명해보세요"]),
+            Milestone(title: "액티비티 예약", description: "번지점프, 스카이다이빙 등", successCriteria: ["예약한 액티비티들과 기대감을 기록해보세요", "빙하 하이킹 계획을 공유해보세요", "테카포 별 관측 투어 계획을 설명해보세요"]),
+            Milestone(title: "장비 및 준비물", description: "등산화, 방수복, 카메라 등", successCriteria: ["준비한 트레킹 장비들을 기록해보세요", "방수 재킷 등 날씨 대비 용품을 공유해보세요", "여행자 보험의 액티비티 커버 범위를 설명해보세요"])
         ],
         .스위스_융프라우_등반하기: [
-            Milestone(title: "융프라우 지역 리서치", description: "인터라켄, 그린델발트 지역 조사", successCriteria: ["융프라우요흐 vs 쉴트호른 차이를 아나요?", "최적 방문 시즌(6-9월)을 확인했나요?", "날씨 예보 확인 방법을 아나요?"]),
-            Milestone(title: "스위스 패스 구매", description: "교통 패스 종류 비교 및 구매", successCriteria: ["스위스 트래블 패스를 알아봤나요?", "융프라우 VIP 패스를 비교했나요?", "할인 혜택을 확인했나요?"]),
-            Milestone(title: "숙소 예약", description: "그린델발트 또는 인터라켄 숙소", successCriteria: ["산 전망 숙소를 예약했나요?", "기차역 접근성을 확인했나요?", "조식 포함 여부를 확인했나요?"]),
-            Milestone(title: "등산 루트 선택", description: "아이거 트레일 또는 퍼스트 클리프워크", successCriteria: ["본인 체력에 맞는 코스를 선택했나요?", "소요 시간을 확인했나요?", "케이블카 운행 시간을 확인했나요?"]),
-            Milestone(title: "고산 준비", description: "고산병 예방 및 장비", successCriteria: ["해발 3,454m 융프라우요흐 고산 적응을 준비했나요?", "선글라스와 선크림을 챙겼나요?", "따뜻한 옷을 준비했나요? (여름에도 추움)"])
+            Milestone(title: "융프라우 지역 리서치", description: "인터라켄, 그린델발트 지역 조사", successCriteria: ["융프라우요흐와 쉴트호른의 차이점을 기록해보세요", "최적 방문 시즌을 선택한 이유를 공유해보세요", "날씨 예보 확인 방법을 설명해보세요"]),
+            Milestone(title: "스위스 패스 구매", description: "교통 패스 종류 비교 및 구매", successCriteria: ["비교한 교통 패스 종류들을 기록해보세요", "선택한 패스와 그 혜택을 공유해보세요", "할인 혜택을 활용한 방법을 설명해보세요"]),
+            Milestone(title: "숙소 예약", description: "그린델발트 또는 인터라켄 숙소", successCriteria: ["산 전망 숙소를 선택한 이유를 기록해보세요", "기차역 접근성과 편의성을 공유해보세요", "숙소에서 기대하는 경험을 설명해보세요"]),
+            Milestone(title: "등산 루트 선택", description: "아이거 트레일 또는 퍼스트 클리프워크", successCriteria: ["선택한 코스와 그 이유를 기록해보세요", "예상 소요 시간과 준비를 공유해보세요", "케이블카 이용 계획을 설명해보세요"]),
+            Milestone(title: "고산 준비", description: "고산병 예방 및 장비", successCriteria: ["해발 3,454m 고산 적응을 위한 준비를 기록해보세요", "자외선 차단을 위해 챙긴 것들을 공유해보세요", "여름에도 필요한 방한 장비를 설명해보세요"])
         ],
         .몰디브에서_수상_방갈로_숙박하기: [
-            Milestone(title: "리조트 선택", description: "예산과 위치에 맞는 리조트 선택", successCriteria: ["올인클루시브 vs 조식만 비교했나요?", "말레 공항에서의 이동 수단을 확인했나요?", "하우스 리프 유무를 확인했나요?"]),
-            Milestone(title: "수상 빌라 예약", description: "오버워터 빌라 사전 예약", successCriteria: ["선셋 뷰 vs 선라이즈 뷰를 선택했나요?", "프라이빗 풀 옵션을 고려했나요?", "최소 3박 이상 예약했나요?"]),
-            Milestone(title: "항공편 예약", description: "말레 국제공항행 항공권", successCriteria: ["경유편 시간을 확인했나요?", "리조트 체크인 시간에 맞추었나요?", "수상비행기 연결을 확인했나요?"]),
-            Milestone(title: "스노클링/다이빙 준비", description: "장비 및 투어 예약", successCriteria: ["스노클링 장비를 준비했나요?", "다이빙 자격증이 있나요?", "만타레이 포인트 투어를 예약했나요?"]),
-            Milestone(title: "여행 준비물", description: "수영복, 선크림, 방수 카메라", successCriteria: ["래쉬가드를 준비했나요?", "SPF50+ 산호초 안전 선크림이 있나요?", "방수 카메라나 케이스를 준비했나요?"])
+            Milestone(title: "리조트 선택", description: "예산과 위치에 맞는 리조트 선택", successCriteria: ["올인클루시브와 조식만 옵션을 비교한 과정을 기록해보세요", "말레 공항에서의 이동 수단 선택을 공유해보세요", "하우스 리프 유무를 확인한 방법을 설명해보세요"]),
+            Milestone(title: "수상 빌라 예약", description: "오버워터 빌라 사전 예약", successCriteria: ["선셋 뷰와 선라이즈 뷰 중 선택한 이유를 기록해보세요", "프라이빗 풀 등 특별한 옵션을 공유해보세요", "숙박 일수와 기대하는 경험을 설명해보세요"]),
+            Milestone(title: "항공편 예약", description: "말레 국제공항행 항공권", successCriteria: ["경유편 일정과 선택 이유를 기록해보세요", "리조트 체크인 시간과의 연결을 공유해보세요", "수상비행기 연결 계획을 설명해보세요"]),
+            Milestone(title: "스노클링/다이빙 준비", description: "장비 및 투어 예약", successCriteria: ["준비한 스노클링 장비를 기록해보세요", "다이빙 계획과 자격증 여부를 공유해보세요", "만타레이 포인트 등 특별 투어 계획을 설명해보세요"]),
+            Milestone(title: "여행 준비물", description: "수영복, 선크림, 방수 카메라", successCriteria: ["수상 활동을 위해 준비한 의류를 기록해보세요", "산호초 보호를 위한 선크림 선택을 공유해보세요", "수중 촬영을 위해 준비한 장비를 설명해보세요"])
         ],
         .일본_벚꽃_시즌_교토_여행하기: [
-            Milestone(title: "벚꽃 개화 시기 확인", description: "3월 말~4월 초 개화 예측 추적", successCriteria: ["일본 기상청 개화 예보를 확인했나요?", "만개 시기를 예측했나요?", "교토 지역 개화일을 체크했나요?"]),
-            Milestone(title: "숙소 조기 예약", description: "벚꽃 시즌 숙소 3-6개월 전 예약", successCriteria: ["기온 지역 료칸을 알아봤나요?", "취소 가능한 숙소를 예약했나요?", "교통 편리한 위치인가요?"]),
-            Milestone(title: "JR 패스 구매", description: "일본 철도 패스 결정", successCriteria: ["JR 간사이 패스를 알아봤나요?", "교토 내 버스 패스를 확인했나요?", "패스 수령 방법을 확인했나요?"]),
-            Milestone(title: "벚꽃 명소 리스트", description: "마루야마 공원, 철학의 길 등", successCriteria: ["야간 라이트업 장소를 알고 있나요?", "덜 붐비는 숨은 명소를 찾았나요?", "방문 순서를 계획했나요?"]),
-            Milestone(title: "교토 맛집 예약", description: "가이세키, 말차 디저트 등", successCriteria: ["미슐랭 레스토랑을 예약했나요?", "말차 카페를 리스트업했나요?", "유명 맛집 대기 시간을 확인했나요?"])
+            Milestone(title: "벚꽃 개화 시기 확인", description: "3월 말~4월 초 개화 예측 추적", successCriteria: ["벚꽃 개화 예보를 확인한 방법을 기록해보세요", "만개 시기를 예측하며 세운 계획을 공유해보세요", "교토 지역 개화일에 맞춘 일정을 설명해보세요"]),
+            Milestone(title: "숙소 조기 예약", description: "벚꽃 시즌 숙소 3-6개월 전 예약", successCriteria: ["기온 지역 료칸을 찾은 과정을 기록해보세요", "취소 가능한 숙소 선택의 중요성을 공유해보세요", "교통 편리한 위치를 선택한 이유를 설명해보세요"]),
+            Milestone(title: "JR 패스 구매", description: "일본 철도 패스 결정", successCriteria: ["선택한 철도 패스와 그 이유를 기록해보세요", "교토 내 교통 패스 계획을 공유해보세요", "패스 수령 방법과 일정을 설명해보세요"]),
+            Milestone(title: "벚꽃 명소 리스트", description: "마루야마 공원, 철학의 길 등", successCriteria: ["야간 라이트업 장소 계획을 기록해보세요", "덜 붐비는 숨은 명소를 찾은 과정을 공유해보세요", "벚꽃 명소 방문 순서를 설명해보세요"]),
+            Milestone(title: "교토 맛집 예약", description: "가이세키, 말차 디저트 등", successCriteria: ["예약한 레스토랑과 기대감을 기록해보세요", "방문하고 싶은 말차 카페들을 공유해보세요", "맛집 예약 과정과 팁을 설명해보세요"])
         ],
         .프랑스_파리_에펠탑_방문하기: [
-            Milestone(title: "파리 여행 계획", description: "3-5일 파리 일정 수립", successCriteria: ["주요 관광지 동선을 계획했나요?", "뮤지엄 패스 구매를 고려했나요?", "에펠탑 방문 요일을 정했나요?"]),
-            Milestone(title: "에펠탑 입장권 예매", description: "온라인 사전 예약 필수", successCriteria: ["공식 사이트에서 예매했나요?", "정상 vs 2층 티켓을 선택했나요?", "엘리베이터 vs 계단을 결정했나요?"]),
-            Milestone(title: "숙소 예약", description: "에펠탑 전망 또는 접근성 좋은 위치", successCriteria: ["7구 또는 16구 숙소를 알아봤나요?", "메트로역 접근성을 확인했나요?", "에펠탑 뷰 숙소를 고려했나요?"]),
-            Milestone(title: "파리 명소 계획", description: "루브르, 오르세, 몽마르트르 등", successCriteria: ["루브르 박물관 예약을 했나요?", "세느강 크루즈를 알아봤나요?", "개선문 입장을 계획했나요?"]),
-            Milestone(title: "야경 감상 계획", description: "에펠탑 반짝임 타이밍", successCriteria: ["매시 정각 반짝임 시간을 아나요?", "트로카데로 광장 위치를 아나요?", "야경 촬영 장비를 준비했나요?"])
+            Milestone(title: "파리 여행 계획", description: "3-5일 파리 일정 수립", successCriteria: ["주요 관광지 동선을 계획한 과정을 기록해보세요", "뮤지엄 패스 구매를 고려한 이유를 공유해보세요", "에펠탑 방문 요일을 정한 기준을 설명해보세요"]),
+            Milestone(title: "에펠탑 입장권 예매", description: "온라인 사전 예약 필수", successCriteria: ["에펠탑 입장권 예매 과정과 팁을 기록해보세요", "정상 vs 2층 티켓을 선택한 이유를 공유해보세요", "엘리베이터 vs 계단 선택 기준을 설명해보세요"]),
+            Milestone(title: "숙소 예약", description: "에펠탑 전망 또는 접근성 좋은 위치", successCriteria: ["선택한 숙소 지역과 그 이유를 기록해보세요", "메트로역 접근성을 확인한 방법을 공유해보세요", "에펠탑 뷰 숙소를 찾은 과정을 설명해보세요"]),
+            Milestone(title: "파리 명소 계획", description: "루브르, 오르세, 몽마르트르 등", successCriteria: ["루브르 박물관 예약 과정을 기록해보세요", "세느강 크루즈 계획과 기대감을 공유해보세요", "개선문 방문 계획을 설명해보세요"]),
+            Milestone(title: "야경 감상 계획", description: "에펠탑 반짝임 타이밍", successCriteria: ["에펠탑 반짝임 시간과 감상 계획을 기록해보세요", "트로카데로 광장에서의 계획을 공유해보세요", "야경 촬영을 위해 준비한 것들을 설명해보세요"])
         ],
         .이탈리아_베네치아_곤돌라_타기: [
-            Milestone(title: "베네치아 여행 계획", description: "2-3일 베네치아 일정", successCriteria: ["아쿠아 알타(침수) 시즌을 피했나요?", "산마르코 광장 방문을 계획했나요?", "무라노/부라노 섬 방문을 고려했나요?"]),
-            Milestone(title: "곤돌라 예약", description: "공식 곤돌라 탑승 계획", successCriteria: ["공식 가격(80유로/30분)을 확인했나요?", "석양 시간대를 예약했나요?", "세레나데 옵션을 고려했나요?"]),
-            Milestone(title: "숙소 예약", description: "산마르코 또는 리알토 근처", successCriteria: ["수상 택시 접근성을 확인했나요?", "운하 전망 숙소를 알아봤나요?", "조식 포함 여부를 확인했나요?"]),
-            Milestone(title: "바포레토 패스", description: "수상버스 이용권 구매", successCriteria: ["1-3일 패스 중 선택했나요?", "공항-시내 노선을 확인했나요?", "주요 정류장을 파악했나요?"]),
-            Milestone(title: "이탈리아 맛집", description: "씨푸드 리스토, 젤라또 등", successCriteria: ["베네치아 특산 요리를 알고 있나요?", "관광지 바가지를 피하는 법을 아나요?", "현지인 추천 맛집을 찾았나요?"])
+            Milestone(title: "베네치아 여행 계획", description: "2-3일 베네치아 일정", successCriteria: ["아쿠아 알타 시즌을 피한 이유를 기록해보세요", "산마르코 광장 방문 계획을 공유해보세요", "무라노/부라노 섬에 대한 기대를 설명해보세요"]),
+            Milestone(title: "곤돌라 예약", description: "공식 곤돌라 탑승 계획", successCriteria: ["곤돌라 가격과 예약 과정을 기록해보세요", "선택한 탑승 시간대와 이유를 공유해보세요", "곤돌라 체험에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "숙소 예약", description: "산마르코 또는 리알토 근처", successCriteria: ["숙소 위치 선택 기준을 기록해보세요", "운하 전망 숙소를 찾은 과정을 공유해보세요", "숙소에서 기대하는 베네치아 경험을 설명해보세요"]),
+            Milestone(title: "바포레토 패스", description: "수상버스 이용권 구매", successCriteria: ["선택한 패스 종류와 이유를 기록해보세요", "수상버스 노선 파악 과정을 공유해보세요", "바포레토를 타며 기대하는 것을 설명해보세요"]),
+            Milestone(title: "이탈리아 맛집", description: "씨푸드 리스토, 젤라또 등", successCriteria: ["맛보고 싶은 베네치아 특산 요리를 기록해보세요", "현지 맛집을 찾은 방법을 공유해보세요", "이탈리아 음식에 대한 기대를 설명해보세요"])
         ],
         .체코_프라하_구시가지_산책하기: [
-            Milestone(title: "프라하 여행 계획", description: "2-4일 프라하 일정", successCriteria: ["구시가지, 말라스트라나 일정을 세웠나요?", "최적 방문 시즌을 확인했나요?", "크리스마스 마켓 시즌을 고려했나요?"]),
-            Milestone(title: "주요 명소 리스트", description: "천문시계, 카를교, 프라하성", successCriteria: ["천문시계 작동 시간을 아나요?", "프라하성 입장권을 예매했나요?", "카를교 일출 시간을 확인했나요?"]),
-            Milestone(title: "숙소 예약", description: "구시가지 도보 거리 숙소", successCriteria: ["구시가 광장 근처 숙소를 찾았나요?", "트램역 접근성을 확인했나요?", "조용한 골목 숙소를 고려했나요?"]),
-            Milestone(title: "체코 맥주 투어", description: "필스너 우르켈, 현지 펍 투어", successCriteria: ["체코 맥주 종류를 알고 있나요?", "현지 맥주홀을 리서치했나요?", "맥주 박물관 방문을 계획했나요?"]),
-            Milestone(title: "주변 도시 계획", description: "체스키 크룸로프 당일치기", successCriteria: ["버스/기차 시간표를 확인했나요?", "체스키 크룸로프 성을 알아봤나요?", "쿠트나호라 방문을 고려했나요?"])
+            Milestone(title: "프라하 여행 계획", description: "2-4일 프라하 일정", successCriteria: ["구시가지와 말라스트라나 일정을 기록해보세요", "방문 시즌을 선택한 이유를 공유해보세요", "크리스마스 마켓에 대한 기대를 설명해보세요"]),
+            Milestone(title: "주요 명소 리스트", description: "천문시계, 카를교, 프라하성", successCriteria: ["천문시계 방문 계획을 기록해보세요", "프라하성 예매 과정을 공유해보세요", "카를교에서 기대하는 순간을 설명해보세요"]),
+            Milestone(title: "숙소 예약", description: "구시가지 도보 거리 숙소", successCriteria: ["선택한 숙소 위치와 이유를 기록해보세요", "교통 접근성을 확인한 방법을 공유해보세요", "숙소에서 기대하는 프라하 경험을 설명해보세요"]),
+            Milestone(title: "체코 맥주 투어", description: "필스너 우르켈, 현지 펍 투어", successCriteria: ["맛보고 싶은 체코 맥주를 기록해보세요", "방문하고 싶은 맥주홀을 공유해보세요", "체코 맥주 문화에 대한 기대를 설명해보세요"]),
+            Milestone(title: "주변 도시 계획", description: "체스키 크룸로프 당일치기", successCriteria: ["이동 계획과 교통편을 기록해보세요", "체스키 크룸로프에서 보고 싶은 것을 공유해보세요", "주변 도시 여행의 기대를 설명해보세요"])
         ],
         .크로아티아_플리트비체_국립공원_가기: [
-            Milestone(title: "방문 시즌 선택", description: "5-6월 또는 9-10월 추천", successCriteria: ["성수기 혼잡을 피했나요?", "폭포수량이 많은 시기를 확인했나요?", "날씨 예보를 체크했나요?"]),
-            Milestone(title: "입장권 예매", description: "온라인 사전 예약 필수", successCriteria: ["공식 사이트에서 예매했나요?", "입장 시간대를 선택했나요?", "1일권 vs 2일권을 결정했나요?"]),
-            Milestone(title: "코스 선택", description: "A-H 코스 중 선택", successCriteria: ["체력에 맞는 코스를 선택했나요?", "소요 시간을 확인했나요?", "보트/셔틀 포함 여부를 확인했나요?"]),
-            Milestone(title: "숙소 예약", description: "공원 근처 또는 자그레브", successCriteria: ["공원 입구 근처 숙소를 찾았나요?", "자그레브에서 이동 계획을 세웠나요?", "렌터카 필요 여부를 결정했나요?"]),
-            Milestone(title: "준비물 챙기기", description: "트레킹화, 우비, 카메라", successCriteria: ["미끄럼 방지 신발을 준비했나요?", "방수 재킷을 챙겼나요?", "삼각대를 준비했나요? (폭포 촬영용)"])
+            Milestone(title: "방문 시즌 선택", description: "5-6월 또는 9-10월 추천", successCriteria: ["방문 시기를 선택한 이유를 기록해보세요", "폭포 수량이 많은 시기를 조사한 과정을 공유해보세요", "날씨 준비 계획을 설명해보세요"]),
+            Milestone(title: "입장권 예매", description: "온라인 사전 예약 필수", successCriteria: ["입장권 예매 과정과 팁을 기록해보세요", "선택한 입장 시간대의 이유를 공유해보세요", "일정에 맞는 티켓 선택 과정을 설명해보세요"]),
+            Milestone(title: "코스 선택", description: "A-H 코스 중 선택", successCriteria: ["선택한 코스와 그 이유를 기록해보세요", "예상 소요 시간과 체력 준비를 공유해보세요", "보트와 셔틀 이용 계획을 설명해보세요"]),
+            Milestone(title: "숙소 예약", description: "공원 근처 또는 자그레브", successCriteria: ["숙소 위치 선택 기준을 기록해보세요", "이동 계획을 공유해보세요", "교통수단 선택 이유를 설명해보세요"]),
+            Milestone(title: "준비물 챙기기", description: "트레킹화, 우비, 카메라", successCriteria: ["트레킹 준비물 리스트를 기록해보세요", "날씨 대비 장비를 공유해보세요", "폭포 촬영을 위한 준비물을 설명해보세요"])
         ],
         .노르웨이_피오르드_크루즈_타기: [
-            Milestone(title: "피오르드 선택", description: "게이랑에르, 송네, 하당에르 비교", successCriteria: ["UNESCO 게이랑에르를 고려했나요?", "송네피오르드 규모를 확인했나요?", "방문 시즌을 결정했나요?"]),
-            Milestone(title: "크루즈 예약", description: "후티루텐 또는 로컬 페리", successCriteria: ["크루즈 타입을 선택했나요?", "소요 시간을 확인했나요?", "식사 포함 여부를 확인했나요?"]),
-            Milestone(title: "노르웨이 인 어 넛셸", description: "인기 패키지 투어 고려", successCriteria: ["베르겐-오슬로 루트를 확인했나요?", "플롬 산악열차를 포함했나요?", "패키지 가격을 비교했나요?"]),
-            Milestone(title: "숙소 및 교통", description: "베르겐 또는 오슬로 기점", successCriteria: ["베르겐 브뤼겐 지구 숙소를 알아봤나요?", "국내선 항공을 고려했나요?", "렌터카 필요 여부를 결정했나요?"]),
-            Milestone(title: "하이킹 계획", description: "트롤퉁가, 프레이케스톨렌", successCriteria: ["체력에 맞는 코스를 선택했나요?", "가이드 투어를 고려했나요?", "날씨에 따른 대안을 준비했나요?"])
+            Milestone(title: "피오르드 선택", description: "게이랑에르, 송네, 하당에르 비교", successCriteria: ["선택한 피오르드와 그 이유를 기록해보세요", "각 피오르드의 특징을 비교한 과정을 공유해보세요", "방문 시즌 결정 기준을 설명해보세요"]),
+            Milestone(title: "크루즈 예약", description: "후티루텐 또는 로컬 페리", successCriteria: ["선택한 크루즈 타입과 이유를 기록해보세요", "크루즈 일정과 기대감을 공유해보세요", "크루즈에서 경험하고 싶은 것을 설명해보세요"]),
+            Milestone(title: "노르웨이 인 어 넛셸", description: "인기 패키지 투어 고려", successCriteria: ["패키지 투어 비교 과정을 기록해보세요", "플롬 산악열차에 대한 기대를 공유해보세요", "루트 선택 이유를 설명해보세요"]),
+            Milestone(title: "숙소 및 교통", description: "베르겐 또는 오슬로 기점", successCriteria: ["숙소 위치 선택 과정을 기록해보세요", "교통수단 결정 이유를 공유해보세요", "여행 동선 계획을 설명해보세요"]),
+            Milestone(title: "하이킹 계획", description: "트롤퉁가, 프레이케스톨렌", successCriteria: ["선택한 하이킹 코스와 이유를 기록해보세요", "하이킹 준비 과정을 공유해보세요", "날씨 대비 계획을 설명해보세요"])
         ],
         .캐나다_밴프_국립공원_여행하기: [
-            Milestone(title: "밴프 여행 계획", description: "5-7일 로키산맥 일정", successCriteria: ["밴프, 재스퍼 일정을 세웠나요?", "최적 시즌(6-9월)을 확인했나요?", "콜롬비아 아이스필드를 포함했나요?"]),
-            Milestone(title: "렌터카 예약", description: "캘거리 공항 픽업", successCriteria: ["4WD 차량을 예약했나요?", "보험 조건을 확인했나요?", "내비게이션을 준비했나요?"]),
-            Milestone(title: "숙소 예약", description: "밴프 타운 또는 레이크 루이스", successCriteria: ["성수기 사전 예약을 했나요?", "샤토 레이크 루이스를 고려했나요?", "캠핑장을 알아봤나요?"]),
-            Milestone(title: "하이킹 코스 선택", description: "모레인 레이크, 레이크 루이스", successCriteria: ["빅 비하이브 트레일을 알아봤나요?", "곰 스프레이를 준비했나요?", "트레일 컨디션을 확인했나요?"]),
-            Milestone(title: "야생동물 관찰 준비", description: "엘크, 곰, 무스 관찰", successCriteria: ["야생동물 안전 수칙을 아나요?", "쌍안경을 준비했나요?", "이른 아침/저녁 관찰 계획인가요?"])
+            Milestone(title: "밴프 여행 계획", description: "5-7일 로키산맥 일정", successCriteria: ["밴프와 재스퍼 일정을 기록해보세요", "방문 시즌 선택 이유를 공유해보세요", "콜롬비아 아이스필드에 대한 기대를 설명해보세요"]),
+            Milestone(title: "렌터카 예약", description: "캘거리 공항 픽업", successCriteria: ["렌터카 예약 과정과 선택 기준을 기록해보세요", "보험 선택 과정을 공유해보세요", "드라이브 준비 사항을 설명해보세요"]),
+            Milestone(title: "숙소 예약", description: "밴프 타운 또는 레이크 루이스", successCriteria: ["숙소 선택 기준과 과정을 기록해보세요", "기대하는 숙소 경험을 공유해보세요", "숙박 형태를 선택한 이유를 설명해보세요"]),
+            Milestone(title: "하이킹 코스 선택", description: "모레인 레이크, 레이크 루이스", successCriteria: ["선택한 하이킹 코스를 기록해보세요", "안전 준비 사항을 공유해보세요", "하이킹에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "야생동물 관찰 준비", description: "엘크, 곰, 무스 관찰", successCriteria: ["야생동물 관찰 계획을 기록해보세요", "안전 수칙 학습 내용을 공유해보세요", "관찰 시간대 계획을 설명해보세요"])
         ],
         .페루_마추픽추_방문하기: [
-            Milestone(title: "마추픽추 리서치", description: "잉카 역사 및 방문 정보", successCriteria: ["건기(5-10월)에 방문 계획인가요?", "입장 인원 제한을 확인했나요?", "고산병 대비를 준비했나요?"]),
-            Milestone(title: "입장권 예매", description: "공식 사이트 사전 예약 필수", successCriteria: ["마추픽추 입장권을 예매했나요?", "와이나픽추 등반 추가를 고려했나요?", "시간대를 선택했나요?"]),
-            Milestone(title: "쿠스코 적응 일정", description: "고산 적응 2-3일", successCriteria: ["쿠스코에서 2일 이상 머물 계획인가요?", "코카차를 준비했나요?", "고산병 약을 처방받았나요?"]),
-            Milestone(title: "이동 수단 결정", description: "잉카 트레일 vs 기차", successCriteria: ["잉카 트레일 4일 트레킹을 고려했나요?", "페루레일 예약을 했나요?", "아구아스 칼리엔테스 숙소를 예약했나요?"]),
-            Milestone(title: "가이드 투어 예약", description: "공인 가이드 동행", successCriteria: ["영어/스페인어 가이드를 예약했나요?", "투어 포함 사항을 확인했나요?", "팁 문화를 파악했나요?"])
+            Milestone(title: "마추픽추 리서치", description: "잉카 역사 및 방문 정보", successCriteria: ["방문 시기 선택 이유를 기록해보세요", "잉카 역사를 공부하며 배운 점을 공유해보세요", "고산병 대비 준비 과정을 설명해보세요"]),
+            Milestone(title: "입장권 예매", description: "공식 사이트 사전 예약 필수", successCriteria: ["입장권 예매 과정과 팁을 기록해보세요", "선택한 코스와 시간대를 공유해보세요", "마추픽추에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "쿠스코 적응 일정", description: "고산 적응 2-3일", successCriteria: ["쿠스코 적응 계획을 기록해보세요", "고산병 대비 준비물을 공유해보세요", "쿠스코에서 경험하고 싶은 것을 설명해보세요"]),
+            Milestone(title: "이동 수단 결정", description: "잉카 트레일 vs 기차", successCriteria: ["선택한 이동 수단과 이유를 기록해보세요", "여정에 대한 기대를 공유해보세요", "숙소 예약 과정을 설명해보세요"]),
+            Milestone(title: "가이드 투어 예약", description: "공인 가이드 동행", successCriteria: ["가이드 투어 선택 과정을 기록해보세요", "투어에서 기대하는 것을 공유해보세요", "페루 여행 팁을 설명해보세요"])
         ],
         .미국_그랜드_캐년_보기: [
-            Milestone(title: "림 선택", description: "사우스 림 vs 노스 림 결정", successCriteria: ["사우스 림(접근 용이)을 선택했나요?", "노스 림은 5-10월만 개방됨을 아나요?", "웨스트 림 스카이워크를 고려했나요?"]),
-            Milestone(title: "국립공원 패스", description: "아메리카 더 뷰티풀 패스", successCriteria: ["연간 패스 구매를 고려했나요?", "입장료를 확인했나요?", "다른 국립공원 방문을 계획했나요?"]),
-            Milestone(title: "숙소 예약", description: "공원 내 롯지 또는 투사얀", successCriteria: ["브라이트 엔젤 롯지를 알아봤나요?", "6개월 전 예약을 시도했나요?", "캠핑장을 고려했나요?"]),
-            Milestone(title: "하이킹 계획", description: "림 트레일 또는 내려가기", successCriteria: ["브라이트 엔젤 트레일을 알아봤나요?", "물과 간식을 충분히 준비할 계획인가요?", "일출/일몰 뷰포인트를 정했나요?"]),
-            Milestone(title: "헬기 투어 고려", description: "공중에서 협곡 감상", successCriteria: ["헬기 투어 업체를 비교했나요?", "가격대를 확인했나요?", "사진 촬영 좌석을 요청할 계획인가요?"])
+            Milestone(title: "림 선택", description: "사우스 림 vs 노스 림 결정", successCriteria: ["선택한 림과 그 이유를 기록해보세요", "각 림의 특징을 비교한 과정을 공유해보세요", "그랜드 캐년에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "국립공원 패스", description: "아메리카 더 뷰티풀 패스", successCriteria: ["패스 선택 과정을 기록해보세요", "방문할 국립공원 계획을 공유해보세요", "미국 국립공원에 대한 기대를 설명해보세요"]),
+            Milestone(title: "숙소 예약", description: "공원 내 롯지 또는 투사얀", successCriteria: ["숙소 예약 과정과 팁을 기록해보세요", "숙소에서 기대하는 경험을 공유해보세요", "숙박 형태 선택 이유를 설명해보세요"]),
+            Milestone(title: "하이킹 계획", description: "림 트레일 또는 내려가기", successCriteria: ["선택한 하이킹 코스를 기록해보세요", "준비물과 안전 계획을 공유해보세요", "뷰포인트 계획을 설명해보세요"]),
+            Milestone(title: "헬기 투어 고려", description: "공중에서 협곡 감상", successCriteria: ["헬기 투어 비교 과정을 기록해보세요", "공중에서 기대하는 장면을 공유해보세요", "투어 선택 기준을 설명해보세요"])
         ],
         .브라질_이과수_폭포_보기: [
-            Milestone(title: "방문국 선택", description: "브라질 측 vs 아르헨티나 측", successCriteria: ["양쪽 모두 방문 계획인가요?", "브라질 비자가 필요한지 확인했나요?", "최소 2일 일정을 확보했나요?"]),
-            Milestone(title: "숙소 예약", description: "포스 두 이과수 시내", successCriteria: ["공원 근처 숙소를 예약했나요?", "셔틀 서비스가 있는 호텔인가요?", "양국 방문에 편리한 위치인가요?"]),
-            Milestone(title: "폭포 투어 예약", description: "보트 투어, 헬기 투어", successCriteria: ["마쿠코 사파리(보트)를 예약했나요?", "헬기 투어를 고려했나요?", "방수 가방을 준비했나요?"]),
-            Milestone(title: "국경 이동 계획", description: "브라질-아르헨티나 왕복", successCriteria: ["여권을 항상 소지할 계획인가요?", "국경 이동 방법을 확인했나요?", "양국 입장료를 준비했나요?"]),
-            Milestone(title: "준비물 챙기기", description: "방수 장비, 선크림", successCriteria: ["우비 또는 방수 재킷을 준비했나요?", "여분의 옷을 챙겼나요?", "방수 신발을 준비했나요?"])
+            Milestone(title: "방문국 선택", description: "브라질 측 vs 아르헨티나 측", successCriteria: ["방문 계획한 측면과 이유를 기록해보세요", "비자 준비 과정을 공유해보세요", "이과수 폭포에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "숙소 예약", description: "포스 두 이과수 시내", successCriteria: ["숙소 선택 기준을 기록해보세요", "숙소 위치의 장점을 공유해보세요", "숙소에서 기대하는 경험을 설명해보세요"]),
+            Milestone(title: "폭포 투어 예약", description: "보트 투어, 헬기 투어", successCriteria: ["예약한 투어와 기대감을 기록해보세요", "투어 선택 과정을 공유해보세요", "폭포 체험 준비물을 설명해보세요"]),
+            Milestone(title: "국경 이동 계획", description: "브라질-아르헨티나 왕복", successCriteria: ["국경 이동 계획을 기록해보세요", "준비해야 할 서류를 공유해보세요", "양국 방문에 대한 기대를 설명해보세요"]),
+            Milestone(title: "준비물 챙기기", description: "방수 장비, 선크림", successCriteria: ["폭포 방문 준비물 리스트를 기록해보세요", "방수 장비 선택 과정을 공유해보세요", "준비물 챙기며 기대되는 것을 설명해보세요"])
         ],
         .호주_대보초_스노클링하기: [
-            Milestone(title: "출발지 선택", description: "케언스 vs 포트더글라스", successCriteria: ["케언스가 더 다양한 투어를 제공함을 아나요?", "화이트선데이즈를 고려했나요?", "최적 시즌(6-10월)을 확인했나요?"]),
-            Milestone(title: "스노클링 투어 예약", description: "당일 또는 1박 크루즈", successCriteria: ["외부 리프 투어를 예약했나요?", "스노클링 장비 포함인가요?", "라이브어보드를 고려했나요?"]),
-            Milestone(title: "다이빙 자격증", description: "PADI 오픈워터 취득 고려", successCriteria: ["다이빙을 원하면 자격증이 필요해요", "케언스 현지 교육을 고려했나요?", "체험 다이빙 옵션을 알아봤나요?"]),
-            Milestone(title: "해양 생물 학습", description: "산호, 물고기 종류 공부", successCriteria: ["니모(클라운피시)를 찾을 수 있나요?", "거북이 관찰 포인트를 아나요?", "해양 보호 수칙을 이해했나요?"]),
-            Milestone(title: "준비물 챙기기", description: "래쉬가드, 수중카메라", successCriteria: ["SPF50+ 산호 안전 선크림을 준비했나요?", "고프로 또는 수중카메라가 있나요?", "멀미약을 챙겼나요?"])
+            Milestone(title: "출발지 선택", description: "케언스 vs 포트더글라스", successCriteria: ["출발지 선택 이유를 기록해보세요", "방문 시즌 선택 기준을 공유해보세요", "대보초에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "스노클링 투어 예약", description: "당일 또는 1박 크루즈", successCriteria: ["선택한 투어와 이유를 기록해보세요", "투어 포함 사항을 공유해보세요", "스노클링 경험에 대한 기대를 설명해보세요"]),
+            Milestone(title: "다이빙 자격증", description: "PADI 오픈워터 취득 고려", successCriteria: ["다이빙 계획과 준비 과정을 기록해보세요", "자격증 취득이나 체험 다이빙 계획을 공유해보세요", "수중 세계에 대한 기대를 설명해보세요"]),
+            Milestone(title: "해양 생물 학습", description: "산호, 물고기 종류 공부", successCriteria: ["보고 싶은 해양 생물을 기록해보세요", "해양 보호 수칙 학습 내용을 공유해보세요", "해양 생태계에 대한 관심을 설명해보세요"]),
+            Milestone(title: "준비물 챙기기", description: "래쉬가드, 수중카메라", successCriteria: ["스노클링 준비물 리스트를 기록해보세요", "수중 촬영 장비 계획을 공유해보세요", "환경을 고려한 준비물을 설명해보세요"])
         ],
         .터키_카파도키아_열기구_타기: [
-            Milestone(title: "열기구 시즌 확인", description: "4-10월이 최적", successCriteria: ["날씨로 인한 취소 가능성을 아나요?", "최소 2일 이상 체류 계획인가요?", "일출 비행을 원하나요?"]),
-            Milestone(title: "열기구 업체 예약", description: "안전 기록 확인 필수", successCriteria: ["리뷰가 좋은 업체를 선택했나요?", "보험 포함 여부를 확인했나요?", "조종사 경력을 확인했나요?"]),
-            Milestone(title: "숙소 예약", description: "괴레메 동굴 호텔", successCriteria: ["동굴 호텔 체험을 계획했나요?", "테라스에서 열기구 뷰가 가능한가요?", "열기구 픽업 서비스가 있나요?"]),
-            Milestone(title: "카파도키아 투어", description: "그린투어, 레드투어", successCriteria: ["지하도시 방문을 계획했나요?", "로즈밸리 하이킹을 고려했나요?", "ATV 투어를 알아봤나요?"]),
-            Milestone(title: "이스탄불 연계", description: "국내선 또는 야간버스", successCriteria: ["카이세리 공항 이용을 계획했나요?", "이스탄불-카파도키아 이동을 예약했나요?", "네브셰히르 공항 옵션을 확인했나요?"])
+            Milestone(title: "열기구 시즌 확인", description: "4-10월이 최적", successCriteria: ["방문 시기 선택 이유를 기록해보세요", "체류 일정과 대비 계획을 공유해보세요", "열기구 비행에 대한 기대를 설명해보세요"]),
+            Milestone(title: "열기구 업체 예약", description: "안전 기록 확인 필수", successCriteria: ["업체 선택 기준과 과정을 기록해보세요", "안전 확인 사항을 공유해보세요", "열기구 체험에서 기대하는 순간을 설명해보세요"]),
+            Milestone(title: "숙소 예약", description: "괴레메 동굴 호텔", successCriteria: ["선택한 숙소와 이유를 기록해보세요", "동굴 호텔에서 기대하는 경험을 공유해보세요", "숙소에서 보고 싶은 풍경을 설명해보세요"]),
+            Milestone(title: "카파도키아 투어", description: "그린투어, 레드투어", successCriteria: ["계획한 투어와 명소를 기록해보세요", "카파도키아에서 경험하고 싶은 것을 공유해보세요", "액티비티 선택 이유를 설명해보세요"]),
+            Milestone(title: "이스탄불 연계", description: "국내선 또는 야간버스", successCriteria: ["이동 계획과 교통편을 기록해보세요", "터키 여행 동선을 공유해보세요", "이스탄불 연계 여행 계획을 설명해보세요"])
         ],
         .캄보디아_앙코르와트_일출_보기: [
-            Milestone(title: "앙코르 패스 구매", description: "1일/3일/7일권 선택", successCriteria: ["최소 3일권을 추천 - 주요 사원이 많아요", "온라인 구매 가능 여부를 확인했나요?", "사진 촬영용 여권 사진이 있나요?"]),
-            Milestone(title: "일출 포인트 선택", description: "연꽃 연못 vs 왼쪽 타워", successCriteria: ["일출 30분 전 도착 계획인가요?", "건기(11-4월)에 방문하나요?", "삼각대를 준비했나요?"]),
-            Milestone(title: "시엠립 숙소", description: "올드마켓 근처 추천", successCriteria: ["툭툭 기사 연결 숙소인가요?", "펍스트리트 접근성을 확인했나요?", "풀빌라를 고려했나요?"]),
-            Milestone(title: "앙코르 투어 계획", description: "스몰서킷, 빅서킷", successCriteria: ["앙코르톰, 타프롬을 포함했나요?", "반테이스레이를 계획했나요?", "프놈쿨렌을 고려했나요?"]),
-            Milestone(title: "가이드 및 교통", description: "프라이빗 가이드 추천", successCriteria: ["한국어 가이드를 찾아봤나요?", "툭툭 vs 에어컨 차량을 선택했나요?", "일일 비용을 확인했나요?"])
+            Milestone(title: "앙코르 패스 구매", description: "1일/3일/7일권 선택", successCriteria: ["선택한 패스 종류와 이유를 기록해보세요", "패스 구매 과정을 공유해보세요", "앙코르 유적에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "일출 포인트 선택", description: "연꽃 연못 vs 왼쪽 타워", successCriteria: ["선택한 일출 포인트와 이유를 기록해보세요", "일출 감상 준비를 공유해보세요", "앙코르와트 일출에 대한 기대를 설명해보세요"]),
+            Milestone(title: "시엠립 숙소", description: "올드마켓 근처 추천", successCriteria: ["숙소 선택 기준과 과정을 기록해보세요", "숙소 위치의 장점을 공유해보세요", "시엠립에서 기대하는 경험을 설명해보세요"]),
+            Milestone(title: "앙코르 투어 계획", description: "스몰서킷, 빅서킷", successCriteria: ["방문할 사원 리스트를 기록해보세요", "각 사원에서 기대하는 것을 공유해보세요", "앙코르 역사에 대해 배운 점을 설명해보세요"]),
+            Milestone(title: "가이드 및 교통", description: "프라이빗 가이드 추천", successCriteria: ["가이드와 교통 선택 과정을 기록해보세요", "가이드에게 기대하는 것을 공유해보세요", "투어 방식 선택 이유를 설명해보세요"])
         ],
         .뉴질랜드_밀포드_사운드_가기: [
-            Milestone(title: "방문 시기 결정", description: "날씨와 시즌 확인", successCriteria: ["여름(12-2월)이 가장 좋은 시기예요", "비 오는 날도 폭포가 장관이에요", "최소 1박 2일 일정을 확보했나요?"]),
-            Milestone(title: "크루즈 예약", description: "데이크루즈 또는 오버나이트", successCriteria: ["크루즈 업체를 비교했나요?", "점심 포함 여부를 확인했나요?", "카약 옵션을 고려했나요?"]),
-            Milestone(title: "이동 계획", description: "퀸즈타운에서 출발", successCriteria: ["버스 투어 vs 렌터카를 결정했나요?", "밀포드 로드 경유지를 계획했나요?", "터널 통과 시간을 확인했나요?"])
+            Milestone(title: "방문 시기 결정", description: "날씨와 시즌 확인", successCriteria: ["방문 시기 선택 이유를 기록해보세요", "날씨에 따른 기대를 공유해보세요", "일정 계획 과정을 설명해보세요"]),
+            Milestone(title: "크루즈 예약", description: "데이크루즈 또는 오버나이트", successCriteria: ["선택한 크루즈와 이유를 기록해보세요", "크루즈에서 기대하는 경험을 공유해보세요", "추가 액티비티 계획을 설명해보세요"]),
+            Milestone(title: "이동 계획", description: "퀸즈타운에서 출발", successCriteria: ["이동 수단 선택 이유를 기록해보세요", "밀포드 로드 경유지 계획을 공유해보세요", "드라이브에서 기대하는 풍경을 설명해보세요"])
         ],
         .남극_크루즈_여행하기: [
-            Milestone(title: "크루즈 선택", description: "탐험선 vs 대형 크루즈", successCriteria: ["우수아이아 출발 크루즈를 알아봤나요?", "10-20일 일정을 확보했나요?", "예산 500-1500만원을 준비했나요?"]),
-            Milestone(title: "시즌 및 예약", description: "11월-3월 시즌", successCriteria: ["6개월-1년 전 예약했나요?", "펭귄 번식기(12-1월)를 고려했나요?", "드레이크 해협 통과를 알고 있나요?"]),
-            Milestone(title: "장비 준비", description: "극한 방한 장비", successCriteria: ["방수 재킷과 바지를 준비했나요?", "방수 장화가 포함인지 확인했나요?", "멀미약을 준비했나요?"])
+            Milestone(title: "크루즈 선택", description: "탐험선 vs 대형 크루즈", successCriteria: ["선택한 크루즈와 이유를 기록해보세요", "남극 여행 일정 계획을 공유해보세요", "예산 준비 과정을 설명해보세요"]),
+            Milestone(title: "시즌 및 예약", description: "11월-3월 시즌", successCriteria: ["방문 시기 선택 이유를 기록해보세요", "남극에서 보고 싶은 것을 공유해보세요", "드레이크 해협에 대한 기대와 준비를 설명해보세요"]),
+            Milestone(title: "장비 준비", description: "극한 방한 장비", successCriteria: ["방한 장비 준비 리스트를 기록해보세요", "크루즈 포함 장비를 확인한 과정을 공유해보세요", "극지 탐험 준비물을 설명해보세요"])
         ],
         .모로코_사하라_사막_투어하기: [
-            Milestone(title: "사막 투어 선택", description: "메르주가 vs 자고라", successCriteria: ["메르주가가 더 큰 사구예요", "2박 3일 이상 투어를 추천해요", "마라케시 출발 투어를 예약했나요?"]),
-            Milestone(title: "낙타 트레킹 준비", description: "사막 캠프 체험", successCriteria: ["럭셔리 캠프 vs 기본 캠프를 선택했나요?", "일출/일몰 시간을 확인했나요?", "사막에서의 별 관측을 기대하나요?"]),
-            Milestone(title: "준비물 챙기기", description: "사막 필수품", successCriteria: ["스카프/터번을 준비했나요?", "선글라스와 선크림을 챙겼나요?", "충분한 물을 준비했나요?"])
+            Milestone(title: "사막 투어 선택", description: "메르주가 vs 자고라", successCriteria: ["선택한 사막 지역과 이유를 기록해보세요", "투어 일정과 기대를 공유해보세요", "사하라 사막에서 경험하고 싶은 것을 설명해보세요"]),
+            Milestone(title: "낙타 트레킹 준비", description: "사막 캠프 체험", successCriteria: ["선택한 캠프 타입과 이유를 기록해보세요", "사막에서 기대하는 순간을 공유해보세요", "별 관측에 대한 기대를 설명해보세요"]),
+            Milestone(title: "준비물 챙기기", description: "사막 필수품", successCriteria: ["사막 여행 준비물 리스트를 기록해보세요", "날씨 대비 준비를 공유해보세요", "사막 적응 계획을 설명해보세요"])
         ],
         .인도_타지마할_방문하기: [
-            Milestone(title: "비자 및 여행 준비", description: "인도 e-비자 신청", successCriteria: ["e-비자를 신청했나요?", "10-3월 방문을 계획했나요?", "델리-아그라 이동을 계획했나요?"]),
-            Milestone(title: "타지마할 입장", description: "일출 방문 추천", successCriteria: ["일출 시간에 방문할 계획인가요?", "금요일은 휴관임을 알고 있나요?", "입장권을 미리 예매했나요?"]),
-            Milestone(title: "아그라 일정", description: "아그라 포트 포함", successCriteria: ["아그라 포트 방문을 계획했나요?", "현지 가이드를 예약했나요?", "사기 주의 정보를 확인했나요?"])
+            Milestone(title: "비자 및 여행 준비", description: "인도 e-비자 신청", successCriteria: ["비자 신청 과정을 기록해보세요", "방문 시기 선택 이유를 공유해보세요", "인도 여행 동선을 설명해보세요"]),
+            Milestone(title: "타지마할 입장", description: "일출 방문 추천", successCriteria: ["방문 시간대 선택 이유를 기록해보세요", "타지마할에서 기대하는 것을 공유해보세요", "입장권 예매 과정을 설명해보세요"]),
+            Milestone(title: "아그라 일정", description: "아그라 포트 포함", successCriteria: ["아그라 일정 계획을 기록해보세요", "가이드 선택 과정을 공유해보세요", "인도 여행 팁을 설명해보세요"])
         ],
         .그리스_미코노스_여행하기: [
-            Milestone(title: "여행 시기 선택", description: "5-10월 추천", successCriteria: ["성수기(7-8월) 가격을 확인했나요?", "페리 또는 비행기를 예약했나요?", "3-4일 일정을 확보했나요?"]),
-            Milestone(title: "숙소 예약", description: "미코노스 타운 추천", successCriteria: ["풍차 뷰 숙소를 알아봤나요?", "리틀 베니스 근처를 고려했나요?", "파티 지역과 거리를 확인했나요?"]),
-            Milestone(title: "액티비티 계획", description: "해변과 나이트라이프", successCriteria: ["파라다이스 비치를 계획했나요?", "델로스 섬 투어를 고려했나요?", "유명 비치클럽을 알아봤나요?"])
+            Milestone(title: "여행 시기 선택", description: "5-10월 추천", successCriteria: ["방문 시기 선택 이유를 기록해보세요", "이동 수단 선택 과정을 공유해보세요", "미코노스에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "숙소 예약", description: "미코노스 타운 추천", successCriteria: ["숙소 선택 기준과 과정을 기록해보세요", "숙소 위치의 장점을 공유해보세요", "숙소에서 기대하는 경험을 설명해보세요"]),
+            Milestone(title: "액티비티 계획", description: "해변과 나이트라이프", successCriteria: ["계획한 해변과 액티비티를 기록해보세요", "미코노스 탐험 계획을 공유해보세요", "그리스 섬에서 기대하는 경험을 설명해보세요"])
         ],
         .스페인_바르셀로나_가우디_건축_보기: [
-            Milestone(title: "가우디 투어 계획", description: "주요 건축물 리스트", successCriteria: ["사그라다 파밀리아 티켓을 예매했나요?", "구엘 공원 입장권을 예약했나요?", "카사 바트요/밀라를 포함했나요?"]),
-            Milestone(title: "사전 예약", description: "인기 명소 티켓팅", successCriteria: ["2-3개월 전 예약을 시도했나요?", "타워 투어 옵션을 고려했나요?", "가이드 투어를 예약했나요?"]),
-            Milestone(title: "바르셀로나 일정", description: "3-4일 추천", successCriteria: ["고딕 지구 산책을 계획했나요?", "람블라스 거리를 포함했나요?", "타파스 맛집을 리서치했나요?"])
+            Milestone(title: "가우디 투어 계획", description: "주요 건축물 리스트", successCriteria: ["방문할 가우디 건축물 리스트를 기록해보세요", "티켓 예매 과정을 공유해보세요", "가우디 건축에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "사전 예약", description: "인기 명소 티켓팅", successCriteria: ["예약 과정과 팁을 기록해보세요", "선택한 투어 옵션을 공유해보세요", "가이드 투어에 대한 기대를 설명해보세요"]),
+            Milestone(title: "바르셀로나 일정", description: "3-4일 추천", successCriteria: ["바르셀로나 일정 계획을 기록해보세요", "방문하고 싶은 지역을 공유해보세요", "스페인 음식에 대한 기대를 설명해보세요"])
         ],
         .포르투갈_리스본_전차_타기: [
-            Milestone(title: "28번 전차 계획", description: "유명 노선 탑승", successCriteria: ["28번 전차 노선을 알고 있나요?", "아침 일찍 탑승을 계획했나요?", "소매치기 주의를 알고 있나요?"]),
-            Milestone(title: "리스본 일정", description: "알파마, 벨렘 지구", successCriteria: ["알파마 지구 산책을 계획했나요?", "벨렘 탑과 제로니모스 수도원을 포함했나요?", "파스텔 드 나타를 맛볼 계획인가요?"]),
-            Milestone(title: "교통 패스", description: "리스보아 카드 고려", successCriteria: ["리스보아 카드를 알아봤나요?", "산타 주스타 엘리베이터를 포함했나요?", "신트라 당일치기를 계획했나요?"])
+            Milestone(title: "28번 전차 계획", description: "유명 노선 탑승", successCriteria: ["전차 탑승 계획을 기록해보세요", "전차에서 기대하는 풍경을 공유해보세요", "안전 준비 사항을 설명해보세요"]),
+            Milestone(title: "리스본 일정", description: "알파마, 벨렘 지구", successCriteria: ["리스본 일정 계획을 기록해보세요", "방문할 명소 리스트를 공유해보세요", "포르투갈 음식에 대한 기대를 설명해보세요"]),
+            Milestone(title: "교통 패스", description: "리스보아 카드 고려", successCriteria: ["교통 패스 선택 과정을 기록해보세요", "포함된 명소 계획을 공유해보세요", "주변 도시 여행 계획을 설명해보세요"])
         ],
         .아프리카_사파리_투어하기: [
-            Milestone(title: "사파리 국가 선택", description: "케냐, 탄자니아, 남아공 등", successCriteria: ["빅5를 볼 수 있는 곳을 선택했나요?", "건기(6-10월)에 방문하나요?", "예산에 맞는 국가를 선택했나요?"]),
-            Milestone(title: "사파리 타입 결정", description: "그룹 vs 프라이빗", successCriteria: ["3-5일 사파리를 계획했나요?", "롯지 vs 캠핑을 선택했나요?", "게임 드라이브 횟수를 확인했나요?"]),
-            Milestone(title: "건강 준비", description: "예방접종 및 약품", successCriteria: ["황열병 예방접종을 했나요?", "말라리아 예방약을 준비했나요?", "여행자 보험에 가입했나요?"])
+            Milestone(title: "사파리 국가 선택", description: "케냐, 탄자니아, 남아공 등", successCriteria: ["선택한 국가와 이유를 기록해보세요", "방문 시기 선택 기준을 공유해보세요", "사파리에서 보고 싶은 동물을 설명해보세요"]),
+            Milestone(title: "사파리 타입 결정", description: "그룹 vs 프라이빗", successCriteria: ["선택한 사파리 타입과 이유를 기록해보세요", "숙박 형태 선택 과정을 공유해보세요", "사파리에서 기대하는 경험을 설명해보세요"]),
+            Milestone(title: "건강 준비", description: "예방접종 및 약품", successCriteria: ["건강 준비 과정을 기록해보세요", "예방접종 일정을 공유해보세요", "여행자 보험 가입 과정을 설명해보세요"])
         ],
         .베트남_하롱베이_크루즈_타기: [
-            Milestone(title: "크루즈 선택", description: "당일 vs 1박 크루즈", successCriteria: ["1박 크루즈를 추천해요", "4성급 이상 보트를 선택했나요?", "가격과 포함 사항을 비교했나요?"]),
-            Milestone(title: "액티비티 확인", description: "카약, 동굴 탐험", successCriteria: ["카약 체험이 포함인가요?", "승솟 동굴 방문을 확인했나요?", "선상 요리 클래스를 고려했나요?"]),
-            Milestone(title: "하노이 연계", description: "하노이 출발", successCriteria: ["하노이에서 픽업 서비스가 있나요?", "이동 시간 3-4시간을 알고 있나요?", "하노이 구시가지 관광을 계획했나요?"])
+            Milestone(title: "크루즈 선택", description: "당일 vs 1박 크루즈", successCriteria: ["선택한 크루즈와 이유를 기록해보세요", "크루즈 비교 과정을 공유해보세요", "하롱베이에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "액티비티 확인", description: "카약, 동굴 탐험", successCriteria: ["계획한 액티비티를 기록해보세요", "크루즈에서 경험하고 싶은 것을 공유해보세요", "선상 활동에 대한 기대를 설명해보세요"]),
+            Milestone(title: "하노이 연계", description: "하노이 출발", successCriteria: ["이동 계획을 기록해보세요", "하노이 일정을 공유해보세요", "베트남 여행 동선을 설명해보세요"])
         ],
         .태국_치앙마이_코끼리_보호소_방문하기: [
-            Milestone(title: "윤리적 보호소 선택", description: "코끼리 타기 없는 곳", successCriteria: ["엘리펀트 네이처 파크를 알아봤나요?", "코끼리 타기가 없는 곳인가요?", "먹이주기, 목욕 체험이 있나요?"]),
-            Milestone(title: "투어 예약", description: "반일 또는 종일", successCriteria: ["종일 투어를 추천해요", "호텔 픽업이 포함인가요?", "점심 식사가 포함인가요?"]),
-            Milestone(title: "준비물", description: "여분의 옷과 수건", successCriteria: ["갈아입을 옷을 준비했나요?", "방수 가방을 챙겼나요?", "선크림을 준비했나요?"])
+            Milestone(title: "윤리적 보호소 선택", description: "코끼리 타기 없는 곳", successCriteria: ["선택한 보호소와 이유를 기록해보세요", "윤리적 기준 확인 과정을 공유해보세요", "코끼리와의 교감에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "투어 예약", description: "반일 또는 종일", successCriteria: ["선택한 투어 타입과 이유를 기록해보세요", "투어 포함 사항을 공유해보세요", "보호소 방문에서 기대하는 경험을 설명해보세요"]),
+            Milestone(title: "준비물", description: "여분의 옷과 수건", successCriteria: ["보호소 방문 준비물을 기록해보세요", "필요한 장비 리스트를 공유해보세요", "코끼리 체험 준비 과정을 설명해보세요"])
         ],
         .발리_우붓_라이스_테라스_보기: [
-            Milestone(title: "테라스 선택", description: "테갈랄랑 vs 주뚝", successCriteria: ["테갈랄랑이 가장 유명해요", "주뚝은 덜 붐벼요", "아침 일찍 방문을 계획했나요?"]),
-            Milestone(title: "우붓 일정", description: "2-3일 추천", successCriteria: ["원숭이 숲을 포함했나요?", "우붓 왕궁을 계획했나요?", "요가/명상 체험을 고려했나요?"]),
-            Milestone(title: "이동 수단", description: "스쿠터 또는 기사", successCriteria: ["일일 기사를 고용했나요?", "스쿠터 렌탈을 고려했나요?", "교통 상황을 확인했나요?"])
+            Milestone(title: "테라스 선택", description: "테갈랄랑 vs 주뚝", successCriteria: ["선택한 테라스와 이유를 기록해보세요", "방문 시간대 선택 기준을 공유해보세요", "라이스 테라스에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "우붓 일정", description: "2-3일 추천", successCriteria: ["우붓 일정 계획을 기록해보세요", "방문할 명소 리스트를 공유해보세요", "발리에서 경험하고 싶은 것을 설명해보세요"]),
+            Milestone(title: "이동 수단", description: "스쿠터 또는 기사", successCriteria: ["이동 수단 선택 이유를 기록해보세요", "교통 계획을 공유해보세요", "발리 드라이브에 대한 기대를 설명해보세요"])
         ],
         .필리핀_팔라완_엘니도_가기: [
-            Milestone(title: "엘니도 도착", description: "항공 및 이동", successCriteria: ["마닐라-엘니도 직항을 알아봤나요?", "푸에르토 프린세사 경유를 고려했나요?", "밴 이동 시간을 확인했나요?"]),
-            Milestone(title: "아일랜드 호핑", description: "투어 A, B, C, D", successCriteria: ["투어 A가 가장 인기예요", "2-3개 투어를 계획했나요?", "스노클링 장비를 확인했나요?"]),
-            Milestone(title: "숙소 선택", description: "비치프론트 추천", successCriteria: ["엘니도 타운 vs 코롱코롱을 선택했나요?", "리조트 vs 게스트하우스를 정했나요?", "4-5일 일정을 확보했나요?"])
+            Milestone(title: "엘니도 도착", description: "항공 및 이동", successCriteria: ["이동 경로 계획을 기록해보세요", "항공편 선택 과정을 공유해보세요", "엘니도에 대한 기대를 설명해보세요"]),
+            Milestone(title: "아일랜드 호핑", description: "투어 A, B, C, D", successCriteria: ["선택한 투어와 이유를 기록해보세요", "호핑 투어에서 기대하는 것을 공유해보세요", "스노클링 준비를 설명해보세요"]),
+            Milestone(title: "숙소 선택", description: "비치프론트 추천", successCriteria: ["숙소 선택 기준을 기록해보세요", "숙소 위치의 장점을 공유해보세요", "팔라완에서 기대하는 경험을 설명해보세요"])
         ],
         .싱가포르_마리나베이_야경_보기: [
-            Milestone(title: "야경 스팟 선택", description: "마리나베이 샌즈", successCriteria: ["스카이파크 전망대를 예약했나요?", "가든스 바이 더 베이를 포함했나요?", "스펙트라 쇼 시간을 확인했나요?"]),
-            Milestone(title: "마리나베이 일정", description: "낮과 밤 모두", successCriteria: ["머라이언 공원을 계획했나요?", "헬릭스 브릿지 산책을 포함했나요?", "아트사이언스 뮤지엄을 고려했나요?"]),
-            Milestone(title: "야경 촬영", description: "삼각대 준비", successCriteria: ["삼각대를 준비했나요?", "일몰 30분 전 도착 계획인가요?", "베스트 포토스팟을 알고 있나요?"])
+            Milestone(title: "야경 스팟 선택", description: "마리나베이 샌즈", successCriteria: ["선택한 야경 스팟을 기록해보세요", "방문 계획을 공유해보세요", "마리나베이에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "마리나베이 일정", description: "낮과 밤 모두", successCriteria: ["마리나베이 일정을 기록해보세요", "방문할 명소 리스트를 공유해보세요", "싱가포르에서 경험하고 싶은 것을 설명해보세요"]),
+            Milestone(title: "야경 촬영", description: "삼각대 준비", successCriteria: ["촬영 준비물을 기록해보세요", "촬영 계획을 공유해보세요", "담고 싶은 야경을 설명해보세요"])
         ],
         .홍콩_빅토리아_피크_야경_보기: [
-            Milestone(title: "피크 트램 예약", description: "스카이 패스 추천", successCriteria: ["피크 트램 티켓을 예매했나요?", "스카이 테라스 428을 포함했나요?", "패스트 트랙을 고려했나요?"]),
-            Milestone(title: "방문 시간", description: "일몰 전 도착", successCriteria: ["일몰 1시간 전 도착 계획인가요?", "야경 촬영 스팟을 알고 있나요?", "피크 갤러리아 방문을 계획했나요?"]),
-            Milestone(title: "대안 루트", description: "버스 또는 택시", successCriteria: ["피크 트램이 혼잡하면 버스를 고려했나요?", "15번 미니버스를 알고 있나요?", "하산 시 도보 루트를 알아봤나요?"])
+            Milestone(title: "피크 트램 예약", description: "스카이 패스 추천", successCriteria: ["티켓 예약 과정을 기록해보세요", "선택한 패스 종류를 공유해보세요", "피크 트램에 대한 기대를 설명해보세요"]),
+            Milestone(title: "방문 시간", description: "일몰 전 도착", successCriteria: ["방문 시간 계획을 기록해보세요", "야경 촬영 계획을 공유해보세요", "빅토리아 피크에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "대안 루트", description: "버스 또는 택시", successCriteria: ["이동 대안 계획을 기록해보세요", "선택한 교통수단을 공유해보세요", "홍콩 이동 팁을 설명해보세요"])
         ],
         .두바이_부르즈_칼리파_가기: [
-            Milestone(title: "전망대 예약", description: "124층 vs 148층", successCriteria: ["앳더탑 티켓을 예매했나요?", "148층 프리미엄을 고려했나요?", "일몰 시간대를 선택했나요?"]),
-            Milestone(title: "두바이 몰 연계", description: "분수쇼 관람", successCriteria: ["두바이 분수쇼 시간을 확인했나요?", "두바이 몰 쇼핑을 계획했나요?", "아쿠아리움을 포함했나요?"]),
-            Milestone(title: "사막 투어", description: "두바이 사막 사파리", successCriteria: ["사막 사파리를 예약했나요?", "듄 배싱을 체험할 계획인가요?", "BBQ 디너를 포함했나요?"])
+            Milestone(title: "전망대 예약", description: "124층 vs 148층", successCriteria: ["전망대 티켓 예약 과정을 기록해보세요", "선택한 층과 시간대를 공유해보세요", "부르즈 칼리파에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "두바이 몰 연계", description: "분수쇼 관람", successCriteria: ["두바이 몰 일정을 기록해보세요", "분수쇼 감상 계획을 공유해보세요", "두바이 쇼핑에 대한 기대를 설명해보세요"]),
+            Milestone(title: "사막 투어", description: "두바이 사막 사파리", successCriteria: ["사막 투어 계획을 기록해보세요", "체험하고 싶은 액티비티를 공유해보세요", "사막에서 기대하는 경험을 설명해보세요"])
         ],
         .요르단_페트라_고대도시_방문하기: [
-            Milestone(title: "페트라 입장", description: "1일 vs 2일권", successCriteria: ["최소 1일 풀코스를 계획했나요?", "요르단 패스를 알아봤나요?", "아침 일찍 입장을 계획했나요?"]),
-            Milestone(title: "주요 코스", description: "시크와 알 카즈네", successCriteria: ["시크 협곡 걷기를 계획했나요?", "수도원까지 등반할 계획인가요?", "페트라 바이 나이트를 고려했나요?"]),
-            Milestone(title: "준비물", description: "트레킹 준비", successCriteria: ["트레킹화를 준비했나요?", "물 2L 이상 챙길 계획인가요?", "모자와 선크림을 준비했나요?"])
+            Milestone(title: "페트라 입장", description: "1일 vs 2일권", successCriteria: ["입장권 선택 과정을 기록해보세요", "방문 시간 계획을 공유해보세요", "페트라에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "주요 코스", description: "시크와 알 카즈네", successCriteria: ["방문 코스 계획을 기록해보세요", "각 명소에서 기대하는 것을 공유해보세요", "페트라 역사에 대해 배운 점을 설명해보세요"]),
+            Milestone(title: "준비물", description: "트레킹 준비", successCriteria: ["트레킹 준비물 리스트를 기록해보세요", "날씨 대비 준비를 공유해보세요", "고대도시 탐험에 대한 기대를 설명해보세요"])
         ],
         .이집트_피라미드_방문하기: [
-            Milestone(title: "기자 피라미드", description: "3대 피라미드와 스핑크스", successCriteria: ["기자 피라미드 입장권을 알아봤나요?", "피라미드 내부 입장을 고려했나요?", "사기 주의 정보를 확인했나요?"]),
-            Milestone(title: "가이드 투어", description: "개인 가이드 추천", successCriteria: ["인증된 가이드를 예약했나요?", "낙타 체험을 계획했나요?", "사운드 앤 라이트 쇼를 고려했나요?"]),
-            Milestone(title: "카이로 일정", description: "이집트 박물관 포함", successCriteria: ["이집트 박물관을 계획했나요?", "칸 엘 칼릴리 시장을 포함했나요?", "나일강 크루즈를 고려했나요?"])
+            Milestone(title: "기자 피라미드", description: "3대 피라미드와 스핑크스", successCriteria: ["피라미드 방문 계획을 기록해보세요", "내부 입장 여부와 이유를 공유해보세요", "고대 이집트에 대한 기대를 설명해보세요"]),
+            Milestone(title: "가이드 투어", description: "개인 가이드 추천", successCriteria: ["가이드 선택 과정을 기록해보세요", "체험하고 싶은 것을 공유해보세요", "피라미드 투어에 대한 기대를 설명해보세요"]),
+            Milestone(title: "카이로 일정", description: "이집트 박물관 포함", successCriteria: ["카이로 일정을 기록해보세요", "방문할 명소 리스트를 공유해보세요", "이집트 역사에 대한 기대를 설명해보세요"])
         ],
         .케냐_마사이마라_대이동_보기: [
-            Milestone(title: "대이동 시기", description: "7-10월 추천", successCriteria: ["대이동 시기(7-10월)에 방문하나요?", "마라강 건너기를 볼 수 있나요?", "최소 3박 사파리를 계획했나요?"]),
-            Milestone(title: "사파리 롯지", description: "마사이마라 내 숙소", successCriteria: ["공원 내 롯지를 예약했나요?", "올인클루시브를 확인했나요?", "열기구 사파리를 고려했나요?"]),
-            Milestone(title: "건강 준비", description: "예방접종", successCriteria: ["황열병 예방접종을 했나요?", "말라리아 예방약을 준비했나요?", "여행자보험에 가입했나요?"])
+            Milestone(title: "대이동 시기", description: "7-10월 추천", successCriteria: ["방문 시기 선택 이유를 기록해보세요", "대이동에서 보고 싶은 장면을 공유해보세요", "사파리 일정 계획을 설명해보세요"]),
+            Milestone(title: "사파리 롯지", description: "마사이마라 내 숙소", successCriteria: ["롯지 선택 과정을 기록해보세요", "기대하는 사파리 경험을 공유해보세요", "추가 액티비티 계획을 설명해보세요"]),
+            Milestone(title: "건강 준비", description: "예방접종", successCriteria: ["건강 준비 과정을 기록해보세요", "예방접종 일정을 공유해보세요", "여행 보험 가입 과정을 설명해보세요"])
         ],
         .탄자니아_세렝게티_가기: [
-            Milestone(title: "세렝게티 시즌", description: "대이동 따라가기", successCriteria: ["방문 시기별 동물 위치를 확인했나요?", "12-3월 남부, 6-7월 서부, 8-10월 북부", "최소 4박 사파리를 계획했나요?"]),
-            Milestone(title: "이동 수단", description: "경비행기 vs 육로", successCriteria: ["아루샤에서 경비행기를 고려했나요?", "육로 이동 시간을 확인했나요?", "응고롱고로 연계를 계획했나요?"]),
-            Milestone(title: "숙소 선택", description: "롯지 vs 캠프", successCriteria: ["이동식 캠프를 알아봤나요?", "럭셔리 롯지를 고려했나요?", "빅5를 모두 볼 수 있나요?"])
+            Milestone(title: "세렝게티 시즌", description: "대이동 따라가기", successCriteria: ["방문 시기 선택 이유를 기록해보세요", "동물 대이동에 대한 기대를 공유해보세요", "사파리 일정 계획을 설명해보세요"]),
+            Milestone(title: "이동 수단", description: "경비행기 vs 육로", successCriteria: ["이동 수단 선택 과정을 기록해보세요", "여정에 대한 기대를 공유해보세요", "연계 일정 계획을 설명해보세요"]),
+            Milestone(title: "숙소 선택", description: "롯지 vs 캠프", successCriteria: ["숙소 타입 선택 이유를 기록해보세요", "숙소에서 기대하는 경험을 공유해보세요", "세렝게티에서 보고 싶은 동물을 설명해보세요"])
         ],
         .마다가스카르_바오밥_나무_보기: [
-            Milestone(title: "바오밥 거리", description: "모론다바 근처", successCriteria: ["바오밥 거리 위치를 알고 있나요?", "일몰 시간에 방문을 계획했나요?", "모론다바까지 이동을 계획했나요?"]),
-            Milestone(title: "마다가스카르 일정", description: "최소 10일 추천", successCriteria: ["국내선 항공을 예약했나요?", "여우원숭이 관찰을 포함했나요?", "이살루 국립공원을 계획했나요?"]),
-            Milestone(title: "비자 및 건강", description: "도착 비자 가능", successCriteria: ["도착 비자 비용을 준비했나요?", "말라리아 예방약을 준비했나요?", "비포장도로 이동을 알고 있나요?"])
+            Milestone(title: "바오밥 거리", description: "모론다바 근처", successCriteria: ["바오밥 거리 방문 계획을 기록해보세요", "방문 시간대 선택 이유를 공유해보세요", "바오밥 나무에 대한 기대를 설명해보세요"]),
+            Milestone(title: "마다가스카르 일정", description: "최소 10일 추천", successCriteria: ["마다가스카르 일정을 기록해보세요", "보고 싶은 야생동물을 공유해보세요", "방문할 국립공원 계획을 설명해보세요"]),
+            Milestone(title: "비자 및 건강", description: "도착 비자 가능", successCriteria: ["비자와 건강 준비 과정을 기록해보세요", "예방 조치를 공유해보세요", "이동 계획을 설명해보세요"])
         ],
         .세이셸_해변_휴양하기: [
-            Milestone(title: "섬 선택", description: "마헤, 프랄린, 라디게", successCriteria: ["어느 섬에 머물지 정했나요?", "앙스 수스 다르장 해변을 알고 있나요?", "섬 간 이동을 계획했나요?"]),
-            Milestone(title: "리조트 예약", description: "럭셔리 리조트", successCriteria: ["예산에 맞는 리조트를 찾았나요?", "올인클루시브를 고려했나요?", "프라이빗 비치가 있나요?"]),
-            Milestone(title: "액티비티", description: "스노클링, 하이킹", successCriteria: ["스노클링 장비를 준비했나요?", "발레 드 메 자연보호구역을 계획했나요?", "코코 드 메르를 보고 싶나요?"])
+            Milestone(title: "섬 선택", description: "마헤, 프랄린, 라디게", successCriteria: ["선택한 섬과 이유를 기록해보세요", "방문하고 싶은 해변을 공유해보세요", "섬 간 이동 계획을 설명해보세요"]),
+            Milestone(title: "리조트 예약", description: "럭셔리 리조트", successCriteria: ["리조트 선택 기준을 기록해보세요", "기대하는 리조트 경험을 공유해보세요", "숙소 편의시설에 대한 기대를 설명해보세요"]),
+            Milestone(title: "액티비티", description: "스노클링, 하이킹", successCriteria: ["계획한 액티비티를 기록해보세요", "세이셸에서 경험하고 싶은 것을 공유해보세요", "자연 탐험에 대한 기대를 설명해보세요"])
         ],
         .모리셔스_수중_폭포_보기: [
-            Milestone(title: "수중 폭포 투어", description: "헬기 또는 경비행기", successCriteria: ["헬기 투어를 예약했나요?", "수중 폭포는 공중에서만 보여요", "날씨 좋은 날을 선택했나요?"]),
-            Milestone(title: "르몬 산", description: "유네스코 유산", successCriteria: ["르몬 산 트레킹을 계획했나요?", "7색 대지를 포함했나요?", "샤마렐 폭포를 계획했나요?"]),
-            Milestone(title: "해변 휴양", description: "리조트 선택", successCriteria: ["북부 vs 남부를 선택했나요?", "스노클링/다이빙을 계획했나요?", "일류보이 해변을 알아봤나요?"])
+            Milestone(title: "수중 폭포 투어", description: "헬기 또는 경비행기", successCriteria: ["투어 예약 과정을 기록해보세요", "수중 폭포에 대한 기대를 공유해보세요", "투어 일정 계획을 설명해보세요"]),
+            Milestone(title: "르몬 산", description: "유네스코 유산", successCriteria: ["트레킹 계획을 기록해보세요", "방문할 명소 리스트를 공유해보세요", "모리셔스 자연에 대한 기대를 설명해보세요"]),
+            Milestone(title: "해변 휴양", description: "리조트 선택", successCriteria: ["선택한 지역과 이유를 기록해보세요", "해변 액티비티 계획을 공유해보세요", "모리셔스 휴양에 대한 기대를 설명해보세요"])
         ],
         .몰타_블루라군_가기: [
-            Milestone(title: "코미노 섬", description: "블루라군 위치", successCriteria: ["코미노 섬 보트 투어를 예약했나요?", "아침 일찍 출발을 계획했나요?", "스노클링 장비를 준비했나요?"]),
-            Milestone(title: "몰타 일정", description: "발레타, 임디나", successCriteria: ["수도 발레타를 계획했나요?", "고대 도시 임디나를 포함했나요?", "3개 섬 투어를 고려했나요?"]),
-            Milestone(title: "고조 섬", description: "아주르 윈도우 터", successCriteria: ["고조 섬 방문을 계획했나요?", "페리 시간표를 확인했나요?", "치타델 성채를 포함했나요?"])
+            Milestone(title: "코미노 섬", description: "블루라군 위치", successCriteria: ["보트 투어 예약 과정을 기록해보세요", "블루라군에서 기대하는 것을 공유해보세요", "스노클링 준비를 설명해보세요"]),
+            Milestone(title: "몰타 일정", description: "발레타, 임디나", successCriteria: ["몰타 일정 계획을 기록해보세요", "방문할 도시와 명소를 공유해보세요", "몰타 역사에 대한 기대를 설명해보세요"]),
+            Milestone(title: "고조 섬", description: "아주르 윈도우 터", successCriteria: ["고조 섬 방문 계획을 기록해보세요", "이동 계획을 공유해보세요", "섬에서 경험하고 싶은 것을 설명해보세요"])
         ],
         .아이슬란드_블루라군_온천_가기: [
-            Milestone(title: "블루라군 예약", description: "필수 사전 예약", successCriteria: ["공식 사이트에서 예약했나요?", "컴포트 vs 프리미엄을 선택했나요?", "케플라비크 공항 근처임을 알고 있나요?"]),
-            Milestone(title: "방문 시간", description: "일출 또는 저녁", successCriteria: ["덜 붐비는 시간대를 선택했나요?", "실리카 머드팩 체험을 계획했나요?", "수영복을 준비했나요?"]),
-            Milestone(title: "골든 서클 연계", description: "아이슬란드 필수 코스", successCriteria: ["골든 서클 투어를 계획했나요?", "굴포스, 게이시르를 포함했나요?", "씽벨리어 국립공원을 계획했나요?"])
+            Milestone(title: "블루라군 예약", description: "필수 사전 예약", successCriteria: ["예약 과정과 선택 옵션을 기록해보세요", "블루라군에서 기대하는 경험을 공유해보세요", "방문 일정 계획을 설명해보세요"]),
+            Milestone(title: "방문 시간", description: "일출 또는 저녁", successCriteria: ["선택한 방문 시간대와 이유를 기록해보세요", "온천에서 체험하고 싶은 것을 공유해보세요", "준비물 리스트를 설명해보세요"]),
+            Milestone(title: "골든 서클 연계", description: "아이슬란드 필수 코스", successCriteria: ["골든 서클 일정을 기록해보세요", "방문할 명소 리스트를 공유해보세요", "아이슬란드 자연에 대한 기대를 설명해보세요"])
         ],
         .덴마크_코펜하겐_자전거_여행하기: [
-            Milestone(title: "자전거 렌탈", description: "도시 자전거 대여", successCriteria: ["자전거 렌탈 업체를 알아봤나요?", "시티바이크 시스템을 확인했나요?", "자전거 도로를 숙지했나요?"]),
-            Milestone(title: "자전거 코스", description: "주요 명소 연결", successCriteria: ["뉘하운 항구를 포함했나요?", "인어공주 동상을 계획했나요?", "티볼리 공원을 포함했나요?"]),
-            Milestone(title: "코펜하겐 카드", description: "교통+입장 패스", successCriteria: ["코펜하겐 카드를 알아봤나요?", "운하 투어를 포함했나요?", "크리스티안스보르 궁전을 계획했나요?"])
+            Milestone(title: "자전거 렌탈", description: "도시 자전거 대여", successCriteria: ["자전거 렌탈 계획을 기록해보세요", "자전거 도로 정보를 공유해보세요", "자전거 여행에 대한 기대를 설명해보세요"]),
+            Milestone(title: "자전거 코스", description: "주요 명소 연결", successCriteria: ["계획한 자전거 코스를 기록해보세요", "방문할 명소 리스트를 공유해보세요", "코펜하겐에서 경험하고 싶은 것을 설명해보세요"]),
+            Milestone(title: "코펜하겐 카드", description: "교통+입장 패스", successCriteria: ["패스 선택 과정을 기록해보세요", "포함된 명소 계획을 공유해보세요", "덴마크 문화에 대한 기대를 설명해보세요"])
         ],
         .스웨덴_스톡홀름_군도_가기: [
-            Milestone(title: "군도 투어", description: "3만개 섬 중 선택", successCriteria: ["당일 vs 숙박 투어를 정했나요?", "바스홀름 섬을 고려했나요?", "페리 시간표를 확인했나요?"]),
-            Milestone(title: "스톡홀름 일정", description: "감라스탄 필수", successCriteria: ["감라스탄 구시가지를 계획했나요?", "바사 박물관을 포함했나요?", "스칸센 야외 박물관을 고려했나요?"]),
-            Milestone(title: "여름 vs 겨울", description: "시즌 선택", successCriteria: ["여름(6-8월)이 가장 좋아요", "백야를 경험하고 싶나요?", "겨울 오로라를 고려했나요?"])
+            Milestone(title: "군도 투어", description: "3만개 섬 중 선택", successCriteria: ["선택한 투어와 섬을 기록해보세요", "군도 여행에 대한 기대를 공유해보세요", "이동 계획을 설명해보세요"]),
+            Milestone(title: "스톡홀름 일정", description: "감라스탄 필수", successCriteria: ["스톡홀름 일정을 기록해보세요", "방문할 명소와 박물관을 공유해보세요", "스웨덴 문화에 대한 기대를 설명해보세요"]),
+            Milestone(title: "여름 vs 겨울", description: "시즌 선택", successCriteria: ["방문 시기 선택 이유를 기록해보세요", "계절별 경험에 대한 기대를 공유해보세요", "스톡홀름에서 보고 싶은 것을 설명해보세요"])
         ],
         .핀란드_오로라_유리_이글루_숙박하기: [
-            Milestone(title: "이글루 예약", description: "6-12개월 전 필수", successCriteria: ["카크슬라우타넨을 알아봤나요?", "오로라 시즌(9-3월)을 선택했나요?", "유리 이글루를 예약했나요?"]),
-            Milestone(title: "오로라 준비", description: "관측 조건", successCriteria: ["오로라 예보 앱을 설치했나요?", "맑은 밤을 기다릴 준비가 됐나요?", "카메라 삼각대를 준비했나요?"]),
-            Milestone(title: "라플란드 체험", description: "겨울 액티비티", successCriteria: ["허스키 썰매를 계획했나요?", "순록 썰매를 고려했나요?", "스노모빌을 예약했나요?"])
+            Milestone(title: "이글루 예약", description: "6-12개월 전 필수", successCriteria: ["이글루 예약 과정을 기록해보세요", "선택한 숙소와 시기를 공유해보세요", "유리 이글루에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "오로라 준비", description: "관측 조건", successCriteria: ["오로라 관측 준비를 기록해보세요", "촬영 장비 계획을 공유해보세요", "오로라에 대한 기대를 설명해보세요"]),
+            Milestone(title: "라플란드 체험", description: "겨울 액티비티", successCriteria: ["계획한 겨울 액티비티를 기록해보세요", "라플란드에서 경험하고 싶은 것을 공유해보세요", "핀란드 겨울에 대한 기대를 설명해보세요"])
         ],
         .러시아_상트페테르부르크_여행하기: [
-            Milestone(title: "비자 준비", description: "러시아 비자 신청", successCriteria: ["러시아 비자를 신청했나요?", "초청장을 준비했나요?", "백야 시즌(6월)을 고려했나요?"]),
-            Milestone(title: "주요 명소", description: "에르미타주 필수", successCriteria: ["에르미타주 박물관 티켓을 예매했나요?", "피의 사원을 포함했나요?", "페테르고프 궁전을 계획했나요?"]),
-            Milestone(title: "문화 체험", description: "발레, 오페라", successCriteria: ["마린스키 극장 공연을 알아봤나요?", "네바강 크루즈를 계획했나요?", "러시아 요리를 체험할 계획인가요?"])
+            Milestone(title: "비자 준비", description: "러시아 비자 신청", successCriteria: ["비자 준비 과정을 기록해보세요", "방문 시기 선택 이유를 공유해보세요", "러시아 여행에 대한 기대를 설명해보세요"]),
+            Milestone(title: "주요 명소", description: "에르미타주 필수", successCriteria: ["방문할 명소 리스트를 기록해보세요", "예매한 티켓과 일정을 공유해보세요", "러시아 역사에 대한 기대를 설명해보세요"]),
+            Milestone(title: "문화 체험", description: "발레, 오페라", successCriteria: ["계획한 문화 체험을 기록해보세요", "러시아 예술에 대한 기대를 공유해보세요", "러시아 음식에 대한 기대를 설명해보세요"])
         ],
         .폴란드_아우슈비츠_역사_탐방하기: [
-            Milestone(title: "투어 예약", description: "가이드 투어 필수", successCriteria: ["공식 사이트에서 예약했나요?", "3-4시간 투어를 선택했나요?", "영어/한국어 가이드를 확인했나요?"]),
-            Milestone(title: "크라쿠프 연계", description: "크라쿠프 출발", successCriteria: ["크라쿠프에서 이동을 계획했나요?", "버스 또는 투어를 예약했나요?", "크라쿠프 구시가지를 포함했나요?"]),
-            Milestone(title: "마음의 준비", description: "역사적 이해", successCriteria: ["홀로코스트 역사를 공부했나요?", "사진 촬영 규정을 확인했나요?", "경건한 마음으로 방문할 준비가 됐나요?"])
+            Milestone(title: "투어 예약", description: "가이드 투어 필수", successCriteria: ["투어 예약 과정을 기록해보세요", "선택한 투어 타입을 공유해보세요", "역사 탐방에 대한 마음 준비를 설명해보세요"]),
+            Milestone(title: "크라쿠프 연계", description: "크라쿠프 출발", successCriteria: ["이동 계획을 기록해보세요", "크라쿠프 일정을 공유해보세요", "폴란드 여행에 대한 기대를 설명해보세요"]),
+            Milestone(title: "마음의 준비", description: "역사적 이해", successCriteria: ["역사 공부 과정을 기록해보세요", "방문에 대한 생각을 공유해보세요", "역사 탐방을 통해 배우고 싶은 것을 설명해보세요"])
         ],
         .체코_체스키_크룸로프_여행하기: [
-            Milestone(title: "당일치기 vs 1박", description: "프라하에서 출발", successCriteria: ["1박 숙박을 추천해요", "버스 또는 기차를 예약했나요?", "2-3시간 이동 시간을 확인했나요?"]),
-            Milestone(title: "구시가지 탐방", description: "유네스코 유산", successCriteria: ["성과 탑을 방문할 계획인가요?", "블타바 강 래프팅을 고려했나요?", "성 정원을 포함했나요?"]),
-            Milestone(title: "야경 즐기기", description: "1박 필수 이유", successCriteria: ["야경 포토스팟을 알고 있나요?", "현지 맥주를 맛볼 계획인가요?", "조용한 아침 산책을 계획했나요?"])
+            Milestone(title: "당일치기 vs 1박", description: "프라하에서 출발", successCriteria: ["여행 일정 선택 이유를 기록해보세요", "이동 계획을 공유해보세요", "체스키 크룸로프에 대한 기대를 설명해보세요"]),
+            Milestone(title: "구시가지 탐방", description: "유네스코 유산", successCriteria: ["방문할 명소 리스트를 기록해보세요", "체험하고 싶은 액티비티를 공유해보세요", "중세 도시에 대한 기대를 설명해보세요"]),
+            Milestone(title: "야경 즐기기", description: "1박 필수 이유", successCriteria: ["야경 감상 계획을 기록해보세요", "현지 음식과 맥주에 대한 기대를 공유해보세요", "도시에서 경험하고 싶은 것을 설명해보세요"])
         ],
         .헝가리_부다페스트_온천_가기: [
-            Milestone(title: "온천 선택", description: "세체니 vs 겔레르트", successCriteria: ["세체니 온천(가장 큼)을 알아봤나요?", "겔레르트 온천(아름다움)을 고려했나요?", "루다시 온천(현지인)을 알아봤나요?"]),
-            Milestone(title: "온천 준비", description: "입장 및 준비물", successCriteria: ["온라인 티켓을 예매했나요?", "수영복과 슬리퍼를 준비했나요?", "캐빈 vs 라커를 선택했나요?"]),
-            Milestone(title: "부다페스트 일정", description: "부다+페스트", successCriteria: ["어부의 요새를 계획했나요?", "국회의사당 투어를 예약했나요?", "도나우강 야경 크루즈를 고려했나요?"])
+            Milestone(title: "온천 선택", description: "세체니 vs 겔레르트", successCriteria: ["선택한 온천과 이유를 기록해보세요", "온천 비교 과정을 공유해보세요", "부다페스트 온천에 대한 기대를 설명해보세요"]),
+            Milestone(title: "온천 준비", description: "입장 및 준비물", successCriteria: ["티켓 예매 과정을 기록해보세요", "준비물 리스트를 공유해보세요", "온천 체험에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "부다페스트 일정", description: "부다+페스트", successCriteria: ["부다페스트 일정을 기록해보세요", "방문할 명소 리스트를 공유해보세요", "헝가리 수도에 대한 기대를 설명해보세요"])
         ],
         .오스트리아_잘츠부르크_여행하기: [
-            Milestone(title: "사운드 오브 뮤직", description: "촬영지 투어", successCriteria: ["사운드 오브 뮤직 투어를 예약했나요?", "미라벨 정원을 포함했나요?", "호수 지구를 계획했나요?"]),
-            Milestone(title: "잘츠부르크 구시가지", description: "모차르트의 도시", successCriteria: ["모차르트 생가를 방문할 계획인가요?", "호엔잘츠부르크 성을 포함했나요?", "게트라이데가세를 산책할 계획인가요?"]),
-            Milestone(title: "주변 지역", description: "할슈타트 연계", successCriteria: ["할슈타트 당일치기를 계획했나요?", "잘츠캄머굿 호수를 알아봤나요?", "빈 연계를 고려했나요?"])
+            Milestone(title: "사운드 오브 뮤직", description: "촬영지 투어", successCriteria: ["투어 예약 과정을 기록해보세요", "방문할 촬영지를 공유해보세요", "영화 명소에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "잘츠부르크 구시가지", description: "모차르트의 도시", successCriteria: ["구시가지 일정을 기록해보세요", "방문할 명소 리스트를 공유해보세요", "모차르트 도시에 대한 기대를 설명해보세요"]),
+            Milestone(title: "주변 지역", description: "할슈타트 연계", successCriteria: ["주변 지역 여행 계획을 기록해보세요", "방문하고 싶은 곳을 공유해보세요", "오스트리아 여행에 대한 기대를 설명해보세요"])
         ],
         .독일_노이슈반슈타인_성_방문하기: [
-            Milestone(title: "성 투어 예약", description: "온라인 필수 예약", successCriteria: ["공식 사이트에서 예약했나요?", "오디오 가이드를 선택했나요?", "35분 투어임을 알고 있나요?"]),
-            Milestone(title: "마리엔 다리", description: "포토스팟", successCriteria: ["마리엔 다리에서 사진을 계획했나요?", "성수기엔 대기 줄이 길어요", "겨울엔 다리가 폐쇄될 수 있어요"]),
-            Milestone(title: "뮌헨 출발", description: "당일치기 가능", successCriteria: ["뮌헨에서 기차+버스를 계획했나요?", "퓌센에서 버스를 타나요?", "호엔슈방가우 성도 포함했나요?"])
+            Milestone(title: "성 투어 예약", description: "온라인 필수 예약", successCriteria: ["예약 과정과 팁을 기록해보세요", "선택한 투어 옵션을 공유해보세요", "동화 속 성에 대한 기대를 설명해보세요"]),
+            Milestone(title: "마리엔 다리", description: "포토스팟", successCriteria: ["촬영 계획을 기록해보세요", "방문 시 주의사항을 공유해보세요", "성 전망에 대한 기대를 설명해보세요"]),
+            Milestone(title: "뮌헨 출발", description: "당일치기 가능", successCriteria: ["이동 계획을 기록해보세요", "교통편 선택 과정을 공유해보세요", "독일 여행 동선을 설명해보세요"])
         ],
         .네덜란드_튤립_축제_가기: [
-            Milestone(title: "큐켄호프 방문", description: "3-5월 한정", successCriteria: ["큐켄호프 개장 기간을 확인했나요?", "입장권을 미리 예매했나요?", "4월 중순이 만개 시기예요"]),
-            Milestone(title: "튤립 필드", description: "리세 지역", successCriteria: ["튤립 농장 투어를 계획했나요?", "자전거 렌탈을 고려했나요?", "풍차 마을 잔세스칸스를 포함했나요?"]),
-            Milestone(title: "암스테르담 연계", description: "네덜란드 여행", successCriteria: ["암스테르담 운하 투어를 계획했나요?", "안네 프랑크의 집을 예약했나요?", "반 고흐 미술관을 포함했나요?"])
+            Milestone(title: "큐켄호프 방문", description: "3-5월 한정", successCriteria: ["방문 시기 선택 이유를 기록해보세요", "입장권 예매 과정을 공유해보세요", "튤립 정원에 대한 기대를 설명해보세요"]),
+            Milestone(title: "튤립 필드", description: "리세 지역", successCriteria: ["튤립 필드 방문 계획을 기록해보세요", "이동 수단 선택을 공유해보세요", "네덜란드 시골 풍경에 대한 기대를 설명해보세요"]),
+            Milestone(title: "암스테르담 연계", description: "네덜란드 여행", successCriteria: ["암스테르담 일정을 기록해보세요", "방문할 명소와 박물관을 공유해보세요", "네덜란드 문화에 대한 기대를 설명해보세요"])
         ],
         .벨기에_브뤼셀_그랑플라스_가기: [
-            Milestone(title: "그랑플라스", description: "세계에서 가장 아름다운 광장", successCriteria: ["그랑플라스 야경을 계획했나요?", "시청사 투어를 고려했나요?", "꽃 카펫 축제(8월)를 알아봤나요?"]),
-            Milestone(title: "브뤼셀 명소", description: "오줌싸개 동상", successCriteria: ["마네킨 피스를 찾아갈 계획인가요?", "아토미움을 포함했나요?", "왕립미술관을 고려했나요?"]),
-            Milestone(title: "벨기에 맛집", description: "초콜릿, 와플, 맥주", successCriteria: ["벨기에 초콜릿을 맛볼 계획인가요?", "리에주 와플을 알고 있나요?", "벨기에 맥주 펍을 리서치했나요?"])
+            Milestone(title: "그랑플라스", description: "세계에서 가장 아름다운 광장", successCriteria: ["광장 방문 계획을 기록해보세요", "보고 싶은 것을 공유해보세요", "그랑플라스에 대한 기대를 설명해보세요"]),
+            Milestone(title: "브뤼셀 명소", description: "오줌싸개 동상", successCriteria: ["브뤼셀 일정을 기록해보세요", "방문할 명소를 공유해보세요", "벨기에 수도에 대한 기대를 설명해보세요"]),
+            Milestone(title: "벨기에 맛집", description: "초콜릿, 와플, 맥주", successCriteria: ["맛보고 싶은 벨기에 음식을 기록해보세요", "방문할 맛집을 공유해보세요", "벨기에 미식에 대한 기대를 설명해보세요"])
         ],
         .룩셈부르크_고성_투어하기: [
-            Milestone(title: "비안덴 성", description: "가장 유명한 성", successCriteria: ["비안덴 성을 방문할 계획인가요?", "체어리프트를 타볼 계획인가요?", "버스 또는 렌터카를 계획했나요?"]),
-            Milestone(title: "룩셈부르크 시티", description: "유네스코 유산", successCriteria: ["복 케이스메이트를 포함했나요?", "아돌프 다리를 계획했나요?", "그룬트 지구를 산책할 계획인가요?"]),
-            Milestone(title: "베네룩스 연계", description: "브뤼셀에서 당일치기", successCriteria: ["브뤼셀에서 기차를 알아봤나요?", "3시간 이동을 확인했나요?", "1일이면 충분해요"])
+            Milestone(title: "비안덴 성", description: "가장 유명한 성", successCriteria: ["성 방문 계획을 기록해보세요", "체험하고 싶은 것을 공유해보세요", "중세 성에 대한 기대를 설명해보세요"]),
+            Milestone(title: "룩셈부르크 시티", description: "유네스코 유산", successCriteria: ["시티 일정을 기록해보세요", "방문할 명소를 공유해보세요", "룩셈부르크에 대한 기대를 설명해보세요"]),
+            Milestone(title: "베네룩스 연계", description: "브뤼셀에서 당일치기", successCriteria: ["이동 계획을 기록해보세요", "교통편 선택 과정을 공유해보세요", "베네룩스 여행에 대한 기대를 설명해보세요"])
         ],
         .아일랜드_더블린_펍_투어하기: [
-            Milestone(title: "템플 바 지역", description: "더블린의 중심", successCriteria: ["템플 바 거리를 계획했나요?", "라이브 음악 펍을 알아봤나요?", "아이리시 위스키를 맛볼 계획인가요?"]),
-            Milestone(title: "기네스 체험", description: "기네스 스토어하우스", successCriteria: ["기네스 스토어하우스를 예약했나요?", "그래비티 바에서 한 잔을 계획했나요?", "셀프 파인트 체험을 알고 있나요?"]),
-            Milestone(title: "더블린 일정", description: "2-3일 추천", successCriteria: ["트리니티 칼리지를 방문할 계획인가요?", "켈스의 서를 볼 수 있어요", "클리프 오브 모허 투어를 고려했나요?"])
+            Milestone(title: "템플 바 지역", description: "더블린의 중심", successCriteria: ["펍 투어 계획을 기록해보세요", "방문하고 싶은 펍을 공유해보세요", "아이리시 펍 문화에 대한 기대를 설명해보세요"]),
+            Milestone(title: "기네스 체험", description: "기네스 스토어하우스", successCriteria: ["기네스 체험 계획을 기록해보세요", "기대하는 것을 공유해보세요", "아이리시 맥주에 대한 기대를 설명해보세요"]),
+            Milestone(title: "더블린 일정", description: "2-3일 추천", successCriteria: ["더블린 일정을 기록해보세요", "방문할 명소를 공유해보세요", "아일랜드 문화에 대한 기대를 설명해보세요"])
         ],
         .영국_런던_빅벤_보기: [
-            Milestone(title: "웨스트민스터", description: "빅벤과 국회의사당", successCriteria: ["웨스트민스터 다리에서 사진을 계획했나요?", "국회의사당 투어를 고려했나요?", "웨스트민스터 사원을 포함했나요?"]),
-            Milestone(title: "런던 필수 명소", description: "버킹엄, 타워브릿지", successCriteria: ["근위병 교대식을 볼 계획인가요?", "타워 브릿지를 포함했나요?", "런던아이를 예약했나요?"]),
-            Milestone(title: "런던 패스", description: "교통+입장 패스", successCriteria: ["런던 패스를 알아봤나요?", "오이스터 카드를 준비했나요?", "대영박물관은 무료예요"])
+            Milestone(title: "웨스트민스터", description: "빅벤과 국회의사당", successCriteria: ["웨스트민스터 방문 계획을 기록해보세요", "촬영하고 싶은 장면을 공유해보세요", "빅벤에 대한 기대를 설명해보세요"]),
+            Milestone(title: "런던 필수 명소", description: "버킹엄, 타워브릿지", successCriteria: ["런던 명소 일정을 기록해보세요", "방문할 곳 리스트를 공유해보세요", "런던에서 경험하고 싶은 것을 설명해보세요"]),
+            Milestone(title: "런던 패스", description: "교통+입장 패스", successCriteria: ["패스 선택 과정을 기록해보세요", "교통 계획을 공유해보세요", "런던 여행 팁을 설명해보세요"])
         ],
         .스코틀랜드_하이랜드_여행하기: [
-            Milestone(title: "하이랜드 투어", description: "에든버러 출발", successCriteria: ["1일 vs 3일 투어를 선택했나요?", "네스호를 포함했나요?", "글렌코를 계획했나요?"]),
-            Milestone(title: "스카이 섬", description: "하이랜드 하이라이트", successCriteria: ["스카이 섬 투어를 고려했나요?", "올드맨 오브 스토르를 알고 있나요?", "페어리 풀을 포함했나요?"]),
-            Milestone(title: "에든버러", description: "스코틀랜드의 수도", successCriteria: ["에든버러 성을 방문할 계획인가요?", "로열 마일을 산책할 계획인가요?", "스카치 위스키 투어를 고려했나요?"])
+            Milestone(title: "하이랜드 투어", description: "에든버러 출발", successCriteria: ["선택한 투어와 이유를 기록해보세요", "방문할 명소를 공유해보세요", "스코틀랜드 자연에 대한 기대를 설명해보세요"]),
+            Milestone(title: "스카이 섬", description: "하이랜드 하이라이트", successCriteria: ["스카이 섬 계획을 기록해보세요", "보고 싶은 풍경을 공유해보세요", "섬 탐험에 대한 기대를 설명해보세요"]),
+            Milestone(title: "에든버러", description: "스코틀랜드의 수도", successCriteria: ["에든버러 일정을 기록해보세요", "방문할 명소를 공유해보세요", "스코틀랜드 문화에 대한 기대를 설명해보세요"])
         ],
         .웨일스_스노도니아_가기: [
-            Milestone(title: "스노든 산", description: "웨일스 최고봉", successCriteria: ["스노든 등산을 계획했나요?", "산악열차를 고려했나요?", "날씨를 확인했나요?"]),
-            Milestone(title: "등산 루트", description: "6개 루트 선택", successCriteria: ["란베리스 패스가 가장 쉬워요", "체력에 맞는 코스를 선택했나요?", "5-6시간 소요를 확인했나요?"]),
-            Milestone(title: "스노도니아 국립공원", description: "주변 명소", successCriteria: ["슬레이트 광산을 고려했나요?", "포트메리온을 알아봤나요?", "카나번 성을 포함했나요?"])
+            Milestone(title: "스노든 산", description: "웨일스 최고봉", successCriteria: ["등산 계획을 기록해보세요", "이동 방법 선택을 공유해보세요", "정상에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "등산 루트", description: "6개 루트 선택", successCriteria: ["선택한 루트와 이유를 기록해보세요", "체력 준비 과정을 공유해보세요", "등산에서 기대하는 경험을 설명해보세요"]),
+            Milestone(title: "스노도니아 국립공원", description: "주변 명소", successCriteria: ["국립공원 일정을 기록해보세요", "방문할 명소를 공유해보세요", "웨일스 자연에 대한 기대를 설명해보세요"])
         ],
         .아르헨티나_부에노스아이레스_탱고_배우기: [
-            Milestone(title: "탱고 수업", description: "초급 클래스", successCriteria: ["탱고 학원을 알아봤나요?", "그룹 vs 개인 레슨을 선택했나요?", "최소 3-4회 수업을 계획했나요?"]),
-            Milestone(title: "밀롱가 체험", description: "탱고 댄스홀", successCriteria: ["밀롱가 방문을 계획했나요?", "라 보카 지구를 포함했나요?", "탱고 쇼를 예약했나요?"]),
-            Milestone(title: "부에노스아이레스 일정", description: "남미의 파리", successCriteria: ["산텔모 시장을 방문할 계획인가요?", "레콜레타 묘지를 포함했나요?", "아사도(BBQ)를 맛볼 계획인가요?"])
+            Milestone(title: "탱고 수업", description: "초급 클래스", successCriteria: ["탱고 수업 계획을 기록해보세요", "레슨 타입 선택 이유를 공유해보세요", "탱고에 대한 기대를 설명해보세요"]),
+            Milestone(title: "밀롱가 체험", description: "탱고 댄스홀", successCriteria: ["밀롱가 방문 계획을 기록해보세요", "탱고 문화 체험 계획을 공유해보세요", "아르헨티나 탱고에 대한 기대를 설명해보세요"]),
+            Milestone(title: "부에노스아이레스 일정", description: "남미의 파리", successCriteria: ["부에노스아이레스 일정을 기록해보세요", "방문할 명소를 공유해보세요", "아르헨티나 음식에 대한 기대를 설명해보세요"])
         ],
         .칠레_파타고니아_트레킹하기: [
-            Milestone(title: "토레스 델 파이네", description: "파타고니아 하이라이트", successCriteria: ["W 트레킹 vs O 서킷을 선택했나요?", "4-7일 일정을 확보했나요?", "레푸히오(산장)를 예약했나요?"]),
-            Milestone(title: "트레킹 준비", description: "장비 및 체력", successCriteria: ["트레킹 장비를 준비했나요?", "사전 체력 훈련을 했나요?", "날씨 변화에 대비했나요?"]),
-            Milestone(title: "최적 시즌", description: "11-3월 추천", successCriteria: ["여름 시즌에 방문하나요?", "푼타 아레나스에서 이동을 계획했나요?", "빙하 트레킹을 고려했나요?"])
+            Milestone(title: "토레스 델 파이네", description: "파타고니아 하이라이트", successCriteria: ["선택한 트레킹 코스를 기록해보세요", "산장 예약 과정을 공유해보세요", "파타고니아에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "트레킹 준비", description: "장비 및 체력", successCriteria: ["트레킹 장비 리스트를 기록해보세요", "체력 훈련 과정을 공유해보세요", "트레킹에서 기대하는 경험을 설명해보세요"]),
+            Milestone(title: "최적 시즌", description: "11-3월 추천", successCriteria: ["방문 시기 선택 이유를 기록해보세요", "이동 계획을 공유해보세요", "빙하 체험에 대한 기대를 설명해보세요"])
         ],
         .볼리비아_우유니_소금사막_가기: [
-            Milestone(title: "거울 효과 시즌", description: "우기(12-4월)", successCriteria: ["거울 효과를 보려면 우기에 가야해요", "3-4일 투어를 예약했나요?", "고산병에 대비했나요?"]),
-            Milestone(title: "투어 예약", description: "우유니 출발", successCriteria: ["현지 투어를 예약했나요?", "일출/일몰 투어를 포함했나요?", "별 관측 투어를 고려했나요?"]),
-            Milestone(title: "사진 준비", description: "원근법 사진", successCriteria: ["원근법 사진 소품을 준비했나요?", "삼각대를 챙겼나요?", "여분의 배터리를 준비했나요?"])
+            Milestone(title: "거울 효과 시즌", description: "우기(12-4월)", successCriteria: ["방문 시기 선택 이유를 기록해보세요", "투어 예약 과정을 공유해보세요", "고산병 대비 준비를 설명해보세요"]),
+            Milestone(title: "투어 예약", description: "우유니 출발", successCriteria: ["선택한 투어와 이유를 기록해보세요", "기대하는 체험을 공유해보세요", "우유니에서 보고 싶은 장면을 설명해보세요"]),
+            Milestone(title: "사진 준비", description: "원근법 사진", successCriteria: ["촬영 준비물을 기록해보세요", "찍고 싶은 사진을 공유해보세요", "소금사막 촬영 계획을 설명해보세요"])
         ],
         .에콰도르_갈라파고스_가기: [
-            Milestone(title: "갈라파고스 입도", description: "국립공원 입장료", successCriteria: ["입장료 100달러를 준비했나요?", "키토 또는 과야킬에서 비행기를 예약했나요?", "크루즈 vs 섬 호핑을 선택했나요?"]),
-            Milestone(title: "야생동물 관찰", description: "거북이, 이구아나", successCriteria: ["갈라파고스 거북이를 볼 수 있나요?", "블루풋 부비새를 알고 있나요?", "바다사자와 수영을 계획했나요?"]),
-            Milestone(title: "스노클링/다이빙", description: "해양 생물", successCriteria: ["스노클링 투어를 예약했나요?", "다이빙 자격증이 있나요?", "해양 이구아나를 볼 수 있어요"])
+            Milestone(title: "갈라파고스 입도", description: "국립공원 입장료", successCriteria: ["입도 준비 과정을 기록해보세요", "여행 방식 선택 이유를 공유해보세요", "갈라파고스에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "야생동물 관찰", description: "거북이, 이구아나", successCriteria: ["보고 싶은 야생동물을 기록해보세요", "관찰 계획을 공유해보세요", "자연에 대한 기대를 설명해보세요"]),
+            Milestone(title: "스노클링/다이빙", description: "해양 생물", successCriteria: ["수중 액티비티 계획을 기록해보세요", "보고 싶은 해양 생물을 공유해보세요", "갈라파고스 바다에 대한 기대를 설명해보세요"])
         ],
         .코스타리카_열대우림_탐험하기: [
-            Milestone(title: "국립공원 선택", description: "마누엘 안토니오, 몬테베르데", successCriteria: ["어느 국립공원을 방문할지 정했나요?", "캐노피 투어를 계획했나요?", "야생동물 가이드를 예약했나요?"]),
-            Milestone(title: "생태 관광", description: "나무늘보, 투칸", successCriteria: ["나무늘보를 볼 수 있는 곳을 알아봤나요?", "투칸(큰부리새)을 찾아볼 계획인가요?", "야간 정글 투어를 고려했나요?"]),
-            Milestone(title: "어드벤처", description: "래프팅, 짚라인", successCriteria: ["아레날 화산 지역을 포함했나요?", "온천을 계획했나요?", "래프팅을 예약했나요?"])
+            Milestone(title: "국립공원 선택", description: "마누엘 안토니오, 몬테베르데", successCriteria: ["선택한 국립공원을 기록해보세요", "투어 계획을 공유해보세요", "열대우림에서 기대하는 것을 설명해보세요"]),
+            Milestone(title: "생태 관광", description: "나무늘보, 투칸", successCriteria: ["보고 싶은 야생동물을 기록해보세요", "생태 투어 계획을 공유해보세요", "자연 탐험에 대한 기대를 설명해보세요"]),
+            Milestone(title: "어드벤처", description: "래프팅, 짚라인", successCriteria: ["계획한 액티비티를 기록해보세요", "어드벤처에 대한 기대를 공유해보세요", "코스타리카에서 경험하고 싶은 것을 설명해보세요"])
         ],
         .멕시코_칸쿤_세노테_가기: [
-            Milestone(title: "세노테 선택", description: "수영 가능한 석회암 동굴", successCriteria: ["이킬 세노테를 알아봤나요?", "그란 세노테를 고려했나요?", "스노클링 장비를 준비했나요?"]),
-            Milestone(title: "칸쿤 일정", description: "리조트+투어", successCriteria: ["호텔존 리조트를 예약했나요?", "치첸이트사 투어를 계획했나요?", "이슬라 무헤레스를 포함했나요?"]),
-            Milestone(title: "리비에라 마야", description: "툴룸, 플라야 델 카르멘", successCriteria: ["툴룸 유적지를 방문할 계획인가요?", "플라야 델 카르멘을 포함했나요?", "스쿠버다이빙을 고려했나요?"])
+            Milestone(title: "세노테 선택", description: "수영 가능한 석회암 동굴", successCriteria: ["방문할 세노테를 기록해보세요", "세노테에서 기대하는 것을 공유해보세요", "수영 준비를 설명해보세요"]),
+            Milestone(title: "칸쿤 일정", description: "리조트+투어", successCriteria: ["칸쿤 일정을 기록해보세요", "방문할 명소를 공유해보세요", "멕시코에서 기대하는 경험을 설명해보세요"]),
+            Milestone(title: "리비에라 마야", description: "툴룸, 플라야 델 카르멘", successCriteria: ["리비에라 마야 일정을 기록해보세요", "방문할 곳을 공유해보세요", "마야 문명에 대한 기대를 설명해보세요"])
         ],
         .쿠바_아바나_클래식_카_타기: [
-            Milestone(title: "클래식 카 투어", description: "1950년대 미국 차", successCriteria: ["클래식 카 투어를 예약했나요?", "컨버터블을 선택했나요?", "말레콘 해안도로를 포함했나요?"]),
-            Milestone(title: "올드 하바나", description: "유네스코 유산", successCriteria: ["올드 하바나 산책을 계획했나요?", "카피톨리오를 방문할 계획인가요?", "헤밍웨이 바를 포함했나요?"]),
-            Milestone(title: "쿠바 여행 준비", description: "비자 및 현금", successCriteria: ["투어리스트 카드를 준비했나요?", "현금(유로/달러)을 충분히 준비했나요?", "카사 파르티쿨라르를 예약했나요?"])
+            Milestone(title: "클래식 카 투어", description: "1950년대 미국 차", successCriteria: ["클래식 카 투어 계획을 기록해보세요", "달리고 싶은 코스를 공유해보세요", "쿠바 클래식 카에 대한 기대를 설명해보세요"]),
+            Milestone(title: "올드 하바나", description: "유네스코 유산", successCriteria: ["올드 하바나 일정을 기록해보세요", "방문할 명소를 공유해보세요", "쿠바 문화에 대한 기대를 설명해보세요"]),
+            Milestone(title: "쿠바 여행 준비", description: "비자 및 현금", successCriteria: ["여행 준비 과정을 기록해보세요", "숙소 예약 과정을 공유해보세요", "쿠바 여행 팁을 설명해보세요"])
         ],
         .자메이카_레게_페스티벌_가기: [
-            Milestone(title: "레게 축제", description: "레게 섬라이즈 등", successCriteria: ["레게 섬라이즈 일정을 확인했나요?", "밥 말리 생일 축제(2월)를 알아봤나요?", "티켓을 예매했나요?"]),
-            Milestone(title: "밥 말리 박물관", description: "킹스턴 방문", successCriteria: ["밥 말리 박물관을 계획했나요?", "트렌치타운을 포함했나요?", "자메이카 음악 역사를 공부했나요?"]),
-            Milestone(title: "자메이카 일정", description: "해변+문화", successCriteria: ["네그릴 해변을 계획했나요?", "블루 마운틴 커피 투어를 고려했나요?", "저크 치킨을 맛볼 계획인가요?"])
+            Milestone(title: "레게 축제", description: "레게 섬라이즈 등", successCriteria: ["참여할 축제를 기록해보세요", "티켓 예매 과정을 공유해보세요", "레게 음악에 대한 기대를 설명해보세요"]),
+            Milestone(title: "밥 말리 박물관", description: "킹스턴 방문", successCriteria: ["박물관 방문 계획을 기록해보세요", "레게 역사 학습 과정을 공유해보세요", "자메이카 음악 문화에 대한 기대를 설명해보세요"]),
+            Milestone(title: "자메이카 일정", description: "해변+문화", successCriteria: ["자메이카 일정을 기록해보세요", "방문할 곳을 공유해보세요", "자메이카 음식에 대한 기대를 설명해보세요"])
         ],
         .캐나다_나이아가라_폭포_보기: [
-            Milestone(title: "폭포 전망", description: "캐나다 vs 미국 측", successCriteria: ["캐나다 측이 전망이 더 좋아요", "저니 비하인드 더 폴스를 예약했나요?", "혼블로어 크루즈를 고려했나요?"]),
-            Milestone(title: "나이아가라 일정", description: "토론토에서 당일치기", successCriteria: ["토론토에서 버스를 알아봤나요?", "나이아가라 온 더 레이크를 포함했나요?", "와이너리 투어를 고려했나요?"]),
-            Milestone(title: "야경 관람", description: "조명쇼", successCriteria: ["야간 조명쇼를 볼 계획인가요?", "스카이론 타워를 고려했나요?", "불꽃놀이(여름)를 알아봤나요?"])
+            Milestone(title: "폭포 전망", description: "캐나다 vs 미국 측", successCriteria: ["캐나다 측 전망을 선택한 이유를 공유해보세요", "저니 비하인드 더 폴스 체험 소감을 기록해보세요", "혼블로어 크루즈 경험을 설명해보세요"]),
+            Milestone(title: "나이아가라 일정", description: "토론토에서 당일치기", successCriteria: ["토론토에서 이동한 방법을 기록해보세요", "나이아가라 온 더 레이크 방문 후기를 공유해보세요", "와이너리 투어 경험을 설명해보세요"]),
+            Milestone(title: "야경 관람", description: "조명쇼", successCriteria: ["야간 조명쇼를 본 감동을 기록해보세요", "스카이론 타워에서의 전망을 공유해보세요", "불꽃놀이(여름) 경험을 설명해보세요"])
         ],
         .미국_옐로스톤_국립공원_가기: [
-            Milestone(title: "옐로스톤 계획", description: "3-5일 추천", successCriteria: ["올드 페이스풀 간헐천을 포함했나요?", "그랜드 프리즈매틱을 계획했나요?", "라마 밸리 야생동물을 알아봤나요?"]),
-            Milestone(title: "숙소 예약", description: "6개월 전 필수", successCriteria: ["공원 내 롯지를 예약했나요?", "웨스트 옐로스톤 숙소를 알아봤나요?", "캠핑을 고려했나요?"]),
-            Milestone(title: "그랜드 티턴 연계", description: "근처 국립공원", successCriteria: ["그랜드 티턴을 포함했나요?", "잭슨 홀을 계획했나요?", "렌터카를 예약했나요?"])
+            Milestone(title: "옐로스톤 계획", description: "3-5일 추천", successCriteria: ["올드 페이스풀 간헐천에서의 경험을 기록해보세요", "그랜드 프리즈매틱의 색감을 본 소감을 공유해보세요", "라마 밸리에서 본 야생동물을 설명해보세요"]),
+            Milestone(title: "숙소 예약", description: "6개월 전 필수", successCriteria: ["공원 내 롯지 숙박 경험을 기록해보세요", "웨스트 옐로스톤 숙소 후기를 공유해보세요", "캠핑 경험을 설명해보세요"]),
+            Milestone(title: "그랜드 티턴 연계", description: "근처 국립공원", successCriteria: ["그랜드 티턴의 풍경을 기록해보세요", "잭슨 홀 방문 소감을 공유해보세요", "렌터카 여행의 팁을 설명해보세요"])
         ],
         .미국_요세미티_국립공원_가기: [
-            Milestone(title: "요세미티 밸리", description: "하프돔, 엘캐피탄", successCriteria: ["요세미티 폭포를 포함했나요?", "터널 뷰 포토스팟을 알고 있나요?", "하프돔 등반을 고려했나요?"]),
-            Milestone(title: "예약 시스템", description: "성수기 예약 필수", successCriteria: ["성수기엔 입장 예약이 필요해요", "숙소를 미리 예약했나요?", "글래시어 포인트를 계획했나요?"]),
-            Milestone(title: "하이킹 계획", description: "트레일 선택", successCriteria: ["미스트 트레일을 알아봤나요?", "체력에 맞는 코스를 선택했나요?", "곰 안전 수칙을 확인했나요?"])
+            Milestone(title: "요세미티 밸리", description: "하프돔, 엘캐피탄", successCriteria: ["요세미티 폭포의 웅장함을 기록해보세요", "터널 뷰에서 찍은 사진을 공유해보세요", "하프돔 등반 경험을 설명해보세요"]),
+            Milestone(title: "예약 시스템", description: "성수기 예약 필수", successCriteria: ["성수기 예약 팁을 기록해보세요", "숙소 예약 과정을 공유해보세요", "글래시어 포인트에서의 풍경을 설명해보세요"]),
+            Milestone(title: "하이킹 계획", description: "트레일 선택", successCriteria: ["미스트 트레일 경험을 기록해보세요", "선택한 코스와 그 이유를 공유해보세요", "곰 안전 수칙 준비 과정을 설명해보세요"])
         ],
         .미국_자이온_국립공원_가기: [
-            Milestone(title: "엔젤스 랜딩", description: "자이온 하이라이트", successCriteria: ["엔젤스 랜딩 허가증을 신청했나요?", "체인 구간을 알고 있나요?", "고소공포증이 있나요?"]),
-            Milestone(title: "더 내로우스", description: "강물 속 하이킹", successCriteria: ["워터 슈즈를 준비했나요?", "수위를 확인했나요?", "건기에 방문하나요?"]),
-            Milestone(title: "자이온 셔틀", description: "공원 내 이동", successCriteria: ["셔틀 시스템을 알고 있나요?", "이른 아침 출발을 계획했나요?", "2-3일 일정을 확보했나요?"])
+            Milestone(title: "엔젤스 랜딩", description: "자이온 하이라이트", successCriteria: ["엔젤스 랜딩 허가증 신청 과정을 기록해보세요", "체인 구간 통과 경험을 공유해보세요", "정상에서의 풍경을 설명해보세요"]),
+            Milestone(title: "더 내로우스", description: "강물 속 하이킹", successCriteria: ["워터 슈즈 준비와 선택 이유를 기록해보세요", "강물 속 하이킹의 느낌을 공유해보세요", "가장 인상 깊었던 협곡 구간을 설명해보세요"]),
+            Milestone(title: "자이온 셔틀", description: "공원 내 이동", successCriteria: ["셔틀 시스템 이용 팁을 기록해보세요", "이른 아침 출발의 장점을 공유해보세요", "일정 계획 과정을 설명해보세요"])
         ],
         .미국_앤틸로프_캐년하기: [
-            Milestone(title: "투어 예약", description: "나바호 가이드 필수", successCriteria: ["어퍼 vs 로워 캐년을 선택했나요?", "사진 투어를 고려했나요?", "수개월 전 예약했나요?"]),
-            Milestone(title: "빛 줄기 시즌", description: "어퍼 캐년 정오", successCriteria: ["정오 투어를 예약했나요?", "빛 줄기는 3-10월에 보여요", "삼각대 사용 가능 여부를 확인했나요?"]),
-            Milestone(title: "페이지 일정", description: "호스슈 벤드 연계", successCriteria: ["호스슈 벤드를 포함했나요?", "레이크 파월을 계획했나요?", "페이지 숙소를 예약했나요?"])
+            Milestone(title: "투어 예약", description: "나바호 가이드 필수", successCriteria: ["어퍼 vs 로워 캐년을 선택한 이유를 기록해보세요", "사진 투어 경험을 공유해보세요", "예약 과정에서 얻은 팁을 설명해보세요"]),
+            Milestone(title: "빛 줄기 시즌", description: "어퍼 캐년 정오", successCriteria: ["빛 줄기를 본 감동을 기록해보세요", "최적의 촬영 시간대 경험을 공유해보세요", "촬영 팁을 설명해보세요"]),
+            Milestone(title: "페이지 일정", description: "호스슈 벤드 연계", successCriteria: ["호스슈 벤드의 장관을 기록해보세요", "레이크 파월 방문 소감을 공유해보세요", "페이지 숙소 후기를 설명해보세요"])
         ],
         .미국_모뉴먼트_밸리하기: [
-            Milestone(title: "밸리 드라이브", description: "17마일 비포장 도로", successCriteria: ["자체 드라이브 vs 투어를 선택했나요?", "SUV/4WD가 좋아요", "2-3시간 소요를 확인했나요?"]),
-            Milestone(title: "일출/일몰", description: "포토 타임", successCriteria: ["일출 또는 일몰에 방문하나요?", "포레스트 검프 포인트를 알고 있나요?", "더 뷰 호텔을 알아봤나요?"]),
-            Milestone(title: "나바호 체험", description: "원주민 문화", successCriteria: ["나바호 가이드 투어를 고려했나요?", "나바호 타코를 맛볼 계획인가요?", "미스터리 밸리 투어를 알아봤나요?"])
+            Milestone(title: "밸리 드라이브", description: "17마일 비포장 도로", successCriteria: ["드라이브 방식 선택 이유를 기록해보세요", "비포장 도로 드라이브 경험을 공유해보세요", "전체 드라이브 소요 시간과 팁을 설명해보세요"]),
+            Milestone(title: "일출/일몰", description: "포토 타임", successCriteria: ["일출 또는 일몰의 장관을 기록해보세요", "포레스트 검프 포인트에서의 추억을 공유해보세요", "더 뷰 호텔 숙박 경험을 설명해보세요"]),
+            Milestone(title: "나바호 체험", description: "원주민 문화", successCriteria: ["나바호 가이드 투어 경험을 기록해보세요", "나바호 타코 맛 후기를 공유해보세요", "원주민 문화에서 배운 점을 설명해보세요"])
         ],
         .미국_세도나_레드록_보기: [
-            Milestone(title: "레드록 뷰포인트", description: "카테드랄 록, 벨 록", successCriteria: ["카테드랄 록 하이킹을 계획했나요?", "벨 록을 포함했나요?", "에어포트 메사 일몰을 알아봤나요?"]),
-            Milestone(title: "에너지 볼텍스", description: "세도나의 명상 스팟", successCriteria: ["볼텍스 스팟을 알고 있나요?", "명상 체험을 계획했나요?", "핑크 지프 투어를 고려했나요?"]),
-            Milestone(title: "세도나 일정", description: "2-3일 추천", successCriteria: ["업타운 세도나를 산책할 계획인가요?", "슬라이드 록 주립공원을 알아봤나요?", "예술 갤러리를 방문할 계획인가요?"])
+            Milestone(title: "레드록 뷰포인트", description: "카테드랄 록, 벨 록", successCriteria: ["카테드랄 록 하이킹 경험을 기록해보세요", "벨 록에서의 풍경을 공유해보세요", "에어포트 메사 일몰의 아름다움을 설명해보세요"]),
+            Milestone(title: "에너지 볼텍스", description: "세도나의 명상 스팟", successCriteria: ["볼텍스 스팟에서 느낀 점을 기록해보세요", "명상 체험 소감을 공유해보세요", "핑크 지프 투어 경험을 설명해보세요"]),
+            Milestone(title: "세도나 일정", description: "2-3일 추천", successCriteria: ["업타운 세도나 산책 후기를 기록해보세요", "슬라이드 록 주립공원 경험을 공유해보세요", "예술 갤러리 방문 소감을 설명해보세요"])
         ],
         .캐나다_로키산맥_기차_여행하기: [
-            Milestone(title: "기차 선택", description: "로키 마운티니어", successCriteria: ["로키 마운티니어를 알아봤나요?", "밴쿠버-밴프 루트를 선택했나요?", "2일 여정임을 알고 있나요?"]),
-            Milestone(title: "좌석 등급", description: "골드리프 vs 실버리프", successCriteria: ["골드리프(돔 카)를 고려했나요?", "식사 포함 여부를 확인했나요?", "예산을 확인했나요?"]),
-            Milestone(title: "연계 일정", description: "밴쿠버/밴프", successCriteria: ["밴쿠버 관광을 계획했나요?", "밴프에서 며칠 더 머물 계획인가요?", "레이크 루이스를 포함했나요?"])
+            Milestone(title: "기차 선택", description: "로키 마운티니어", successCriteria: ["로키 마운티니어를 선택한 이유를 기록해보세요", "선택한 루트의 하이라이트를 공유해보세요", "2일 여정의 경험을 설명해보세요"]),
+            Milestone(title: "좌석 등급", description: "골드리프 vs 실버리프", successCriteria: ["선택한 좌석 등급의 장점을 기록해보세요", "기차 내 식사 경험을 공유해보세요", "가성비 분석을 설명해보세요"]),
+            Milestone(title: "연계 일정", description: "밴쿠버/밴프", successCriteria: ["밴쿠버 관광 하이라이트를 기록해보세요", "밴프에서의 일정을 공유해보세요", "레이크 루이스의 아름다움을 설명해보세요"])
         ],
         .알래스카_빙하_크루즈_타기: [
-            Milestone(title: "알래스카 크루즈", description: "인사이드 패시지", successCriteria: ["크루즈 회사를 비교했나요?", "7-10일 일정을 선택했나요?", "글래시어 베이를 포함한 루트인가요?"]),
-            Milestone(title: "야생동물 관찰", description: "고래, 곰, 독수리", successCriteria: ["혹등고래 시즌(5-9월)에 방문하나요?", "곰 관찰 투어를 고려했나요?", "쌍안경을 준비했나요?"]),
-            Milestone(title: "기항지 투어", description: "스캐그웨이, 주노", successCriteria: ["개썰매 체험을 계획했나요?", "헬기 빙하 투어를 고려했나요?", "연어 구경을 알아봤나요?"])
+            Milestone(title: "알래스카 크루즈", description: "인사이드 패시지", successCriteria: ["선택한 크루즈 회사와 이유를 기록해보세요", "일정 계획 과정을 공유해보세요", "글래시어 베이에서의 경험을 설명해보세요"]),
+            Milestone(title: "야생동물 관찰", description: "고래, 곰, 독수리", successCriteria: ["혹등고래 관찰 경험을 기록해보세요", "곰 관찰 투어 소감을 공유해보세요", "야생동물 촬영 팁을 설명해보세요"]),
+            Milestone(title: "기항지 투어", description: "스캐그웨이, 주노", successCriteria: ["개썰매 체험 후기를 기록해보세요", "헬기 빙하 투어의 감동을 공유해보세요", "기항지별 하이라이트를 설명해보세요"])
         ],
         .하와이_마우이_화산_보기: [
-            Milestone(title: "할레아칼라 일출", description: "해발 3000m", successCriteria: ["일출 예약을 했나요?", "새벽 2-3시 출발을 계획했나요?", "방한복을 준비했나요?"]),
-            Milestone(title: "마우이 드라이브", description: "하나 로드", successCriteria: ["하나 로드 드라이브를 계획했나요?", "620개 커브를 알고 있나요?", "하루 종일 일정을 확보했나요?"]),
-            Milestone(title: "마우이 해변", description: "카아나팔리, 와일레아", successCriteria: ["스노클링 투어를 예약했나요?", "몰로키니 크레이터를 고려했나요?", "고래 관찰(11-4월)을 알아봤나요?"])
+            Milestone(title: "할레아칼라 일출", description: "해발 3000m", successCriteria: ["일출 예약 과정을 기록해보세요", "새벽 출발의 여정을 공유해보세요", "정상에서 본 일출의 감동을 설명해보세요"]),
+            Milestone(title: "마우이 드라이브", description: "하나 로드", successCriteria: ["하나 로드 드라이브의 하이라이트를 기록해보세요", "620개 커브 드라이브 경험을 공유해보세요", "도중에 들린 명소들을 설명해보세요"]),
+            Milestone(title: "마우이 해변", description: "카아나팔리, 와일레아", successCriteria: ["스노클링 투어 경험을 기록해보세요", "몰로키니 크레이터에서 본 것들을 공유해보세요", "마우이 해변의 매력을 설명해보세요"])
         ],
         .하와이_카우아이_나팔리_가기: [
-            Milestone(title: "나팔리 코스트", description: "보트, 헬기, 트레킹", successCriteria: ["보트 투어를 예약했나요?", "헬기 투어를 고려했나요?", "칼랄라우 트레일을 알아봤나요?"]),
-            Milestone(title: "칼랄라우 트레일", description: "허가 필요", successCriteria: ["11마일 트레킹을 계획한다면 허가가 필요해요", "체력에 맞는 코스를 선택했나요?", "캠핑을 고려했나요?"]),
-            Milestone(title: "카우아이 일정", description: "가든 아일랜드", successCriteria: ["와이메아 캐년을 포함했나요?", "파른 그로토를 계획했나요?", "포이푸 해변을 알아봤나요?"])
+            Milestone(title: "나팔리 코스트", description: "보트, 헬기, 트레킹", successCriteria: ["선택한 투어 방법과 이유를 기록해보세요", "나팔리 절벽의 장관을 공유해보세요", "칼랄라우 트레일 정보를 설명해보세요"]),
+            Milestone(title: "칼랄라우 트레일", description: "허가 필요", successCriteria: ["트레킹 허가 신청 과정을 기록해보세요", "선택한 코스의 특징을 공유해보세요", "트레킹 경험을 설명해보세요"]),
+            Milestone(title: "카우아이 일정", description: "가든 아일랜드", successCriteria: ["와이메아 캐년의 웅장함을 기록해보세요", "펀 그로토 방문 소감을 공유해보세요", "포이푸 해변 경험을 설명해보세요"])
         ],
         .타히티_보라보라_가기: [
-            Milestone(title: "보라보라 리조트", description: "오버워터 방갈로", successCriteria: ["오버워터 방갈로를 예약했나요?", "예산을 확인했나요? (1박 50만원+)", "타히티 경유를 계획했나요?"]),
-            Milestone(title: "라군 액티비티", description: "스노클링, 제트스키", successCriteria: ["라군 투어를 예약했나요?", "상어와 가오리 스노클링을 고려했나요?", "제트스키를 알아봤나요?"]),
-            Milestone(title: "타히티 연계", description: "파페에테 경유", successCriteria: ["타히티에서 1박을 계획했나요?", "모레아 섬을 고려했나요?", "에어 타히티를 예약했나요?"])
+            Milestone(title: "보라보라 리조트", description: "오버워터 방갈로", successCriteria: ["오버워터 방갈로 숙박 경험을 기록해보세요", "리조트 선택 기준과 비용을 공유해보세요", "타히티 경유 일정을 설명해보세요"]),
+            Milestone(title: "라군 액티비티", description: "스노클링, 제트스키", successCriteria: ["라군 투어의 아름다움을 기록해보세요", "상어와 가오리 스노클링 경험을 공유해보세요", "액티비티 후기를 설명해보세요"]),
+            Milestone(title: "타히티 연계", description: "파페에테 경유", successCriteria: ["타히티 숙박 경험을 기록해보세요", "모레아 섬 방문 여부와 소감을 공유해보세요", "항공편 예약 팁을 설명해보세요"])
         ],
         .피지_산호초_다이빙하기: [
-            Milestone(title: "다이빙 스팟", description: "소프트 코랄 수도", successCriteria: ["다이빙 자격증이 있나요?", "베카 라군을 알아봤나요?", "상어 다이빙을 고려했나요?"]),
-            Milestone(title: "피지 리조트", description: "섬 선택", successCriteria: ["나디에서 이동을 계획했나요?", "야사와 제도를 고려했나요?", "올인클루시브를 알아봤나요?"]),
-            Milestone(title: "피지 체험", description: "전통 문화", successCriteria: ["카바 세레모니를 체험할 계획인가요?", "빌리지 투어를 고려했나요?", "피지 시간에 적응할 준비가 됐나요?"])
+            Milestone(title: "다이빙 스팟", description: "소프트 코랄 수도", successCriteria: ["다이빙 자격증 취득 과정을 기록해보세요", "베카 라군에서의 다이빙 경험을 공유해보세요", "상어 다이빙 소감을 설명해보세요"]),
+            Milestone(title: "피지 리조트", description: "섬 선택", successCriteria: ["나디에서 이동한 방법을 기록해보세요", "선택한 섬과 그 이유를 공유해보세요", "리조트 숙박 경험을 설명해보세요"]),
+            Milestone(title: "피지 체험", description: "전통 문화", successCriteria: ["카바 세레모니 체험 소감을 기록해보세요", "빌리지 투어 경험을 공유해보세요", "피지의 여유로움을 설명해보세요"])
         ],
         .뉴칼레도니아_천국_해변_가기: [
-            Milestone(title: "일 데 팽", description: "천연 수영장", successCriteria: ["일 데 팽 섬을 알아봤나요?", "피신 나튀렐을 포함했나요?", "누메아에서 국내선을 예약했나요?"]),
-            Milestone(title: "누메아", description: "프랑스령 수도", successCriteria: ["안스 바타 해변을 계획했나요?", "프랑스 요리를 맛볼 계획인가요?", "수족관을 고려했나요?"]),
-            Milestone(title: "섬 호핑", description: "여러 섬 방문", successCriteria: ["리프티 섬을 알아봤나요?", "아메데 등대를 고려했나요?", "스노클링 장비를 준비했나요?"])
+            Milestone(title: "일 데 팽", description: "천연 수영장", successCriteria: ["일 데 팽 섬의 아름다움을 기록해보세요", "피신 나튀렐 수영 경험을 공유해보세요", "국내선 이동 과정을 설명해보세요"]),
+            Milestone(title: "누메아", description: "프랑스령 수도", successCriteria: ["안스 바타 해변 경험을 기록해보세요", "프랑스 요리 맛집을 공유해보세요", "누메아 관광 소감을 설명해보세요"]),
+            Milestone(title: "섬 호핑", description: "여러 섬 방문", successCriteria: ["방문한 섬들의 특징을 기록해보세요", "아메데 등대 방문 소감을 공유해보세요", "스노클링 경험을 설명해보세요"])
         ],
         .호주_시드니_오페라하우스_보기: [
-            Milestone(title: "오페라하우스 투어", description: "내부 또는 공연", successCriteria: ["가이드 투어를 예약했나요?", "공연 티켓을 알아봤나요?", "야경 사진을 계획했나요?"]),
-            Milestone(title: "시드니 일정", description: "하버 브릿지 포함", successCriteria: ["하버 브릿지 클라임을 고려했나요?", "본다이 비치를 포함했나요?", "더 록스를 산책할 계획인가요?"]),
-            Milestone(title: "시드니 주변", description: "블루 마운틴", successCriteria: ["블루 마운틴 당일치기를 계획했나요?", "시닉 레일웨이를 알아봤나요?", "세 자매 바위를 포함했나요?"])
+            Milestone(title: "오페라하우스 투어", description: "내부 또는 공연", successCriteria: ["가이드 투어 경험을 기록해보세요", "공연 관람 소감을 공유해보세요", "야경 사진 촬영 팁을 설명해보세요"]),
+            Milestone(title: "시드니 일정", description: "하버 브릿지 포함", successCriteria: ["하버 브릿지 클라임 경험을 기록해보세요", "본다이 비치의 매력을 공유해보세요", "더 록스 산책 후기를 설명해보세요"]),
+            Milestone(title: "시드니 주변", description: "블루 마운틴", successCriteria: ["블루 마운틴의 절경을 기록해보세요", "시닉 레일웨이 체험을 공유해보세요", "세 자매 바위의 전설을 설명해보세요"])
         ],
         .호주_울룰루_일출_보기: [
-            Milestone(title: "울룰루 일출/일몰", description: "아웃백의 심장", successCriteria: ["일출 전망대를 알아봤나요?", "일몰 샴페인 투어를 고려했나요?", "별 관측을 계획했나요?"]),
-            Milestone(title: "울룰루 베이스 워크", description: "10km 산책로", successCriteria: ["베이스 워크를 계획했나요?", "문화 센터를 포함했나요?", "등반은 금지되어 있어요"]),
-            Milestone(title: "카타 츄타", description: "바람의 계곡", successCriteria: ["올가스(카타 츄타)를 포함했나요?", "바람의 계곡 워크를 알아봤나요?", "에어스 록 리조트를 예약했나요?"])
+            Milestone(title: "울룰루 일출/일몰", description: "아웃백의 심장", successCriteria: ["울룰루 일출의 감동을 기록해보세요", "일몰 샴페인 투어 경험을 공유해보세요", "별 관측 소감을 설명해보세요"]),
+            Milestone(title: "울룰루 베이스 워크", description: "10km 산책로", successCriteria: ["베이스 워크 경험을 기록해보세요", "문화 센터에서 배운 점을 공유해보세요", "원주민 문화 존중의 의미를 설명해보세요"]),
+            Milestone(title: "카타 츄타", description: "바람의 계곡", successCriteria: ["카타 츄타의 웅장함을 기록해보세요", "바람의 계곡 워크 경험을 공유해보세요", "숙소와 일정 팁을 설명해보세요"])
         ],
         .호주_화이트헤븐_비치_가기: [
-            Milestone(title: "화이트헤븐 접근", description: "에얼리 비치 출발", successCriteria: ["보트 투어를 예약했나요?", "수상비행기를 고려했나요?", "힐 인렛 전망대를 포함했나요?"]),
-            Milestone(title: "휘트선데이 제도", description: "74개 섬", successCriteria: ["해밀턴 아일랜드를 고려했나요?", "스노클링을 계획했나요?", "하트 리프를 보고 싶나요?"]),
-            Milestone(title: "숙소 선택", description: "에얼리 비치 또는 섬", successCriteria: ["에얼리 비치 숙소를 알아봤나요?", "리조트 섬을 고려했나요?", "요트 숙박을 알아봤나요?"])
+            Milestone(title: "화이트헤븐 접근", description: "에얼리 비치 출발", successCriteria: ["선택한 투어 방법을 기록해보세요", "화이트헤븐 비치의 모래를 공유해보세요", "힐 인렛 전망대 경험을 설명해보세요"]),
+            Milestone(title: "휘트선데이 제도", description: "74개 섬", successCriteria: ["방문한 섬들의 특징을 기록해보세요", "스노클링 경험을 공유해보세요", "하트 리프 관람 소감을 설명해보세요"]),
+            Milestone(title: "숙소 선택", description: "에얼리 비치 또는 섬", successCriteria: ["선택한 숙소와 이유를 기록해보세요", "숙박 경험을 공유해보세요", "여행 팁을 설명해보세요"])
         ],
         .뉴질랜드_와이토모_반딧불_동굴_탐험하기: [
-            Milestone(title: "반딧불 동굴", description: "보트 투어", successCriteria: ["와이토모 글로우웜 동굴을 예약했나요?", "보트를 타고 반딧불을 볼 수 있어요", "오클랜드에서 당일치기가 가능해요"]),
-            Milestone(title: "어드벤처 옵션", description: "블랙워터 래프팅", successCriteria: ["블랙워터 래프팅을 고려했나요?", "압세일링을 알아봤나요?", "체력에 맞는 투어를 선택했나요?"]),
-            Milestone(title: "루토루아 연계", description: "지열 지대", successCriteria: ["로토루아 온천을 계획했나요?", "마오리 문화 체험을 포함했나요?", "간헐천을 보고 싶나요?"])
+            Milestone(title: "반딧불 동굴", description: "보트 투어", successCriteria: ["글로우웜 동굴의 신비로움을 기록해보세요", "보트에서 본 반딧불 경험을 공유해보세요", "동굴 투어 소감을 설명해보세요"]),
+            Milestone(title: "어드벤처 옵션", description: "블랙워터 래프팅", successCriteria: ["블랙워터 래프팅 체험을 기록해보세요", "선택한 어드벤처의 스릴을 공유해보세요", "투어 준비 과정을 설명해보세요"]),
+            Milestone(title: "로토루아 연계", description: "지열 지대", successCriteria: ["로토루아 온천 경험을 기록해보세요", "마오리 문화 체험 소감을 공유해보세요", "간헐천 관람 후기를 설명해보세요"])
         ],
         .뉴질랜드_테카포_별_관측하기: [
-            Milestone(title: "다크 스카이 보호구역", description: "세계 최고 별 관측지", successCriteria: ["마운트 존 천문대를 예약했나요?", "신월 기간에 방문하나요?", "맑은 날씨를 기대하고 있나요?"]),
-            Milestone(title: "테카포 호수", description: "밀키 블루 호수", successCriteria: ["선한 목자의 교회를 방문할 계획인가요?", "루핀 꽃 시즌(11-12월)에 가나요?", "호수 주변 산책을 계획했나요?"]),
-            Milestone(title: "카메라 준비", description: "별 사진 촬영", successCriteria: ["삼각대를 준비했나요?", "넓은 화각 렌즈가 있나요?", "장노출 촬영을 연습했나요?"])
+            Milestone(title: "다크 스카이 보호구역", description: "세계 최고 별 관측지", successCriteria: ["마운트 존 천문대 경험을 기록해보세요", "별 관측 당시 날씨와 상황을 공유해보세요", "밤하늘의 감동을 설명해보세요"]),
+            Milestone(title: "테카포 호수", description: "밀키 블루 호수", successCriteria: ["선한 목자의 교회 방문 소감을 기록해보세요", "테카포 호수의 색감을 공유해보세요", "호수 주변 풍경을 설명해보세요"]),
+            Milestone(title: "카메라 준비", description: "별 사진 촬영", successCriteria: ["촬영 장비 준비 과정을 기록해보세요", "찍은 별 사진을 공유해보세요", "촬영 팁을 설명해보세요"])
         ],
         .뉴질랜드_퀸즈타운_번지점프하기: [
-            Milestone(title: "번지 스팟 선택", description: "카와라우, 네비스, 레지", successCriteria: ["카와라우 브릿지(43m)는 원조예요", "네비스(134m)는 가장 높아요", "레지(47m)는 시내에 있어요"]),
-            Milestone(title: "예약 및 준비", description: "AJ 해켓 번지", successCriteria: ["AJ 해켓에서 예약했나요?", "콤보 패키지를 고려했나요?", "영상 촬영 옵션을 추가했나요?"]),
-            Milestone(title: "퀸즈타운 액티비티", description: "모험의 수도", successCriteria: ["스카이다이빙을 고려했나요?", "제트보트를 알아봤나요?", "루지를 계획했나요?"])
+            Milestone(title: "번지 스팟 선택", description: "카와라우, 네비스, 레지", successCriteria: ["선택한 번지 스팟과 이유를 기록해보세요", "뛰어내리기 전 느낌을 공유해보세요", "번지점프 경험을 설명해보세요"]),
+            Milestone(title: "예약 및 준비", description: "AJ 해켓 번지", successCriteria: ["예약 과정을 기록해보세요", "선택한 패키지와 옵션을 공유해보세요", "촬영된 영상 소감을 설명해보세요"]),
+            Milestone(title: "퀸즈타운 액티비티", description: "모험의 수도", successCriteria: ["체험한 액티비티를 기록해보세요", "가장 스릴 있었던 경험을 공유해보세요", "퀸즈타운의 매력을 설명해보세요"])
         ],
         .프랑스령_폴리네시아_모레아_가기: [
-            Milestone(title: "모레아 도착", description: "타히티에서 페리/비행기", successCriteria: ["타히티에서 페리(30분)를 알아봤나요?", "경비행기(10분)를 고려했나요?", "3-4일 일정을 확보했나요?"]),
-            Milestone(title: "벨베데레 전망대", description: "하트 모양 섬", successCriteria: ["벨베데레 전망대를 계획했나요?", "파인애플 농장을 포함했나요?", "렌터카 또는 스쿠터를 예약했나요?"]),
-            Milestone(title: "라군 액티비티", description: "스노클링, 돌고래", successCriteria: ["돌고래 투어를 예약했나요?", "상어&가오리 스노클링을 계획했나요?", "카약을 고려했나요?"])
+            Milestone(title: "모레아 도착", description: "타히티에서 페리/비행기", successCriteria: ["선택한 이동 방법과 이유를 기록해보세요", "모레아 도착 첫인상을 공유해보세요", "일정 계획 과정을 설명해보세요"]),
+            Milestone(title: "벨베데레 전망대", description: "하트 모양 섬", successCriteria: ["벨베데레 전망대에서의 뷰를 기록해보세요", "파인애플 농장 방문 경험을 공유해보세요", "섬 이동 방법을 설명해보세요"]),
+            Milestone(title: "라군 액티비티", description: "스노클링, 돌고래", successCriteria: ["돌고래 투어 경험을 기록해보세요", "스노클링에서 본 해양생물을 공유해보세요", "모레아 라군의 아름다움을 설명해보세요"])
         ],
         .미얀마_바간_사원_방문하기: [
-            Milestone(title: "바간 일출/일몰", description: "2000개 사원", successCriteria: ["일출 명소를 알아봤나요?", "열기구 투어를 고려했나요?", "3일 이상 일정을 확보했나요?"]),
-            Milestone(title: "사원 탐방", description: "전기자전거 추천", successCriteria: ["이바이크를 렌탈할 계획인가요?", "아난다 사원을 포함했나요?", "쉐지곤 파고다를 계획했나요?"]),
-            Milestone(title: "미얀마 여행 정보", description: "현재 상황 확인", successCriteria: ["미얀마 여행 가능 여부를 확인했나요?", "비자를 준비했나요?", "현금을 충분히 준비했나요?"])
+            Milestone(title: "바간 일출/일몰", description: "2000개 사원", successCriteria: ["일출 명소에서의 경험을 기록해보세요", "열기구 투어 소감을 공유해보세요", "바간에서의 일정을 설명해보세요"]),
+            Milestone(title: "사원 탐방", description: "전기자전거 추천", successCriteria: ["이바이크로 돌아본 경험을 기록해보세요", "인상 깊었던 사원을 공유해보세요", "사원 탐방 팁을 설명해보세요"]),
+            Milestone(title: "미얀마 여행 정보", description: "현재 상황 확인", successCriteria: ["여행 준비 과정을 기록해보세요", "비자 발급 경험을 공유해보세요", "미얀마 여행 팁을 설명해보세요"])
         ],
         .라오스_루앙프라방_여행하기: [
-            Milestone(title: "탁발 의식", description: "새벽 승려 행렬", successCriteria: ["새벽 탁발 의식을 볼 계획인가요?", "적절한 복장을 준비했나요?", "조용히 관람할 준비가 됐나요?"]),
-            Milestone(title: "루앙프라방 일정", description: "유네스코 유산 도시", successCriteria: ["왕궁 박물관을 포함했나요?", "왓 씨엥통을 계획했나요?", "야시장을 방문할 계획인가요?"]),
-            Milestone(title: "주변 명소", description: "꽝시 폭포", successCriteria: ["꽝시 폭포를 계획했나요?", "수영 준비물을 챙겼나요?", "팍우 동굴을 고려했나요?"])
+            Milestone(title: "탁발 의식", description: "새벽 승려 행렬", successCriteria: ["탁발 의식에서 느낀 경건함을 기록해보세요", "새벽 풍경을 공유해보세요", "관람 시 지킨 에티켓을 설명해보세요"]),
+            Milestone(title: "루앙프라방 일정", description: "유네스코 유산 도시", successCriteria: ["왕궁 박물관 관람 소감을 기록해보세요", "왓 씨엥통의 아름다움을 공유해보세요", "야시장 경험을 설명해보세요"]),
+            Milestone(title: "주변 명소", description: "꽝시 폭포", successCriteria: ["꽝시 폭포의 아름다움을 기록해보세요", "수영 경험을 공유해보세요", "팍우 동굴 방문 소감을 설명해보세요"])
         ],
         .스리랑카_시기리야_바위_보기: [
-            Milestone(title: "시기리야 등반", description: "사자 바위 요새", successCriteria: ["1200개 계단을 오를 체력이 있나요?", "아침 일찍 방문을 계획했나요?", "고소공포증이 있나요?"]),
-            Milestone(title: "피두랑갈라", description: "시기리야 전경 명소", successCriteria: ["피두랑갈라 일출을 고려했나요?", "시기리야 전체 뷰를 볼 수 있어요", "두 곳 모두 방문을 계획했나요?"]),
-            Milestone(title: "스리랑카 일정", description: "문화 삼각지대", successCriteria: ["담불라 석굴을 포함했나요?", "폴론나루와를 계획했나요?", "캔디를 고려했나요?"])
+            Milestone(title: "시기리야 등반", description: "사자 바위 요새", successCriteria: ["1200개 계단 등반 경험을 기록해보세요", "정상에서 본 풍경을 공유해보세요", "등반 팁을 설명해보세요"]),
+            Milestone(title: "피두랑갈라", description: "시기리야 전경 명소", successCriteria: ["피두랑갈라 일출의 감동을 기록해보세요", "시기리야 전경 사진을 공유해보세요", "두 곳 비교 후기를 설명해보세요"]),
+            Milestone(title: "스리랑카 일정", description: "문화 삼각지대", successCriteria: ["담불라 석굴 관람 소감을 기록해보세요", "폴론나루와 유적 경험을 공유해보세요", "캔디 방문 후기를 설명해보세요"])
         ],
         .몰디브_물고기와_수영하기: [
-            Milestone(title: "하우스 리프", description: "리조트 선택 기준", successCriteria: ["하우스 리프가 좋은 리조트를 선택했나요?", "스노클링 장비를 준비했나요?", "물고기 도감을 봤나요?"]),
-            Milestone(title: "스노클링 투어", description: "만타레이, 거북이", successCriteria: ["만타레이 스노클링을 예약했나요?", "거북이 포인트를 알아봤나요?", "고래상어 투어를 고려했나요?"]),
-            Milestone(title: "수중 촬영", description: "방수 카메라", successCriteria: ["고프로 또는 수중카메라를 준비했나요?", "방수 케이스를 확인했나요?", "산호 보호 선크림을 준비했나요?"])
+            Milestone(title: "하우스 리프", description: "리조트 선택 기준", successCriteria: ["선택한 리조트와 그 이유를 기록해보세요", "하우스 리프에서 본 물고기를 공유해보세요", "스노클링 경험을 설명해보세요"]),
+            Milestone(title: "스노클링 투어", description: "만타레이, 거북이", successCriteria: ["만타레이와의 만남을 기록해보세요", "거북이 관찰 경험을 공유해보세요", "해양생물과의 교감을 설명해보세요"]),
+            Milestone(title: "수중 촬영", description: "방수 카메라", successCriteria: ["촬영 장비 준비 과정을 기록해보세요", "촬영한 수중 사진을 공유해보세요", "촬영 팁을 설명해보세요"])
         ],
         .부탄_타이거_네스트_방문하기: [
-            Milestone(title: "탁상 사원 트레킹", description: "4-6시간 왕복", successCriteria: ["트레킹 체력을 준비했나요?", "고도 3120m에 적응했나요?", "말을 타고 올라갈 수 있어요"]),
-            Milestone(title: "부탄 입국", description: "일일 관광료 필수", successCriteria: ["공인 여행사를 통해 예약했나요?", "일일 관광료(약 $200)를 알고 있나요?", "비자를 신청했나요?"]),
-            Milestone(title: "부탄 일정", description: "파로, 팀푸, 푸나카", successCriteria: ["파로 종(요새)을 포함했나요?", "팀푸 관광을 계획했나요?", "푸나카 종을 고려했나요?"])
+            Milestone(title: "탁상 사원 트레킹", description: "4-6시간 왕복", successCriteria: ["트레킹 과정과 느낌을 기록해보세요", "탁상 사원에서의 감동을 공유해보세요", "고도 적응 경험을 설명해보세요"]),
+            Milestone(title: "부탄 입국", description: "일일 관광료 필수", successCriteria: ["부탄 입국 준비 과정을 기록해보세요", "여행사 선택 기준을 공유해보세요", "비자 발급 과정을 설명해보세요"]),
+            Milestone(title: "부탄 일정", description: "파로, 팀푸, 푸나카", successCriteria: ["파로 종(요새) 방문 소감을 기록해보세요", "팀푸에서의 경험을 공유해보세요", "푸나카 종의 아름다움을 설명해보세요"])
         ],
         .네팔_안나푸르나_트레킹하기: [
-            Milestone(title: "트레킹 코스 선택", description: "ABC, 서킷, 푼힐", successCriteria: ["안나푸르나 베이스캠프(ABC)를 계획했나요?", "푼힐은 짧은 코스예요", "체력에 맞는 코스를 선택했나요?"]),
-            Milestone(title: "허가증 준비", description: "TIMS, ACAP", successCriteria: ["TIMS 카드를 발급받았나요?", "ACAP 허가증을 준비했나요?", "포카라에서 발급 가능해요"]),
-            Milestone(title: "장비 및 가이드", description: "포터, 가이드 고용", successCriteria: ["가이드/포터를 고용할 계획인가요?", "트레킹 장비를 준비했나요?", "고산병 예방약을 준비했나요?"])
+            Milestone(title: "트레킹 코스 선택", description: "ABC, 서킷, 푼힐", successCriteria: ["선택한 코스와 이유를 기록해보세요", "코스별 특징과 경험을 공유해보세요", "체력 준비 과정을 설명해보세요"]),
+            Milestone(title: "허가증 준비", description: "TIMS, ACAP", successCriteria: ["허가증 발급 과정을 기록해보세요", "포카라에서의 준비 과정을 공유해보세요", "필요 서류를 설명해보세요"]),
+            Milestone(title: "장비 및 가이드", description: "포터, 가이드 고용", successCriteria: ["가이드/포터와의 경험을 기록해보세요", "트레킹 장비 후기를 공유해보세요", "고산병 대처 경험을 설명해보세요"])
         ],
         .파키스탄_훈자_계곡_가기: [
-            Milestone(title: "훈자 밸리", description: "카라코람 하이웨이", successCriteria: ["카라코람 하이웨이를 알고 있나요?", "이슬라마바드에서 비행기를 고려했나요?", "길기트 경유를 계획했나요?"]),
-            Milestone(title: "훈자 명소", description: "알티트, 발티트 요새", successCriteria: ["발티트 요새를 포함했나요?", "이글스 네스트 뷰포인트를 계획했나요?", "라카포시 산을 볼 수 있어요"]),
-            Milestone(title: "여행 시기", description: "4-10월 추천", successCriteria: ["벚꽃 시즌(3-4월)을 고려했나요?", "가을 단풍(10월)을 알아봤나요?", "현지 상황을 확인했나요?"])
+            Milestone(title: "훈자 밸리", description: "카라코람 하이웨이", successCriteria: ["카라코람 하이웨이 드라이브 경험을 기록해보세요", "이동 방법과 과정을 공유해보세요", "훈자 도착 첫인상을 설명해보세요"]),
+            Milestone(title: "훈자 명소", description: "알티트, 발티트 요새", successCriteria: ["발티트 요새 방문 소감을 기록해보세요", "이글스 네스트 뷰포인트의 경치를 공유해보세요", "라카포시 산을 본 감동을 설명해보세요"]),
+            Milestone(title: "여행 시기", description: "4-10월 추천", successCriteria: ["방문 시기와 그 이유를 기록해보세요", "계절별 풍경을 공유해보세요", "여행 팁을 설명해보세요"])
         ],
         .우즈베키스탄_사마르칸트_여행하기: [
-            Milestone(title: "레기스탄 광장", description: "실크로드의 보석", successCriteria: ["레기스탄 광장을 방문할 계획인가요?", "야간 라이트업을 볼 계획인가요?", "3개의 마드라사를 알고 있나요?"]),
-            Milestone(title: "사마르칸트 일정", description: "2-3일 추천", successCriteria: ["샤히진다를 포함했나요?", "비비하눔 모스크를 계획했나요?", "시압 바자르를 방문할 계획인가요?"]),
-            Milestone(title: "실크로드 연계", description: "부하라, 히바", successCriteria: ["부하라를 포함했나요?", "히바를 계획했나요?", "기차 또는 택시 이동을 예약했나요?"])
+            Milestone(title: "레기스탄 광장", description: "실크로드의 보석", successCriteria: ["레기스탄 광장의 웅장함을 기록해보세요", "야간 라이트업의 감동을 공유해보세요", "3개 마드라사의 특징을 설명해보세요"]),
+            Milestone(title: "사마르칸트 일정", description: "2-3일 추천", successCriteria: ["샤히진다의 푸른 타일 장식을 기록해보세요", "비비하눔 모스크 방문 소감을 공유해보세요", "시압 바자르 경험을 설명해보세요"]),
+            Milestone(title: "실크로드 연계", description: "부하라, 히바", successCriteria: ["부하라 방문 경험을 기록해보세요", "히바 고대 도시 소감을 공유해보세요", "도시 간 이동 방법을 설명해보세요"])
         ],
         .조지아_와인_투어하기: [
-            Milestone(title: "카헤티 지역", description: "조지아 와인의 고향", successCriteria: ["카헤티 와이너리 투어를 예약했나요?", "크베브리(전통 항아리) 와인을 알고 있나요?", "시그나기를 포함했나요?"]),
-            Milestone(title: "트빌리시", description: "수도 관광", successCriteria: ["구시가지를 산책할 계획인가요?", "유황 온천을 체험할 계획인가요?", "케이블카를 타볼 계획인가요?"]),
-            Milestone(title: "음식 체험", description: "힝칼리, 하차푸리", successCriteria: ["힝칼리(만두)를 맛볼 계획인가요?", "하차푸리(치즈빵)를 알고 있나요?", "슈프라(잔치)를 체험하고 싶나요?"])
+            Milestone(title: "카헤티 지역", description: "조지아 와인의 고향", successCriteria: ["카헤티 와이너리 투어 경험을 기록해보세요", "크베브리(전통 항아리) 와인 시음 소감을 공유해보세요", "시그나기의 매력을 설명해보세요"]),
+            Milestone(title: "트빌리시", description: "수도 관광", successCriteria: ["구시가지 산책 후기를 기록해보세요", "유황 온천 체험 소감을 공유해보세요", "케이블카에서 본 풍경을 설명해보세요"]),
+            Milestone(title: "음식 체험", description: "힝칼리, 하차푸리", successCriteria: ["힝칼리(만두) 맛 후기를 기록해보세요", "하차푸리(치즈빵) 맛 경험을 공유해보세요", "슈프라(잔치) 체험을 설명해보세요"])
         ],
         .아르메니아_세반_호수_가기: [
-            Milestone(title: "세반 호수", description: "아르메니아의 진주", successCriteria: ["세바나방크 수도원을 방문할 계획인가요?", "호수에서 수영을 계획했나요?", "예레반에서 당일치기가 가능해요"]),
-            Milestone(title: "예레반 관광", description: "수도 일정", successCriteria: ["캐스케이드를 포함했나요?", "아라랏산 전망을 볼 수 있어요", "제노사이드 기념관을 계획했나요?"]),
-            Milestone(title: "수도원 투어", description: "게하르드, 가르니", successCriteria: ["게하르드 수도원을 포함했나요?", "가르니 신전을 계획했나요?", "코르비랍 수도원을 알아봤나요?"])
+            Milestone(title: "세반 호수", description: "아르메니아의 진주", successCriteria: ["세바나방크 수도원 방문 소감을 기록해보세요", "호수에서의 경험을 공유해보세요", "세반 호수의 아름다움을 설명해보세요"]),
+            Milestone(title: "예레반 관광", description: "수도 일정", successCriteria: ["캐스케이드 방문 후기를 기록해보세요", "아라랏산 전망을 본 감동을 공유해보세요", "제노사이드 기념관 방문 소감을 설명해보세요"]),
+            Milestone(title: "수도원 투어", description: "게하르드, 가르니", successCriteria: ["게하르드 수도원의 신비로움을 기록해보세요", "가르니 신전 방문 경험을 공유해보세요", "코르비랍 수도원 소감을 설명해보세요"])
         ],
         .아제르바이잔_바쿠_불의_땅_가기: [
-            Milestone(title: "야나르다그", description: "영원히 타오르는 불", successCriteria: ["야나르다그(불타는 산)를 계획했나요?", "아테쉬가(배화교 사원)를 포함했나요?", "머드 볼케이노를 고려했나요?"]),
-            Milestone(title: "바쿠 구시가지", description: "유네스코 유산", successCriteria: ["이체리셰헤르를 산책할 계획인가요?", "메이든 타워를 포함했나요?", "시르반샤 궁전을 계획했나요?"]),
-            Milestone(title: "현대 바쿠", description: "플레임 타워", successCriteria: ["플레임 타워 야경을 볼 계획인가요?", "헤이다르 알리예프 센터를 포함했나요?", "카스피해를 볼 수 있어요"])
+            Milestone(title: "야나르다그", description: "영원히 타오르는 불", successCriteria: ["야나르다그(불타는 산) 방문 경험을 기록해보세요", "아테쉬가(배화교 사원)에서 느낀 점을 공유해보세요", "머드 볼케이노 체험을 설명해보세요"]),
+            Milestone(title: "바쿠 구시가지", description: "유네스코 유산", successCriteria: ["이체리셰헤르 산책 후기를 기록해보세요", "메이든 타워 방문 소감을 공유해보세요", "시르반샤 궁전의 역사를 설명해보세요"]),
+            Milestone(title: "현대 바쿠", description: "플레임 타워", successCriteria: ["플레임 타워 야경의 감동을 기록해보세요", "헤이다르 알리예프 센터 건축미를 공유해보세요", "바쿠의 대비되는 매력을 설명해보세요"])
         ]
     ]
 }
