@@ -2,7 +2,7 @@
 //  TreasureKeyView.swift
 //  BucketClimb
 //
-//  꿈 대장간 - 열쇠와 보물상자 메타포 UI
+//  내 창고 - 열쇠와 보물상자 메타포 UI
 //
 
 import SwiftUI
@@ -45,23 +45,44 @@ extension View {
 
 // MARK: - Color Extensions
 extension Color {
-    // Primary - 열쇠/금속 느낌
-    static let keyGold = Color(red: 1.0, green: 0.84, blue: 0.0)
-    static let keySilver = Color(red: 0.75, green: 0.75, blue: 0.75)
-    static let keyBronze = Color(red: 0.8, green: 0.5, blue: 0.2)
+    // 시스템 색상으로 대체 (컨셉 색상 제거)
+    static let keyGold = Color.yellow
+    static let keySilver = Color.secondary
+    static let keyBronze = Color.yellow
+    static let boxWood = Color.brown
+    static let boxDark = Color.brown.opacity(0.7)
+    static let treasureGlow = Color.purple
+    static let magicSparkle = Color.orange
 
-    // Secondary - 상자/나무 느낌
-    static let boxWood = Color(red: 0.55, green: 0.27, blue: 0.07)
-    static let boxDark = Color(red: 0.36, green: 0.23, blue: 0.1)
+    // 시스템 적응형 배경 (라이트/다크 모드 지원)
+    static var forgeBackgroundAdaptive: Color {
+        Color(UIColor.systemGroupedBackground)
+    }
 
-    // Accent - 보물/마법 느낌
-    static let treasureGlow = Color(red: 0.61, green: 0.35, blue: 0.71)
-    static let magicSparkle = Color(red: 0.95, green: 0.61, blue: 0.07)
+    static var oceanBackgroundAdaptive: Color {
+        Color(UIColor.systemGroupedBackground)
+    }
 
-    // Background
-    static let forgeBackground = Color(red: 0.1, green: 0.1, blue: 0.18)
-    static let oceanBackground = Color(red: 0.12, green: 0.23, blue: 0.37)
-    static let warehouseBackground = Color(red: 0.18, green: 0.18, blue: 0.18)
+    static var warehouseBackgroundAdaptive: Color {
+        Color(UIColor.systemGroupedBackground)
+    }
+
+    static var treasureBackgroundAdaptive: Color {
+        Color(UIColor.systemGroupedBackground)
+    }
+
+    static var cardBackgroundAdaptive: Color {
+        Color(UIColor.secondarySystemGroupedBackground)
+    }
+
+    static var cardBorderAdaptive: Color {
+        Color(UIColor.separator)
+    }
+
+    // Legacy - 기존 코드 호환용
+    static let forgeBackground = Color(UIColor.systemBackground)
+    static let oceanBackground = Color(UIColor.systemBackground)
+    static let warehouseBackground = Color(UIColor.systemBackground)
 }
 
 // MARK: - Data Models
@@ -191,19 +212,21 @@ struct TreasureBox: Identifiable, Codable {
 
 struct CompletedBox: Identifiable, Codable {
     let id: UUID
-    let box: TreasureBox
+    var box: TreasureBox
     let completedAt: Date
     var photos: [String]
     var memo: String
     var rating: Int
+    var isAbandoned: Bool  // 포기한 꿈인지 여부
 
-    init(id: UUID = UUID(), box: TreasureBox, completedAt: Date = Date(), photos: [String] = [], memo: String = "", rating: Int = 5) {
+    init(id: UUID = UUID(), box: TreasureBox, completedAt: Date = Date(), photos: [String] = [], memo: String = "", rating: Int = 5, isAbandoned: Bool = false) {
         self.id = id
         self.box = box
         self.completedAt = completedAt
         self.photos = photos
         self.memo = memo
         self.rating = rating
+        self.isAbandoned = isAbandoned
     }
 }
 
@@ -234,17 +257,8 @@ class TreasureBoxViewModel: ObservableObject {
     func syncFromBucketList() {
         guard let viewModel = bucketListViewModel else { return }
 
-        // 버킷에 담긴 상태 -> 꿈의 바다 (inOcean)
-        var myBoxes = viewModel.myBucketLists.map { item in
-            convertToTreasureBox(item, status: .inOcean)
-        }
-
-        // 내 버킷이 비어있으면 랜덤 추천 상자 추가
-        if myBoxes.isEmpty {
-            let randomBoxes = generateRandomRecommendedBoxes()
-            myBoxes.append(contentsOf: randomBoxes)
-        }
-        oceanBoxes = myBoxes
+        // 꿈의 바다에는 항상 랜덤 추천 상자만 표시
+        oceanBoxes = generateRandomRecommendedBoxes()
 
         // 등반 중 상태 -> 내 창고 (forging)
         warehouseBoxes = viewModel.climbingBucketLists.map { item in
@@ -582,6 +596,138 @@ class TreasureBoxViewModel: ObservableObject {
             syncFromBucketList()
         }
     }
+
+    // 사용자 정의 꿈 추가
+    func addCustomBox(_ box: TreasureBox) {
+        guard let viewModel = bucketListViewModel else {
+            // 독립 모드
+            var newBox = box
+            newBox.status = .forging
+            warehouseBoxes.append(newBox)
+            return
+        }
+
+        // BucketListViewModel에 추가하고 바로 등반 시작
+        let category = convertBoxCategoryToBucketCategory(box.category)
+
+        // 마일스톤 생성
+        let milestones = box.teeth.map { tooth in
+            Milestone(
+                id: tooth.id,
+                title: tooth.title,
+                description: "",
+                successCriteria: []
+            )
+        }
+
+        viewModel.addBucketItemWithMilestones(
+            title: box.title,
+            category: category,
+            milestones: milestones
+        )
+
+        // 방금 추가한 아이템 찾아서 등반 시작
+        if let newItem = viewModel.bucketItems.first(where: { $0.title == box.title }) {
+            viewModel.startClimbing(item: newItem)
+        }
+
+        syncFromBucketList()
+    }
+
+    // 꿈 포기 (보물창고에 미완료 상태로 보관)
+    func abandonBox(_ box: TreasureBox) {
+        // 창고에서 제거
+        warehouseBoxes.removeAll { $0.id == box.id }
+
+        // 보물창고에 포기 상태로 추가
+        var abandonedBox = box
+        abandonedBox.status = .opened
+        let completedBox = CompletedBox(
+            box: abandonedBox,
+            completedAt: Date(),
+            isAbandoned: true
+        )
+        completedBoxes.insert(completedBox, at: 0)
+
+        // BucketListViewModel에서도 상태 변경
+        if let viewModel = bucketListViewModel,
+           let item = viewModel.bucketItems.first(where: { $0.id == box.id }) {
+            viewModel.abandonBucket(item: item)
+        }
+
+        saveAbandonedBoxes()
+    }
+
+    // 포기한 꿈 다시 진행하기
+    func resumeBox(_ completedBox: CompletedBox) {
+        // 보물창고에서 제거
+        completedBoxes.removeAll { $0.id == completedBox.id }
+
+        // 창고로 복귀
+        var resumedBox = completedBox.box
+        resumedBox.status = .forging
+        warehouseBoxes.append(resumedBox)
+
+        // BucketListViewModel에서도 상태 변경
+        if let viewModel = bucketListViewModel,
+           let item = viewModel.bucketItems.first(where: { $0.id == completedBox.box.id }) {
+            viewModel.startClimbing(item: item)
+        } else if let viewModel = bucketListViewModel {
+            // 아이템이 없으면 새로 추가
+            let category = convertBoxCategoryToBucketCategory(completedBox.box.category)
+            let milestones = completedBox.box.teeth.map { tooth in
+                Milestone(
+                    id: tooth.id,
+                    title: tooth.title,
+                    description: "",
+                    successCriteria: [],
+                    isCompleted: tooth.isCompleted
+                )
+            }
+            viewModel.addBucketItemWithMilestones(
+                title: completedBox.box.title,
+                category: category,
+                milestones: milestones
+            )
+            if let newItem = viewModel.bucketItems.first(where: { $0.title == completedBox.box.title }) {
+                viewModel.startClimbing(item: newItem)
+            }
+        }
+
+        saveAbandonedBoxes()
+        syncFromBucketList()
+    }
+
+    // 포기한 꿈 완전 삭제
+    func permanentlyDeleteBox(_ completedBox: CompletedBox) {
+        completedBoxes.removeAll { $0.id == completedBox.id }
+
+        // BucketListViewModel에서도 삭제
+        if let viewModel = bucketListViewModel,
+           let item = viewModel.bucketItems.first(where: { $0.id == completedBox.box.id }) {
+            viewModel.deleteBucket(item: item)
+        }
+
+        saveAbandonedBoxes()
+    }
+
+    // 포기한 상자 저장/로드
+    private func saveAbandonedBoxes() {
+        let abandonedBoxes = completedBoxes.filter { $0.isAbandoned }
+        if let encoded = try? JSONEncoder().encode(abandonedBoxes) {
+            UserDefaults.standard.set(encoded, forKey: "AbandonedBoxes")
+        }
+    }
+
+    func loadAbandonedBoxes() {
+        if let data = UserDefaults.standard.data(forKey: "AbandonedBoxes"),
+           let decoded = try? JSONDecoder().decode([CompletedBox].self, from: data) {
+            // 기존 completedBoxes에 포기한 상자 추가 (중복 제거)
+            let existingIds = Set(completedBoxes.map { $0.id })
+            let newAbandonedBoxes = decoded.filter { !existingIds.contains($0.id) }
+            completedBoxes.append(contentsOf: newAbandonedBoxes)
+        }
+    }
 }
 
 // MARK: - Main Tab View (fullScreenCover용)
@@ -597,7 +743,7 @@ struct TreasureKeyMainView: View {
         TabView(selection: $selectedTab) {
             TreasureWarehouseViewWithClose(dismiss: dismiss)
                 .tabItem {
-                    Label("대장간", systemImage: "hammer.fill")
+                    Label("내 창고", systemImage: "hammer.fill")
                 }
                 .tag(0)
 
@@ -625,7 +771,7 @@ struct TreasureKeyMainView: View {
     }
 }
 
-// fullScreenCover용 대장간 (닫기 버튼 포함)
+// fullScreenCover용 내 창고 (닫기 버튼 포함)
 struct TreasureWarehouseViewWithClose: View {
     @EnvironmentObject var viewModel: TreasureBoxViewModel
     let dismiss: DismissAction
@@ -664,7 +810,7 @@ struct TreasureWarehouseViewWithClose: View {
                     .padding()
                 }
             }
-            .navigationTitle("대장간")
+            .navigationTitle("내 창고")
             .navigationBarTitleDisplayMode(.large)
             .navigationBarTitleColor(.white)
             .background(Color.warehouseBackground.ignoresSafeArea())
@@ -821,7 +967,7 @@ struct KeyProgressView: View {
     }
 }
 
-// MARK: - Large Key View (대장간용 - 가로 방향)
+// MARK: - Large Key View (내 창고용 - 가로 방향)
 
 struct LargeKeyView: View {
     let teeth: [Tooth]
@@ -1324,7 +1470,7 @@ struct ToothView: View {
 struct TreasureOceanView: View {
     @EnvironmentObject var viewModel: TreasureBoxViewModel
     @State private var selectedBox: TreasureBox?
-    @State private var showDetail = false
+    @State private var showingSettings = false
 
     var body: some View {
         NavigationStack {
@@ -1334,7 +1480,6 @@ struct TreasureOceanView: View {
                         OceanBoxCard(box: box)
                             .onTapGesture {
                                 selectedBox = box
-                                showDetail = true
                             }
                     }
                 }
@@ -1342,21 +1487,28 @@ struct TreasureOceanView: View {
             }
             .background(
                 ZStack {
-                    LinearGradient(
-                        colors: [.oceanBackground, Color(red: 0.05, green: 0.15, blue: 0.3)],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                    WaveBackground()
+                    Color.oceanBackgroundAdaptive
+                    WaveBackgroundAdaptive()
                 }
                 .ignoresSafeArea()
             )
             .navigationTitle("꿈의 바다")
             .navigationBarTitleDisplayMode(.large)
-            .sheet(isPresented: $showDetail) {
-                if let box = selectedBox {
-                    OceanBoxDetailSheet(box: box)
-                        .environmentObject(viewModel)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { showingSettings = true }) {
+                        Image(systemName: "gearshape")
+                            .font(.system(size: 18, weight: .semibold))
+                    }
+                }
+            }
+            .sheet(item: $selectedBox) { box in
+                OceanBoxDetailSheet(box: box)
+                    .environmentObject(viewModel)
+            }
+            .sheet(isPresented: $showingSettings) {
+                NavigationStack {
+                    SettingsView()
                 }
             }
         }
@@ -1395,6 +1547,40 @@ struct WaveBackground: View {
     }
 }
 
+struct WaveBackgroundAdaptive: View {
+    @Environment(\.colorScheme) var colorScheme
+
+    var body: some View {
+        TimelineView(.animation) { timeline in
+            Canvas { context, size in
+                let phase = timeline.date.timeIntervalSinceReferenceDate * 0.5
+                let waveColor = colorScheme == .dark ? Color.white : Color.blue
+
+                for i in 0..<3 {
+                    var path = Path()
+                    let amplitude: CGFloat = 20 - CGFloat(i) * 5
+                    let frequency: CGFloat = 0.02 + CGFloat(i) * 0.005
+                    let yOffset = size.height * 0.3 + CGFloat(i) * 50
+
+                    path.move(to: CGPoint(x: 0, y: yOffset))
+
+                    for x in stride(from: 0, to: size.width, by: 1) {
+                        let y = yOffset + sin(x * frequency + phase + CGFloat(i)) * amplitude
+                        path.addLine(to: CGPoint(x: x, y: y))
+                    }
+
+                    path.addLine(to: CGPoint(x: size.width, y: size.height))
+                    path.addLine(to: CGPoint(x: 0, y: size.height))
+                    path.closeSubpath()
+
+                    let opacity = colorScheme == .dark ? (0.03 - Double(i) * 0.01) : (0.08 - Double(i) * 0.02)
+                    context.fill(path, with: .color(waveColor.opacity(opacity)))
+                }
+            }
+        }
+    }
+}
+
 struct OceanBoxCard: View {
     let box: TreasureBox
     @State private var floating = false
@@ -1412,7 +1598,7 @@ struct OceanBoxCard: View {
                         )
                     )
                     .frame(width: 60, height: 50)
-                    .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 3)
+                    .shadow(color: .black.opacity(0.15), radius: 5, x: 0, y: 3)
 
                 Image(systemName: "lock.fill")
                     .font(.system(size: 20))
@@ -1425,7 +1611,7 @@ struct OceanBoxCard: View {
                 Text(box.title)
                     .font(.subheadline)
                     .fontWeight(.semibold)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                     .lineLimit(2)
                     .multilineTextAlignment(.center)
 
@@ -1435,7 +1621,7 @@ struct OceanBoxCard: View {
                     Text(box.category.rawValue)
                         .font(.caption2)
                 }
-                .foregroundColor(.white.opacity(0.7))
+                .foregroundColor(.secondary)
 
                 // 필요한 톱니 개수
                 HStack(spacing: 2) {
@@ -1444,18 +1630,19 @@ struct OceanBoxCard: View {
                     Text("\(box.teeth.count)개 필요")
                         .font(.caption2)
                 }
-                .foregroundColor(.keyGold.opacity(0.8))
+                .foregroundColor(.keyGold)
             }
         }
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white.opacity(0.1))
+                .fill(Color.cardBackgroundAdaptive)
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.white.opacity(0.2), lineWidth: 1)
+                        .stroke(Color.cardBorderAdaptive, lineWidth: 1)
                 )
         )
+        .shadow(color: Color.black.opacity(0.08), radius: 6, x: 0, y: 2)
         .onAppear {
             floating = true
         }
@@ -1470,14 +1657,14 @@ struct OceanBoxDetailSheet: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.oceanBackground.ignoresSafeArea()
+                Color.oceanBackgroundAdaptive.ignoresSafeArea()
 
                 ScrollView {
                     VStack(spacing: 24) {
                         // 상자 아이콘
                         ZStack {
                             Circle()
-                                .fill(Color.boxWood.opacity(0.3))
+                                .fill(Color.boxWood.opacity(0.2))
                                 .frame(width: 120, height: 120)
 
                             Image(systemName: "shippingbox.fill")
@@ -1490,7 +1677,7 @@ struct OceanBoxDetailSheet: View {
                             Text(box.title)
                                 .font(.title2)
                                 .fontWeight(.bold)
-                                .foregroundColor(.white)
+                                .foregroundColor(.primary)
 
                             HStack {
                                 Image(systemName: box.category.icon)
@@ -1504,7 +1691,7 @@ struct OceanBoxDetailSheet: View {
                         if !box.description.isEmpty {
                             Text(box.description)
                                 .font(.body)
-                                .foregroundColor(.white.opacity(0.8))
+                                .foregroundColor(.secondary)
                                 .multilineTextAlignment(.center)
                                 .padding(.horizontal)
                         }
@@ -1522,17 +1709,17 @@ struct OceanBoxDetailSheet: View {
                                         .frame(width: 24)
 
                                     Text(tooth.title)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(.primary)
 
                                     Spacer()
                                 }
                                 .padding()
-                                .background(Color.white.opacity(0.1))
+                                .background(Color.cardBackgroundAdaptive)
                                 .cornerRadius(10)
                             }
                         }
                         .padding()
-                        .background(Color.black.opacity(0.2))
+                        .background(Color(UIColor.secondarySystemBackground))
                         .cornerRadius(16)
                         .padding(.horizontal)
 
@@ -1546,7 +1733,7 @@ struct OceanBoxDetailSheet: View {
                                 Text("내 창고로 가져오기")
                                     .fontWeight(.semibold)
                             }
-                            .foregroundColor(.forgeBackground)
+                            .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(Color.keyGold)
@@ -1571,11 +1758,12 @@ struct OceanBoxDetailSheet: View {
     }
 }
 
-// MARK: - Warehouse View (대장간)
+// MARK: - Warehouse View (내 창고)
 
 struct TreasureWarehouseView: View {
     @EnvironmentObject var viewModel: TreasureBoxViewModel
     @State private var selectedBox: TreasureBox?
+    @State private var showingAddSheet = false
     @State private var showingSettings = false
 
     var body: some View {
@@ -1585,16 +1773,30 @@ struct TreasureWarehouseView: View {
                     VStack(spacing: 16) {
                         Image(systemName: "hammer")
                             .font(.system(size: 60))
-                            .foregroundColor(.gray)
+                            .foregroundColor(.secondary)
 
                         Text("제작 중인 열쇠가 없어요")
                             .font(.headline)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.secondary)
 
-                        Text("꿈의 바다에서 상자를 가져와 열쇠를 만들어보세요")
+                        Text("새 꿈을 추가하거나\n꿈의 바다에서 상자를 가져와보세요")
                             .font(.subheadline)
-                            .foregroundColor(.gray.opacity(0.7))
+                            .foregroundColor(.secondary.opacity(0.7))
                             .multilineTextAlignment(.center)
+
+                        Button(action: { showingAddSheet = true }) {
+                            HStack {
+                                Image(systemName: "plus.circle.fill")
+                                Text("새 꿈 추가하기")
+                            }
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 24)
+                            .padding(.vertical, 12)
+                            .background(Color.accentColor)
+                            .cornerRadius(12)
+                        }
+                        .padding(.top, 8)
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal, 40)
@@ -1611,110 +1813,237 @@ struct TreasureWarehouseView: View {
                     .padding()
                 }
             }
-            .navigationTitle("대장간")
+            .navigationTitle("내 창고")
             .navigationBarTitleDisplayMode(.large)
-            .navigationBarTitleColor(.white)
-            .background(Color.warehouseBackground.ignoresSafeArea())
+            .background(Color.warehouseBackgroundAdaptive.ignoresSafeArea())
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { showingSettings = true }) {
-                        Image(systemName: "gearshape.fill")
-                            .font(.system(size: 20))
-                            .foregroundColor(.keyGold)
+                    HStack(spacing: 16) {
+                        Button(action: { showingAddSheet = true }) {
+                            Image(systemName: "plus")
+                                .font(.system(size: 18, weight: .semibold))
+                        }
+                        Button(action: { showingSettings = true }) {
+                            Image(systemName: "gearshape")
+                                .font(.system(size: 18, weight: .semibold))
+                        }
                     }
                 }
             }
+            .sheet(isPresented: $showingAddSheet) {
+                AddNewDreamSheet()
+                    .environmentObject(viewModel)
+            }
             .sheet(isPresented: $showingSettings) {
-                SettingsView()
+                NavigationStack {
+                    SettingsView()
+                }
             }
         }
+    }
+}
+
+// MARK: - 새 꿈 추가 시트
+struct AddNewDreamSheet: View {
+    @EnvironmentObject var viewModel: TreasureBoxViewModel
+    @Environment(\.dismiss) var dismiss
+
+    @State private var title = ""
+    @State private var selectedCategory: BoxCategory = .travel
+    @State private var milestones: [String] = [""]
+
+    var isValid: Bool {
+        !title.trimmingCharacters(in: .whitespaces).isEmpty &&
+        milestones.contains { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
+    }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    TextField("어떤 꿈인가요?", text: $title)
+                } header: {
+                    Text("꿈 제목")
+                }
+
+                Section {
+                    Picker("카테고리", selection: $selectedCategory) {
+                        ForEach(BoxCategory.allCases, id: \.self) { category in
+                            HStack {
+                                Image(systemName: category.icon)
+                                Text(category.rawValue)
+                            }
+                            .tag(category)
+                        }
+                    }
+                } header: {
+                    Text("분류")
+                }
+
+                Section {
+                    ForEach(milestones.indices, id: \.self) { index in
+                        HStack {
+                            TextField("단계 \(index + 1)", text: $milestones[index])
+
+                            if milestones.count > 1 {
+                                Button(action: {
+                                    milestones.remove(at: index)
+                                }) {
+                                    Image(systemName: "minus.circle.fill")
+                                        .foregroundColor(.red)
+                                }
+                                .buttonStyle(BorderlessButtonStyle())
+                            }
+                        }
+                    }
+
+                    Button(action: {
+                        milestones.append("")
+                    }) {
+                        HStack {
+                            Image(systemName: "plus.circle.fill")
+                                .foregroundColor(.green)
+                            Text("단계 추가")
+                        }
+                    }
+                } header: {
+                    Text("이루기 위한 단계들")
+                } footer: {
+                    Text("꿈을 이루기 위해 해야 할 일들을 단계별로 적어보세요")
+                }
+            }
+            .navigationTitle("새 꿈 추가")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("취소") {
+                        dismiss()
+                    }
+                }
+
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("추가") {
+                        addNewDream()
+                        dismiss()
+                    }
+                    .fontWeight(.semibold)
+                    .disabled(!isValid)
+                }
+            }
+        }
+    }
+
+    private func addNewDream() {
+        let validMilestones = milestones
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .filter { !$0.isEmpty }
+
+        let teeth = validMilestones.map { milestoneTitle in
+            Tooth(
+                title: milestoneTitle,
+                category: .skill
+            )
+        }
+
+        let newBox = TreasureBox(
+            title: title.trimmingCharacters(in: .whitespaces),
+            description: "",
+            category: selectedCategory,
+            teeth: teeth,
+            status: .forging
+        )
+
+        viewModel.addCustomBox(newBox)
     }
 }
 
 struct WarehouseBoxCard: View {
     let box: TreasureBox
 
+    var statusText: String {
+        if box.isKeyComplete {
+            return "완료"
+        } else if box.progress > 0 {
+            return "진행중"
+        } else {
+            return "시작전"
+        }
+    }
+
+    var statusColor: Color {
+        if box.isKeyComplete {
+            return .green
+        } else if box.progress > 0 {
+            return .blue
+        } else {
+            return .secondary
+        }
+    }
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            // 상단: 상자 정보
+        VStack(alignment: .leading, spacing: 12) {
+            // 상단: 제목과 진행률
             HStack(spacing: 16) {
-                // 상자 아이콘
-                ZStack {
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(
-                            LinearGradient(
-                                colors: [.boxWood, .boxDark],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                        .frame(width: 56, height: 48)
-
-                    Image(systemName: box.isKeyComplete ? "lock.open.fill" : "lock.fill")
-                        .font(.system(size: 20))
-                        .foregroundColor(box.isKeyComplete ? .green : .keyGold)
-                }
-
                 VStack(alignment: .leading, spacing: 4) {
                     Text(box.title)
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(.primary)
+                        .lineLimit(2)
 
-                    HStack {
-                        Image(systemName: box.category.icon)
-                        Text(box.category.rawValue)
-                    }
-                    .font(.caption)
-                    .foregroundColor(box.category.color)
+                    Text(box.category.rawValue)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
                 }
 
                 Spacer()
 
-                // 진행률
-                VStack {
+                VStack(alignment: .trailing, spacing: 4) {
                     Text("\(Int(box.progress * 100))%")
                         .font(.title3)
                         .fontWeight(.bold)
-                        .foregroundColor(.keyGold)
+                        .foregroundColor(statusColor)
 
-                    Text(box.isKeyComplete ? "완성!" : "제작중")
-                        .font(.caption2)
-                        .foregroundColor(.gray)
+                    Text(statusText)
+                        .font(.caption)
+                        .foregroundColor(statusColor)
                 }
             }
 
             // 열쇠 진행 시각화
             KeyProgressView(teeth: box.teeth, showLabels: false, size: .large)
-
-            // 마지막 작업
-            HStack {
-                Image(systemName: "clock")
-                    .font(.caption)
-                Text("마지막 작업: 오늘")
-                    .font(.caption)
-            }
-            .foregroundColor(.gray)
         }
         .padding()
         .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color.black.opacity(0.3))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(box.isKeyComplete ? Color.keyGold.opacity(0.5) : Color.gray.opacity(0.3), lineWidth: 1)
-                )
+            ZStack {
+                // 배경 이미지 (더 진하게)
+                if let imageName = box.imageName, !imageName.isEmpty {
+                    Image(imageName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                }
+
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.cardBackgroundAdaptive.opacity(box.imageName != nil ? 0.5 : 1.0))
+            }
+            .clipped()
         )
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.cardBorderAdaptive, lineWidth: 1)
+        )
+        .shadow(color: Color.black.opacity(0.08), radius: 8, x: 0, y: 2)
     }
 }
 
-// MARK: - Forge View (대장간)
+// MARK: - Forge View (내 창고)
 
 struct ForgeView: View {
     let box: TreasureBox
     @EnvironmentObject var viewModel: TreasureBoxViewModel
     @EnvironmentObject var bucketListViewModel: BucketListViewModel
     @State private var showUnlocking = false
-    @State private var isKeyExpanded = false
+    @State private var showDeleteAlert = false
     @Environment(\.dismiss) var dismiss
 
     var currentBox: TreasureBox {
@@ -1727,13 +2056,9 @@ struct ForgeView: View {
 
     var body: some View {
         ZStack {
-            // 대장간 배경
-            LinearGradient(
-                colors: [.forgeBackground, Color(red: 0.15, green: 0.1, blue: 0.1)],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea()
+            // 내 창고 배경
+            Color.forgeBackgroundAdaptive
+                .ignoresSafeArea()
 
             ScrollView {
                 VStack(spacing: 24) {
@@ -1742,7 +2067,7 @@ struct ForgeView: View {
                         Text(currentBox.title)
                             .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
 
                         HStack {
                             Image(systemName: currentBox.category.icon)
@@ -1763,49 +2088,6 @@ struct ForgeView: View {
                             .scaleEffect(x: 1, y: 2, anchor: .center)
                             .padding(.horizontal, 40)
                     }
-
-                    // 열쇠 섹션 (접기/펼치기)
-                    VStack(spacing: 0) {
-                        // 헤더 버튼
-                        Button(action: {
-                            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                                isKeyExpanded.toggle()
-                            }
-                        }) {
-                            HStack {
-                                Image(systemName: "key.fill")
-                                    .foregroundColor(.keyGold)
-                                Text("열쇠 보기")
-                                    .font(.headline)
-                                    .foregroundColor(.white)
-                                Spacer()
-                                Image(systemName: isKeyExpanded ? "chevron.up" : "chevron.down")
-                                    .foregroundColor(.gray)
-                            }
-                            .padding()
-                            .background(Color.black.opacity(0.3))
-                            .cornerRadius(isKeyExpanded ? 16 : 16)
-                        }
-
-                        // 열쇠 뷰 (펼쳤을 때만 표시)
-                        if isKeyExpanded {
-                            VStack(spacing: 16) {
-                                // 열쇠 시각화
-                                LargeKeyView(teeth: currentBox.teeth, progress: currentBox.progress)
-                                    .padding(.vertical, 20)
-
-                                // 불 효과 (열쇠 바로 아래)
-                                ForgeFireEffect()
-                                    .frame(height: 60)
-                                    .opacity(0.7)
-                            }
-                            .padding(.bottom, 16)
-                            .background(Color.black.opacity(0.2))
-                            .cornerRadius(16)
-                            .transition(.opacity.combined(with: .scale(scale: 0.95)))
-                        }
-                    }
-                    .padding(.horizontal)
 
                     // 현재 진행 중인 단계 (하나만 표시)
                     CurrentStepSection(
@@ -1856,11 +2138,30 @@ struct ForgeView: View {
                 }
             }
         }
-        .navigationTitle("대장간")
+        .navigationTitle("내 창고")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbarBackground(.visible, for: .navigationBar)
-        .toolbarBackground(Color.forgeBackground, for: .navigationBar)
-        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu {
+                    Button(role: .destructive, action: {
+                        showDeleteAlert = true
+                    }) {
+                        Label("이 꿈 포기하기", systemImage: "trash")
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                }
+            }
+        }
+        .alert("꿈을 포기할까요?", isPresented: $showDeleteAlert) {
+            Button("취소", role: .cancel) { }
+            Button("포기하기", role: .destructive) {
+                viewModel.abandonBox(currentBox)
+                dismiss()
+            }
+        } message: {
+            Text("'\(currentBox.title)' 꿈을 보물창고에 보관합니다. 나중에 다시 시작하거나 완전히 삭제할 수 있어요.")
+        }
         .fullScreenCover(isPresented: $showUnlocking) {
             UnlockingView(box: currentBox) {
                 viewModel.openBox(currentBox)
@@ -1918,11 +2219,11 @@ struct CurrentStepSection: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("지금 해야 할 것")
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(.primary)
 
                     Text("\(completedCount)/\(box.teeth.count) 완료")
                         .font(.caption)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.secondary)
                 }
 
                 Spacer()
@@ -1995,8 +2296,9 @@ struct CurrentStepSection: View {
             }
         }
         .padding()
-        .background(Color.black.opacity(0.3))
+        .background(Color.cardBackgroundAdaptive)
         .cornerRadius(16)
+        .shadow(color: Color.black.opacity(0.08), radius: 8, x: 0, y: 2)
         .sheet(isPresented: $showAllSteps) {
             AllStepsListView(
                 box: box,
@@ -2105,7 +2407,7 @@ struct CurrentStepCard: View {
             Text(tooth.title)
                 .font(.title3)
                 .fontWeight(.semibold)
-                .foregroundColor(.white)
+                .foregroundColor(.primary)
 
             // 체크리스트 질문이 있으면
             if let question = currentQuestion {
@@ -2119,7 +2421,7 @@ struct CurrentStepCard: View {
                         GeometryReader { geo in
                             ZStack(alignment: .leading) {
                                 RoundedRectangle(cornerRadius: 2)
-                                    .fill(Color.white.opacity(0.1))
+                                    .fill(Color.secondary.opacity(0.2))
                                     .frame(height: 4)
 
                                 RoundedRectangle(cornerRadius: 2)
@@ -2133,10 +2435,10 @@ struct CurrentStepCard: View {
                     // 질문
                     Text(question)
                         .font(.body)
-                        .foregroundColor(.white.opacity(0.9))
+                        .foregroundColor(.primary)
                         .padding()
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(Color.white.opacity(0.05))
+                        .background(Color(UIColor.secondarySystemBackground))
                         .cornerRadius(12)
 
                     // 답변 입력 필드
@@ -2145,9 +2447,9 @@ struct CurrentStepCard: View {
                             TextField("내 답변...", text: $userAnswer, axis: .vertical)
                                 .textFieldStyle(.plain)
                                 .padding()
-                                .background(Color.white.opacity(0.1))
+                                .background(Color(UIColor.secondarySystemBackground))
                                 .cornerRadius(10)
-                                .foregroundColor(.white)
+                                .foregroundColor(.primary)
                                 .lineLimit(2...4)
 
                             // 사진 선택 영역
@@ -2218,7 +2520,7 @@ struct CurrentStepCard: View {
                                 }
                                 .font(.subheadline)
                                 .fontWeight(.semibold)
-                                .foregroundColor(.forgeBackground)
+                                .foregroundColor(.white)
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 14)
                                 .background(
@@ -2243,10 +2545,10 @@ struct CurrentStepCard: View {
                                 Text("기록하기")
                             }
                             .font(.subheadline)
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 14)
-                            .background(Color.white.opacity(0.15))
+                            .background(Color(UIColor.secondarySystemBackground))
                             .cornerRadius(12)
                         }
                     }
@@ -2256,7 +2558,7 @@ struct CurrentStepCard: View {
                 if let desc = milestone?.description, !desc.isEmpty {
                     Text(desc)
                         .font(.subheadline)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.secondary)
                 }
 
                 Button(action: onSkipToComplete) {
@@ -2266,7 +2568,7 @@ struct CurrentStepCard: View {
                     }
                     .font(.subheadline)
                     .fontWeight(.semibold)
-                    .foregroundColor(.forgeBackground)
+                    .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)
                     .background(
@@ -2283,7 +2585,7 @@ struct CurrentStepCard: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.white.opacity(0.05))
+                .fill(Color(UIColor.tertiarySystemBackground))
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(Color.keyGold.opacity(0.3), lineWidth: 1)
@@ -2303,11 +2605,11 @@ struct AllStepsCompletedCard: View {
             Text("모든 준비가 완료되었어요!")
                 .font(.title3)
                 .fontWeight(.semibold)
-                .foregroundColor(.white)
+                .foregroundColor(.primary)
 
             Text("이제 상자를 열 수 있어요")
                 .font(.subheadline)
-                .foregroundColor(.gray)
+                .foregroundColor(.secondary)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 32)
@@ -2353,12 +2655,9 @@ struct AllStepsListView: View {
                     .padding()
                 }
             }
-            .background(Color.forgeBackground.ignoresSafeArea())
+            .background(Color.forgeBackgroundAdaptive.ignoresSafeArea())
             .navigationTitle("전체 단계")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(.visible, for: .navigationBar)
-            .toolbarBackground(Color.forgeBackground, for: .navigationBar)
-            .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("닫기") { dismiss() }
@@ -2385,7 +2684,7 @@ struct ProgressHeader: View {
             HStack {
                 Text("\(completedCount)/\(box.teeth.count) 단계 완료")
                     .font(.subheadline)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
 
                 Spacer()
 
@@ -2399,8 +2698,9 @@ struct ProgressHeader: View {
                 .scaleEffect(x: 1, y: 1.5, anchor: .center)
         }
         .padding()
-        .background(Color.black.opacity(0.3))
+        .background(Color.cardBackgroundAdaptive)
         .cornerRadius(16)
+        .shadow(color: Color.black.opacity(0.08), radius: 6, x: 0, y: 2)
     }
 }
 
@@ -2421,7 +2721,7 @@ struct StepListRow: View {
                 // 단계 번호/체크
                 ZStack {
                     Circle()
-                        .fill(tooth.isCompleted ? Color.green : (isCurrentStep ? Color.keyGold : Color.gray.opacity(0.3)))
+                        .fill(tooth.isCompleted ? Color.green : (isCurrentStep ? Color.keyGold : Color.secondary.opacity(0.3)))
                         .frame(width: 32, height: 32)
 
                     if tooth.isCompleted {
@@ -2432,7 +2732,7 @@ struct StepListRow: View {
                         Text("\(stepNumber)")
                             .font(.subheadline)
                             .fontWeight(.bold)
-                            .foregroundColor(isCurrentStep ? .forgeBackground : .white)
+                            .foregroundColor(isCurrentStep ? .white : .primary)
                     }
                 }
 
@@ -2440,13 +2740,13 @@ struct StepListRow: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(tooth.title)
                         .font(.body)
-                        .foregroundColor(tooth.isCompleted ? .gray : .white)
+                        .foregroundColor(tooth.isCompleted ? .secondary : .primary)
                         .strikethrough(tooth.isCompleted)
 
                     if let milestone = milestone, !milestone.description.isEmpty {
                         Text(milestone.description)
                             .font(.caption)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.secondary)
                     }
                 }
 
@@ -2461,7 +2761,7 @@ struct StepListRow: View {
                     }) {
                         Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                             .font(.caption)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.secondary)
                             .padding(8)
                     }
                 }
@@ -2470,19 +2770,19 @@ struct StepListRow: View {
                 Button(action: onToggle) {
                     Image(systemName: tooth.isCompleted ? "arrow.uturn.backward" : "checkmark")
                         .font(.caption)
-                        .foregroundColor(tooth.isCompleted ? .gray : .keyGold)
+                        .foregroundColor(tooth.isCompleted ? .secondary : .keyGold)
                         .padding(8)
-                        .background(Color.white.opacity(0.1))
+                        .background(Color(UIColor.secondarySystemBackground))
                         .cornerRadius(8)
                 }
             }
             .padding()
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(isCurrentStep ? Color.keyGold.opacity(0.1) : Color.white.opacity(0.05))
+                    .fill(isCurrentStep ? Color.keyGold.opacity(0.1) : Color.cardBackgroundAdaptive)
                     .overlay(
                         RoundedRectangle(cornerRadius: 12)
-                            .stroke(isCurrentStep ? Color.keyGold.opacity(0.3) : Color.clear, lineWidth: 1)
+                            .stroke(isCurrentStep ? Color.keyGold.opacity(0.3) : Color.cardBorderAdaptive, lineWidth: 1)
                     )
             )
 
@@ -2497,13 +2797,13 @@ struct StepListRow: View {
                                 .padding(.top, 5)
                             Text(criteria)
                                 .font(.caption)
-                                .foregroundColor(.white.opacity(0.7))
+                                .foregroundColor(.secondary)
                         }
                     }
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Color.white.opacity(0.03))
+                .background(Color(UIColor.secondarySystemBackground))
                 .cornerRadius(12)
                 .padding(.top, 4)
             }
@@ -2558,14 +2858,14 @@ struct ForgeNotesSection: View {
                     .foregroundColor(.keyGold)
                 Text("내 기록")
                     .font(.headline)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
 
                 Spacer()
 
                 if !records.isEmpty {
                     Text("\(records.count)개")
                         .font(.caption)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.secondary)
                 }
             }
 
@@ -2574,15 +2874,15 @@ struct ForgeNotesSection: View {
                 VStack(spacing: 8) {
                     Image(systemName: "pencil.and.list.clipboard")
                         .font(.system(size: 24))
-                        .foregroundColor(.gray.opacity(0.5))
+                        .foregroundColor(.secondary.opacity(0.5))
 
                     Text("아직 기록이 없어요")
                         .font(.subheadline)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.secondary)
 
                     Text("질문에 답하면 여기에 저장돼요")
                         .font(.caption)
-                        .foregroundColor(.gray.opacity(0.7))
+                        .foregroundColor(.secondary.opacity(0.7))
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 20)
@@ -2613,8 +2913,9 @@ struct ForgeNotesSection: View {
             }
         }
         .padding()
-        .background(Color.black.opacity(0.3))
+        .background(Color.cardBackgroundAdaptive)
         .cornerRadius(16)
+        .shadow(color: Color.black.opacity(0.08), radius: 8, x: 0, y: 2)
         .sheet(isPresented: $showAllRecords) {
             AllRecordsView(records: records, itemTitle: item.title)
         }
@@ -3166,8 +3467,17 @@ struct UnlockingView: View {
 
 struct TreasureTreasureView: View {
     @EnvironmentObject var viewModel: TreasureBoxViewModel
+    @State private var showingSettings = false
 
-    private let treasureBackground = Color(red: 0.15, green: 0.1, blue: 0.05)
+    // 완료된 꿈 (성공적으로 달성)
+    var completedDreams: [CompletedBox] {
+        viewModel.completedBoxes.filter { !$0.isAbandoned }
+    }
+
+    // 포기한 꿈 (나중에 다시 시작 가능)
+    var abandonedDreams: [CompletedBox] {
+        viewModel.completedBoxes.filter { $0.isAbandoned }
+    }
 
     var body: some View {
         NavigationStack {
@@ -3180,36 +3490,191 @@ struct TreasureTreasureView: View {
 
                         Text("아직 열린 상자가 없어요")
                             .font(.headline)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.secondary)
 
                         Text("열쇠를 완성하고 상자를 열어보세요!")
                             .font(.subheadline)
-                            .foregroundColor(.gray.opacity(0.7))
+                            .foregroundColor(.secondary.opacity(0.7))
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.top, 100)
                 } else {
                     LazyVStack(spacing: 16) {
-                        ForEach(viewModel.completedBoxes) { completed in
-                            TreasureCard(completedBox: completed)
+                        // 완료된 꿈 섹션
+                        if !completedDreams.isEmpty {
+                            Section {
+                                ForEach(completedDreams) { completed in
+                                    TreasureCard(completedBox: completed)
+                                }
+                            } header: {
+                                HStack {
+                                    Image(systemName: "trophy.fill")
+                                        .foregroundColor(.keyGold)
+                                    Text("달성한 꿈")
+                                        .font(.headline)
+                                        .foregroundColor(.primary)
+                                    Spacer()
+                                }
+                                .padding(.horizontal)
+                                .padding(.top, 8)
+                            }
+                        }
+
+                        // 포기한 꿈 섹션
+                        if !abandonedDreams.isEmpty {
+                            Section {
+                                ForEach(abandonedDreams) { abandoned in
+                                    AbandonedDreamCard(completedBox: abandoned)
+                                }
+                            } header: {
+                                HStack {
+                                    Image(systemName: "pause.circle.fill")
+                                        .foregroundColor(.secondary)
+                                    Text("잠시 멈춘 꿈")
+                                        .font(.headline)
+                                        .foregroundColor(.primary)
+                                    Spacer()
+                                }
+                                .padding(.horizontal)
+                                .padding(.top, 24)
+                            }
                         }
                     }
                     .padding()
                 }
             }
-            .background(
-                LinearGradient(
-                    colors: [
-                        Color(red: 0.2, green: 0.15, blue: 0.1),
-                        treasureBackground
-                    ],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-                .ignoresSafeArea()
-            )
+            .background(Color.treasureBackgroundAdaptive.ignoresSafeArea())
             .navigationTitle("보물창고")
             .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { showingSettings = true }) {
+                        Image(systemName: "gearshape")
+                            .font(.system(size: 18, weight: .semibold))
+                    }
+                }
+            }
+            .sheet(isPresented: $showingSettings) {
+                NavigationStack {
+                    SettingsView()
+                }
+            }
+        }
+    }
+}
+
+// MARK: - 포기한 꿈 카드
+struct AbandonedDreamCard: View {
+    let completedBox: CompletedBox
+    @EnvironmentObject var viewModel: TreasureBoxViewModel
+    @State private var showResumeAlert = false
+    @State private var showDeleteAlert = false
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack(spacing: 16) {
+                // 닫힌 상자 아이콘 (아직 열지 않은 보물상자)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(UIColor.secondarySystemBackground))
+                        .frame(width: 56, height: 48)
+
+                    Image(systemName: "shippingbox.fill")
+                        .font(.system(size: 24))
+                        .foregroundColor(.secondary)
+                }
+
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(completedBox.box.title)
+                        .font(.headline)
+                        .foregroundColor(.primary)
+
+                    HStack {
+                        Image(systemName: completedBox.box.category.icon)
+                        Text(completedBox.box.category.rawValue)
+                    }
+                    .font(.caption)
+                    .foregroundColor(completedBox.box.category.color)
+                }
+
+                Spacer()
+
+                // 진행률 표시
+                Text("\(Int(completedBox.box.progress * 100))%")
+                    .font(.caption)
+                    .fontWeight(.medium)
+                    .foregroundColor(.secondary)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color(UIColor.tertiarySystemBackground))
+                    .cornerRadius(8)
+            }
+
+            // 포기 날짜
+            HStack {
+                Image(systemName: "calendar")
+                Text("멈춘 날: ")
+                Text(completedBox.completedAt, style: .date)
+            }
+            .font(.caption)
+            .foregroundColor(.secondary)
+
+            // 액션 버튼들
+            HStack(spacing: 12) {
+                Button(action: { showResumeAlert = true }) {
+                    HStack {
+                        Image(systemName: "play.fill")
+                        Text("다시 시작")
+                    }
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 12)
+                    .background(Color.blue)
+                    .cornerRadius(10)
+                }
+
+                Button(action: { showDeleteAlert = true }) {
+                    HStack {
+                        Image(systemName: "trash")
+                        Text("완전 삭제")
+                    }
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .foregroundColor(.red)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 12)
+                    .background(Color.red.opacity(0.1))
+                    .cornerRadius(10)
+                }
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.cardBackgroundAdaptive)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.secondary.opacity(0.2), lineWidth: 1)
+                )
+        )
+        .shadow(color: Color.black.opacity(0.05), radius: 4, x: 0, y: 2)
+        .alert("다시 시작할까요?", isPresented: $showResumeAlert) {
+            Button("취소", role: .cancel) { }
+            Button("다시 시작", role: .none) {
+                viewModel.resumeBox(completedBox)
+            }
+        } message: {
+            Text("'\(completedBox.box.title)' 꿈을 내 창고로 다시 가져갑니다.")
+        }
+        .alert("완전히 삭제할까요?", isPresented: $showDeleteAlert) {
+            Button("취소", role: .cancel) { }
+            Button("삭제", role: .destructive) {
+                viewModel.permanentlyDeleteBox(completedBox)
+            }
+        } message: {
+            Text("'\(completedBox.box.title)' 꿈을 완전히 삭제합니다. 이 작업은 되돌릴 수 없어요.")
         }
     }
 }
@@ -3240,7 +3705,7 @@ struct TreasureCard: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(completedBox.box.title)
                         .font(.headline)
-                        .foregroundColor(.white)
+                        .foregroundColor(.primary)
 
                     HStack {
                         Image(systemName: completedBox.box.category.icon)
@@ -3268,29 +3733,30 @@ struct TreasureCard: View {
                 Text(completedBox.completedAt, style: .date)
             }
             .font(.caption)
-            .foregroundColor(.gray)
+            .foregroundColor(.secondary)
 
             // 메모
             if !completedBox.memo.isEmpty {
                 Text("\"\(completedBox.memo)\"")
                     .font(.body)
                     .italic()
-                    .foregroundColor(.white.opacity(0.8))
+                    .foregroundColor(.secondary)
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color.white.opacity(0.05))
+                    .background(Color(UIColor.secondarySystemBackground))
                     .cornerRadius(10)
             }
         }
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.black.opacity(0.3))
+                .fill(Color.cardBackgroundAdaptive)
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(Color.keyGold.opacity(0.3), lineWidth: 1)
                 )
         )
+        .shadow(color: Color.black.opacity(0.08), radius: 8, x: 0, y: 2)
     }
 }
 

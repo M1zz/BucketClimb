@@ -307,7 +307,6 @@ struct BucketFillView: View {
     @State private var showingSettings = false
     @State private var showingBrowser = false
     @State private var showingRecommendations = false
-    @State private var showingTreasureKey = false
     @State private var selectedCategory: BucketCategory?
     @State private var showingSuccessAlert = false
     @State private var addedBucketTitle = ""
@@ -327,12 +326,6 @@ struct BucketFillView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack(spacing: 16) {
-                        Button(action: { showingTreasureKey = true }) {
-                            Image(systemName: "key.horizontal.fill")
-                                .font(.title3)
-                                .foregroundColor(.orange)
-                        }
-
                         Button(action: { showingRecommendations = true }) {
                             Image(systemName: "sparkles")
                                 .font(.title3)
@@ -361,10 +354,6 @@ struct BucketFillView: View {
             }
             .fullScreenCover(isPresented: $showingRecommendations) {
                 RecommendationsSheetView()
-            }
-            .fullScreenCover(isPresented: $showingTreasureKey) {
-                TreasureKeyMainView()
-                    .environmentObject(viewModel)
             }
             .alert("담기 완료!", isPresented: $showingSuccessAlert) {
                 Button("확인", role: .cancel) { }
@@ -1052,10 +1041,22 @@ struct MyBucketListView: View {
                                     MyBucketItemRow(item: item)
                                         .padding(16)
                                         .background(
-                                            RoundedRectangle(cornerRadius: 16)
-                                                .fill(Color(.systemBackground))
-                                                .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
+                                            ZStack {
+                                                // 배경 이미지
+                                                if let bgImage = item.backgroundImage, !bgImage.isEmpty {
+                                                    Image(bgImage)
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fill)
+                                                        .overlay(Color.black.opacity(0.3))
+                                                }
+
+                                                RoundedRectangle(cornerRadius: 16)
+                                                    .fill(Color(.systemBackground).opacity(item.backgroundImage != nil ? 0.85 : 1.0))
+                                            }
+                                            .clipped()
                                         )
+                                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                                        .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }
@@ -1160,108 +1161,51 @@ struct PopularBucketCard: View {
 struct MyBucketItemRow: View {
     @ObservedObject var item: BucketListItem
 
-    var statusBadge: some View {
-        Group {
-            if item.status == .climbing {
-                HStack(spacing: 4) {
-                    Image(systemName: "leaf.fill")
-                        .font(.caption2)
-                    Text("자라는 중")
-                        .font(.caption2)
-                        .fontWeight(.semibold)
-                }
-                .foregroundColor(.green)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .background(Color.green.opacity(0.15))
-                .cornerRadius(8)
-            } else {
-                HStack(spacing: 4) {
-                    Image(systemName: "sparkle")
-                        .font(.caption2)
-                    Text("씨앗")
-                        .font(.caption2)
-                        .fontWeight(.semibold)
-                }
-                .foregroundColor(.purple.opacity(0.7))
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .background(Color.purple.opacity(0.1))
-                .cornerRadius(8)
-            }
+    var statusText: String {
+        if item.status == .completed {
+            return "완료"
+        } else if item.status == .climbing {
+            return "진행중"
+        } else {
+            return "시작전"
+        }
+    }
+
+    var statusColor: Color {
+        if item.status == .completed {
+            return .green
+        } else if item.status == .climbing {
+            return .blue
+        } else {
+            return .secondary
         }
     }
 
     var body: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Image(systemName: item.thumbnail)
-                    .foregroundColor(item.category.color)
-                    .font(.title2)
+        HStack(spacing: 16) {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(item.title)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                    .lineLimit(2)
 
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(item.title)
-                        .font(.headline)
-                        .foregroundColor(.primary)
-
-                    Text(item.category.rawValue)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-
-                Spacer()
-
-                statusBadge
+                Text(item.category.rawValue)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
             }
 
-            // 등반중인 경우 꽃 피우기 진행 표시
-            if item.status == .climbing {
-                HStack(spacing: 12) {
-                    FlowerBloomView(progress: item.totalProgress / 100)
+            Spacer()
 
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(progressMessage)
-                            .font(.caption)
-                            .foregroundColor(.secondary)
+            VStack(alignment: .trailing, spacing: 4) {
+                Text("\(Int(item.totalProgress))%")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .foregroundColor(statusColor)
 
-                        GeometryReader { geometry in
-                            ZStack(alignment: .leading) {
-                                RoundedRectangle(cornerRadius: 4)
-                                    .fill(Color.gray.opacity(0.2))
-                                    .frame(height: 6)
-
-                                RoundedRectangle(cornerRadius: 4)
-                                    .fill(
-                                        LinearGradient(
-                                            gradient: Gradient(colors: [.green, .pink]),
-                                            startPoint: .leading,
-                                            endPoint: .trailing
-                                        )
-                                    )
-                                    .frame(width: geometry.size.width * CGFloat(item.totalProgress / 100), height: 6)
-                            }
-                        }
-                        .frame(height: 6)
-                    }
-                }
+                Text(statusText)
+                    .font(.caption)
+                    .foregroundColor(statusColor)
             }
-        }
-    }
-
-    var progressMessage: String {
-        let progress = item.totalProgress
-        if progress == 0 {
-            return "아직 모든 가능성이 열려있어요"
-        } else if progress < 25 {
-            return "첫 발걸음을 내디뎠어요"
-        } else if progress < 50 {
-            return "조금씩 꿈에 다가가고 있어요"
-        } else if progress < 75 {
-            return "절반이나 왔어요, 멋져요!"
-        } else if progress < 100 {
-            return "거의 다 왔어요!"
-        } else {
-            return "꿈이 활짝 피었어요!"
         }
     }
 }
@@ -1664,87 +1608,51 @@ struct ClimbingView: View {
 
 struct ClimbingItemCard: View {
     @ObservedObject var item: BucketListItem
-    
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 15) {
-            HStack {
-                Image(systemName: item.thumbnail)
-                    .foregroundColor(item.category.color)
-                    .font(.title2)
+        HStack(spacing: 16) {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(item.title)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                    .lineLimit(2)
 
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(item.title)
-                        .font(.headline)
-                        .foregroundColor(.primary)
-
-                    Text("\(item.category.rawValue) 도전 중")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-
-                Spacer()
+                Text(item.category.rawValue)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
             }
 
-            MountainVisualization(
-                progress: item.climbedPercentage,
-                height: 8.8
-            )
-            .frame(height: 120)
-            
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("등반 진행률")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    
-                    Text("\(Int(item.totalProgress))%")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.blue)
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .trailing, spacing: 4) {
-                    Text("마일스톤")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    
-                    let completed = item.milestones.filter { $0.isCompleted }.count
-                    Text("\(completed)/\(item.milestones.count)")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.green)
-                }
-            }
-            
-            if let latest = item.dailyProgress.last {
-                HStack(spacing: 8) {
-                    Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(.green)
-                    
-                    Text(latest.action)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    
-                    Spacer()
-                    
-                    Text("+\(Int(latest.distance))cm")
-                        .font(.caption)
-                        .fontWeight(.medium)
-                        .foregroundColor(.green)
-                }
-                .padding(8)
-                .background(Color.green.opacity(0.1))
-                .cornerRadius(8)
+            Spacer()
+
+            VStack(alignment: .trailing, spacing: 4) {
+                Text("\(Int(item.totalProgress))%")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .foregroundColor(.blue)
+
+                Text("진행중")
+                    .font(.caption)
+                    .foregroundColor(.blue)
             }
         }
         .padding()
         .background(
-            RoundedRectangle(cornerRadius: 15)
-                .fill(Color(.systemBackground))
-                .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
+            ZStack {
+                // 배경 이미지
+                if let bgImage = item.backgroundImage, !bgImage.isEmpty {
+                    Image(bgImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .overlay(Color.black.opacity(0.3))
+                }
+
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(Color(.systemBackground).opacity(item.backgroundImage != nil ? 0.85 : 1.0))
+            }
+            .clipped()
         )
+        .clipShape(RoundedRectangle(cornerRadius: 15))
+        .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
     }
 }
 
@@ -1915,57 +1823,54 @@ struct CompletedItemCard: View {
     var formattedDate: String {
         guard let date = item.dateCompleted else { return "" }
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 M월 d일"
+        formatter.dateFormat = "yyyy.M.d"
         return formatter.string(from: date)
     }
 
     var body: some View {
-        HStack(spacing: 15) {
-            ZStack {
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            gradient: Gradient(colors: [Color.pink.opacity(0.3), Color.purple.opacity(0.3)]),
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: 60, height: 60)
-
-                Image(systemName: "sparkles")
-                    .font(.title2)
-                    .foregroundColor(.pink)
-            }
-
-            VStack(alignment: .leading, spacing: 6) {
+        HStack(spacing: 16) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text(item.title)
                     .font(.headline)
                     .foregroundColor(.primary)
+                    .lineLimit(2)
 
-                Text(formattedDate + "에 피어남")
+                Text(item.category.rawValue)
                     .font(.caption)
                     .foregroundColor(.secondary)
-
-                HStack(spacing: 4) {
-                    Image(systemName: "heart.fill")
-                        .font(.caption)
-                    Text("꿈을 이루었어요")
-                        .font(.caption)
-                }
-                .foregroundColor(.green)
             }
-            
+
             Spacer()
-            
-            Image(systemName: "chevron.right")
-                .foregroundColor(.secondary)
+
+            VStack(alignment: .trailing, spacing: 4) {
+                Text("100%")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .foregroundColor(.green)
+
+                Text("완료")
+                    .font(.caption)
+                    .foregroundColor(.green)
+            }
         }
         .padding()
         .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(.systemBackground))
-                .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
+            ZStack {
+                // 배경 이미지
+                if let bgImage = item.backgroundImage, !bgImage.isEmpty {
+                    Image(bgImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .overlay(Color.black.opacity(0.3))
+                }
+
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color(.systemBackground).opacity(item.backgroundImage != nil ? 0.85 : 1.0))
+            }
+            .clipped()
         )
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
         .padding(.horizontal)
     }
 }
@@ -4849,37 +4754,44 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    Toggle(isOn: $viewModel.useForgeView) {
+                    Toggle(isOn: $viewModel.useClassicMode) {
                         HStack(spacing: 12) {
-                            Image(systemName: "key.horizontal.fill")
-                                .foregroundColor(.orange)
+                            Image(systemName: "mountain.2.fill")
+                                .foregroundColor(.blue)
                                 .font(.title3)
 
                             VStack(alignment: .leading, spacing: 4) {
-                                Text("꿈 대장간으로 보기")
+                                Text("꿈 키우기 모드")
                                     .font(.headline)
 
-                                Text("버킷리스트를 열쇠와 보물상자로 시각화합니다")
+                                Text("산 오르기 메타포로 버킷리스트를 관리합니다")
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                             }
                         }
                     }
+                    .tint(.blue)
 
-                    Toggle(isOn: $viewModel.showArchiveTab) {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("아카이브 탭 표시")
-                                .font(.headline)
+                    if viewModel.useClassicMode {
+                        Toggle(isOn: $viewModel.showArchiveTab) {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("아카이브 탭 표시")
+                                    .font(.headline)
 
-                            Text("하단 탭바에 아카이브를 별도 탭으로 표시합니다")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
+                                Text("하단 탭바에 아카이브를 별도 탭으로 표시합니다")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
                         }
                     }
                 } header: {
                     Text("화면 설정")
                 } footer: {
-                    Text("꿈 대장간을 켜면 메인 화면이 열쇠 메타포로 바뀝니다. 아카이브 탭을 켜면 하단에 별도 탭이 추가됩니다.")
+                    if viewModel.useClassicMode {
+                        Text("꿈 키우기 모드에서는 프로젝트형태로 관리합니다.")
+                    } else {
+                        Text("기본 모드는 '내 창고'입니다. 열쇠를 만들어 보물상자를 열어보세요!")
+                    }
                 }
 
                 Section {
@@ -4920,6 +4832,18 @@ struct SettingsView: View {
                         Spacer()
                         Text("1.0.0")
                             .foregroundColor(.secondary)
+                    }
+
+                    Button {
+                        viewModel.resetOnboarding()
+                        dismiss()
+                    } label: {
+                        HStack {
+                            Image(systemName: "play.circle.fill")
+                                .foregroundColor(.purple)
+                            Text("튜토리얼 다시 보기")
+                                .foregroundColor(.primary)
+                        }
                     }
                 } header: {
                     Text("앱 정보")
@@ -5061,6 +4985,7 @@ struct BucketMapView: View {
         center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), // 서울
         span: MKCoordinateSpan(latitudeDelta: 50, longitudeDelta: 50)
     )
+    @State private var showingSettings = false
 
     var travelBuckets: [BucketListItem] {
         viewModel.bucketItems.filter { $0.category == .travel && $0.location != nil }
@@ -5118,6 +5043,19 @@ struct BucketMapView: View {
             }
             .navigationTitle("내 꿈의 지도")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { showingSettings = true }) {
+                        Image(systemName: "gearshape")
+                            .font(.system(size: 18, weight: .semibold))
+                    }
+                }
+            }
+            .sheet(isPresented: $showingSettings) {
+                NavigationStack {
+                    SettingsView()
+                }
+            }
         }
         .onAppear {
             if let firstBucket = travelBuckets.first {

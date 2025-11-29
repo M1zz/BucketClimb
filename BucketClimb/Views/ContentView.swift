@@ -4,36 +4,42 @@ struct ContentView: View {
     @EnvironmentObject var viewModel: BucketListViewModel
 
     var body: some View {
-        if viewModel.useForgeView {
-            // 꿈 대장간 모드
-            ForgeMainView()
-        } else if viewModel.showArchiveTab {
-            // 기본 모드 + 아카이브 탭
-            TabView {
-                BucketFillView()
-                    .tabItem {
-                        Label("꿈 키우기", systemImage: "mountain.2.fill")
-                    }
+        Group {
+            if !viewModel.hasCompletedOnboarding {
+                // 온보딩 화면
+                OnboardingView()
+            } else if viewModel.useClassicMode {
+                // 꿈 키우기 모드 (클래식)
+                if viewModel.showArchiveTab {
+                    TabView {
+                        BucketFillView()
+                            .tabItem {
+                                Label("꿈 키우기", systemImage: "mountain.2.fill")
+                            }
 
-                BucketMapView()
-                    .tabItem {
-                        Label("지도", systemImage: "map.fill")
-                    }
+                        BucketMapView()
+                            .tabItem {
+                                Label("지도", systemImage: "map.fill")
+                            }
 
-                ArchiveView()
-                    .tabItem {
-                        Label("아카이브", systemImage: "trophy.fill")
+                        ArchiveView()
+                            .tabItem {
+                                Label("아카이브", systemImage: "trophy.fill")
+                            }
                     }
+                    .accentColor(.blue)
+                } else {
+                    BucketFillView()
+                }
+            } else {
+                // 내 창고 모드 (기본)
+                ForgeMainView()
             }
-            .accentColor(.blue)
-        } else {
-            // 기본 모드
-            BucketFillView()
         }
     }
 }
 
-// 꿈 대장간 메인 뷰 (탭 구조 포함)
+// 내 창고 메인 뷰 (탭 구조 포함)
 struct ForgeMainView: View {
     @EnvironmentObject var viewModel: BucketListViewModel
     @StateObject private var treasureViewModel = TreasureBoxViewModel()
@@ -44,7 +50,7 @@ struct ForgeMainView: View {
         TabView(selection: $selectedTab) {
             TreasureWarehouseView()
                 .tabItem {
-                    Label("대장간", systemImage: "hammer.fill")
+                    Label("내 창고", systemImage: "hammer.fill")
                 }
                 .tag(0)
 
@@ -67,7 +73,6 @@ struct ForgeMainView: View {
                 .tag(3)
         }
         .environmentObject(treasureViewModel)
-        .tint(.keyGold)
         .onAppear {
             if !isInitialized {
                 treasureViewModel.setBucketListViewModel(viewModel)

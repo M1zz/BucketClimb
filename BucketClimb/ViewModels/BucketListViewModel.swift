@@ -8,10 +8,22 @@ class BucketListViewModel: ObservableObject {
             UserDefaults.standard.set(showArchiveTab, forKey: "ShowArchiveTab")
         }
     }
-    @Published var useForgeView: Bool = false {
+    // 꿈 키우기 모드 (기본은 내 창고, 이 값이 true면 꿈 키우기 모드)
+    @Published var useClassicMode: Bool = false {
         didSet {
-            UserDefaults.standard.set(useForgeView, forKey: "UseForgeView")
+            UserDefaults.standard.set(useClassicMode, forKey: "UseClassicMode")
         }
+    }
+    // 온보딩 완료 여부
+    @Published var hasCompletedOnboarding: Bool = false {
+        didSet {
+            UserDefaults.standard.set(hasCompletedOnboarding, forKey: "HasCompletedOnboarding")
+        }
+    }
+    // 레거시 호환용 (기존 useForgeView 사용하는 코드 대응)
+    var useForgeView: Bool {
+        get { !useClassicMode }
+        set { useClassicMode = !newValue }
     }
 
     private let saveKey = "SavedBucketList"
@@ -19,7 +31,16 @@ class BucketListViewModel: ObservableObject {
     init() {
         loadData()
         showArchiveTab = UserDefaults.standard.bool(forKey: "ShowArchiveTab")
-        useForgeView = UserDefaults.standard.bool(forKey: "UseForgeView")
+        useClassicMode = UserDefaults.standard.bool(forKey: "UseClassicMode")
+        hasCompletedOnboarding = UserDefaults.standard.bool(forKey: "HasCompletedOnboarding")
+    }
+
+    func completeOnboarding() {
+        hasCompletedOnboarding = true
+    }
+
+    func resetOnboarding() {
+        hasCompletedOnboarding = false
     }
 
     var myBucketLists: [BucketListItem] {
@@ -63,6 +84,13 @@ class BucketListViewModel: ObservableObject {
         saveData()
     }
 
+    func addBucketItemWithMilestones(title: String, category: BucketCategory, milestones: [Milestone]) {
+        let newItem = BucketListItem(title: title, category: category)
+        newItem.milestones = milestones
+        bucketItems.append(newItem)
+        saveData()
+    }
+
     func startClimbing(item: BucketListItem) {
         if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
             bucketItems[index].status = .climbing
@@ -94,6 +122,22 @@ class BucketListViewModel: ObservableObject {
     func deleteBucket(item: BucketListItem) {
         bucketItems.removeAll { $0.id == item.id }
         saveData()
+    }
+
+    // 꿈 포기 (상태만 변경, 데이터는 유지)
+    func abandonBucket(item: BucketListItem) {
+        // 포기한 꿈은 삭제하지 않고 상태만 유지
+        // TreasureBoxViewModel에서 completedBoxes로 관리됨
+        saveData()
+    }
+
+    // 포기한 꿈 다시 시작
+    func resumeBucket(item: BucketListItem) {
+        if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
+            bucketItems[index].status = .climbing
+            objectWillChange.send()
+            saveData()
+        }
     }
 
     func updateObstacle(item: BucketListItem, obstacle: Obstacle, newValue: Double) {
