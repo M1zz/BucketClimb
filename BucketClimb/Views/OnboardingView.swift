@@ -400,7 +400,7 @@ struct TreasurePageLight: View {
 
             VStack(spacing: 16) {
                 // 타이틀
-                Label("보물창고", systemImage: "sparkles")
+                Label("보물함", systemImage: "sparkles")
                     .font(.system(size: 26, weight: .bold))
                     .foregroundColor(.primary)
 
@@ -455,7 +455,7 @@ struct StartPageLight: View {
                     .font(.caption)
                     .foregroundColor(.secondary)
 
-                FlowIconLight(icon: "sparkles", label: "보물창고", color: .yellow)
+                FlowIconLight(icon: "sparkles", label: "보물함", color: .yellow)
             }
             .padding(.vertical, 16)
             .padding(.horizontal, 20)

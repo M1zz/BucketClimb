@@ -83,4 +83,15 @@ enum BucketItem: Codable, Hashable {
         case .relationship(let bucket): return bucket.milestones
         }
     }
+
+    var location: LocationInfo? {
+        switch self {
+        case .travel(let bucket): return bucket.position
+        case .achievement(let bucket): return bucket.position
+        case .experience(let bucket): return bucket.position
+        case .health(let bucket): return bucket.position
+        case .learning(let bucket): return bucket.position
+        case .relationship(let bucket): return bucket.position
+        }
+    }
 }

@@ -19,7 +19,7 @@ struct ContentView: View {
 
                         BucketMapView()
                             .tabItem {
-                                Label("지도", systemImage: "map.fill")
+                                Label("꿈지도", systemImage: "map.fill")
                             }
 
                         ArchiveView()
@@ -48,7 +48,7 @@ struct ForgeMainView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            TreasureWarehouseView()
+            TreasureWarehouseView(selectedTab: $selectedTab)
                 .tabItem {
                     Label("내 창고", systemImage: "hammer.fill")
                 }
@@ -62,7 +62,7 @@ struct ForgeMainView: View {
 
             TreasureTreasureView()
                 .tabItem {
-                    Label("보물창고", systemImage: "sparkles")
+                    Label("보물함", systemImage: "sparkles")
                 }
                 .tag(2)
 
@@ -73,6 +73,7 @@ struct ForgeMainView: View {
                 .tag(3)
         }
         .environmentObject(treasureViewModel)
+        .environmentObject(viewModel)
         .onAppear {
             if !isInitialized {
                 treasureViewModel.setBucketListViewModel(viewModel)

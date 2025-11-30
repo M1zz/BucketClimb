@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import OSLog
 
 // MARK: - Navigation Bar Title Color Modifier
 
@@ -183,8 +184,9 @@ struct TreasureBox: Identifiable, Codable {
     var status: BoxStatus
     var createdAt: Date
     var completedAt: Date?
+    var location: LocationInfo?
 
-    init(id: UUID = UUID(), title: String, description: String = "", category: BoxCategory, imageName: String? = nil, teeth: [Tooth] = [], status: BoxStatus = .inOcean, createdAt: Date = Date(), completedAt: Date? = nil) {
+    init(id: UUID = UUID(), title: String, description: String = "", category: BoxCategory, imageName: String? = nil, teeth: [Tooth] = [], status: BoxStatus = .inOcean, createdAt: Date = Date(), completedAt: Date? = nil, location: LocationInfo? = nil) {
         self.id = id
         self.title = title
         self.description = description
@@ -194,6 +196,7 @@ struct TreasureBox: Identifiable, Codable {
         self.status = status
         self.createdAt = createdAt
         self.completedAt = completedAt
+        self.location = location
     }
 
     var progress: Double {
@@ -272,16 +275,17 @@ class TreasureBoxViewModel: ObservableObject {
                 box: box,
                 completedAt: item.dateCompleted ?? Date(),
                 memo: item.notes,
-                rating: 5
+                rating: 5,
+                isAbandoned: item.isAbandoned
             )
         }
     }
 
     // 랜덤 추천 상자 생성 (비어있을 때)
     private func generateRandomRecommendedBoxes() -> [TreasureBox] {
-        // 테스트 모드: 항상 최소 1개, 랜덤으로 0~5개 추가
         #if DEBUG
-        let count = max(1, Int.random(in: 0...5))
+        // 개발 모드: 10개 추가
+        let count = 10
         #else
         // 릴리즈: 0~5개 (0개일 수도 있음)
         let count = Int.random(in: 0...5)
@@ -292,140 +296,176 @@ class TreasureBoxViewModel: ObservableObject {
         let selected = Array(shuffled.prefix(count))
 
         return selected.map { recommendation in
-            TreasureBox(
+            // 이미지가 없으면 default1~5 중 랜덤 선택
+            let finalImageName = recommendation.imageName ?? "default\(Int.random(in: 1...5))"
+
+            return TreasureBox(
                 title: recommendation.title,
                 description: recommendation.description,
                 category: recommendation.category,
-                imageName: recommendation.imageName,
+                imageName: finalImageName,
                 teeth: recommendation.teeth,
-                status: .inOcean
+                status: .inOcean,
+                location: recommendation.location
             )
         }
     }
 
-    // 추천 버킷 목록
-    private func getRecommendedBuckets() -> [(title: String, description: String, category: BoxCategory, imageName: String?, teeth: [Tooth])] {
-        return [
-            (
-                title: "아이슬란드에서 오로라 보기",
-                description: "북극의 신비로운 오로라를 직접 눈으로 보고 싶어요",
+    // 추천 버킷 목록 (실제 Bucket enum에서 랜덤으로 가져옴)
+    private func getRecommendedBuckets() -> [(title: String, description: String, category: BoxCategory, imageName: String?, teeth: [Tooth], location: LocationInfo?)] {
+        var allBuckets: [(title: String, description: String, category: BoxCategory, imageName: String?, teeth: [Tooth], location: LocationInfo?)] = []
+
+        // TravelBucket에서 가져오기
+        let travelBuckets = TravelBucket.allCases.shuffled().prefix(30).map { bucket -> (title: String, description: String, category: BoxCategory, imageName: String?, teeth: [Tooth], location: LocationInfo?) in
+            let teeth = bucket.milestones.map { milestone -> Tooth in
+                Tooth(
+                    title: milestone.title,
+                    isCompleted: false,
+                    category: guessToothCategory(milestone.title)
+                )
+            }
+            return (
+                title: bucket.rawValue,
+                description: bucket.milestones.first?.description ?? "여행의 꿈을 이루세요",
                 category: .travel,
-                imageName: "iceland_aurora",
-                teeth: [
-                    Tooth(title: "여행 경비 300만원 모으기", category: .money),
-                    Tooth(title: "7일 휴가 확보하기", category: .time),
-                    Tooth(title: "방한복 준비하기", category: .resource),
-                    Tooth(title: "오로라 촬영법 배우기", category: .skill)
-                ]
-            ),
-            (
-                title: "풀코스 마라톤 완주",
-                description: "42.195km를 끝까지 달려보고 싶어요",
-                category: .challenge,
-                imageName: nil,
-                teeth: [
-                    Tooth(title: "10km 러닝 가능해지기", category: .health),
-                    Tooth(title: "하프 마라톤 완주", category: .health),
-                    Tooth(title: "러닝화 & 장비 구매", category: .resource),
-                    Tooth(title: "대회 등록하기", category: .permission)
-                ]
-            ),
-            (
-                title: "일본어 JLPT N2 취득",
-                description: "일본어로 자유롭게 대화하고 싶어요",
-                category: .learning,
-                imageName: nil,
-                teeth: [
-                    Tooth(title: "히라가나/가타카나 마스터", category: .skill),
-                    Tooth(title: "N3 수준 달성", category: .skill),
-                    Tooth(title: "학원비 마련", category: .money),
-                    Tooth(title: "시험 접수", category: .permission)
-                ]
-            ),
-            (
-                title: "스쿠버 다이빙 자격증 따기",
-                description: "바다 속 세상을 탐험하고 싶어요",
-                category: .challenge,
-                imageName: nil,
-                teeth: [
-                    Tooth(title: "수영 실력 향상", category: .skill),
-                    Tooth(title: "다이빙 교육비 준비", category: .money),
-                    Tooth(title: "다이빙샵 예약", category: .permission),
-                    Tooth(title: "장비 대여/구매", category: .resource)
-                ]
-            ),
-            (
-                title: "산티아고 순례길 걷기",
-                description: "800km를 걸으며 나를 찾는 여행",
-                category: .travel,
-                imageName: nil,
-                teeth: [
-                    Tooth(title: "한 달 휴가 확보", category: .time),
-                    Tooth(title: "여행 경비 500만원", category: .money),
-                    Tooth(title: "트레킹 장비 준비", category: .resource),
-                    Tooth(title: "체력 훈련", category: .health)
-                ]
-            ),
-            (
-                title: "나만의 앱 출시하기",
-                description: "앱스토어에 내 앱을 올리고 싶어요",
-                category: .career,
-                imageName: nil,
-                teeth: [
-                    Tooth(title: "프로그래밍 기초 배우기", category: .skill),
-                    Tooth(title: "앱 아이디어 구체화", category: .skill),
-                    Tooth(title: "개발자 계정 등록", category: .permission),
-                    Tooth(title: "개발 시간 확보", category: .time)
-                ]
-            ),
-            (
-                title: "제주도 한 달 살기",
-                description: "제주에서 힐링하며 한 달 보내기",
-                category: .lifestyle,
-                imageName: nil,
-                teeth: [
-                    Tooth(title: "숙소 예약", category: .resource),
-                    Tooth(title: "한 달 생활비 확보", category: .money),
-                    Tooth(title: "재택근무 승인", category: .permission)
-                ]
-            ),
-            (
-                title: "악기 하나 마스터하기",
-                description: "피아노나 기타를 자유롭게 연주하고 싶어요",
-                category: .learning,
-                imageName: nil,
-                teeth: [
-                    Tooth(title: "악기 구매/대여", category: .resource),
-                    Tooth(title: "기초 레슨 등록", category: .money),
-                    Tooth(title: "매일 30분 연습", category: .time),
-                    Tooth(title: "한 곡 완성하기", category: .skill)
-                ]
-            ),
-            (
-                title: "부모님과 해외여행",
-                description: "부모님께 해외여행을 선물하고 싶어요",
-                category: .relationship,
-                imageName: nil,
-                teeth: [
-                    Tooth(title: "여행 경비 마련", category: .money),
-                    Tooth(title: "부모님 일정 확인", category: .time),
-                    Tooth(title: "여행지 선정", category: .skill),
-                    Tooth(title: "항공/숙소 예약", category: .resource)
-                ]
-            ),
-            (
-                title: "10kg 감량하기",
-                description: "건강한 몸을 만들고 싶어요",
-                category: .lifestyle,
-                imageName: nil,
-                teeth: [
-                    Tooth(title: "운동 루틴 만들기", category: .skill),
-                    Tooth(title: "식단 관리 시작", category: .health),
-                    Tooth(title: "헬스장 등록", category: .resource),
-                    Tooth(title: "주 3회 운동 습관화", category: .time)
-                ]
+                imageName: bucket.backgroundImage,
+                teeth: teeth.isEmpty ? [
+                    Tooth(title: "여행 계획 세우기", category: .skill),
+                    Tooth(title: "여행 경비 모으기", category: .money),
+                    Tooth(title: "항공권 예매하기", category: .resource),
+                    Tooth(title: "숙소 예약하기", category: .resource)
+                ] : teeth,
+                location: bucket.position
             )
-        ]
+        }
+        allBuckets.append(contentsOf: travelBuckets)
+
+        // AchievementBucket에서 가져오기
+        let achievementBuckets = AchievementBucket.allCases.shuffled().prefix(20).map { bucket -> (title: String, description: String, category: BoxCategory, imageName: String?, teeth: [Tooth], location: LocationInfo?) in
+            let teeth = bucket.milestones.map { milestone -> Tooth in
+                Tooth(
+                    title: milestone.title,
+                    isCompleted: false,
+                    category: guessToothCategory(milestone.title)
+                )
+            }
+            return (
+                title: bucket.rawValue,
+                description: bucket.milestones.first?.description ?? "도전의 꿈을 이루세요",
+                category: .challenge,
+                imageName: bucket.backgroundImage,
+                teeth: teeth.isEmpty ? [
+                    Tooth(title: "목표 설정하기", category: .skill),
+                    Tooth(title: "실행 계획 세우기", category: .skill),
+                    Tooth(title: "필요한 준비하기", category: .resource),
+                    Tooth(title: "꾸준히 실천하기", category: .time)
+                ] : teeth,
+                location: nil
+            )
+        }
+        allBuckets.append(contentsOf: achievementBuckets)
+
+        // LearningBucket에서 가져오기
+        let learningBuckets = LearningBucket.allCases.shuffled().prefix(20).map { bucket -> (title: String, description: String, category: BoxCategory, imageName: String?, teeth: [Tooth], location: LocationInfo?) in
+            let teeth = bucket.milestones.map { milestone -> Tooth in
+                Tooth(
+                    title: milestone.title,
+                    isCompleted: false,
+                    category: guessToothCategory(milestone.title)
+                )
+            }
+            return (
+                title: bucket.rawValue,
+                description: bucket.milestones.first?.description ?? "배움의 꿈을 이루세요",
+                category: .learning,
+                imageName: bucket.backgroundImage,
+                teeth: teeth.isEmpty ? [
+                    Tooth(title: "학습 계획 세우기", category: .skill),
+                    Tooth(title: "학습 자료 준비하기", category: .resource),
+                    Tooth(title: "매일 공부하기", category: .time),
+                    Tooth(title: "실력 점검하기", category: .skill)
+                ] : teeth,
+                location: nil
+            )
+        }
+        allBuckets.append(contentsOf: learningBuckets)
+
+        // HealthBucket에서 가져오기
+        let healthBuckets = HealthBucket.allCases.shuffled().prefix(15).map { bucket -> (title: String, description: String, category: BoxCategory, imageName: String?, teeth: [Tooth], location: LocationInfo?) in
+            let teeth = bucket.milestones.map { milestone -> Tooth in
+                Tooth(
+                    title: milestone.title,
+                    isCompleted: false,
+                    category: guessToothCategory(milestone.title)
+                )
+            }
+            return (
+                title: bucket.rawValue,
+                description: bucket.milestones.first?.description ?? "건강의 꿈을 이루세요",
+                category: .lifestyle,
+                imageName: bucket.backgroundImage,
+                teeth: teeth.isEmpty ? [
+                    Tooth(title: "건강 목표 설정하기", category: .skill),
+                    Tooth(title: "운동 계획 세우기", category: .health),
+                    Tooth(title: "식단 관리하기", category: .health),
+                    Tooth(title: "꾸준히 실천하기", category: .time)
+                ] : teeth,
+                location: nil
+            )
+        }
+        allBuckets.append(contentsOf: healthBuckets)
+
+        // RelationshipBucket에서 가져오기
+        let relationshipBuckets = RelationshipBucket.allCases.shuffled().prefix(15).map { bucket -> (title: String, description: String, category: BoxCategory, imageName: String?, teeth: [Tooth], location: LocationInfo?) in
+            let teeth = bucket.milestones.map { milestone -> Tooth in
+                Tooth(
+                    title: milestone.title,
+                    isCompleted: false,
+                    category: guessToothCategory(milestone.title)
+                )
+            }
+            return (
+                title: bucket.rawValue,
+                description: bucket.milestones.first?.description ?? "관계의 꿈을 이루세요",
+                category: .relationship,
+                imageName: bucket.backgroundImage,
+                teeth: teeth.isEmpty ? [
+                    Tooth(title: "계획 세우기", category: .skill),
+                    Tooth(title: "시간 확보하기", category: .time),
+                    Tooth(title: "준비하기", category: .resource),
+                    Tooth(title: "실천하기", category: .time)
+                ] : teeth,
+                location: nil
+            )
+        }
+        allBuckets.append(contentsOf: relationshipBuckets)
+
+        // ExperienceBucket에서 가져오기
+        let experienceBuckets = ExperienceBucket.allCases.shuffled().prefix(15).map { bucket -> (title: String, description: String, category: BoxCategory, imageName: String?, teeth: [Tooth], location: LocationInfo?) in
+            let teeth = bucket.milestones.map { milestone -> Tooth in
+                Tooth(
+                    title: milestone.title,
+                    isCompleted: false,
+                    category: guessToothCategory(milestone.title)
+                )
+            }
+            return (
+                title: bucket.rawValue,
+                description: bucket.milestones.first?.description ?? "경험의 꿈을 이루세요",
+                category: .challenge,
+                imageName: bucket.backgroundImage,
+                teeth: teeth.isEmpty ? [
+                    Tooth(title: "경험 계획 세우기", category: .skill),
+                    Tooth(title: "일정 조율하기", category: .time),
+                    Tooth(title: "필요한 것 준비하기", category: .resource),
+                    Tooth(title: "실행하기", category: .time)
+                ] : teeth,
+                location: nil
+            )
+        }
+        allBuckets.append(contentsOf: experienceBuckets)
+
+        return allBuckets
     }
 
     private func convertToTreasureBox(_ item: BucketListItem, status: BoxStatus) -> TreasureBox {
@@ -455,7 +495,8 @@ class TreasureBoxViewModel: ObservableObject {
             teeth: finalTeeth,
             status: status,
             createdAt: item.dateAdded,
-            completedAt: item.dateCompleted
+            completedAt: item.dateCompleted,
+            location: item.location
         )
     }
 
@@ -521,7 +562,7 @@ class TreasureBoxViewModel: ObservableObject {
                 category: category,
                 thumbnail: nil,
                 backgroundImage: box.imageName,
-                location: nil,
+                location: box.location,
                 notes: box.description
             )
             // 방금 추가한 아이템 찾아서 등반 시작
@@ -623,7 +664,8 @@ class TreasureBoxViewModel: ObservableObject {
         viewModel.addBucketItemWithMilestones(
             title: box.title,
             category: category,
-            milestones: milestones
+            milestones: milestones,
+            location: box.location
         )
 
         // 방금 추가한 아이템 찾아서 등반 시작
@@ -687,7 +729,8 @@ class TreasureBoxViewModel: ObservableObject {
             viewModel.addBucketItemWithMilestones(
                 title: completedBox.box.title,
                 category: category,
-                milestones: milestones
+                milestones: milestones,
+                location: completedBox.box.location
             )
             if let newItem = viewModel.bucketItems.first(where: { $0.title == completedBox.box.title }) {
                 viewModel.startClimbing(item: newItem)
@@ -728,6 +771,48 @@ class TreasureBoxViewModel: ObservableObject {
             completedBoxes.append(contentsOf: newAbandonedBoxes)
         }
     }
+
+    // 상자의 이미지 업데이트
+    func updateBoxImage(boxId: UUID, imageName: String) {
+        // warehouseBoxes에서 찾기
+        if let index = warehouseBoxes.firstIndex(where: { $0.id == boxId }) {
+            warehouseBoxes[index].imageName = imageName
+        }
+
+        // bucketListViewModel의 해당 아이템도 업데이트
+        if let bucketListViewModel = bucketListViewModel,
+           let itemIndex = bucketListViewModel.bucketItems.firstIndex(where: { $0.id == boxId }) {
+            bucketListViewModel.bucketItems[itemIndex].backgroundImage = imageName
+        }
+    }
+
+    // Default 이미지 번호 저장 (일관성 유지)
+    static func saveDefaultImageNumber(_ number: Int, for boxId: UUID) {
+        let key = "DefaultImage_\(boxId.uuidString)"
+        UserDefaults.standard.set(number, forKey: key)
+    }
+
+    // Default 이미지 번호 불러오기
+    static func getDefaultImageNumber(for boxId: UUID) -> Int? {
+        let key = "DefaultImage_\(boxId.uuidString)"
+        let number = UserDefaults.standard.integer(forKey: key)
+        return number > 0 ? number : nil
+    }
+
+    // Default 이미지 번호 생성 또는 불러오기
+    static func getOrCreateDefaultImageNumber(for boxId: UUID) -> Int {
+        if let saved = getDefaultImageNumber(for: boxId) {
+            return saved
+        }
+
+        // 새로 생성 (UUID를 기반으로 deterministic하게)
+        let uuidString = boxId.uuidString
+        let hash = uuidString.hashValue
+        let number = (abs(hash) % 15) + 1
+
+        saveDefaultImageNumber(number, for: boxId)
+        return number
+    }
 }
 
 // MARK: - Main Tab View (fullScreenCover용)
@@ -755,7 +840,7 @@ struct TreasureKeyMainView: View {
 
             TreasureTreasureView()
                 .tabItem {
-                    Label("보물창고", systemImage: "sparkles")
+                    Label("보물함", systemImage: "sparkles")
                 }
                 .tag(2)
         }
@@ -801,10 +886,11 @@ struct TreasureWarehouseViewWithClose: View {
                 } else {
                     LazyVStack(spacing: 16) {
                         ForEach(viewModel.warehouseBoxes) { box in
-                            NavigationLink(destination: ForgeView(box: box)) {
+                            NavigationLink {
+                                ForgeView(box: box)
+                            } label: {
                                 WarehouseBoxCard(box: box)
                             }
-                            .buttonStyle(PlainButtonStyle())
                         }
                     }
                     .padding()
@@ -1119,15 +1205,15 @@ struct ToothPatternView: View {
     let isCompleted: Bool
 
     var patternColor: Color {
-        isCompleted ? Color.forgeBackground.opacity(0.3) : Color.white.opacity(0.05)
+        isCompleted ? Color.forgeBackground.opacity(0.3) : Color.black.opacity(0.3)
     }
 
     var body: some View {
         GeometryReader { geo in
             switch category {
             case .money:
-                // 예산: 대각선 줄무늬
-                DiagonalStripes(color: patternColor, lineWidth: 2, spacing: 6)
+                // 예산: 다이아몬드 무늬
+                DiamondPattern(color: patternColor, size: 12)
 
             case .time:
                 // 시간: 물결 패턴
@@ -1416,6 +1502,37 @@ struct CheckPattern: View {
     }
 }
 
+// 다이아몬드 패턴
+struct DiamondPattern: View {
+    let color: Color
+    let size: CGFloat
+
+    var body: some View {
+        GeometryReader { geo in
+            let cols = Int(geo.size.width / size)
+            let rows = Int(geo.size.height / size)
+
+            ForEach(0..<rows, id: \.self) { row in
+                ForEach(0..<cols, id: \.self) { col in
+                    Path { path in
+                        let centerX = CGFloat(col) * size + size / 2
+                        let centerY = CGFloat(row) * size + size / 2
+                        let halfSize = size / 3
+
+                        // 다이아몬드 형태 그리기
+                        path.move(to: CGPoint(x: centerX, y: centerY - halfSize))
+                        path.addLine(to: CGPoint(x: centerX + halfSize, y: centerY))
+                        path.addLine(to: CGPoint(x: centerX, y: centerY + halfSize))
+                        path.addLine(to: CGPoint(x: centerX - halfSize, y: centerY))
+                        path.closeSubpath()
+                    }
+                    .stroke(Color.black, lineWidth: 1.5)
+                }
+            }
+        }
+    }
+}
+
 struct ToothView: View {
     let tooth: Tooth
     @State private var appear = false
@@ -1583,36 +1700,77 @@ struct WaveBackgroundAdaptive: View {
 
 struct OceanBoxCard: View {
     let box: TreasureBox
-    @State private var floating = false
+
+    // 배경 이미지 로드 (WarehouseBoxCard와 동일한 로직)
+    var backgroundImage: UIImage? {
+        let defaultImageNumber = TreasureBoxViewModel.getOrCreateDefaultImageNumber(for: box.id)
+        let defaultImage = UIImage(named: "default\(defaultImageNumber)")
+
+        guard let imageName = box.imageName, !imageName.isEmpty else {
+            return defaultImage
+        }
+
+        // Assets에서 이미지 확인
+        if let assetImage = UIImage(named: imageName) {
+            return assetImage
+        }
+
+        // Documents 디렉토리에서 이미지 로드
+        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let imagePath = documentsPath.appendingPathComponent(imageName)
+        if let documentImage = UIImage(contentsOfFile: imagePath.path) {
+            return documentImage
+        }
+
+        return defaultImage
+    }
 
     var body: some View {
-        VStack(spacing: 12) {
-            // 상자 아이콘
-            ZStack {
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(
-                        LinearGradient(
-                            colors: [.boxWood, .boxDark],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
+        VStack(spacing: 0) {
+            // 상단 배경 이미지
+            ZStack(alignment: .center) {
+                if let image = backgroundImage {
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(height: 100)
+                        .clipped()
+                }
+
+                // 그라디언트 오버레이
+                LinearGradient(
+                    colors: [Color.clear, Color.black.opacity(0.5)],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+
+                // 상자 아이콘 (이미지 위에)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(
+                            LinearGradient(
+                                colors: [.boxWood, .boxDark],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
                         )
-                    )
-                    .frame(width: 60, height: 50)
-                    .shadow(color: .black.opacity(0.15), radius: 5, x: 0, y: 3)
+                        .frame(width: 60, height: 50)
+                        .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 3)
 
-                Image(systemName: "lock.fill")
-                    .font(.system(size: 20))
-                    .foregroundColor(.keyGold)
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 20))
+                        .foregroundColor(.keyGold)
+                }
             }
-            .offset(y: floating ? -5 : 5)
-            .animation(.easeInOut(duration: 2).repeatForever(autoreverses: true), value: floating)
+            .frame(height: 100)
 
+            // 하단 정보
             VStack(spacing: 4) {
                 Text(box.title)
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.primary)
-                    .lineLimit(2)
+                    .lineLimit(1)
                     .multilineTextAlignment(.center)
 
                 HStack(spacing: 4) {
@@ -1632,20 +1790,17 @@ struct OceanBoxCard: View {
                 }
                 .foregroundColor(.keyGold)
             }
+            .padding(.vertical, 12)
+            .padding(.horizontal, 8)
+            .frame(height: 80)
         }
-        .padding()
-        .background(
+        .background(Color.cardBackgroundAdaptive)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color.cardBackgroundAdaptive)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.cardBorderAdaptive, lineWidth: 1)
-                )
+                .stroke(Color.cardBorderAdaptive, lineWidth: 1)
         )
         .shadow(color: Color.black.opacity(0.08), radius: 6, x: 0, y: 2)
-        .onAppear {
-            floating = true
-        }
     }
 }
 
@@ -1762,6 +1917,7 @@ struct OceanBoxDetailSheet: View {
 
 struct TreasureWarehouseView: View {
     @EnvironmentObject var viewModel: TreasureBoxViewModel
+    @Binding var selectedTab: Int
     @State private var selectedBox: TreasureBox?
     @State private var showingAddSheet = false
     @State private var showingSettings = false
@@ -1784,17 +1940,38 @@ struct TreasureWarehouseView: View {
                             .foregroundColor(.secondary.opacity(0.7))
                             .multilineTextAlignment(.center)
 
-                        Button(action: { showingAddSheet = true }) {
-                            HStack {
-                                Image(systemName: "plus.circle.fill")
-                                Text("새 꿈 추가하기")
+                        VStack(spacing: 12) {
+                            Button(action: { showingAddSheet = true }) {
+                                HStack {
+                                    Image(systemName: "plus.circle.fill")
+                                    Text("새 꿈 추가하기")
+                                }
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: 280)
+                                .padding(.horizontal, 24)
+                                .padding(.vertical, 12)
+                                .background(Color.accentColor)
+                                .cornerRadius(12)
                             }
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 24)
-                            .padding(.vertical, 12)
-                            .background(Color.accentColor)
-                            .cornerRadius(12)
+
+                            Button(action: { selectedTab = 1 }) {
+                                HStack {
+                                    Image(systemName: "water.waves")
+                                    Text("꿈 둘러보기")
+                                }
+                                .font(.headline)
+                                .foregroundColor(.accentColor)
+                                .frame(maxWidth: 280)
+                                .padding(.horizontal, 24)
+                                .padding(.vertical, 12)
+                                .background(Color.accentColor.opacity(0.1))
+                                .cornerRadius(12)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(Color.accentColor, lineWidth: 2)
+                                )
+                            }
                         }
                         .padding(.top, 8)
                     }
@@ -1804,10 +1981,11 @@ struct TreasureWarehouseView: View {
                 } else {
                     LazyVStack(spacing: 16) {
                         ForEach(viewModel.warehouseBoxes) { box in
-                            NavigationLink(destination: ForgeView(box: box)) {
+                            NavigationLink {
+                                ForgeView(box: box)
+                            } label: {
                                 WarehouseBoxCard(box: box)
                             }
-                            .buttonStyle(PlainButtonStyle())
                         }
                     }
                     .padding()
@@ -1980,6 +2158,51 @@ struct WarehouseBoxCard: View {
         }
     }
 
+    // 이미지 로드 (fallback 처리 포함)
+    var backgroundImage: UIImage? {
+        // 저장된 또는 새로 생성된 default 이미지 번호 (일관성 유지)
+        let defaultImageNumber = TreasureBoxViewModel.getOrCreateDefaultImageNumber(for: box.id)
+        let defaultImage = UIImage(named: "default\(defaultImageNumber)")
+
+        guard let imageName = box.imageName, !imageName.isEmpty else {
+            return defaultImage
+        }
+
+        // Assets에서 이미지 확인
+        if let assetImage = UIImage(named: imageName) {
+            return assetImage
+        }
+
+        // Documents 디렉토리에서 이미지 로드
+        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let imagePath = documentsPath.appendingPathComponent(imageName)
+        if let documentImage = UIImage(contentsOfFile: imagePath.path) {
+            return documentImage
+        }
+
+        return defaultImage
+    }
+
+    // 카드에 표시할 톱니 (최대 6개, 현재 진행 중인 부분 우선)
+    var displayTeeth: [Tooth] {
+        let maxDisplay = 6
+
+        if box.teeth.count <= maxDisplay {
+            return box.teeth
+        }
+
+        // 완료되지 않은 첫 번째 톱니 찾기
+        if let firstIncompleteIndex = box.teeth.firstIndex(where: { !$0.isCompleted }) {
+            // 앞에 완료된 것 2개 정도 포함하여 컨텍스트 제공
+            let startIndex = max(0, firstIncompleteIndex - 2)
+            let endIndex = min(box.teeth.count, startIndex + maxDisplay)
+            return Array(box.teeth[startIndex..<endIndex])
+        } else {
+            // 모두 완료된 경우 마지막 6개 표시
+            return Array(box.teeth.suffix(maxDisplay))
+        }
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             // 상단: 제목과 진행률
@@ -2009,24 +2232,27 @@ struct WarehouseBoxCard: View {
                 }
             }
 
-            // 열쇠 진행 시각화
-            KeyProgressView(teeth: box.teeth, showLabels: false, size: .large)
+            // 열쇠 진행 시각화 (최대 6개)
+            KeyProgressView(teeth: displayTeeth, showLabels: false, size: .large)
         }
         .padding()
         .background(
             ZStack {
-                // 배경 이미지 (더 진하게)
-                if let imageName = box.imageName, !imageName.isEmpty {
-                    Image(imageName)
+                // 배경 이미지 (존재하지 않으면 자동으로 기본 이미지 사용)
+                if let image = backgroundImage {
+                    Image(uiImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
+                        .frame(height: 140)
+                        .clipped()
                 }
 
+                // 오버레이
                 RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.cardBackgroundAdaptive.opacity(box.imageName != nil ? 0.5 : 1.0))
+                    .fill(Color.cardBackgroundAdaptive.opacity(0.6))
             }
-            .clipped()
         )
+        .frame(height: 140)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .overlay(
             RoundedRectangle(cornerRadius: 16)
@@ -2044,6 +2270,8 @@ struct ForgeView: View {
     @EnvironmentObject var bucketListViewModel: BucketListViewModel
     @State private var showUnlocking = false
     @State private var showDeleteAlert = false
+    @State private var showImagePicker = false
+    @State private var selectedPhotoItem: PhotosPickerItem?
     @Environment(\.dismiss) var dismiss
 
     var currentBox: TreasureBox {
@@ -2054,6 +2282,56 @@ struct ForgeView: View {
         bucketListViewModel.bucketItems.first(where: { $0.id == box.id })
     }
 
+    // 헤더 이미지 로드 (Documents 디렉토리 포함)
+    var headerImage: UIImage? {
+        // 저장된 또는 새로 생성된 default 이미지 번호 (일관성 유지)
+        let defaultImageNumber = TreasureBoxViewModel.getOrCreateDefaultImageNumber(for: currentBox.id)
+        let defaultImage = UIImage(named: "default\(defaultImageNumber)")
+
+        guard let imageName = currentBox.imageName, !imageName.isEmpty else {
+            return defaultImage
+        }
+
+        // Assets에서 이미지 확인
+        if let assetImage = UIImage(named: imageName) {
+            return assetImage
+        }
+
+        // Documents 디렉토리에서 이미지 로드
+        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let imagePath = documentsPath.appendingPathComponent(imageName)
+        if let documentImage = UIImage(contentsOfFile: imagePath.path) {
+            return documentImage
+        }
+
+        return defaultImage
+    }
+
+    // 사용자가 커스텀 이미지를 설정했는지 확인
+    var hasCustomImage: Bool {
+        guard let imageName = currentBox.imageName, !imageName.isEmpty else {
+            return false
+        }
+
+        // Documents 디렉토리에 파일이 있으면 커스텀 이미지
+        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let imagePath = documentsPath.appendingPathComponent(imageName)
+        return FileManager.default.fileExists(atPath: imagePath.path)
+    }
+
+    // 원래 이미지로 복구
+    func resetToDefaultImage() {
+        // 커스텀 이미지 파일 삭제
+        if let imageName = currentBox.imageName, !imageName.isEmpty {
+            let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let imagePath = documentsPath.appendingPathComponent(imageName)
+            try? FileManager.default.removeItem(at: imagePath)
+        }
+
+        // imageName을 빈 문자열로 설정 (기본 이미지 사용)
+        viewModel.updateBoxImage(boxId: currentBox.id, imageName: "")
+    }
+
     var body: some View {
         ZStack {
             // 내 창고 배경
@@ -2062,20 +2340,52 @@ struct ForgeView: View {
 
             ScrollView {
                 VStack(spacing: 24) {
-                    // 상자 정보
-                    VStack(spacing: 8) {
-                        Text(currentBox.title)
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .foregroundColor(.primary)
-
-                        HStack {
-                            Image(systemName: currentBox.category.icon)
-                            Text(currentBox.category.rawValue)
+                    // 상단 배경 이미지
+                    ZStack {
+                        // 배경 이미지
+                        if let image = headerImage {
+                            Image(uiImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(height: 200)
+                                .clipped()
                         }
-                        .foregroundColor(currentBox.category.color)
+
+                        // 그라디언트 오버레이 (텍스트 가독성)
+                        LinearGradient(
+                            colors: [Color.clear, Color.black.opacity(0.7)],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+
+                        // 상자 정보 (이미지 위에 표시)
+                        VStack(spacing: 8) {
+                            Text(currentBox.title)
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+
+                            HStack {
+                                Image(systemName: currentBox.category.icon)
+                                Text(currentBox.category.rawValue)
+                            }
+                            .foregroundColor(.white)
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                        .padding()
+
+                        // 이미지 편집 버튼
+                        PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
+                            Image(systemName: "photo.circle.fill")
+                                .font(.system(size: 24))
+                                .foregroundColor(.white)
+                                .padding(12)
+                                .background(Circle().fill(Color.black.opacity(0.5)))
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                        .padding(12)
                     }
-                    .padding(.top)
+                    .frame(height: 200)
 
                     // 진행률 (열쇠 위에 표시)
                     VStack(spacing: 8) {
@@ -2104,6 +2414,10 @@ struct ForgeView: View {
                     // 기록 섹션
                     if let item = bucketItem {
                         ForgeNotesSection(item: item)
+                            .padding(.horizontal)
+
+                        // 타임라인 섹션
+                        TimelineNavigationSection(item: item)
                             .padding(.horizontal)
                     }
 
@@ -2143,6 +2457,21 @@ struct ForgeView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {
+                    Button(action: {
+                        showImagePicker = true
+                    }) {
+                        Label("사진 수정하기", systemImage: "photo")
+                    }
+
+                    // 커스텀 이미지가 있을 때만 복구 버튼 표시
+                    if hasCustomImage {
+                        Button(action: {
+                            resetToDefaultImage()
+                        }) {
+                            Label("원래 이미지로 복구", systemImage: "arrow.counterclockwise")
+                        }
+                    }
+
                     Button(role: .destructive, action: {
                         showDeleteAlert = true
                     }) {
@@ -2166,6 +2495,45 @@ struct ForgeView: View {
             UnlockingView(box: currentBox) {
                 viewModel.openBox(currentBox)
                 dismiss()
+            }
+        }
+        .sheet(isPresented: $showImagePicker) {
+            PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
+                VStack(spacing: 16) {
+                    Image(systemName: "photo.on.rectangle.angled")
+                        .font(.system(size: 60))
+                        .foregroundColor(.blue)
+                    Text("사진 선택하기")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    Text("꿈의 대표 이미지를 변경할 수 있어요")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding()
+            }
+            .presentationDetents([.medium])
+        }
+        .onChange(of: selectedPhotoItem) { _, newItem in
+            Task {
+                if let newItem = newItem,
+                   let data = try? await newItem.loadTransferable(type: Data.self),
+                   let uiImage = UIImage(data: data) {
+                    // 이미지를 Documents 디렉토리에 저장
+                    let filename = "\(currentBox.id.uuidString)_header.jpg"
+                    if let jpegData = uiImage.jpegData(compressionQuality: 0.8) {
+                        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                        let filePath = documentsPath.appendingPathComponent(filename)
+                        try? jpegData.write(to: filePath)
+
+                        // box의 imageName 업데이트
+                        viewModel.updateBoxImage(boxId: currentBox.id, imageName: filename)
+
+                        // sheet 닫기
+                        showImagePicker = false
+                    }
+                }
             }
         }
     }
@@ -2358,7 +2726,7 @@ struct CurrentStepSection: View {
             try data.write(to: filePath)
             return fileName
         } catch {
-            print("Failed to save image: \(error)")
+            Logger().error("Failed to save image: \(error.localizedDescription)")
             return nil
         }
     }
@@ -2496,7 +2864,7 @@ struct CurrentStepCard: View {
                                             .stroke(Color.keyGold.opacity(0.3), style: StrokeStyle(lineWidth: 1, dash: [5]))
                                     )
                                 }
-                                .onChange(of: selectedPhoto) { newItem in
+                                .onChange(of: selectedPhoto) { _, newItem in
                                     Task {
                                         if let data = try? await newItem?.loadTransferable(type: Data.self),
                                            let uiImage = UIImage(data: data) {
@@ -2827,7 +3195,7 @@ struct ForgeNotesSection: View {
             let lines = block.components(separatedBy: "\n")
             if lines.count >= 2 {
                 let firstLine = lines[0]
-                var answerLine = lines[1]
+                let answerLine = lines[1]
                 var photoFilename: String? = nil
 
                 // 사진 정보 파싱 (📷 filename.jpg 형식)
@@ -3544,7 +3912,7 @@ struct TreasureTreasureView: View {
                 }
             }
             .background(Color.treasureBackgroundAdaptive.ignoresSafeArea())
-            .navigationTitle("보물창고")
+            .navigationTitle("보물함")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -3757,6 +4125,91 @@ struct TreasureCard: View {
                 )
         )
         .shadow(color: Color.black.opacity(0.08), radius: 8, x: 0, y: 2)
+    }
+}
+
+// MARK: - Timeline Navigation Section
+
+struct TimelineNavigationSection: View {
+    @ObservedObject var item: BucketListItem
+    @EnvironmentObject var bucketListViewModel: BucketListViewModel
+
+    // 모든 진행 기록 계산
+    var totalRecordsCount: Int {
+        var count = 0
+        for milestone in item.milestones {
+            count += milestone.progressRecords.count
+            for checklistItem in milestone.checklist {
+                count += checklistItem.progressRecords.count
+            }
+        }
+        return count
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            // 헤더
+            HStack {
+                Image(systemName: "clock.arrow.circlepath")
+                    .foregroundColor(.keyGold)
+                Text("진행 타임라인")
+                    .font(.headline)
+                    .foregroundColor(.primary)
+
+                Spacer()
+
+                if totalRecordsCount > 0 {
+                    Text("\(totalRecordsCount)개")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+
+            // 타임라인 버튼
+            NavigationLink {
+                ProgressTimelineView(item: item)
+                    .environmentObject(bucketListViewModel)
+            } label: {
+                HStack {
+                    VStack(alignment: .leading, spacing: 4) {
+                        if totalRecordsCount == 0 {
+                            Text("아직 진행 기록이 없어요")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                            Text("사진과 함께 진행 과정을 기록해보세요")
+                                .font(.caption)
+                                .foregroundColor(.secondary.opacity(0.7))
+                        } else {
+                            Text("진행 과정 보기")
+                                .font(.subheadline)
+                                .foregroundColor(.primary)
+                            Text("사진과 함께 기록된 나의 여정")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+
+                    Spacer()
+
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(.secondary)
+                }
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color.cardBackgroundAdaptive)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.keyGold.opacity(0.2), lineWidth: 1)
+                        )
+                )
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.forgeBackgroundAdaptive.opacity(0.5))
+        )
     }
 }
 

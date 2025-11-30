@@ -86,15 +86,46 @@ enum ObstacleType: String, Codable {
     case timing = "📅 타이밍"
 }
 
-struct ChecklistItem: Identifiable, Codable {
+struct ProgressRecord: Identifiable, Codable, Hashable {
+    var id = UUID()
+    var date: Date
+    var note: String
+    var photos: [String] // 사진 파일 이름들
+
+    init(id: UUID = UUID(), date: Date = Date(), note: String = "", photos: [String] = []) {
+        self.id = id
+        self.date = date
+        self.note = note
+        self.photos = photos
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
+    static func == (lhs: ProgressRecord, rhs: ProgressRecord) -> Bool {
+        lhs.id == rhs.id
+    }
+}
+
+struct ChecklistItem: Identifiable, Codable, Hashable {
     var id = UUID()
     var text: String
     var isCompleted: Bool = false
     var evidence: String? = nil  // 완료 근거/배운 점
     var completedDate: Date? = nil  // 완료 일시
+    var progressRecords: [ProgressRecord] = []  // 진행 과정 기록
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
+    static func == (lhs: ChecklistItem, rhs: ChecklistItem) -> Bool {
+        lhs.id == rhs.id
+    }
 }
 
-struct Milestone: Identifiable, Codable {
+struct Milestone: Identifiable, Codable, Hashable {
     var id = UUID()
     var title: String
     var description: String
@@ -103,6 +134,7 @@ struct Milestone: Identifiable, Codable {
     var isCompleted: Bool = false
     var completedDate: Date?
     var deadline: Date? // 데드라인
+    var progressRecords: [ProgressRecord] = []  // 마일스톤 전체 진행 기록
 
     init(id: UUID = UUID(), title: String, description: String, successCriteria: [String], isCompleted: Bool = false, completedDate: Date? = nil, deadline: Date? = nil) {
         self.id = id
@@ -114,6 +146,15 @@ struct Milestone: Identifiable, Codable {
         self.isCompleted = isCompleted
         self.completedDate = completedDate
         self.deadline = deadline
+        self.progressRecords = []
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
+    static func == (lhs: Milestone, rhs: Milestone) -> Bool {
+        lhs.id == rhs.id
     }
 
     // 모든 체크리스트가 완료되었는지 확인
@@ -208,6 +249,7 @@ class BucketListItem: Identifiable, Codable, ObservableObject {
     @Published var backgroundImage: String?
     @Published var location: LocationInfo?
     @Published var milestonesPhaseCompleted: Bool
+    @Published var isAbandoned: Bool
 
     init(title: String, category: BucketCategory, mountainHeight: Double = 8.8, thumbnail: String? = nil, backgroundImage: String? = nil, location: LocationInfo? = nil) {
         self.title = title
@@ -224,11 +266,12 @@ class BucketListItem: Identifiable, Codable, ObservableObject {
         self.backgroundImage = backgroundImage ?? "bucket_default"
         self.location = location
         self.milestonesPhaseCompleted = false
+        self.isAbandoned = false
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case id, title, category, status, dateAdded, dateStarted, dateCompleted
-        case obstacles, milestones, dailyProgress, notes, photos, mountainHeight, thumbnail, backgroundImage, location, milestonesPhaseCompleted
+        case obstacles, milestones, dailyProgress, notes, photos, mountainHeight, thumbnail, backgroundImage, location, milestonesPhaseCompleted, isAbandoned
     }
     
     required init(from decoder: Decoder) throws {
@@ -251,6 +294,7 @@ class BucketListItem: Identifiable, Codable, ObservableObject {
         backgroundImage = try container.decodeIfPresent(String.self, forKey: .backgroundImage) ?? "bucket_default"
         location = try container.decodeIfPresent(LocationInfo.self, forKey: .location)
         milestonesPhaseCompleted = try container.decodeIfPresent(Bool.self, forKey: .milestonesPhaseCompleted) ?? false
+        isAbandoned = try container.decodeIfPresent(Bool.self, forKey: .isAbandoned) ?? false
     }
     
     func encode(to encoder: Encoder) throws {
@@ -272,6 +316,7 @@ class BucketListItem: Identifiable, Codable, ObservableObject {
         try container.encode(backgroundImage, forKey: .backgroundImage)
         try container.encode(location, forKey: .location)
         try container.encode(milestonesPhaseCompleted, forKey: .milestonesPhaseCompleted)
+        try container.encode(isAbandoned, forKey: .isAbandoned)
     }
     
     var totalProgress: Double {

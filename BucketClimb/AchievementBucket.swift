@@ -110,11 +110,15 @@ enum AchievementBucket: String, Codable, CaseIterable {
     case 기네스북_등재하기 = "기네스북 등재하기"
 
     var thumbnail: String {
-        Self.metadata[self]!.0
+        Self.metadata[self]?.0 ?? "trophy.fill"
     }
 
     var backgroundImage: String {
-        Self.metadata[self]!.1
+        Self.metadata[self]?.1 ?? ""
+    }
+
+    var position: LocationInfo? {
+        Self.positionData[self]
     }
 
     private static let metadata: [Self: (String, String)] = [
@@ -727,6 +731,30 @@ enum AchievementBucket: String, Codable, CaseIterable {
             Milestone(title: "신청 및 준비", description: "기네스 신청", successCriteria: ["기네스 공식 사이트에서 신청했나요?", "증거 자료 요건을 확인했나요?", "증인을 확보했나요?"]),
             Milestone(title: "기록 달성", description: "기네스북 등재", successCriteria: ["기록 도전을 실행했나요?", "증거 자료를 제출했나요?", "기네스북에 등재됐나요?"])
         ]
+    ]
+
+    private static let positionData: [Self: LocationInfo] = [
+        .에베레스트_베이스캠프_트레킹하기: LocationInfo(latitude: 28.0026, longitude: 86.8528, name: "에베레스트 베이스캠프", address: "Nepal"),
+        .풀코스_마라톤_완주하기: LocationInfo(latitude: 37.5665, longitude: 126.9780, name: "서울 마라톤", address: "Seoul, South Korea"),
+        .킬리만자로_등정하기: LocationInfo(latitude: -3.0674, longitude: 37.3556, name: "킬리만자로", address: "Tanzania"),
+        .후지산_등정하기: LocationInfo(latitude: 35.3606, longitude: 138.7274, name: "후지산", address: "Japan"),
+        .북한산_100회_등반하기: LocationInfo(latitude: 37.6589, longitude: 126.9777, name: "북한산", address: "Seoul, South Korea"),
+        .제주_올레길_완주하기: LocationInfo(latitude: 33.4996, longitude: 126.5312, name: "제주 올레길", address: "Jeju, South Korea"),
+        .산티아고_순례길_완주하기: LocationInfo(latitude: 42.8782, longitude: -8.5448, name: "산티아고 데 콤포스텔라", address: "Spain"),
+        .보스턴_마라톤_완주하기: LocationInfo(latitude: 42.3601, longitude: -71.0589, name: "보스턴", address: "Boston, USA"),
+        .뉴욕_마라톤_완주하기: LocationInfo(latitude: 40.7128, longitude: -74.0060, name: "뉴욕", address: "New York, USA"),
+        .도쿄_마라톤_완주하기: LocationInfo(latitude: 35.6762, longitude: 139.6503, name: "도쿄", address: "Tokyo, Japan"),
+        .런던_마라톤_완주하기: LocationInfo(latitude: 51.5074, longitude: -0.1278, name: "런던", address: "London, UK"),
+        .베를린_마라톤_완주하기: LocationInfo(latitude: 52.5200, longitude: 13.4050, name: "베를린", address: "Berlin, Germany"),
+        .시카고_마라톤_완주하기: LocationInfo(latitude: 41.8781, longitude: -87.6298, name: "시카고", address: "Chicago, USA"),
+        .올림픽_관람하기: LocationInfo(latitude: 35.6762, longitude: 139.6503, name: "도쿄 올림픽", address: "Tokyo, Japan"),
+        .월드컵_관람하기: LocationInfo(latitude: 25.2048, longitude: 55.2708, name: "월드컵", address: "Qatar"),
+        .슈퍼볼_관람하기: LocationInfo(latitude: 33.5277, longitude: -112.2630, name: "슈퍼볼", address: "Arizona, USA"),
+        .윔블던_관람하기: LocationInfo(latitude: 51.4344, longitude: -0.2141, name: "윔블던", address: "London, UK"),
+        .투르_드_프랑스_관람하기: LocationInfo(latitude: 48.8566, longitude: 2.3522, name: "파리", address: "Paris, France"),
+        .남극_마라톤_완주하기: LocationInfo(latitude: -80.0000, longitude: -81.0000, name: "남극", address: "Antarctica"),
+        .에베레스트_마라톤_완주하기: LocationInfo(latitude: 27.7172, longitude: 86.7320, name: "에베레스트", address: "Nepal"),
+        .만리장성_마라톤_완주하기: LocationInfo(latitude: 40.4319, longitude: 116.5704, name: "만리장성", address: "China")
     ]
 }
 

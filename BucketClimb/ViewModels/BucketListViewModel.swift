@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import OSLog
 
 class BucketListViewModel: ObservableObject {
     @Published var bucketItems: [BucketListItem] = []
@@ -30,6 +31,7 @@ class BucketListViewModel: ObservableObject {
 
     init() {
         loadData()
+        migrateLocationData()
         showArchiveTab = UserDefaults.standard.bool(forKey: "ShowArchiveTab")
         useClassicMode = UserDefaults.standard.bool(forKey: "UseClassicMode")
         hasCompletedOnboarding = UserDefaults.standard.bool(forKey: "HasCompletedOnboarding")
@@ -66,13 +68,12 @@ class BucketListViewModel: ObservableObject {
         return travel + experience + achievement + learning + health + relationship
     }
 
-    func getRandomPopularBuckets(count: Int = 5) -> [(title: String, category: BucketCategory, thumbnail: String, backgroundImage: String)] {
-        #warning("개발 모드: 아이슬란드에서 오로라 보기를 항상 첫 번째로 표시")
+    func getRandomPopularBuckets(count: Int = 5) -> [(title: String, category: BucketCategory, thumbnail: String, backgroundImage: String, location: LocationInfo?)] {
         let icelandAurora = BucketItem.travel(.아이슬란드에서_오로라_보기)
         let others = allBucketItems.filter { $0.title != icelandAurora.title }.shuffled().prefix(count - 1)
 
         let result = [icelandAurora] + others
-        return result.map { ($0.title, $0.category, $0.thumbnail, $0.backgroundImage) }
+        return result.map { ($0.title, $0.category, $0.thumbnail, $0.backgroundImage, $0.location) }
     }
 
     func addBucketItem(title: String, category: BucketCategory, thumbnail: String? = nil, backgroundImage: String? = nil, location: LocationInfo? = nil, notes: String? = nil) {
@@ -84,8 +85,8 @@ class BucketListViewModel: ObservableObject {
         saveData()
     }
 
-    func addBucketItemWithMilestones(title: String, category: BucketCategory, milestones: [Milestone]) {
-        let newItem = BucketListItem(title: title, category: category)
+    func addBucketItemWithMilestones(title: String, category: BucketCategory, milestones: [Milestone], location: LocationInfo? = nil) {
+        let newItem = BucketListItem(title: title, category: category, location: location)
         newItem.milestones = milestones
         bucketItems.append(newItem)
         saveData()
@@ -126,8 +127,13 @@ class BucketListViewModel: ObservableObject {
 
     // 꿈 포기 (상태만 변경, 데이터는 유지)
     func abandonBucket(item: BucketListItem) {
-        // 포기한 꿈은 삭제하지 않고 상태만 유지
-        // TreasureBoxViewModel에서 completedBoxes로 관리됨
+        // 포기한 꿈은 완료 상태로 변경하고 포기 플래그 설정
+        if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
+            bucketItems[index].status = .completed
+            bucketItems[index].dateCompleted = Date()
+            bucketItems[index].isAbandoned = true
+            objectWillChange.send()
+        }
         saveData()
     }
 
@@ -135,6 +141,9 @@ class BucketListViewModel: ObservableObject {
     func resumeBucket(item: BucketListItem) {
         if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
             bucketItems[index].status = .climbing
+            bucketItems[index].dateStarted = Date()
+            bucketItems[index].dateCompleted = nil
+            bucketItems[index].isAbandoned = false
             objectWillChange.send()
             saveData()
         }
@@ -487,7 +496,6 @@ class BucketListViewModel: ObservableObject {
         // 학습 관련
         else if item.category == .learning || title.contains("배우") || title.contains("공부") || title.contains("어") && (title.contains("유창") || title.contains("구사")) {
             if title.contains("영어") || title.contains("프랑스어") || title.contains("일본어") || title.contains("중국어") {
-                let language = title.contains("프랑스어") ? "프랑스어" : title.contains("일본어") ? "일본어" : title.contains("중국어") ? "중국어" : "영어"
                 obstacles = [
                     Obstacle(type: .time, description: "학습 시간", currentValue: 0, targetValue: 500, unit: "시간"),
                     Obstacle(type: .money, description: "학습 비용", currentValue: 0, targetValue: 2000000, unit: "원"),
@@ -572,6 +580,36 @@ class BucketListViewModel: ObservableObject {
         if let savedData = UserDefaults.standard.data(forKey: saveKey),
            let decoded = try? JSONDecoder().decode([BucketListItem].self, from: savedData) {
             bucketItems = decoded
+        }
+    }
+
+    // 기존 데이터에 위치 정보가 없는 경우 마이그레이션
+    private func migrateLocationData() {
+        var needsSave = false
+        Logger().info("🔄 [마이그레이션] 위치 정보 업데이트 시작")
+
+        for (index, item) in bucketItems.enumerated() {
+            // 이미 위치 정보가 있으면 스킵
+            if item.location != nil {
+                continue
+            }
+
+            // 제목으로 매칭되는 BucketItem 찾기
+            if let matchingBucket = allBucketItems.first(where: { $0.title == item.title }),
+               let location = matchingBucket.location {
+                Logger().info("  ✅ '\(item.title)' 위치 업데이트: \(location.name)")
+                bucketItems[index].location = location
+                needsSave = true
+            } else {
+                Logger().info("  ⏭️ '\(item.title)' - 매칭되는 위치 정보 없음")
+            }
+        }
+
+        if needsSave {
+            Logger().info("  💾 마이그레이션 완료 - 데이터 저장")
+            saveData()
+        } else {
+            Logger().info("  ℹ️ 마이그레이션 불필요")
         }
     }
 

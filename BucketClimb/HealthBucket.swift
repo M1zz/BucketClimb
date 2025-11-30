@@ -112,11 +112,15 @@ enum HealthBucket: String, Codable, CaseIterable {
     case 반신욕_습관_만들기 = "반신욕 습관 만들기"
 
     var thumbnail: String {
-        Self.metadata[self]!.0
+        Self.metadata[self]?.0 ?? "heart.circle.fill"
     }
 
     var backgroundImage: String {
-        Self.metadata[self]!.1
+        Self.metadata[self]?.1 ?? ""
+    }
+
+    var position: LocationInfo? {
+        Self.positionData[self]
     }
 
     private static let metadata: [Self: (String, String)] = [
@@ -817,5 +821,7 @@ enum HealthBucket: String, Codable, CaseIterable {
             Milestone(title: "습관화", description: "정기 반신욕", successCriteria: ["정기 반신욕이 습관이 되면서 느낀 변화를 기록해보세요", "피로 해소와 건강 향상 효과를 설명해보세요", "반신욕 습관이 주는 의미와 앞으로의 계획은?"])
         ]
     ]
+
+    private static let positionData: [Self: LocationInfo] = [:]
 }
 

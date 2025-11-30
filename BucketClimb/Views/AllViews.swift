@@ -1,5 +1,7 @@
 import SwiftUI
 import MapKit
+import PhotosUI
+import OSLog
 
 // MARK: - Sky Lantern Animation View
 struct SkyLanternView: View {
@@ -372,7 +374,7 @@ struct RecommendationsView: View {
     @Binding var selectedTab: Int
     @Binding var showingSuccessAlert: Bool
     @Binding var addedBucketTitle: String
-    @State private var randomBuckets: [(title: String, category: BucketCategory, thumbnail: String, backgroundImage: String)] = []
+    @State private var randomBuckets: [(title: String, category: BucketCategory, thumbnail: String, backgroundImage: String, location: LocationInfo?)] = []
 
     var body: some View {
         ScrollView {
@@ -396,7 +398,8 @@ struct RecommendationsView: View {
                                     title: randomBuckets[index].title,
                                     category: randomBuckets[index].category,
                                     thumbnail: randomBuckets[index].thumbnail,
-                                    backgroundImage: randomBuckets[index].backgroundImage
+                                    backgroundImage: randomBuckets[index].backgroundImage,
+                                    location: randomBuckets[index].location
                                 )
                                 addedBucketTitle = randomBuckets[index].title
                                 showingSuccessAlert = true
@@ -526,7 +529,8 @@ struct RecommendationsSheetView: View {
                                     title: bucket.title,
                                     category: bucket.category,
                                     thumbnail: bucket.thumbnail,
-                                    backgroundImage: bucket.backgroundImage
+                                    backgroundImage: bucket.backgroundImage,
+                                    location: bucket.location
                                 )
                                 addedBucketTitle = bucket.title
                                 showingSuccessAlert = true
@@ -563,7 +567,8 @@ struct RecommendationsSheetView: View {
                         title: bucket.title,
                         category: bucket.category,
                         thumbnail: bucket.thumbnail,
-                        backgroundImage: bucket.backgroundImage
+                        backgroundImage: bucket.backgroundImage,
+                        location: bucket.location
                     )
                     addedBucketTitle = bucket.title
                     showingSuccessAlert = true
@@ -4060,7 +4065,7 @@ struct AddObstacleSheet: View {
         .background(Color(.systemBackground))
         .cornerRadius(12)
         .shadow(color: .black.opacity(0.05), radius: 5)
-        .onChange(of: type) { _ in
+        .onChange(of: type) { _, _ in
             // 유형 변경 시 기본값 설정
             setDefaultValuesForType()
         }
@@ -4928,7 +4933,7 @@ struct LocationSearchView: View {
             isSearching = false
 
             if let error = error {
-                print("검색 에러: \(error.localizedDescription)")
+                Logger().error("검색 에러: \(error.localizedDescription)")
                 return
             }
 
@@ -4981,41 +4986,52 @@ struct SearchBar: View {
 // MARK: - Bucket Map View
 struct BucketMapView: View {
     @EnvironmentObject var viewModel: BucketListViewModel
-    @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), // 서울
-        span: MKCoordinateSpan(latitudeDelta: 50, longitudeDelta: 50)
+    @State private var cameraPosition = MapCameraPosition.region(
+        MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9780), // 서울
+            span: MKCoordinateSpan(latitudeDelta: 50, longitudeDelta: 50)
+        )
     )
     @State private var showingSettings = false
 
     var travelBuckets: [BucketListItem] {
-        viewModel.bucketItems.filter { $0.category == .travel && $0.location != nil }
+        let filtered = viewModel.bucketItems.filter { $0.location != nil }
+        Logger().info("🗺️ [꿈지도] travelBuckets 계산됨 - 총 \(filtered.count)개")
+        for item in filtered {
+            Logger().info("  📍 \(item.title) [\(item.status.rawValue)] - 위치: \(item.location?.name ?? "Unknown")")
+        }
+        return filtered
     }
 
     var body: some View {
         NavigationView {
             ZStack {
-                Map(coordinateRegion: $region, annotationItems: travelBuckets) { item in
-                    MapAnnotation(coordinate: item.location!.coordinate) {
-                        VStack(spacing: 4) {
-                            ZStack {
-                                Circle()
-                                    .fill(item.category.color)
-                                    .frame(width: 40, height: 40)
+                Map(position: $cameraPosition) {
+                    ForEach(travelBuckets) { item in
+                        if let location = item.location {
+                            Annotation(item.title, coordinate: location.coordinate) {
+                                VStack(spacing: 4) {
+                                    ZStack {
+                                        Circle()
+                                            .fill(item.category.color)
+                                            .frame(width: 40, height: 40)
 
-                                Image(systemName: item.thumbnail)
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 20))
+                                        Image(systemName: item.thumbnail)
+                                            .foregroundColor(.white)
+                                            .font(.system(size: 20))
+                                    }
+                                    .shadow(radius: 3)
+
+                                    Text(item.title)
+                                        .font(.caption2)
+                                        .fontWeight(.semibold)
+                                        .padding(.horizontal, 6)
+                                        .padding(.vertical, 3)
+                                        .background(Color.white)
+                                        .cornerRadius(4)
+                                        .shadow(radius: 2)
+                                }
                             }
-                            .shadow(radius: 3)
-
-                            Text(item.title)
-                                .font(.caption2)
-                                .fontWeight(.semibold)
-                                .padding(.horizontal, 6)
-                                .padding(.vertical, 3)
-                                .background(Color.white)
-                                .cornerRadius(4)
-                                .shadow(radius: 2)
                         }
                     }
                 }
@@ -5027,7 +5043,7 @@ struct BucketMapView: View {
                             .font(.system(size: 60))
                             .foregroundColor(.gray)
 
-                        Text("위치가 설정된 여행 버킷리스트가 없습니다")
+                        Text("위치가 설정된 버킷리스트가 없습니다")
                             .font(.headline)
                             .foregroundColor(.secondary)
 
@@ -5058,9 +5074,23 @@ struct BucketMapView: View {
             }
         }
         .onAppear {
-            if let firstBucket = travelBuckets.first {
-                region.center = firstBucket.location!.coordinate
-                region.span = MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30)
+            Logger().info("🗺️ [꿈지도] 뷰 나타남 (onAppear)")
+            Logger().info("  📊 전체 bucketItems 수: \(viewModel.bucketItems.count)")
+            Logger().info("  📍 위치 정보 있는 꿈: \(travelBuckets.count)개")
+
+            // 모든 bucketItems 로깅
+            for (index, item) in viewModel.bucketItems.enumerated() {
+                Logger().info("  [\(index)] \(item.title) - 상태: \(item.status.rawValue), 위치: \(item.location != nil ? "✓" : "✗")")
+            }
+
+            if let firstBucket = travelBuckets.first, let location = firstBucket.location {
+                Logger().info("  🎯 첫 번째 꿈으로 카메라 이동: \(firstBucket.title) (\(location.name))")
+                cameraPosition = .region(MKCoordinateRegion(
+                    center: location.coordinate,
+                    span: MKCoordinateSpan(latitudeDelta: 30, longitudeDelta: 30)
+                ))
+            } else {
+                Logger().warning("  ⚠️ 위치 정보가 있는 꿈이 없어서 카메라 이동 안 함")
             }
         }
     }
@@ -5130,7 +5160,8 @@ struct AllBucketBrowserView: View {
                                     title: item.title,
                                     category: item.category,
                                     thumbnail: item.thumbnail,
-                                    backgroundImage: item.backgroundImage
+                                    backgroundImage: item.backgroundImage,
+                                    location: item.location
                                 )
                                 addedBucketTitle = item.title
                                 showingSuccessAlert = true
@@ -5244,5 +5275,326 @@ struct BucketBrowserRow: View {
         .background(Color(.systemBackground))
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 2)
+    }
+}
+
+// MARK: - Progress Timeline Views
+
+struct ProgressTimelineView: View {
+    @ObservedObject var item: BucketListItem
+    @EnvironmentObject var viewModel: BucketListViewModel
+    @State private var showAddRecord = false
+
+    // 모든 진행 기록을 시간순으로 정렬
+    var allRecords: [(date: Date, milestone: String, record: ProgressRecord)] {
+        var records: [(date: Date, milestone: String, record: ProgressRecord)] = []
+
+        for milestone in item.milestones {
+            for record in milestone.progressRecords {
+                records.append((date: record.date, milestone: milestone.title, record: record))
+            }
+
+            for checklistItem in milestone.checklist {
+                for record in checklistItem.progressRecords {
+                    records.append((date: record.date, milestone: "\(milestone.title) - \(checklistItem.text)", record: record))
+                }
+            }
+        }
+
+        return records.sorted(by: { $0.date > $1.date })
+    }
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 16) {
+                    if allRecords.isEmpty {
+                        EmptyTimelineView()
+                            .padding(.top, 100)
+                    } else {
+                        ForEach(Array(allRecords.enumerated()), id: \.element.record.id) { index, record in
+                            TimelineRecordCard(
+                                date: record.date,
+                                milestone: record.milestone,
+                                record: record.record,
+                                isFirst: index == 0
+                            )
+                        }
+                    }
+                }
+                .padding()
+            }
+            .navigationTitle("진행 타임라인")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { showAddRecord = true }) {
+                        Image(systemName: "plus.circle.fill")
+                            .foregroundColor(.blue)
+                    }
+                }
+            }
+            .sheet(isPresented: $showAddRecord) {
+                AddProgressRecordView(item: item)
+                    .environmentObject(viewModel)
+            }
+        }
+    }
+}
+
+struct EmptyTimelineView: View {
+    var body: some View {
+        VStack(spacing: 16) {
+            Image(systemName: "timeline.selection")
+                .font(.system(size: 60))
+                .foregroundColor(.gray.opacity(0.5))
+
+            Text("아직 기록이 없어요")
+                .font(.title3)
+                .fontWeight(.semibold)
+                .foregroundColor(.primary)
+
+            Text("진행 과정을 기록하고\n사진과 함께 추억을 남겨보세요")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+        }
+    }
+}
+
+struct TimelineRecordCard: View {
+    let date: Date
+    let milestone: String
+    let record: ProgressRecord
+    let isFirst: Bool
+
+    var formattedDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy년 M월 d일 HH:mm"
+        return formatter.string(from: date)
+    }
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 12) {
+            // Timeline indicator
+            VStack(spacing: 0) {
+                Circle()
+                    .fill(isFirst ? Color.blue : Color.gray)
+                    .frame(width: 12, height: 12)
+
+                if !isFirst {
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.3))
+                        .frame(width: 2)
+                }
+            }
+
+            VStack(alignment: .leading, spacing: 8) {
+                // Date
+                Text(formattedDate)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+
+                // Milestone tag
+                Text(milestone)
+                    .font(.caption)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.blue)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color.blue.opacity(0.1))
+                    .cornerRadius(6)
+
+                // Note
+                if !record.note.isEmpty {
+                    Text(record.note)
+                        .font(.subheadline)
+                        .foregroundColor(.primary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+
+                // Photos
+                if !record.photos.isEmpty {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 8) {
+                            ForEach(record.photos, id: \.self) { photoName in
+                                if let image = loadImageFromDocuments(filename: photoName) {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 120, height: 120)
+                                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color(.systemBackground))
+            .cornerRadius(12)
+            .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
+        }
+    }
+
+    private func loadImageFromDocuments(filename: String) -> UIImage? {
+        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let imagePath = documentsPath.appendingPathComponent(filename)
+        return UIImage(contentsOfFile: imagePath.path)
+    }
+}
+
+struct AddProgressRecordView: View {
+    @ObservedObject var item: BucketListItem
+    @EnvironmentObject var viewModel: BucketListViewModel
+    @Environment(\.dismiss) var dismiss
+
+    @State private var selectedMilestone: Milestone?
+    @State private var note: String = ""
+    @State private var selectedPhotos: [UIImage] = []
+    @State private var showImagePicker = false
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section("마일스톤 선택") {
+                    Picker("마일스톤", selection: $selectedMilestone) {
+                        Text("선택하세요").tag(nil as Milestone?)
+                        ForEach(item.milestones) { milestone in
+                            Text(milestone.title).tag(milestone as Milestone?)
+                        }
+                    }
+                }
+
+                Section("기록 내용") {
+                    TextEditor(text: $note)
+                        .frame(minHeight: 100)
+                }
+
+                Section("사진 추가") {
+                    Button(action: { showImagePicker = true }) {
+                        HStack {
+                            Image(systemName: "photo.on.rectangle.angled")
+                            Text("사진 선택")
+                        }
+                    }
+
+                    if !selectedPhotos.isEmpty {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 8) {
+                                ForEach(Array(selectedPhotos.enumerated()), id: \.offset) { index, image in
+                                    ZStack(alignment: .topTrailing) {
+                                        Image(uiImage: image)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 80, height: 80)
+                                            .clipShape(RoundedRectangle(cornerRadius: 8))
+
+                                        Button(action: {
+                                            selectedPhotos.remove(at: index)
+                                        }) {
+                                            Image(systemName: "xmark.circle.fill")
+                                                .foregroundColor(.white)
+                                                .background(Circle().fill(Color.black.opacity(0.6)))
+                                        }
+                                        .padding(4)
+                                    }
+                                }
+                            }
+                            .padding(.vertical, 8)
+                        }
+                    }
+                }
+            }
+            .navigationTitle("진행 기록 추가")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("취소") { dismiss() }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("저장") {
+                        saveRecord()
+                    }
+                    .disabled(selectedMilestone == nil || (note.isEmpty && selectedPhotos.isEmpty))
+                }
+            }
+            .sheet(isPresented: $showImagePicker) {
+                ImagePicker(images: $selectedPhotos, selectionLimit: 5)
+            }
+        }
+    }
+
+    private func saveRecord() {
+        guard let milestone = selectedMilestone,
+              let milestoneIndex = item.milestones.firstIndex(where: { $0.id == milestone.id }) else {
+            return
+        }
+
+        // Save photos to documents
+        var photoFilenames: [String] = []
+        for (index, image) in selectedPhotos.enumerated() {
+            let filename = "\(UUID().uuidString)_\(index).jpg"
+            if let data = image.jpegData(compressionQuality: 0.8) {
+                let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                let filePath = documentsPath.appendingPathComponent(filename)
+                try? data.write(to: filePath)
+                photoFilenames.append(filename)
+            }
+        }
+
+        // Create progress record
+        let record = ProgressRecord(note: note, photos: photoFilenames)
+        item.milestones[milestoneIndex].progressRecords.append(record)
+
+        dismiss()
+    }
+}
+
+// MARK: - Image Picker
+
+struct ImagePicker: UIViewControllerRepresentable {
+    @Binding var images: [UIImage]
+    var selectionLimit: Int = 1
+
+    func makeUIViewController(context: Context) -> PHPickerViewController {
+        var config = PHPickerConfiguration()
+        config.filter = .images
+        config.selectionLimit = selectionLimit
+
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = context.coordinator
+        return picker
+    }
+
+    func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {}
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    class Coordinator: NSObject, PHPickerViewControllerDelegate {
+        let parent: ImagePicker
+
+        init(_ parent: ImagePicker) {
+            self.parent = parent
+        }
+
+        func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+            picker.dismiss(animated: true)
+
+            for result in results {
+                if result.itemProvider.canLoadObject(ofClass: UIImage.self) {
+                    result.itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+                        if let image = image as? UIImage {
+                            DispatchQueue.main.async {
+                                self.parent.images.append(image)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

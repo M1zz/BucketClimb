@@ -110,11 +110,15 @@ enum RelationshipBucket: String, Codable, CaseIterable {
     case 직장_동료와_친해지기 = "직장 동료와 친해지기"
 
     var thumbnail: String {
-        Self.metadata[self]!.0
+        Self.metadata[self]?.0 ?? "heart.fill"
     }
 
     var backgroundImage: String {
-        Self.metadata[self]!.1
+        Self.metadata[self]?.1 ?? ""
+    }
+
+    var position: LocationInfo? {
+        Self.positionData[self]
     }
 
     private static let metadata: [Self: (String, String)] = [
@@ -786,6 +790,11 @@ enum RelationshipBucket: String, Codable, CaseIterable {
             Milestone(title: "관계 발전", description: "친밀감 형성", successCriteria: ["동료와 퇴근 후 만남에서 나눈 이야기를 기록해보세요", "개인적인 이야기를 나누며 깊어진 관계를 공유해보세요", "서로 응원하는 관계의 특별함을 설명해보세요"]),
             Milestone(title: "직장 친구", description: "우정 완성", successCriteria: ["직장에서 생긴 친한 친구와의 우정을 기록해보세요", "즐거워진 회사 생활을 공유해보세요", "오래 연락할 친구가 된 의미를 설명해보세요"])
         ]
+    ]
+
+    private static let positionData: [Self: LocationInfo] = [
+        .친구들과_제주도_한달_살기: LocationInfo(latitude: 33.4996, longitude: 126.5312, name: "제주도", address: "Jeju, South Korea"),
+        .연인과_오로라_보기: LocationInfo(latitude: 64.1466, longitude: -21.9426, name: "레이캬비크", address: "Reykjavik, Iceland")
     ]
 }
 // MARK: - Unified Bucket Item Type

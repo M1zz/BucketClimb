@@ -112,11 +112,15 @@ enum LearningBucket: String, Codable, CaseIterable {
     case 유치원_정교사하기 = "유치원 정교사하기"
 
     var thumbnail: String {
-        Self.metadata[self]!.0
+        Self.metadata[self]?.0 ?? "book.fill"
     }
 
     var backgroundImage: String {
-        Self.metadata[self]!.1
+        Self.metadata[self]?.1 ?? ""
+    }
+
+    var position: LocationInfo? {
+        Self.positionData[self]
     }
 
     private static let metadata: [Self: (String, String)] = [
@@ -823,6 +827,13 @@ enum LearningBucket: String, Codable, CaseIterable {
             Milestone(title: "전공 이수", description: "4년 과정 완료", successCriteria: ["전공 과목 학습 중 가장 의미있었던 교육 활동을 설명해보세요", "유치원 실습 경험과 아이들과의 소중한 추억을 기록해보세요", "4년 과정을 통해 교사로서 성장한 점을 공유해보세요"]),
             Milestone(title: "자격증 취득", description: "유치원 정교사 자격", successCriteria: ["교원자격검정 통과 과정과 준비 방법을 설명해보세요", "유치원 정교사 자격증 취득의 기쁨과 의미를 기록해보세요", "유치원 교사로서 아이들의 꿈을 키워주겠다는 비전을 공유해보세요"])
         ]
+    ]
+
+    private static let positionData: [Self: LocationInfo] = [
+        .일본어_JLPT_N1_취득하기: LocationInfo(latitude: 35.6762, longitude: 139.6503, name: "도쿄 JLPT 시험장", address: "Tokyo, Japan"),
+        .중국어_HSK_6급_취득하기: LocationInfo(latitude: 39.9042, longitude: 116.4074, name: "베이징 HSK 시험장", address: "Beijing, China"),
+        .MBA_학위_취득하기: LocationInfo(latitude: 42.3601, longitude: -71.0589, name: "하버드 경영대학원", address: "Boston, USA"),
+        .박사_학위_취득하기: LocationInfo(latitude: 37.4275, longitude: -122.1697, name: "스탠포드 대학교", address: "Stanford, USA")
     ]
 }
 

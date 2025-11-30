@@ -112,11 +112,15 @@ enum ExperienceBucket: String, Codable, CaseIterable {
     case 와인_만들기_체험하기 = "와인 만들기 체험하기"
 
     var thumbnail: String {
-        Self.metadata[self]!.0
+        Self.metadata[self]?.0 ?? "star.fill"
     }
 
     var backgroundImage: String {
-        Self.metadata[self]!.1
+        Self.metadata[self]?.1 ?? ""
+    }
+
+    var position: LocationInfo? {
+        Self.positionData[self]
     }
 
     private static let metadata: [Self: (String, String)] = [
@@ -739,6 +743,12 @@ enum ExperienceBucket: String, Codable, CaseIterable {
             Milestone(title: "체험 예약", description: "와인 메이킹", successCriteria: ["선택한 체험 프로그램의 내용(포도 수확, 발효, 병입 등)을 설명해보세요", "와인 시즌과 방문 시기를 선택한 이유는?", "나만의 와인을 만든다는 것이 갖는 의미와 기대는?"]),
             Milestone(title: "체험 준비", description: "와인 제조 과정", successCriteria: ["와인 제조 과정에 대해 미리 공부한 내용을 정리해보세요", "자신의 와인 라벨 디자인과 그 의미를 설명해보세요", "직접 만든 와인을 누구와 함께 마시고 싶고, 그 순간에 대한 기대는?"])
         ]
+    ]
+
+    private static let positionData: [Self: LocationInfo] = [
+        .스쿠버다이빙_자격증_취득하기: LocationInfo(latitude: 13.7563, longitude: 100.5018, name: "태국 코타오", address: "Koh Tao, Thailand"),
+        .번지점프_도전하기: LocationInfo(latitude: -44.9796, longitude: 168.6626, name: "퀸즈타운", address: "Queenstown, New Zealand"),
+        .스카이다이빙_체험하기: LocationInfo(latitude: -37.6648, longitude: 176.1841, name: "타우포", address: "Taupo, New Zealand")
     ]
 }
 

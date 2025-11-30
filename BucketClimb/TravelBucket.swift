@@ -111,11 +111,15 @@ enum TravelBucket: String, Codable, CaseIterable {
     case 아제르바이잔_바쿠_불의_땅_가기 = "아제르바이잔 바쿠 불의 땅 가기"
 
     var thumbnail: String {
-        Self.metadata[self]!.0
+        Self.metadata[self]?.0 ?? "airplane"
     }
 
     var backgroundImage: String {
-        Self.metadata[self]!.1
+        Self.metadata[self]?.1 ?? ""
+    }
+
+    var position: LocationInfo? {
+        Self.positionData[self]
     }
 
     private static let metadata: [Self: (String, String)] = [
@@ -756,6 +760,51 @@ enum TravelBucket: String, Codable, CaseIterable {
             Milestone(title: "바쿠 구시가지", description: "유네스코 유산", successCriteria: ["이체리셰헤르 산책 후기를 기록해보세요", "메이든 타워 방문 소감을 공유해보세요", "시르반샤 궁전의 역사를 설명해보세요"]),
             Milestone(title: "현대 바쿠", description: "플레임 타워", successCriteria: ["플레임 타워 야경의 감동을 기록해보세요", "헤이다르 알리예프 센터 건축미를 공유해보세요", "바쿠의 대비되는 매력을 설명해보세요"])
         ]
+    ]
+
+    private static let positionData: [Self: LocationInfo] = [
+        .아이슬란드에서_오로라_보기: LocationInfo(latitude: 64.1466, longitude: -21.9426, name: "레이캬비크", address: "Reykjavik, Iceland"),
+        .산토리니에서_일몰_감상하기: LocationInfo(latitude: 36.3932, longitude: 25.4615, name: "산토리니", address: "Santorini, Greece"),
+        .뉴질랜드_남섬_일주하기: LocationInfo(latitude: -43.5321, longitude: 172.6362, name: "크라이스트처치", address: "Christchurch, New Zealand"),
+        .스위스_융프라우_등반하기: LocationInfo(latitude: 46.5376, longitude: 7.9625, name: "융프라우", address: "Jungfrau, Switzerland"),
+        .몰디브에서_수상_방갈로_숙박하기: LocationInfo(latitude: 3.2028, longitude: 73.2207, name: "말레", address: "Male, Maldives"),
+        .일본_벚꽃_시즌_교토_여행하기: LocationInfo(latitude: 35.0116, longitude: 135.7681, name: "교토", address: "Kyoto, Japan"),
+        .프랑스_파리_에펠탑_방문하기: LocationInfo(latitude: 48.8584, longitude: 2.2945, name: "에펠탑", address: "Paris, France"),
+        .이탈리아_베네치아_곤돌라_타기: LocationInfo(latitude: 45.4408, longitude: 12.3155, name: "베네치아", address: "Venice, Italy"),
+        .체코_프라하_구시가지_산책하기: LocationInfo(latitude: 50.0755, longitude: 14.4378, name: "프라하", address: "Prague, Czech Republic"),
+        .크로아티아_플리트비체_국립공원_가기: LocationInfo(latitude: 44.8654, longitude: 15.5820, name: "플리트비체", address: "Plitvice Lakes, Croatia"),
+        .노르웨이_피오르드_크루즈_타기: LocationInfo(latitude: 61.1100, longitude: 6.8000, name: "송네피오르", address: "Sognefjord, Norway"),
+        .덴마크_코펜하겐_자전거_여행하기: LocationInfo(latitude: 55.6761, longitude: 12.5683, name: "코펜하겐", address: "Copenhagen, Denmark"),
+        .스웨덴_스톡홀름_군도_가기: LocationInfo(latitude: 59.3293, longitude: 18.0686, name: "스톡홀름", address: "Stockholm, Sweden"),
+        .핀란드_오로라_유리_이글루_숙박하기: LocationInfo(latitude: 68.4194, longitude: 27.0142, name: "로바니에미", address: "Rovaniemi, Finland"),
+        .캐나다_밴프_국립공원_여행하기: LocationInfo(latitude: 51.4968, longitude: -115.9281, name: "밴프", address: "Banff, Canada"),
+        .페루_마추픽추_방문하기: LocationInfo(latitude: -13.1631, longitude: -72.5450, name: "마추픽추", address: "Machu Picchu, Peru"),
+        .미국_그랜드_캐년_보기: LocationInfo(latitude: 36.1069, longitude: -112.1129, name: "그랜드 캐년", address: "Grand Canyon, Arizona, USA"),
+        .하와이_카우아이_나팔리_가기: LocationInfo(latitude: 22.0964, longitude: -159.5261, name: "카우아이", address: "Na Pali Coast, Kauai, Hawaii"),
+        .브라질_이과수_폭포_보기: LocationInfo(latitude: -25.6953, longitude: -54.4367, name: "이과수", address: "Iguazu Falls, Brazil"),
+        .호주_대보초_스노클링하기: LocationInfo(latitude: -18.2871, longitude: 147.6992, name: "그레이트 배리어 리프", address: "Great Barrier Reef, Australia"),
+        .뉴질랜드_밀포드_사운드_가기: LocationInfo(latitude: -44.6719, longitude: 167.9264, name: "밀포드 사운드", address: "Milford Sound, New Zealand"),
+        .남극_크루즈_여행하기: LocationInfo(latitude: -64.7511, longitude: -64.0572, name: "남극 반도", address: "Antarctic Peninsula"),
+        .모로코_사하라_사막_투어하기: LocationInfo(latitude: 31.0456, longitude: -4.0055, name: "메르주가", address: "Merzouga, Morocco"),
+        .인도_타지마할_방문하기: LocationInfo(latitude: 27.1751, longitude: 78.0421, name: "타지마할", address: "Agra, India"),
+        .터키_카파도키아_열기구_타기: LocationInfo(latitude: 38.6431, longitude: 34.8287, name: "카파도키아", address: "Cappadocia, Turkey"),
+        .그리스_미코노스_여행하기: LocationInfo(latitude: 37.4467, longitude: 25.3289, name: "미코노스", address: "Mykonos, Greece"),
+        .스페인_바르셀로나_가우디_건축_보기: LocationInfo(latitude: 41.4036, longitude: 2.1744, name: "사그라다 파밀리아", address: "Barcelona, Spain"),
+        .포르투갈_리스본_전차_타기: LocationInfo(latitude: 38.7223, longitude: -9.1393, name: "리스본", address: "Lisbon, Portugal"),
+        .아프리카_사파리_투어하기: LocationInfo(latitude: -2.1540, longitude: 34.6857, name: "세렝게티", address: "Serengeti, Tanzania"),
+        .캄보디아_앙코르와트_일출_보기: LocationInfo(latitude: 13.4125, longitude: 103.8670, name: "앙코르와트", address: "Angkor Wat, Cambodia"),
+        .베트남_하롱베이_크루즈_타기: LocationInfo(latitude: 20.9101, longitude: 107.1839, name: "하롱베이", address: "Ha Long Bay, Vietnam"),
+        .태국_치앙마이_코끼리_보호소_방문하기: LocationInfo(latitude: 18.7883, longitude: 98.9853, name: "치앙마이", address: "Chiang Mai, Thailand"),
+        .발리_우붓_라이스_테라스_보기: LocationInfo(latitude: -8.4095, longitude: 115.1889, name: "우붓", address: "Ubud, Bali, Indonesia"),
+        .필리핀_팔라완_엘니도_가기: LocationInfo(latitude: 11.1949, longitude: 119.4013, name: "엘니도", address: "El Nido, Palawan, Philippines"),
+        .싱가포르_마리나베이_야경_보기: LocationInfo(latitude: 1.2864, longitude: 103.8545, name: "마리나 베이", address: "Marina Bay, Singapore"),
+        .홍콩_빅토리아_피크_야경_보기: LocationInfo(latitude: 22.2710, longitude: 114.1490, name: "빅토리아 피크", address: "Victoria Peak, Hong Kong"),
+        .두바이_부르즈_칼리파_가기: LocationInfo(latitude: 25.1972, longitude: 55.2744, name: "부르즈 칼리파", address: "Dubai, UAE"),
+        .요르단_페트라_고대도시_방문하기: LocationInfo(latitude: 30.3285, longitude: 35.4444, name: "페트라", address: "Petra, Jordan"),
+        .이집트_피라미드_방문하기: LocationInfo(latitude: 29.9792, longitude: 31.1342, name: "기자 피라미드", address: "Giza, Egypt"),
+        .케냐_마사이마라_대이동_보기: LocationInfo(latitude: -1.5014, longitude: 35.1440, name: "마사이마라", address: "Masai Mara, Kenya"),
+        .탄자니아_세렝게티_가기: LocationInfo(latitude: -2.3333, longitude: 34.8333, name: "세렝게티", address: "Serengeti, Tanzania"),
+        .부탄_타이거_네스트_방문하기: LocationInfo(latitude: 27.4920, longitude: 89.3639, name: "타이거 네스트", address: "Paro, Bhutan")
     ]
 }
 
