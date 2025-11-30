@@ -124,26 +124,26 @@ enum HealthBucket: String, Codable, CaseIterable {
     }
 
     private static let metadata: [Self: (String, String)] = [
-        .체중_10kg_감량하기: ("scalemass.fill", "weight_loss"),
-        .복근_만들기: ("figure.core.training", "abs_workout"),
-        .벤치프레스_100kg하기: ("dumbbell.fill", "bench_press"),
-        .풀업_20개_하기: ("figure.strengthtraining.traditional", "pullup_20"),
-        .요가_강사_자격증_취득하기: ("figure.yoga", "yoga_instructor"),
-        .필라테스_마스터하기: ("figure.pilates", "pilates_master"),
+        .체중_10kg_감량하기: ("scalemass.fill", "weight_loss"),//
+        .복근_만들기: ("figure.core.training", "abs_workout"),//
+        .벤치프레스_100kg하기: ("dumbbell.fill", "bench_press"),//
+        .풀업_20개_하기: ("figure.strengthtraining.traditional", "pullup_20"),//
+        .요가_강사_자격증_취득하기: ("figure.yoga", "yoga_instructor"),//
+        .필라테스_마스터하기: ("figure.pilates", "pilates_master"),//
         .금연_1년_달성하기: ("wind", "quit_smoking"),
         .채식주의자_되기: ("carrot.fill", "vegetarian"),
-        .명상_100일_연속하기: ("sparkles", "meditation_100days"),
+        .명상_100일_연속하기: ("sparkles", "meditation_100days"),//
         .건강검진_올_정상_판정하기: ("stethoscope", "health_checkup"),
-        .체중_5kg_감량하기: ("scalemass.fill", "weight_loss_5kg"),
-        .체중_20kg_감량하기: ("scalemass.fill", "weight_loss_20kg"),
+        .체중_5kg_감량하기: ("scalemass.fill", "weight_loss_5kg"),//
+        .체중_20kg_감량하기: ("scalemass.fill", "weight_loss_20kg"),//
         .체지방률_10퍼센트_달성하기: ("percent", "bodyfat_10"),
-        .체지방률_15퍼센트_달성하기: ("percent", "bodyfat_15"),
+        .체지방률_15퍼센트_달성하기: ("percent", "bodyfat_15"),//
         .근육량_5kg_증량하기: ("figure.strengthtraining.traditional", "muscle_gain_5kg"),
         .근육량_10kg_증량하기: ("figure.strengthtraining.traditional", "muscle_gain_10kg"),
         .스쿼트_200kg하기: ("figure.strengthtraining.traditional", "squat_200kg"),
         .데드리프트_200kg하기: ("figure.strengthtraining.traditional", "deadlift_200kg"),
         .벤치프레스_150kg하기: ("dumbbell.fill", "bench_press_150kg"),
-        .풀업_50개하기: ("figure.strengthtraining.traditional", "pullup_50"),
+        .풀업_50개하기: ("figure.strengthtraining.traditional", "pullup_50"),//
         .푸시업_100개_연속하기: ("figure.strengthtraining.functional", "pushup_100"),
         .플랭크_30분하기: ("figure.core.training", "plank_30min"),
         .버피_100개하기: ("figure.run", "burpee_100"),
@@ -153,7 +153,7 @@ enum HealthBucket: String, Codable, CaseIterable {
         .거북목_교정하기: ("figure.walk", "neck_correction"),
         .골반_교정하기: ("figure.walk", "pelvis_correction"),
         .자세_교정하기: ("figure.stand", "posture_correction"),
-        .척추_건강하기: ("figure.walk", "spine_health"),
+        .척추_건강하기: ("figure.walk", "spine_health"),//
         .관절_건강하기: ("figure.walk", "joint_health"),
         .혈압_정상화하기: ("heart.fill", "blood_pressure"),
         .콜레스테롤_정상화하기: ("drop.fill", "cholesterol"),

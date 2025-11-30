@@ -263,8 +263,10 @@ class TreasureBoxViewModel: ObservableObject {
         // 꿈의 바다에는 항상 랜덤 추천 상자만 표시
         oceanBoxes = generateRandomRecommendedBoxes()
 
-        // 등반 중 상태 -> 내 창고 (forging)
-        warehouseBoxes = viewModel.climbingBucketLists.map { item in
+        // 버킷에 담김 + 등반 중 상태 -> 내 창고 (forging)
+        // "꿈 키우기"와 동일하게 두 상태 모두 표시
+        let allWorkingItems = viewModel.myBucketLists + viewModel.climbingBucketLists
+        warehouseBoxes = allWorkingItems.map { item in
             convertToTreasureBox(item, status: .forging)
         }
 
@@ -1733,7 +1735,7 @@ struct OceanBoxCard: View {
                     Image(uiImage: image)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(height: 100)
+                        .frame(width: .infinity, height: 100)
                         .clipped()
                 }
 
@@ -1743,6 +1745,7 @@ struct OceanBoxCard: View {
                     startPoint: .top,
                     endPoint: .bottom
                 )
+                .frame(height: 100)
 
                 // 상자 아이콘 (이미지 위에)
                 ZStack {
@@ -1763,6 +1766,7 @@ struct OceanBoxCard: View {
                 }
             }
             .frame(height: 100)
+            .clipped()
 
             // 하단 정보
             VStack(spacing: 4) {
@@ -1794,6 +1798,7 @@ struct OceanBoxCard: View {
             .padding(.horizontal, 8)
             .frame(height: 80)
         }
+        .frame(height: 180)
         .background(Color.cardBackgroundAdaptive)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .overlay(

@@ -401,6 +401,10 @@ struct RecommendationsView: View {
                                     backgroundImage: randomBuckets[index].backgroundImage,
                                     location: randomBuckets[index].location
                                 )
+                                // 추가한 아이템을 자동으로 등반 시작 (내 창고에 표시되도록)
+                                if let newItem = viewModel.bucketItems.first(where: { $0.title == randomBuckets[index].title }) {
+                                    viewModel.startClimbing(item: newItem)
+                                }
                                 addedBucketTitle = randomBuckets[index].title
                                 showingSuccessAlert = true
 
@@ -532,6 +536,10 @@ struct RecommendationsSheetView: View {
                                     backgroundImage: bucket.backgroundImage,
                                     location: bucket.location
                                 )
+                                // 추가한 아이템을 자동으로 등반 시작 (내 창고에 표시되도록)
+                                if let newItem = viewModel.bucketItems.first(where: { $0.title == bucket.title }) {
+                                    viewModel.startClimbing(item: newItem)
+                                }
                                 addedBucketTitle = bucket.title
                                 showingSuccessAlert = true
                             }
@@ -570,6 +578,10 @@ struct RecommendationsSheetView: View {
                         backgroundImage: bucket.backgroundImage,
                         location: bucket.location
                     )
+                    // 추가한 아이템을 자동으로 등반 시작 (내 창고에 표시되도록)
+                    if let newItem = viewModel.bucketItems.first(where: { $0.title == bucket.title }) {
+                        viewModel.startClimbing(item: newItem)
+                    }
                     addedBucketTitle = bucket.title
                     showingSuccessAlert = true
                 }
@@ -1498,6 +1510,10 @@ struct AddBucketSheet: View {
             notes += "특별한 이유: \(dreamReason)"
         }
         viewModel.addBucketItem(title: title, category: category, location: location, notes: notes)
+        // 추가한 아이템을 자동으로 등반 시작 (내 창고에 표시되도록)
+        if let newItem = viewModel.bucketItems.first(where: { $0.title == title }) {
+            viewModel.startClimbing(item: newItem)
+        }
         dismiss()
     }
 }
@@ -5009,9 +5025,10 @@ struct BucketMapView: View {
                 Map(position: $cameraPosition) {
                     ForEach(travelBuckets) { item in
                         if let location = item.location {
-                            Annotation(item.title, coordinate: location.coordinate) {
+                            Annotation(location.name, coordinate: location.coordinate) {
                                 VStack(spacing: 4) {
-                                    ZStack {
+                                    // 상태 표시 배지
+                                    ZStack(alignment: .topTrailing) {
                                         Circle()
                                             .fill(item.category.color)
                                             .frame(width: 40, height: 40)
@@ -5019,10 +5036,32 @@ struct BucketMapView: View {
                                         Image(systemName: item.thumbnail)
                                             .foregroundColor(.white)
                                             .font(.system(size: 20))
+
+                                        // 상태 아이콘
+                                        if item.status == .climbing {
+                                            Circle()
+                                                .fill(Color.green)
+                                                .frame(width: 12, height: 12)
+                                                .overlay(
+                                                    Circle()
+                                                        .stroke(Color.white, lineWidth: 2)
+                                                )
+                                                .offset(x: 2, y: -2)
+                                        } else if item.status == .completed {
+                                            Circle()
+                                                .fill(Color.orange)
+                                                .frame(width: 12, height: 12)
+                                                .overlay(
+                                                    Circle()
+                                                        .stroke(Color.white, lineWidth: 2)
+                                                )
+                                                .offset(x: 2, y: -2)
+                                        }
                                     }
                                     .shadow(radius: 3)
 
-                                    Text(item.title)
+                                    // 카테고리 표시
+                                    Text(item.category.rawValue)
                                         .font(.caption2)
                                         .fontWeight(.semibold)
                                         .padding(.horizontal, 6)
@@ -5163,6 +5202,10 @@ struct AllBucketBrowserView: View {
                                     backgroundImage: item.backgroundImage,
                                     location: item.location
                                 )
+                                // 추가한 아이템을 자동으로 등반 시작 (내 창고에 표시되도록)
+                                if let newItem = viewModel.bucketItems.first(where: { $0.title == item.title }) {
+                                    viewModel.startClimbing(item: newItem)
+                                }
                                 addedBucketTitle = item.title
                                 showingSuccessAlert = true
                             }
