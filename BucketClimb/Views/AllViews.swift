@@ -4865,6 +4865,93 @@ struct SettingsView: View {
                 } header: {
                     Text("앱 정보")
                 }
+
+                Section {
+                    // 피드백 보내기
+                    Button {
+                        sendFeedbackEmail()
+                    } label: {
+                        HStack {
+                            Image(systemName: "envelope.fill")
+                                .foregroundColor(.blue)
+                                .font(.title3)
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("피드백 보내기")
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+
+                                Text("개발자에게 의견을 보내주세요")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+
+                            Spacer()
+
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.secondary)
+                                .font(.caption)
+                        }
+                    }
+
+                    // 앱 공유하기
+                    Button {
+                        shareApp()
+                    } label: {
+                        HStack {
+                            Image(systemName: "square.and.arrow.up.fill")
+                                .foregroundColor(.green)
+                                .font(.title3)
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("앱 공유하기")
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+
+                                Text("친구에게 이 앱을 추천해주세요")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+
+                            Spacer()
+
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.secondary)
+                                .font(.caption)
+                        }
+                    }
+
+                    // 앱 평가하기
+                    Button {
+                        rateApp()
+                    } label: {
+                        HStack {
+                            Image(systemName: "star.fill")
+                                .foregroundColor(.yellow)
+                                .font(.title3)
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("앱 평가하기")
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+
+                                Text("App Store에서 평점을 남겨주세요")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+
+                            Spacer()
+
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.secondary)
+                                .font(.caption)
+                        }
+                    }
+                } header: {
+                    Text("지원")
+                } footer: {
+                    Text("여러분의 소중한 피드백이 앱 발전에 큰 도움이 됩니다 ❤️")
+                }
             }
             .navigationTitle("설정")
             .navigationBarTitleDisplayMode(.inline)
@@ -4875,6 +4962,54 @@ struct SettingsView: View {
                     }
                 }
             }
+        }
+    }
+
+    // MARK: - Helper Functions
+
+    private func sendFeedbackEmail() {
+        let email = "leeo@kakao.com"
+        let subject = "[BucketClimb] 피드백"
+        let body = """
+
+        ---
+        앱 버전: 1.0.0
+        기기: \(UIDevice.current.model)
+        iOS 버전: \(UIDevice.current.systemVersion)
+        """
+
+        let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let encodedBody = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+
+        if let url = URL(string: "mailto:\(email)?subject=\(encodedSubject)&body=\(encodedBody)") {
+            UIApplication.shared.open(url)
+        }
+    }
+
+    private func shareApp() {
+        let appStoreURL = "https://apps.apple.com/app/id6740034706"
+        let shareText = "꿈을 향해 한 걸음씩! BucketClimb으로 버킷리스트를 관리해보세요 🏔️"
+
+        let activityItems: [Any] = [shareText, URL(string: appStoreURL)!]
+
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let rootViewController = windowScene.windows.first?.rootViewController {
+            // iPad에서는 popover로 표시
+            if let popover = activityVC.popoverPresentationController {
+                popover.sourceView = rootViewController.view
+                popover.sourceRect = CGRect(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY, width: 0, height: 0)
+                popover.permittedArrowDirections = []
+            }
+            rootViewController.present(activityVC, animated: true)
+        }
+    }
+
+    private func rateApp() {
+        let appStoreURL = "https://apps.apple.com/app/id6740034706?action=write-review"
+        if let url = URL(string: appStoreURL) {
+            UIApplication.shared.open(url)
         }
     }
 }
