@@ -14,6 +14,9 @@
 		2A000006000000000000000000000006 /* AllViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000006000000000000000000000016 /* AllViews.swift */; };
 		2A000007000000000000000000000007 /* TreasureKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000007000000000000000000000017 /* TreasureKeyView.swift */; };
 		2A000008000000000000000000000008 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000008000000000000000000000018 /* OnboardingView.swift */; };
+		2A000009000000000000000000000009 /* UnsplashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000009000000000000000000000029 /* UnsplashService.swift */; };
+		2A00000A00000000000000000000000A /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A00000A00000000000000000000002A /* ImageCacheManager.swift */; };
+		2A00000B00000000000000000000000B /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A00000B00000000000000000000002B /* CachedAsyncImage.swift */; };
 		580DFD2D2ED5E8D6008F8FC9 /* TravelBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580DFD2C2ED5E8D6008F8FC9 /* TravelBucket.swift */; };
 		580DFD2E2ED5E8D6008F8FC9 /* HealthBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580DFD292ED5E8D6008F8FC9 /* HealthBucket.swift */; };
 		580DFD2F2ED5E8D6008F8FC9 /* BucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580DFD272ED5E8D6008F8FC9 /* BucketItem.swift */; };
@@ -41,6 +44,9 @@
 		580DFD2B2ED5E8D6008F8FC9 /* RelationshipBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationshipBucket.swift; sourceTree = "<group>"; };
 		580DFD2C2ED5E8D6008F8FC9 /* TravelBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelBucket.swift; sourceTree = "<group>"; };
 		58AA252C2ED22AE200E8766A /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
+		2A000009000000000000000000000029 /* UnsplashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashService.swift; sourceTree = "<group>"; };
+		2A00000A00000000000000000000002A /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		2A00000B00000000000000000000002B /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +76,7 @@
 				2A000020000000000000000000000020 /* Models */,
 				2A000021000000000000000000000021 /* ViewModels */,
 				2A000022000000000000000000000022 /* Views */,
+				2A000023000000000000000000000023 /* Services */,
 				580DFD272ED5E8D6008F8FC9 /* BucketItem.swift */,
 				580DFD262ED5E8D6008F8FC9 /* AchievementBucket.swift */,
 				580DFD282ED5E8D6008F8FC9 /* ExperienceBucket.swift */,
@@ -112,8 +119,18 @@
 				2A000006000000000000000000000016 /* AllViews.swift */,
 				2A000007000000000000000000000017 /* TreasureKeyView.swift */,
 				2A000008000000000000000000000018 /* OnboardingView.swift */,
+				2A00000B00000000000000000000002B /* CachedAsyncImage.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		2A000023000000000000000000000023 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2A000009000000000000000000000029 /* UnsplashService.swift */,
+				2A00000A00000000000000000000002A /* ImageCacheManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +206,9 @@
 				2A000003000000000000000000000003 /* ContentView.swift in Sources */,
 				2A000004000000000000000000000004 /* BucketListItem.swift in Sources */,
 				2A000005000000000000000000000005 /* BucketListViewModel.swift in Sources */,
+				2A000009000000000000000000000009 /* UnsplashService.swift in Sources */,
+				2A00000A00000000000000000000000A /* ImageCacheManager.swift in Sources */,
+				2A00000B00000000000000000000000B /* CachedAsyncImage.swift in Sources */,
 				580DFD2D2ED5E8D6008F8FC9 /* TravelBucket.swift in Sources */,
 				580DFD2E2ED5E8D6008F8FC9 /* HealthBucket.swift in Sources */,
 				580DFD2F2ED5E8D6008F8FC9 /* BucketItem.swift in Sources */,

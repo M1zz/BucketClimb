@@ -1703,41 +1703,23 @@ struct WaveBackgroundAdaptive: View {
 struct OceanBoxCard: View {
     let box: TreasureBox
 
-    // 배경 이미지 로드 (WarehouseBoxCard와 동일한 로직)
-    var backgroundImage: UIImage? {
+    // fallback 이미지 이름 (Unsplash 로드 실패 시)
+    var fallbackImageName: String {
         let defaultImageNumber = TreasureBoxViewModel.getOrCreateDefaultImageNumber(for: box.id)
-        let defaultImage = UIImage(named: "default\(defaultImageNumber)")
-
-        guard let imageName = box.imageName, !imageName.isEmpty else {
-            return defaultImage
-        }
-
-        // Assets에서 이미지 확인
-        if let assetImage = UIImage(named: imageName) {
-            return assetImage
-        }
-
-        // Documents 디렉토리에서 이미지 로드
-        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let imagePath = documentsPath.appendingPathComponent(imageName)
-        if let documentImage = UIImage(contentsOfFile: imagePath.path) {
-            return documentImage
-        }
-
-        return defaultImage
+        return "default\(defaultImageNumber)"
     }
 
     var body: some View {
         VStack(spacing: 0) {
             // 상단 배경 이미지
             ZStack(alignment: .center) {
-                if let image = backgroundImage {
-                    Image(uiImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: .infinity, height: 100)
-                        .clipped()
-                }
+                // BucketBackgroundImage 사용 (Unsplash API + 캐싱)
+                BucketBackgroundImage(
+                    title: box.title,
+                    backgroundImage: box.imageName ?? fallbackImageName,
+                    fallbackImages: [fallbackImageName]
+                )
+                .frame(height: 100)
 
                 // 그라디언트 오버레이
                 LinearGradient(
@@ -2163,29 +2145,10 @@ struct WarehouseBoxCard: View {
         }
     }
 
-    // 이미지 로드 (fallback 처리 포함)
-    var backgroundImage: UIImage? {
-        // 저장된 또는 새로 생성된 default 이미지 번호 (일관성 유지)
+    // fallback 이미지 이름 (Unsplash 로드 실패 시)
+    var fallbackImageName: String {
         let defaultImageNumber = TreasureBoxViewModel.getOrCreateDefaultImageNumber(for: box.id)
-        let defaultImage = UIImage(named: "default\(defaultImageNumber)")
-
-        guard let imageName = box.imageName, !imageName.isEmpty else {
-            return defaultImage
-        }
-
-        // Assets에서 이미지 확인
-        if let assetImage = UIImage(named: imageName) {
-            return assetImage
-        }
-
-        // Documents 디렉토리에서 이미지 로드
-        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let imagePath = documentsPath.appendingPathComponent(imageName)
-        if let documentImage = UIImage(contentsOfFile: imagePath.path) {
-            return documentImage
-        }
-
-        return defaultImage
+        return "default\(defaultImageNumber)"
     }
 
     // 카드에 표시할 톱니 (최대 6개, 현재 진행 중인 부분 우선)
@@ -2243,14 +2206,13 @@ struct WarehouseBoxCard: View {
         .padding()
         .background(
             ZStack {
-                // 배경 이미지 (존재하지 않으면 자동으로 기본 이미지 사용)
-                if let image = backgroundImage {
-                    Image(uiImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(height: 140)
-                        .clipped()
-                }
+                // BucketBackgroundImage 사용 (Unsplash API + 캐싱)
+                BucketBackgroundImage(
+                    title: box.title,
+                    backgroundImage: box.imageName ?? fallbackImageName,
+                    fallbackImages: [fallbackImageName]
+                )
+                .frame(height: 140)
 
                 // 오버레이
                 RoundedRectangle(cornerRadius: 16)

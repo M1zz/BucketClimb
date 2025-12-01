@@ -1097,25 +1097,21 @@ struct PopularBucketCard: View {
     let backgroundImage: String
     let onAdd: () -> Void
 
-    // 기본 이미지 선택 (제목 기반으로 일관된 이미지 선택)
-    private var displayImage: String {
-        // UIImage로 이미지 존재 확인
-        if UIImage(named: backgroundImage) != nil {
-            return backgroundImage
-        } else {
-            // 이미지가 없으면 제목의 해시값으로 default1~default5 중 하나를 일관되게 선택
-            let hash = abs(title.hashValue)
-            let imageNumber = (hash % 5) + 1
-            return "default\(imageNumber)"
-        }
+    init(title: String, category: BucketCategory, thumbnail: String, backgroundImage: String, onAdd: @escaping () -> Void) {
+        self.title = title
+        self.category = category
+        self.thumbnail = thumbnail
+        self.backgroundImage = backgroundImage
+        self.onAdd = onAdd
+        print("🃏 [PopularBucketCard] init - title: \(title), backgroundImage: \(backgroundImage)")
     }
 
     var body: some View {
+        let _ = print("🃏 [PopularBucketCard] body - title: \(title)")
+
         ZStack {
-            // 배경 이미지
-            Image(displayImage)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
+            // 배경 이미지 (Unsplash API + 로컬 캐싱)
+            BucketBackgroundImage(title: title, backgroundImage: backgroundImage)
                 .frame(height: 300)
                 .clipped()
                 .cornerRadius(20)
