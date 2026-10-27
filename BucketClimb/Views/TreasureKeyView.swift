@@ -96,6 +96,17 @@ enum BoxCategory: String, Codable, CaseIterable {
     case career = "커리어"
     case lifestyle = "라이프스타일"
 
+    var displayName: String {
+        switch self {
+        case .travel: return String(localized: "여행")
+        case .challenge: return String(localized: "도전")
+        case .learning: return String(localized: "학습")
+        case .relationship: return String(localized: "관계")
+        case .career: return String(localized: "커리어")
+        case .lifestyle: return String(localized: "라이프스타일")
+        }
+    }
+
     var icon: String {
         switch self {
         case .travel: return "airplane"
@@ -135,9 +146,20 @@ enum ToothCategory: String, Codable, CaseIterable {
     case permission = "허가"
     case health = "건강"
 
+    var displayName: String {
+        switch self {
+        case .money: return String(localized: "예산")
+        case .time: return String(localized: "시간")
+        case .skill: return String(localized: "스킬")
+        case .resource: return String(localized: "자원")
+        case .permission: return String(localized: "허가")
+        case .health: return String(localized: "건강")
+        }
+    }
+
     var icon: String {
         switch self {
-        case .money: return "wonsign.circle.fill"
+        case .money: return "banknote.fill"
         case .time: return "clock.fill"
         case .skill: return "star.fill"
         case .resource: return "shippingbox.fill"
@@ -1042,7 +1064,7 @@ struct KeyProgressView: View {
 
                     HStack(spacing: 2) {
                         ForEach(teeth) { tooth in
-                            Text(tooth.title)
+                            Text(tooth.title.localizedBucket)
                                 .font(.system(size: 8))
                                 .foregroundColor(tooth.isCompleted ? .keyGold : .gray)
                                 .frame(width: size.toothWidth)
@@ -1752,7 +1774,7 @@ struct OceanBoxCard: View {
 
             // 하단 정보
             VStack(spacing: 4) {
-                Text(box.title)
+                Text(box.title.localizedBucket)
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.primary)
@@ -1762,7 +1784,7 @@ struct OceanBoxCard: View {
                 HStack(spacing: 4) {
                     Image(systemName: box.category.icon)
                         .font(.caption2)
-                    Text(box.category.rawValue)
+                    Text(box.category.displayName)
                         .font(.caption2)
                 }
                 .foregroundColor(.secondary)
@@ -1816,14 +1838,14 @@ struct OceanBoxDetailSheet: View {
 
                         // 제목
                         VStack(spacing: 8) {
-                            Text(box.title)
+                            Text(box.title.localizedBucket)
                                 .font(.title2)
                                 .fontWeight(.bold)
                                 .foregroundColor(.primary)
 
                             HStack {
                                 Image(systemName: box.category.icon)
-                                Text(box.category.rawValue)
+                                Text(box.category.displayName)
                             }
                             .font(.subheadline)
                             .foregroundColor(box.category.color)
@@ -1831,7 +1853,7 @@ struct OceanBoxDetailSheet: View {
 
                         // 설명
                         if !box.description.isEmpty {
-                            Text(box.description)
+                            Text(box.description.localizedBucket)
                                 .font(.body)
                                 .foregroundColor(.secondary)
                                 .multilineTextAlignment(.center)
@@ -1850,7 +1872,7 @@ struct OceanBoxDetailSheet: View {
                                         .foregroundColor(tooth.category.color)
                                         .frame(width: 24)
 
-                                    Text(tooth.title)
+                                    Text(tooth.title.localizedBucket)
                                         .foregroundColor(.primary)
 
                                     Spacer()
@@ -1906,6 +1928,7 @@ struct TreasureWarehouseView: View {
     @EnvironmentObject var viewModel: TreasureBoxViewModel
     @Binding var selectedTab: Int
     @State private var selectedBox: TreasureBox?
+    @State private var showsScreenshotForge = false
     @State private var showingAddSheet = false
     @State private var showingSettings = false
 
@@ -1995,6 +2018,12 @@ struct TreasureWarehouseView: View {
                     }
                 }
             }
+            .navigationDestination(isPresented: $showsScreenshotForge) {
+                if let box = viewModel.warehouseBoxes.first { ForgeView(box: box) }
+            }
+            #if DEBUG
+            .onAppear { if ScreenshotSeed.opensForge { showsScreenshotForge = true } }
+            #endif
             .sheet(isPresented: $showingAddSheet) {
                 AddNewDreamSheet()
                     .environmentObject(viewModel)
@@ -2036,7 +2065,7 @@ struct AddNewDreamSheet: View {
                         ForEach(BoxCategory.allCases, id: \.self) { category in
                             HStack {
                                 Image(systemName: category.icon)
-                                Text(category.rawValue)
+                                Text(category.displayName)
                             }
                             .tag(category)
                         }
@@ -2127,11 +2156,11 @@ struct WarehouseBoxCard: View {
 
     var statusText: String {
         if box.isKeyComplete {
-            return "완료"
+            return String(localized: "완료")
         } else if box.progress > 0 {
-            return "진행중"
+            return String(localized: "진행중")
         } else {
-            return "시작전"
+            return String(localized: "시작전")
         }
     }
 
@@ -2176,12 +2205,12 @@ struct WarehouseBoxCard: View {
             // 상단: 제목과 진행률
             HStack(spacing: 16) {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(box.title)
+                    Text(box.title.localizedBucket)
                         .font(.headline)
                         .foregroundColor(.primary)
                         .lineLimit(2)
 
-                    Text(box.category.rawValue)
+                    Text(box.category.displayName)
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -2327,14 +2356,14 @@ struct ForgeView: View {
 
                         // 상자 정보 (이미지 위에 표시)
                         VStack(spacing: 8) {
-                            Text(currentBox.title)
+                            Text(currentBox.title.localizedBucket)
                                 .font(.title2)
                                 .fontWeight(.bold)
                                 .foregroundColor(.white)
 
                             HStack {
                                 Image(systemName: currentBox.category.icon)
-                                Text(currentBox.category.rawValue)
+                                Text(currentBox.category.displayName)
                             }
                             .foregroundColor(.white)
                         }
@@ -2456,7 +2485,7 @@ struct ForgeView: View {
                 dismiss()
             }
         } message: {
-            Text("'\(currentBox.title)' 꿈을 보물창고에 보관합니다. 나중에 다시 시작하거나 완전히 삭제할 수 있어요.")
+            Text("'\(currentBox.title.localizedBucket)' 꿈을 보물창고에 보관합니다. 나중에 다시 시작하거나 완전히 삭제할 수 있어요.")
         }
         .fullScreenCover(isPresented: $showUnlocking) {
             UnlockingView(box: currentBox) {
@@ -2732,14 +2761,14 @@ struct CurrentStepCard: View {
                 HStack(spacing: 4) {
                     Image(systemName: tooth.category.icon)
                         .font(.caption)
-                    Text(tooth.category.rawValue)
+                    Text(tooth.category.displayName)
                         .font(.caption)
                 }
                 .foregroundColor(tooth.category.color)
             }
 
             // 마일스톤 이름
-            Text(tooth.title)
+            Text(tooth.title.localizedBucket)
                 .font(.title3)
                 .fontWeight(.semibold)
                 .foregroundColor(.primary)
@@ -2768,7 +2797,7 @@ struct CurrentStepCard: View {
                     }
 
                     // 질문
-                    Text(question)
+                    Text(question.localizedBucket)
                         .font(.body)
                         .foregroundColor(.primary)
                         .padding()
@@ -2891,7 +2920,7 @@ struct CurrentStepCard: View {
             } else {
                 // 체크리스트 없으면 바로 완료 버튼
                 if let desc = milestone?.description, !desc.isEmpty {
-                    Text(desc)
+                    Text(desc.localizedBucket)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
@@ -3073,13 +3102,13 @@ struct StepListRow: View {
 
                 // 내용
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(tooth.title)
+                    Text(tooth.title.localizedBucket)
                         .font(.body)
                         .foregroundColor(tooth.isCompleted ? .secondary : .primary)
                         .strikethrough(tooth.isCompleted)
 
                     if let milestone = milestone, !milestone.description.isEmpty {
-                        Text(milestone.description)
+                        Text(milestone.description.localizedBucket)
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }
@@ -3130,7 +3159,7 @@ struct StepListRow: View {
                                 .font(.system(size: 6))
                                 .foregroundColor(.keyGold.opacity(0.6))
                                 .padding(.top, 5)
-                            Text(criteria)
+                            Text(criteria.localizedBucket)
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
@@ -3265,7 +3294,7 @@ struct RecordPreviewCard: View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 8) {
                 // 마일스톤 태그
-                Text(record.milestone)
+                Text(record.milestone.localizedBucket)
                     .font(.caption2)
                     .fontWeight(.medium)
                     .foregroundColor(.keyGold)
@@ -3275,13 +3304,13 @@ struct RecordPreviewCard: View {
                     .cornerRadius(4)
 
                 // 질문
-                Text(record.question)
+                Text(record.question.localizedBucket)
                     .font(.caption)
                     .foregroundColor(.gray)
                     .lineLimit(1)
 
                 // 답변
-                Text(record.answer)
+                Text(record.answer.localizedBucket)
                     .font(.subheadline)
                     .foregroundColor(.white)
                     .lineLimit(2)
@@ -3347,7 +3376,7 @@ struct AllRecordsView: View {
                                 Image(systemName: "flag.fill")
                                     .font(.caption)
                                     .foregroundColor(.keyGold)
-                                Text(group.milestone)
+                                Text(group.milestone.localizedBucket)
                                     .font(.headline)
                                     .foregroundColor(.white)
                             }
@@ -3405,7 +3434,7 @@ struct RecordDetailCard: View {
                     .foregroundColor(.keyGold)
                     .frame(width: 24)
 
-                Text(question)
+                Text(question.localizedBucket)
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }
@@ -3418,7 +3447,7 @@ struct RecordDetailCard: View {
                     .foregroundColor(.white.opacity(0.5))
                     .frame(width: 24)
 
-                Text(answer)
+                Text(answer.localizedBucket)
                     .font(.body)
                     .foregroundColor(.white)
             }
@@ -3562,7 +3591,7 @@ struct ToothRow: View {
                     .frame(width: 24)
 
                 // 제목
-                Text(tooth.title)
+                Text(tooth.title.localizedBucket)
                     .font(.body)
                     .foregroundColor(tooth.isCompleted ? .gray : .white)
                     .strikethrough(tooth.isCompleted)
@@ -3697,7 +3726,7 @@ struct UnlockingView: View {
                             .fontWeight(.bold)
                             .foregroundColor(.keyGold)
 
-                        Text(box.title)
+                        Text(box.title.localizedBucket)
                             .font(.title2)
                             .foregroundColor(.white)
 
@@ -3738,10 +3767,10 @@ struct UnlockingView: View {
 
     var phaseText: String {
         switch phase {
-        case .ready: return "열쇠를 준비하는 중..."
-        case .inserting: return "열쇠를 넣는 중..."
-        case .turning: return "열쇠를 돌리는 중..."
-        case .opening: return "상자가 열리고 있어요!"
+        case .ready: return String(localized: "열쇠를 준비하는 중...")
+        case .inserting: return String(localized: "열쇠를 넣는 중...")
+        case .turning: return String(localized: "열쇠를 돌리는 중...")
+        case .opening: return String(localized: "상자가 열리고 있어요!")
         case .complete: return ""
         }
     }
@@ -3920,13 +3949,13 @@ struct AbandonedDreamCard: View {
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(completedBox.box.title)
+                    Text(completedBox.box.title.localizedBucket)
                         .font(.headline)
                         .foregroundColor(.primary)
 
                     HStack {
                         Image(systemName: completedBox.box.category.icon)
-                        Text(completedBox.box.category.rawValue)
+                        Text(completedBox.box.category.displayName)
                     }
                     .font(.caption)
                     .foregroundColor(completedBox.box.category.color)
@@ -4001,7 +4030,7 @@ struct AbandonedDreamCard: View {
                 viewModel.resumeBox(completedBox)
             }
         } message: {
-            Text("'\(completedBox.box.title)' 꿈을 내 창고로 다시 가져갑니다.")
+            Text("'\(completedBox.box.title.localizedBucket)' 꿈을 내 창고로 다시 가져갑니다.")
         }
         .alert("완전히 삭제할까요?", isPresented: $showDeleteAlert) {
             Button("취소", role: .cancel) { }
@@ -4009,7 +4038,7 @@ struct AbandonedDreamCard: View {
                 viewModel.permanentlyDeleteBox(completedBox)
             }
         } message: {
-            Text("'\(completedBox.box.title)' 꿈을 완전히 삭제합니다. 이 작업은 되돌릴 수 없어요.")
+            Text("'\(completedBox.box.title.localizedBucket)' 꿈을 완전히 삭제합니다. 이 작업은 되돌릴 수 없어요.")
         }
     }
 }
@@ -4038,13 +4067,13 @@ struct TreasureCard: View {
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(completedBox.box.title)
+                    Text(completedBox.box.title.localizedBucket)
                         .font(.headline)
                         .foregroundColor(.primary)
 
                     HStack {
                         Image(systemName: completedBox.box.category.icon)
-                        Text(completedBox.box.category.rawValue)
+                        Text(completedBox.box.category.displayName)
                     }
                     .font(.caption)
                     .foregroundColor(completedBox.box.category.color)

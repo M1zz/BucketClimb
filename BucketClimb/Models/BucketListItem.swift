@@ -20,7 +20,19 @@ enum BucketCategory: String, Codable, CaseIterable {
     case relationship = "관계"
     case health = "건강"
     case learning = "배움"
-    
+
+    /// 화면용 이름. rawValue 는 저장 데이터라 바꾸지 않는다.
+    var displayName: String {
+        switch self {
+        case .travel: return String(localized: "여행")
+        case .experience: return String(localized: "경험")
+        case .achievement: return String(localized: "성취")
+        case .relationship: return String(localized: "관계")
+        case .health: return String(localized: "건강")
+        case .learning: return String(localized: "배움")
+        }
+    }
+
     var icon: String {
         switch self {
         case .travel: return "airplane"
@@ -48,6 +60,14 @@ enum BucketStatus: String, Codable {
     case inBucket = "버킷에 담김"
     case climbing = "등반 중"
     case completed = "완료"
+
+    var displayName: String {
+        switch self {
+        case .inBucket: return String(localized: "버킷에 담김")
+        case .climbing: return String(localized: "등반 중")
+        case .completed: return String(localized: "완료")
+        }
+    }
 }
 
 struct Obstacle: Identifiable, Codable, Hashable {
@@ -84,6 +104,16 @@ enum ObstacleType: String, Codable {
     case skill = "💪 체력/스킬"
     case knowledge = "📚 지식"
     case timing = "📅 타이밍"
+
+    var displayName: String {
+        switch self {
+        case .money: return String(localized: "💰 비용")
+        case .time: return String(localized: "⏰ 시간")
+        case .skill: return String(localized: "💪 체력/스킬")
+        case .knowledge: return String(localized: "📚 지식")
+        case .timing: return String(localized: "📅 타이밍")
+        }
+    }
 }
 
 struct ProgressRecord: Identifiable, Codable, Hashable {
@@ -215,9 +245,9 @@ enum DeadlineStatus {
     var text: String {
         switch self {
         case .none: return ""
-        case .completed: return "완료됨"
-        case .overdue: return "기한 초과"
-        case .today: return "오늘까지"
+        case .completed: return String(localized: "완료됨")
+        case .overdue: return String(localized: "기한 초과")
+        case .today: return String(localized: "오늘까지")
         case .soon(let days): return "D-\(days)"
         case .upcoming(let days): return "D-\(days)"
         }

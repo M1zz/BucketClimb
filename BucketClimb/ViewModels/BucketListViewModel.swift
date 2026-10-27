@@ -35,6 +35,9 @@ class BucketListViewModel: ObservableObject {
         showArchiveTab = UserDefaults.standard.bool(forKey: "ShowArchiveTab")
         useClassicMode = UserDefaults.standard.bool(forKey: "UseClassicMode")
         hasCompletedOnboarding = UserDefaults.standard.bool(forKey: "HasCompletedOnboarding")
+        #if DEBUG
+        if ScreenshotSeed.isOn { ScreenshotSeed.apply(to: self) }
+        #endif
     }
 
     func completeOnboarding() {
@@ -444,7 +447,7 @@ class BucketListViewModel: ObservableObject {
         if item.category == .travel || title.contains("여행") || title.contains("가기") {
             if title.contains("아이슬란드") || title.contains("오로라") {
                 obstacles = [
-                    Obstacle(type: .money, description: "여행 경비", currentValue: 0, targetValue: 2500000, unit: "원"),
+                    Obstacle(type: .money, description: "여행 경비", currentValue: 0, targetValue: DreamMoney.scaled(2500000), unit: "원"),
                     Obstacle(type: .time, description: "휴가 일수", currentValue: 0, targetValue: 7, unit: "일"),
                     Obstacle(type: .timing, description: "적절한 시즌 예약", currentValue: 0, targetValue: 1, unit: "완료"),
                     Obstacle(type: .knowledge, description: "여행 계획 수립", currentValue: 0, targetValue: 1, unit: "완료")
@@ -452,7 +455,7 @@ class BucketListViewModel: ObservableObject {
                 height = 2.5
             } else if title.contains("유럽") || title.contains("세계여행") {
                 obstacles = [
-                    Obstacle(type: .money, description: "여행 경비", currentValue: 0, targetValue: 5000000, unit: "원"),
+                    Obstacle(type: .money, description: "여행 경비", currentValue: 0, targetValue: DreamMoney.scaled(5000000), unit: "원"),
                     Obstacle(type: .time, description: "휴가 일수", currentValue: 0, targetValue: 14, unit: "일"),
                     Obstacle(type: .knowledge, description: "여행 계획", currentValue: 0, targetValue: 1, unit: "완료"),
                     Obstacle(type: .timing, description: "비자/예약", currentValue: 0, targetValue: 1, unit: "완료")
@@ -460,7 +463,7 @@ class BucketListViewModel: ObservableObject {
                 height = 5.0
             } else {
                 obstacles = [
-                    Obstacle(type: .money, description: "여행 경비", currentValue: 0, targetValue: 1500000, unit: "원"),
+                    Obstacle(type: .money, description: "여행 경비", currentValue: 0, targetValue: DreamMoney.scaled(1500000), unit: "원"),
                     Obstacle(type: .time, description: "휴가 일수", currentValue: 0, targetValue: 5, unit: "일"),
                     Obstacle(type: .knowledge, description: "여행 계획", currentValue: 0, targetValue: 1, unit: "완료")
                 ]
@@ -471,7 +474,7 @@ class BucketListViewModel: ObservableObject {
         else if item.category == .achievement || title.contains("성취") || title.contains("도전") {
             if title.contains("에베레스트") || title.contains("베이스캠프") || title.contains("트레킹") {
                 obstacles = [
-                    Obstacle(type: .money, description: "트레킹 비용", currentValue: 0, targetValue: 8000000, unit: "원"),
+                    Obstacle(type: .money, description: "트레킹 비용", currentValue: 0, targetValue: DreamMoney.scaled(8000000), unit: "원"),
                     Obstacle(type: .skill, description: "체력 훈련", currentValue: 0, targetValue: 100, unit: "일"),
                     Obstacle(type: .time, description: "휴가 일수", currentValue: 0, targetValue: 21, unit: "일"),
                     Obstacle(type: .knowledge, description: "고산병 대비", currentValue: 0, targetValue: 1, unit: "완료")
@@ -480,7 +483,7 @@ class BucketListViewModel: ObservableObject {
             } else if title.contains("마라톤") || title.contains("풀코스") {
                 obstacles = [
                     Obstacle(type: .skill, description: "달리기 훈련", currentValue: 0, targetValue: 90, unit: "일"),
-                    Obstacle(type: .money, description: "준비 비용", currentValue: 0, targetValue: 500000, unit: "원"),
+                    Obstacle(type: .money, description: "준비 비용", currentValue: 0, targetValue: DreamMoney.scaled(500000), unit: "원"),
                     Obstacle(type: .knowledge, description: "훈련 계획", currentValue: 0, targetValue: 1, unit: "완료")
                 ]
                 height = 4.2
@@ -498,21 +501,21 @@ class BucketListViewModel: ObservableObject {
             if title.contains("영어") || title.contains("프랑스어") || title.contains("일본어") || title.contains("중국어") {
                 obstacles = [
                     Obstacle(type: .time, description: "학습 시간", currentValue: 0, targetValue: 500, unit: "시간"),
-                    Obstacle(type: .money, description: "학습 비용", currentValue: 0, targetValue: 2000000, unit: "원"),
+                    Obstacle(type: .money, description: "학습 비용", currentValue: 0, targetValue: DreamMoney.scaled(2000000), unit: "원"),
                     Obstacle(type: .knowledge, description: "교재/강의 완료", currentValue: 0, targetValue: 10, unit: "권")
                 ]
                 height = 4.0
             } else if title.contains("자격증") || title.contains("시험") {
                 obstacles = [
                     Obstacle(type: .time, description: "학습 시간", currentValue: 0, targetValue: 300, unit: "시간"),
-                    Obstacle(type: .money, description: "학습 비용", currentValue: 0, targetValue: 1000000, unit: "원"),
+                    Obstacle(type: .money, description: "학습 비용", currentValue: 0, targetValue: DreamMoney.scaled(1000000), unit: "원"),
                     Obstacle(type: .knowledge, description: "과목 이수", currentValue: 0, targetValue: 5, unit: "과목")
                 ]
                 height = 2.8
             } else {
                 obstacles = [
                     Obstacle(type: .time, description: "학습 시간", currentValue: 0, targetValue: 200, unit: "시간"),
-                    Obstacle(type: .money, description: "학습 비용", currentValue: 0, targetValue: 500000, unit: "원")
+                    Obstacle(type: .money, description: "학습 비용", currentValue: 0, targetValue: DreamMoney.scaled(500000), unit: "원")
                 ]
                 height = 2.0
             }
@@ -523,7 +526,7 @@ class BucketListViewModel: ObservableObject {
                 obstacles = [
                     Obstacle(type: .time, description: "운동 일수", currentValue: 0, targetValue: 90, unit: "일"),
                     Obstacle(type: .skill, description: "식단 관리", currentValue: 0, targetValue: 90, unit: "일"),
-                    Obstacle(type: .money, description: "헬스장 비용", currentValue: 0, targetValue: 500000, unit: "원")
+                    Obstacle(type: .money, description: "헬스장 비용", currentValue: 0, targetValue: DreamMoney.scaled(500000), unit: "원")
                 ]
                 height = 3.0
             } else {
@@ -537,7 +540,7 @@ class BucketListViewModel: ObservableObject {
         // 경험 관련
         else if item.category == .experience {
             obstacles = [
-                Obstacle(type: .money, description: "필요 비용", currentValue: 0, targetValue: 800000, unit: "원"),
+                Obstacle(type: .money, description: "필요 비용", currentValue: 0, targetValue: DreamMoney.scaled(800000), unit: "원"),
                 Obstacle(type: .time, description: "소요 시간", currentValue: 0, targetValue: 10, unit: "시간"),
                 Obstacle(type: .knowledge, description: "사전 준비", currentValue: 0, targetValue: 1, unit: "완료")
             ]
@@ -554,7 +557,7 @@ class BucketListViewModel: ObservableObject {
         // 기본 템플릿
         else {
             obstacles = [
-                Obstacle(type: .money, description: "필요 비용", currentValue: 0, targetValue: 1000000, unit: "원"),
+                Obstacle(type: .money, description: "필요 비용", currentValue: 0, targetValue: DreamMoney.scaled(1000000), unit: "원"),
                 Obstacle(type: .time, description: "필요 시간", currentValue: 0, targetValue: 100, unit: "시간"),
                 Obstacle(type: .knowledge, description: "학습 및 준비", currentValue: 0, targetValue: 1, unit: "완료")
             ]

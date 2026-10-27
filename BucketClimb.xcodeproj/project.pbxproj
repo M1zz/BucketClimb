@@ -25,6 +25,11 @@
 		580DFD322ED5E8D6008F8FC9 /* LearningBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580DFD2A2ED5E8D6008F8FC9 /* LearningBucket.swift */; };
 		580DFD332ED5E8D6008F8FC9 /* RelationshipBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580DFD2B2ED5E8D6008F8FC9 /* RelationshipBucket.swift */; };
 		58AA252D2ED22AE200E8766A /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58AA252C2ED22AE200E8766A /* Asset.xcassets */; };
+		3B000001000000000000000000000001 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B000001000000000000000000000011 /* Localization.swift */; };
+		3B000002000000000000000000000002 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3B000002000000000000000000000012 /* Localizable.xcstrings */; };
+		3B000003000000000000000000000003 /* Buckets.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3B000003000000000000000000000013 /* Buckets.xcstrings */; };
+		3B000004000000000000000000000004 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3B000004000000000000000000000014 /* InfoPlist.xcstrings */; };
+		3B000006000000000000000000000006 /* ScreenshotSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B000006000000000000000000000016 /* ScreenshotSeed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +52,12 @@
 		580DFD2B2ED5E8D6008F8FC9 /* RelationshipBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationshipBucket.swift; sourceTree = "<group>"; };
 		580DFD2C2ED5E8D6008F8FC9 /* TravelBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelBucket.swift; sourceTree = "<group>"; };
 		58AA252C2ED22AE200E8766A /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
+		3B000001000000000000000000000011 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		3B000002000000000000000000000012 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		3B000003000000000000000000000013 /* Buckets.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Buckets.xcstrings; sourceTree = "<group>"; };
+		3B000004000000000000000000000014 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		3B000005000000000000000000000015 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Version.xcconfig; sourceTree = "<group>"; };
+		3B000006000000000000000000000016 /* ScreenshotSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotSeed.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +74,7 @@
 		2A000010000000000000000000000010 = {
 			isa = PBXGroup;
 			children = (
+				3B000005000000000000000000000015 /* Version.xcconfig */,
 				58AA252C2ED22AE200E8766A /* Asset.xcassets */,
 				2A000011000000000000000000000011 /* BucketClimb */,
 				2A000012000000000000000000000019 /* Products */,
@@ -73,6 +85,11 @@
 			isa = PBXGroup;
 			children = (
 				2A000002000000000000000000000012 /* BucketClimbApp.swift */,
+				3B000001000000000000000000000011 /* Localization.swift */,
+				3B000006000000000000000000000016 /* ScreenshotSeed.swift */,
+				3B000002000000000000000000000012 /* Localizable.xcstrings */,
+				3B000003000000000000000000000013 /* Buckets.xcstrings */,
+				3B000004000000000000000000000014 /* InfoPlist.xcstrings */,
 				2A000020000000000000000000000020 /* Models */,
 				2A000021000000000000000000000021 /* ViewModels */,
 				2A000022000000000000000000000022 /* Views */,
@@ -174,6 +191,29 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ko,
+				"en-GB",
+				"zh-Hans",
+				"zh-Hant",
+				ja,
+				ru,
+				es,
+				de,
+				fr,
+				it,
+				"pt-BR",
+				th,
+				vi,
+				cs,
+				da,
+				el,
+				fi,
+				id,
+				nb,
+				nl,
+				pl,
+				sv,
+				tr,
 				Base,
 			);
 			mainGroup = 2A000010000000000000000000000010;
@@ -192,6 +232,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				58AA252D2ED22AE200E8766A /* Asset.xcassets in Resources */,
+				3B000002000000000000000000000002 /* Localizable.xcstrings in Resources */,
+				3B000003000000000000000000000003 /* Buckets.xcstrings in Resources */,
+				3B000004000000000000000000000004 /* InfoPlist.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +262,8 @@
 				2A000006000000000000000000000006 /* AllViews.swift in Sources */,
 				2A000007000000000000000000000007 /* TreasureKeyView.swift in Sources */,
 				2A000008000000000000000000000008 /* OnboardingView.swift in Sources */,
+				3B000001000000000000000000000001 /* Localization.swift in Sources */,
+				3B000006000000000000000000000006 /* ScreenshotSeed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +272,7 @@
 /* Begin XCBuildConfiguration section */
 		2A000040000000000000000000000040 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B000005000000000000000000000015 /* Version.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -290,6 +336,7 @@
 		};
 		2A000041000000000000000000000041 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B000005000000000000000000000015 /* Version.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -346,11 +393,11 @@
 		};
 		2A000042000000000000000000000042 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B000005000000000000000000000015 /* Version.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = QGAQ3AY3R3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -366,7 +413,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bucketclimb.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -381,11 +427,11 @@
 		};
 		2A000043000000000000000000000043 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B000005000000000000000000000015 /* Version.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = QGAQ3AY3R3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -401,7 +447,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bucketclimb.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

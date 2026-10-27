@@ -182,21 +182,21 @@ enum UnsplashError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .notConfigured:
-            return "Unsplash API 키가 설정되지 않았습니다"
+            return String(localized: "Unsplash API 키가 설정되지 않았습니다")
         case .invalidQuery:
-            return "검색어가 유효하지 않습니다"
+            return String(localized: "검색어가 유효하지 않습니다")
         case .invalidURL:
-            return "잘못된 URL입니다"
+            return String(localized: "잘못된 URL입니다")
         case .invalidResponse:
-            return "서버 응답이 올바르지 않습니다"
+            return String(localized: "서버 응답이 올바르지 않습니다")
         case .unauthorized:
-            return "API 키가 유효하지 않습니다"
+            return String(localized: "API 키가 유효하지 않습니다")
         case .rateLimited:
-            return "API 호출 한도를 초과했습니다"
+            return String(localized: "API 호출 한도를 초과했습니다")
         case .httpError(let code):
-            return "HTTP 오류: \(code)"
+            return String(localized: "HTTP 오류: \(code)")
         case .downloadFailed:
-            return "이미지 다운로드에 실패했습니다"
+            return String(localized: "이미지 다운로드에 실패했습니다")
         }
     }
 }

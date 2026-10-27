@@ -506,7 +506,7 @@ struct StartPageLight: View {
 struct FeatureRowLight: View {
     let icon: String
     let iconColor: Color
-    let text: String
+    let text: LocalizedStringKey
 
     var body: some View {
         HStack(spacing: 14) {
@@ -526,7 +526,7 @@ struct FeatureRowLight: View {
 
 struct FlowIconLight: View {
     let icon: String
-    let label: String
+    let label: LocalizedStringKey
     let color: Color
 
     var body: some View {

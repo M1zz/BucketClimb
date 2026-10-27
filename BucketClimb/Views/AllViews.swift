@@ -209,12 +209,12 @@ struct FlowerBloomView: View {
 
     var stageDescription: String {
         switch bloomStage {
-        case 0: return "씨앗을 심었어요"
-        case 1: return "새싹이 돋았어요"
-        case 2: return "줄기가 자라고 있어요"
-        case 3: return "꽃봉오리가 맺혔어요"
-        case 4: return "곧 활짝 필 거예요"
-        default: return "꿈이 활짝 피었어요!"
+        case 0: return String(localized: "씨앗을 심었어요")
+        case 1: return String(localized: "새싹이 돋았어요")
+        case 2: return String(localized: "줄기가 자라고 있어요")
+        case 3: return String(localized: "꽃봉오리가 맺혔어요")
+        case 4: return String(localized: "곧 활짝 필 거예요")
+        default: return String(localized: "꿈이 활짝 피었어요!")
         }
     }
 
@@ -360,7 +360,7 @@ struct BucketFillView: View {
             .alert("담기 완료!", isPresented: $showingSuccessAlert) {
                 Button("확인", role: .cancel) { }
             } message: {
-                Text("'\(addedBucketTitle)'\n내 버킷리스트에 담겼습니다!")
+                Text("'\(addedBucketTitle.localizedBucket)'\n내 버킷리스트에 담겼습니다!")
             }
         }
     }
@@ -475,8 +475,7 @@ struct RecommendationsSheetView: View {
 
     private var todayDateString: String {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "M월 d일 EEEE"
+        formatter.setLocalizedDateFormatFromTemplate("MMMMdEEEE")
         return formatter.string(from: Date())
     }
 
@@ -590,7 +589,7 @@ struct RecommendationsSheetView: View {
         .alert("담기 완료!", isPresented: $showingSuccessAlert) {
             Button("확인", role: .cancel) { }
         } message: {
-            Text("'\(addedBucketTitle)'\n내 버킷리스트에 담겼습니다!")
+            Text("'\(addedBucketTitle.localizedBucket)'\n내 버킷리스트에 담겼습니다!")
         }
         .onAppear {
             if loadedBuckets.isEmpty {
@@ -669,7 +668,7 @@ struct RecommendationCard: View {
                 VStack(alignment: .leading, spacing: 0) {
                     // Top: Category Tag
                     HStack {
-                        Text(bucketItem.category.rawValue.uppercased())
+                        Text(bucketItem.category.displayName.uppercased())
                             .font(.caption)
                             .fontWeight(.bold)
                             .foregroundColor(.white.opacity(0.9))
@@ -700,7 +699,7 @@ struct RecommendationCard: View {
 
                     // Bottom: Title & Subtitle
                     VStack(alignment: .leading, spacing: 8) {
-                        Text(bucketItem.title)
+                        Text(bucketItem.title.localizedBucket)
                             .font(.title)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -780,14 +779,14 @@ struct BucketDetailPreviewView: View {
                             .matchedGeometryEffect(id: "gradient_\(bucketItem.title)", in: namespace, isSource: false)
 
                             VStack(alignment: .leading, spacing: 12) {
-                                Text(bucketItem.category.rawValue.uppercased())
+                                Text(bucketItem.category.displayName.uppercased())
                                     .font(.caption)
                                     .fontWeight(.bold)
                                     .foregroundColor(.white.opacity(0.9))
                                     .tracking(1.2)
                                     .matchedGeometryEffect(id: "category_\(bucketItem.title)", in: namespace, isSource: false)
 
-                                Text(bucketItem.title)
+                                Text(bucketItem.title.localizedBucket)
                                     .font(.largeTitle)
                                     .fontWeight(.bold)
                                     .foregroundColor(.white)
@@ -864,8 +863,8 @@ struct BucketDetailPreviewView: View {
                                     .lineSpacing(4)
 
                                 HStack(spacing: 12) {
-                                    InfoBadge(icon: "mountain.2.fill", text: "도전")
-                                    InfoBadge(icon: bucketItem.category.icon, text: bucketItem.category.rawValue)
+                                    InfoBadge(icon: "mountain.2.fill", text: String(localized: "도전"))
+                                    InfoBadge(icon: bucketItem.category.icon, text: bucketItem.category.displayName)
                                 }
                             }
                             .padding(.top, 8)
@@ -920,11 +919,11 @@ struct MilestonePreviewCard: View {
             }
 
             VStack(alignment: .leading, spacing: 6) {
-                Text(milestone.title)
+                Text(milestone.title.localizedBucket)
                     .font(.headline)
                     .foregroundColor(.primary)
 
-                Text(milestone.description)
+                Text(milestone.description.localizedBucket)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .lineLimit(2)
@@ -1136,7 +1135,7 @@ struct PopularBucketCard: View {
                     .foregroundColor(.white)
                     .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 1)
 
-                Text(title)
+                Text(title.localizedBucket)
                     .font(.title3)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
@@ -1144,7 +1143,7 @@ struct PopularBucketCard: View {
                     .lineLimit(2)
                     .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 1)
 
-                Text(category.rawValue)
+                Text(category.displayName)
                     .font(.subheadline)
                     .foregroundColor(.white.opacity(0.95))
                     .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 1)
@@ -1176,11 +1175,11 @@ struct MyBucketItemRow: View {
 
     var statusText: String {
         if item.status == .completed {
-            return "완료"
+            return String(localized: "완료")
         } else if item.status == .climbing {
-            return "진행중"
+            return String(localized: "진행중")
         } else {
-            return "시작전"
+            return String(localized: "시작전")
         }
     }
 
@@ -1197,12 +1196,12 @@ struct MyBucketItemRow: View {
     var body: some View {
         HStack(spacing: 16) {
             VStack(alignment: .leading, spacing: 8) {
-                Text(item.title)
+                Text(item.title.localizedBucket)
                     .font(.headline)
                     .foregroundColor(.primary)
                     .lineLimit(2)
 
-                Text(item.category.rawValue)
+                Text(item.category.displayName)
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -1319,9 +1318,9 @@ struct AddBucketSheet: View {
 
     var stepTitle: String {
         switch currentStep {
-        case 0: return "꿈을 담아볼까요?"
-        case 1: return "어떤 종류의 꿈인가요?"
-        case 2: return "이 꿈이 특별한 이유"
+        case 0: return String(localized: "꿈을 담아볼까요?")
+        case 1: return String(localized: "어떤 종류의 꿈인가요?")
+        case 2: return String(localized: "이 꿈이 특별한 이유")
         default: return ""
         }
     }
@@ -1370,7 +1369,7 @@ struct AddBucketSheet: View {
                         VStack(spacing: 8) {
                             Image(systemName: cat.icon)
                                 .font(.title2)
-                            Text(cat.rawValue)
+                            Text(cat.displayName)
                                 .font(.subheadline)
                                 .fontWeight(.medium)
                         }
@@ -1395,7 +1394,7 @@ struct AddBucketSheet: View {
                     HStack {
                         Image(systemName: location == nil ? "map" : "mappin.circle.fill")
                             .foregroundColor(location == nil ? .gray : .blue)
-                        Text(location?.name ?? "장소 검색하기 (선택)")
+                        Text(location?.name.localizedBucket ?? String(localized: "장소 검색하기 (선택)"))
                             .foregroundColor(location == nil ? .secondary : .primary)
                         Spacer()
                         Image(systemName: "chevron.right")
@@ -1500,10 +1499,10 @@ struct AddBucketSheet: View {
         guard !title.isEmpty else { return }
         var notes = ""
         if !dreamFeeling.isEmpty {
-            notes += "이 꿈을 이루면: \(dreamFeeling)\n"
+            notes += String(localized: "이 꿈을 이루면: \(dreamFeeling)") + "\n"
         }
         if !dreamReason.isEmpty {
-            notes += "특별한 이유: \(dreamReason)"
+            notes += String(localized: "특별한 이유: \(dreamReason)")
         }
         viewModel.addBucketItem(title: title, category: category, location: location, notes: notes)
         // 추가한 아이템을 자동으로 등반 시작 (내 창고에 표시되도록)
@@ -1629,12 +1628,12 @@ struct ClimbingItemCard: View {
     var body: some View {
         HStack(spacing: 16) {
             VStack(alignment: .leading, spacing: 8) {
-                Text(item.title)
+                Text(item.title.localizedBucket)
                     .font(.headline)
                     .foregroundColor(.primary)
                     .lineLimit(2)
 
-                Text(item.category.rawValue)
+                Text(item.category.displayName)
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -1839,20 +1838,18 @@ struct CompletedItemCard: View {
 
     var formattedDate: String {
         guard let date = item.dateCompleted else { return "" }
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy.M.d"
-        return formatter.string(from: date)
+        return date.formatted(date: .numeric, time: .omitted)
     }
 
     var body: some View {
         HStack(spacing: 16) {
             VStack(alignment: .leading, spacing: 8) {
-                Text(item.title)
+                Text(item.title.localizedBucket)
                     .font(.headline)
                     .foregroundColor(.primary)
                     .lineLimit(2)
 
-                Text(item.category.rawValue)
+                Text(item.category.displayName)
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -2118,7 +2115,7 @@ struct BucketDetailView: View {
                 }
             }
         }
-        .navigationTitle(item.title)
+        .navigationTitle(item.title.localizedBucket)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -2211,19 +2208,19 @@ struct BucketHeaderView: View {
     var motivationalMessage: String {
         let progress = milestoneProgress * 100
         if progress >= 100 {
-            return "축하해요! 모든 마일스톤을 달성했어요!"
+            return String(localized: "축하해요! 모든 마일스톤을 달성했어요!")
         } else if progress >= 80 {
-            return "거의 다 왔어요! 조금만 더!"
+            return String(localized: "거의 다 왔어요! 조금만 더!")
         } else if progress >= 60 {
-            return "절반 이상 완료! 대단해요!"
+            return String(localized: "절반 이상 완료! 대단해요!")
         } else if progress >= 40 {
-            return "순조롭게 진행 중이에요!"
+            return String(localized: "순조롭게 진행 중이에요!")
         } else if progress >= 20 {
-            return "좋은 시작이에요!"
+            return String(localized: "좋은 시작이에요!")
         } else if progress > 0 {
-            return "첫 걸음을 뗐어요!"
+            return String(localized: "첫 걸음을 뗐어요!")
         } else {
-            return "마일스톤을 완료해보세요!"
+            return String(localized: "마일스톤을 완료해보세요!")
         }
     }
 
@@ -2258,7 +2255,7 @@ struct BucketHeaderView: View {
                         HStack(spacing: 6) {
                             Image(systemName: item.thumbnail)
                                 .font(.caption2)
-                            Text(item.category.rawValue)
+                            Text(item.category.displayName)
                                 .font(.caption)
                                 .fontWeight(.medium)
                         }
@@ -2351,7 +2348,7 @@ struct BucketHeaderView: View {
                             HStack {
                                 Image(systemName: item.thumbnail)
                                     .font(.caption)
-                                Text(item.category.rawValue)
+                                Text(item.category.displayName)
                                     .font(.caption)
                                     .fontWeight(.medium)
                             }
@@ -2534,7 +2531,7 @@ struct MilestoneMiniCard: View {
                 }
             }
 
-            Text(milestone.title)
+            Text(milestone.title.localizedBucket)
                 .font(.caption)
                 .fontWeight(.medium)
                 .lineLimit(2)
@@ -2615,7 +2612,7 @@ struct ObstacleRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Text(obstacle.type.rawValue)
+                Text(obstacle.type.displayName)
                     .font(.headline)
                 
                 Spacer()
@@ -2626,7 +2623,7 @@ struct ObstacleRow: View {
                 }
             }
             
-            Text(obstacle.description)
+            Text(obstacle.description.localizedBucket)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
             
@@ -2644,7 +2641,7 @@ struct ObstacleRow: View {
             .frame(height: 8)
             
             HStack {
-                Text("\(Int(obstacle.currentValue)) / \(Int(obstacle.targetValue)) \(obstacle.unit)")
+                Text("\(Int(obstacle.currentValue)) / \(Int(obstacle.targetValue)) \(DreamMoney.unit(obstacle.unit))")
                     .font(.caption)
                     .foregroundColor(.secondary)
                 
@@ -2801,7 +2798,7 @@ struct MilestoneReorderSheet: View {
                                     .foregroundColor(milestone.isCompleted ? .green : .gray)
                                     .font(.subheadline)
 
-                                Text(milestone.title)
+                                Text(milestone.title.localizedBucket)
                                     .font(.body)
                                     .fontWeight(.medium)
                                     .strikethrough(milestone.isCompleted)
@@ -2809,7 +2806,7 @@ struct MilestoneReorderSheet: View {
                             }
 
                             if !milestone.description.isEmpty {
-                                Text(milestone.description)
+                                Text(milestone.description.localizedBucket)
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                                     .lineLimit(1)
@@ -2863,12 +2860,12 @@ struct MilestoneRow: View {
                     .font(.title3)
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(milestone.title)
+                    Text(milestone.title.localizedBucket)
                         .font(.headline)
                         .foregroundColor(.primary)
                         .strikethrough(milestone.isCompleted)
 
-                    Text(milestone.description)
+                    Text(milestone.description.localizedBucket)
                         .font(.caption)
                         .foregroundColor(.secondary)
 
@@ -2988,7 +2985,7 @@ struct MilestoneRow: View {
                                                 .font(.system(size: 18))
 
                                             VStack(alignment: .leading, spacing: 2) {
-                                                Text(checklistItem.text)
+                                                Text(checklistItem.text.localizedBucket)
                                                     .font(.subheadline)
                                                     .foregroundColor(checklistItem.isCompleted ? .secondary : .primary)
                                                     .strikethrough(checklistItem.isCompleted)
@@ -3128,7 +3125,7 @@ struct MilestoneRow: View {
         }
         .sheet(item: $checklistItemForInput) { checklistItem in
             EvidenceInputSheet(
-                checklistText: checklistItem.text,
+                checklistText: checklistItem.text.localizedBucket,
                 evidenceText: $evidenceText,
                 onComplete: {
                     viewModel.completeChecklistItem(
@@ -3250,7 +3247,7 @@ struct DeadlinePickerSheet: View {
 }
 
 struct QuickDateButton: View {
-    let title: String
+    let title: LocalizedStringKey
     let date: Date
     @Binding var selectedDate: Date
 
@@ -3261,6 +3258,8 @@ struct QuickDateButton: View {
             Text(title)
                 .font(.caption)
                 .fontWeight(.medium)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
                 .foregroundColor(.blue)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 8)
@@ -3382,7 +3381,7 @@ struct EvidenceDetailSheet: View {
                     HStack(spacing: 12) {
                         Image(systemName: "checkmark.square.fill")
                             .foregroundColor(.green)
-                        Text(checklistItem.text)
+                        Text(checklistItem.text.localizedBucket)
                             .font(.body)
                             .strikethrough()
                             .foregroundColor(.secondary)
@@ -3420,7 +3419,7 @@ struct EvidenceDetailSheet: View {
                         .foregroundColor(.secondary)
 
                     ScrollView {
-                        Text(checklistItem.evidence ?? "기록된 근거가 없습니다.")
+                        Text(checklistItem.evidence ?? String(localized: "기록된 근거가 없습니다."))
                             .font(.body)
                             .foregroundColor(checklistItem.evidence != nil ? .primary : .secondary)
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -3593,13 +3592,13 @@ struct EditObstacleSheet: View {
                     HStack {
                         TextField("숫자 입력", text: $currentValue)
                             .keyboardType(.decimalPad)
-                        Text(obstacle.unit)
+                        Text(DreamMoney.unit(obstacle.unit))
                             .foregroundColor(.secondary)
                     }
                 }
                 
                 Section("목표") {
-                    Text("\(Int(obstacle.targetValue)) \(obstacle.unit)")
+                    Text("\(Int(obstacle.targetValue)) \(DreamMoney.unit(obstacle.unit))")
                 }
             }
             .navigationTitle("진행상황 업데이트")
@@ -3656,9 +3655,9 @@ struct AddProgressSheet: View {
                         Text("선택 안 함").tag(nil as Obstacle?)
                         ForEach(item.obstacles) { obstacle in
                             HStack {
-                                Text(obstacle.type.rawValue)
+                                Text(obstacle.type.displayName)
                                 Text("-")
-                                Text(obstacle.description)
+                                Text(obstacle.description.localizedBucket)
                             }
                             .tag(obstacle as Obstacle?)
                         }
@@ -3669,12 +3668,12 @@ struct AddProgressSheet: View {
                         HStack {
                             TextField("증가량", text: $progressValue)
                                 .keyboardType(.decimalPad)
-                            Text(obstacle.unit)
+                            Text(DreamMoney.unit(obstacle.unit))
                                 .foregroundColor(.secondary)
                         }
 
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("현재 진행: \(Int(obstacle.currentValue)) → \(Int(obstacle.currentValue + (Double(progressValue) ?? 0))) / \(Int(obstacle.targetValue)) \(obstacle.unit)")
+                            Text("현재 진행: \(Int(obstacle.currentValue)) → \(Int(obstacle.currentValue + (Double(progressValue) ?? 0))) / \(Int(obstacle.targetValue)) \(DreamMoney.unit(obstacle.unit))")
                                 .font(.caption)
                                 .foregroundColor(.blue)
 
@@ -3757,7 +3756,7 @@ struct EditTitleSheet: View {
 
     init(item: BucketListItem) {
         self.item = item
-        _title = State(initialValue: item.title)
+        _title = State(initialValue: item.title.localizedBucket)
     }
 
     var body: some View {
@@ -3776,7 +3775,8 @@ struct EditTitleSheet: View {
 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("저장") {
-                        viewModel.updateBucketTitle(item: item, newTitle: title)
+                        // 고치지 않았으면 원문을 그대로 둔다 (번역 표에서 계속 찾도록)
+                        viewModel.updateBucketTitle(item: item, newTitle: title == item.title.localizedBucket ? item.title : title)
                         dismiss()
                     }
                     .disabled(title.isEmpty)
@@ -3801,10 +3801,11 @@ struct AddObstacleSheet: View {
 
     // 마일스톤에 따른 추천 장애물
     var suggestedObstacles: [(type: ObstacleType, description: String, targetValue: String, unit: String)] {
-        guard let milestone = selectedMilestone else {
-            return getDefaultSuggestions()
+        let suggestions = selectedMilestone.map(getSuggestionsForMilestone) ?? getDefaultSuggestions()
+        // 금액은 원화 크기로 적혀 있으니 기기 통화에 맞춘다
+        return suggestions.map { s in
+            s.type == .money ? (s.type, s.description, DreamMoney.scaled(s.targetValue), s.unit) : s
         }
-        return getSuggestionsForMilestone(milestone)
     }
 
     var body: some View {
@@ -3884,7 +3885,7 @@ struct AddObstacleSheet: View {
                 if let milestone = selectedMilestone {
                     Image(systemName: "checkmark.circle.fill")
                         .foregroundColor(.green)
-                    Text(milestone.title)
+                    Text(milestone.title.localizedBucket)
                         .foregroundColor(.primary)
                 } else {
                     Image(systemName: "plus.circle")
@@ -3918,7 +3919,7 @@ struct AddObstacleSheet: View {
                     HStack {
                         Image(systemName: selectedMilestone?.id == milestone.id ? "checkmark.circle.fill" : "circle")
                             .foregroundColor(selectedMilestone?.id == milestone.id ? .green : .gray)
-                        Text(milestone.title)
+                        Text(milestone.title.localizedBucket)
                             .foregroundColor(.primary)
                         Spacer()
                         if milestone.isCompleted {
@@ -3969,20 +3970,20 @@ struct AddObstacleSheet: View {
     private func suggestionCard(_ suggestion: (type: ObstacleType, description: String, targetValue: String, unit: String)) -> some View {
         Button(action: {
             type = suggestion.type
-            description = suggestion.description
+            description = suggestion.description.localizedBucket
             targetValue = suggestion.targetValue
             unit = suggestion.unit
         }) {
             VStack(alignment: .leading, spacing: 6) {
-                Text(suggestion.type.rawValue)
+                Text(suggestion.type.displayName)
                     .font(.caption)
                     .foregroundColor(.secondary)
-                Text(suggestion.description)
+                Text(suggestion.description.localizedBucket)
                     .font(.subheadline)
                     .fontWeight(.medium)
                     .foregroundColor(.primary)
                     .lineLimit(2)
-                Text("\(suggestion.targetValue)\(suggestion.unit)")
+                Text("\(suggestion.targetValue)\(DreamMoney.unit(suggestion.unit))")
                     .font(.caption)
                     .foregroundColor(.blue)
             }
@@ -3990,10 +3991,10 @@ struct AddObstacleSheet: View {
             .frame(width: 140)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(description == suggestion.description ? Color.blue.opacity(0.15) : Color.gray.opacity(0.1))
+                    .fill(description == suggestion.description.localizedBucket ? Color.blue.opacity(0.15) : Color.gray.opacity(0.1))
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(description == suggestion.description ? Color.blue : Color.clear, lineWidth: 2)
+                            .stroke(description == suggestion.description.localizedBucket ? Color.blue : Color.clear, lineWidth: 2)
                     )
             )
         }
@@ -4024,7 +4025,7 @@ struct AddObstacleSheet: View {
     private func obstacleTypeButton(_ obstacleType: ObstacleType) -> some View {
         Button(action: { type = obstacleType }) {
             HStack {
-                Text(obstacleType.rawValue)
+                Text(obstacleType.displayName)
                     .font(.subheadline)
                 Spacer()
                 if type == obstacleType {
@@ -4085,7 +4086,7 @@ struct AddObstacleSheet: View {
 
     private var typeIcon: String {
         switch type {
-        case .money: return "wonsign.circle.fill"
+        case .money: return "banknote.fill"
         case .time: return "clock.fill"
         case .skill: return "figure.strengthtraining.traditional"
         case .knowledge: return "book.fill"
@@ -4105,11 +4106,11 @@ struct AddObstacleSheet: View {
 
     private var typeTitle: String {
         switch type {
-        case .money: return "필요 비용"
-        case .time: return "필요 시간"
-        case .skill: return "필요 체력/스킬"
-        case .knowledge: return "필요 지식"
-        case .timing: return "타이밍/시기"
+        case .money: return String(localized: "필요 비용")
+        case .time: return String(localized: "필요 시간")
+        case .skill: return String(localized: "필요 체력/스킬")
+        case .knowledge: return String(localized: "필요 지식")
+        case .timing: return String(localized: "타이밍/시기")
         }
     }
 
@@ -4156,7 +4157,7 @@ struct AddObstacleSheet: View {
                         .background(Color.gray.opacity(0.1))
                         .cornerRadius(10)
 
-                    Text("원")
+                    Text(DreamMoney.unit("원"))
                         .foregroundColor(.secondary)
                         .padding(.horizontal, 8)
                 }
@@ -4165,7 +4166,7 @@ struct AddObstacleSheet: View {
             // 금액 빠른 선택
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 8) {
-                    ForEach(["100000", "500000", "1000000", "2000000", "5000000"], id: \.self) { amount in
+                    ForEach(["100000", "500000", "1000000", "2000000", "5000000"].map(DreamMoney.scaled), id: \.self) { amount in
                         Button(action: {
                             targetValue = amount
                             unit = "원"
@@ -4187,10 +4188,11 @@ struct AddObstacleSheet: View {
 
     private func formatMoney(_ value: String) -> String {
         guard let num = Int(value) else { return value }
+        guard DreamMoney.isKRW else { return DreamMoney.format(Double(num)) }
         if num >= 10000 {
-            return "\(num / 10000)만원"
+            return String(localized: "\(num / 10000)만원")
         }
-        return "\(num)원"
+        return String(localized: "\(num)원")
     }
 
     // MARK: - 시간 입력 필드
@@ -4241,7 +4243,7 @@ struct AddObstacleSheet: View {
                             targetValue = value
                             unit = unitValue
                         }) {
-                            Text("\(value)\(unitValue)")
+                            Text("\(value)\(unitValue.localizedBucket)")
                                 .font(.caption)
                                 .padding(.horizontal, 12)
                                 .padding(.vertical, 8)
@@ -4271,9 +4273,9 @@ struct AddObstacleSheet: View {
 
                 // 스킬 레벨 선택
                 HStack(spacing: 8) {
-                    ForEach(["초급", "중급", "고급", "전문가"], id: \.self) { level in
+                    ForEach([String(localized: "초급"), String(localized: "중급"), String(localized: "고급"), String(localized: "전문가")], id: \.self) { level in
                         Button(action: {
-                            description = description.isEmpty ? level + " 수준 달성" : description
+                            description = description.isEmpty ? String(localized: "\(level) 수준 달성") : description
                             targetValue = "1"
                             unit = "달성"
                         }) {
@@ -4290,7 +4292,7 @@ struct AddObstacleSheet: View {
                 }
             }
 
-            Text("💡 구체적인 목표: '\(description.isEmpty ? "예: 5km 달리기 가능" : description)'")
+            Text("💡 구체적인 목표: '\(description.isEmpty ? String(localized: "예: 5km 달리기 가능") : description)'")
                 .font(.caption)
                 .foregroundColor(.secondary)
         }
@@ -4310,7 +4312,7 @@ struct AddObstacleSheet: View {
                     .foregroundColor(.secondary)
 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
-                    ForEach(["정보 수집", "강의/교육", "자격증 취득", "실습/연습"], id: \.self) { knowledgeType in
+                    ForEach([String(localized: "정보 수집"), String(localized: "강의/교육"), String(localized: "자격증 취득"), String(localized: "실습/연습")], id: \.self) { knowledgeType in
                         Button(action: {
                             if description.isEmpty {
                                 description = knowledgeType
@@ -4342,10 +4344,10 @@ struct AddObstacleSheet: View {
 
     private func knowledgeTypeIcon(_ type: String) -> String {
         switch type {
-        case "정보 수집": return "magnifyingglass"
-        case "강의/교육": return "graduationcap"
-        case "자격증 취득": return "rosette"
-        case "실습/연습": return "hammer"
+        case String(localized: "정보 수집"): return "magnifyingglass"
+        case String(localized: "강의/교육"): return "graduationcap"
+        case String(localized: "자격증 취득"): return "rosette"
+        case String(localized: "실습/연습"): return "hammer"
         default: return "book"
         }
     }
@@ -4364,10 +4366,10 @@ struct AddObstacleSheet: View {
                     .foregroundColor(.secondary)
 
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
-                    ForEach(["시즌/계절", "휴가 기간", "특별 이벤트", "예약 시기"], id: \.self) { timingType in
+                    ForEach([String(localized: "시즌/계절"), String(localized: "휴가 기간"), String(localized: "특별 이벤트"), String(localized: "예약 시기")], id: \.self) { timingType in
                         Button(action: {
                             if description.isEmpty {
-                                description = timingType + " 확보"
+                                description = String(localized: "\(timingType) 확보")
                             }
                             targetValue = "1"
                             unit = "확보"
@@ -4396,10 +4398,10 @@ struct AddObstacleSheet: View {
 
     private func timingTypeIcon(_ type: String) -> String {
         switch type {
-        case "시즌/계절": return "leaf"
-        case "휴가 기간": return "airplane"
-        case "특별 이벤트": return "star"
-        case "예약 시기": return "calendar.badge.clock"
+        case String(localized: "시즌/계절"): return "leaf"
+        case String(localized: "휴가 기간"): return "airplane"
+        case String(localized: "특별 이벤트"): return "star"
+        case String(localized: "예약 시기"): return "calendar.badge.clock"
         default: return "calendar"
         }
     }
@@ -4533,7 +4535,7 @@ struct AddMilestoneSheet: View {
     @State private var description = ""
     @State private var currentQuestion = 0
 
-    let imaginationQuestions = [
+    let imaginationQuestions: [(LocalizedStringKey, LocalizedStringKey)] = [
         ("그 순간, 당신은 어디에 있을까요?", "장소나 상황을 상상해보세요"),
         ("누구와 함께 하고 싶나요?", "혼자여도 괜찮아요"),
         ("어떤 기분이 들 것 같아요?", "그 순간의 감정을 상상해보세요"),
@@ -4725,8 +4727,8 @@ struct EditMilestoneSheet: View {
                         viewModel.updateMilestone(
                             item: item,
                             milestone: milestone,
-                            newTitle: title,
-                            newDescription: description
+                            newTitle: title == milestone.title.localizedBucket ? milestone.title : title,
+                            newDescription: description == milestone.description.localizedBucket ? milestone.description : description
                         )
                         dismiss()
                     }
@@ -4734,8 +4736,8 @@ struct EditMilestoneSheet: View {
                 }
             }
             .onAppear {
-                title = milestone.title
-                description = milestone.description
+                title = milestone.title.localizedBucket
+                description = milestone.description.localizedBucket
             }
         }
     }
@@ -4847,7 +4849,7 @@ struct SettingsView: View {
                     HStack {
                         Text("버전")
                         Spacer()
-                        Text("1.0.0")
+                        Text(verbatim: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "")
                             .foregroundColor(.secondary)
                     }
 
@@ -4996,14 +4998,11 @@ struct SettingsView: View {
 
     private func sendFeedbackEmail() {
         let email = "leeo@kakao.com"
-        let subject = "[BucketClimb] 피드백"
-        let body = """
-
-        ---
-        앱 버전: 1.0.0
-        기기: \(UIDevice.current.model)
-        iOS 버전: \(UIDevice.current.systemVersion)
-        """
+        let subject = String(localized: "[BucketClimb] 피드백")
+        let body = "\n\n---\n"
+            + String(localized: "앱 버전: \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "")") + "\n"
+            + String(localized: "기기: \(UIDevice.current.model)") + "\n"
+            + String(localized: "iOS 버전: \(UIDevice.current.systemVersion)")
 
         let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let encodedBody = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
@@ -5022,7 +5021,7 @@ struct SettingsView: View {
 
     private func shareApp() {
         let appStoreURL = "https://apps.apple.com/app/id6740034706"
-        let shareText = "꿈을 향해 한 걸음씩! BucketClimb으로 버킷리스트를 관리해보세요 🏔️"
+        let shareText = String(localized: "꿈을 향해 한 걸음씩! 꿈을 찾아서로 버킷리스트를 관리해보세요 🏔️")
 
         let activityItems: [Any] = [shareText, URL(string: appStoreURL)!]
 
@@ -5074,7 +5073,7 @@ struct LocationSearchView: View {
                             selectLocation(mapItem)
                         }) {
                             VStack(alignment: .leading, spacing: 4) {
-                                Text(mapItem.name ?? "이름 없음")
+                                Text(mapItem.name ?? String(localized: "이름 없음"))
                                     .font(.headline)
 
                                 if let address = mapItem.placemark.title {
@@ -5190,7 +5189,7 @@ struct BucketMapView: View {
                 Map(position: $cameraPosition) {
                     ForEach(travelBuckets) { item in
                         if let location = item.location {
-                            Annotation(location.name, coordinate: location.coordinate) {
+                            Annotation(location.name.localizedBucket, coordinate: location.coordinate) {
                                 VStack(spacing: 4) {
                                     // 상태 표시 배지
                                     ZStack(alignment: .topTrailing) {
@@ -5226,7 +5225,7 @@ struct BucketMapView: View {
                                     .shadow(radius: 3)
 
                                     // 카테고리 표시
-                                    Text(item.category.rawValue)
+                                    Text(item.category.displayName)
                                         .font(.caption2)
                                         .fontWeight(.semibold)
                                         .padding(.horizontal, 6)
@@ -5329,7 +5328,7 @@ struct AllBucketBrowserView: View {
         if searchText.isEmpty {
             return categoryItems
         } else {
-            return categoryItems.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
+            return categoryItems.filter { $0.title.localizedBucket.localizedCaseInsensitiveContains(searchText) }
         }
     }
 
@@ -5392,7 +5391,7 @@ struct AllBucketBrowserView: View {
             .alert("담기 완료!", isPresented: $showingSuccessAlert) {
                 Button("확인", role: .cancel) { }
             } message: {
-                Text("'\(addedBucketTitle)'\n내 버킷리스트에 담겼습니다!")
+                Text("'\(addedBucketTitle.localizedBucket)'\n내 버킷리스트에 담겼습니다!")
             }
         }
     }
@@ -5409,7 +5408,7 @@ struct CategoryChip: View {
             HStack(spacing: 6) {
                 Image(systemName: category.icon)
                     .font(.system(size: 14))
-                Text(category.rawValue)
+                Text(category.displayName)
                     .font(.subheadline)
                     .fontWeight(isSelected ? .semibold : .regular)
             }
@@ -5450,7 +5449,7 @@ struct BucketBrowserRow: View {
 
             // Title
             VStack(alignment: .leading, spacing: 4) {
-                Text(item.title)
+                Text(item.title.localizedBucket)
                     .font(.body)
                     .fontWeight(.medium)
                     .lineLimit(2)
@@ -5458,7 +5457,7 @@ struct BucketBrowserRow: View {
                 HStack(spacing: 4) {
                     Image(systemName: item.thumbnail.isEmpty ? item.category.icon : item.thumbnail)
                         .font(.caption2)
-                    Text(item.category.rawValue)
+                    Text(item.category.displayName)
                         .font(.caption)
                 }
                 .foregroundColor(.secondary)
@@ -5499,12 +5498,12 @@ struct ProgressTimelineView: View {
 
         for milestone in item.milestones {
             for record in milestone.progressRecords {
-                records.append((date: record.date, milestone: milestone.title, record: record))
+                records.append((date: record.date, milestone: milestone.title.localizedBucket, record: record))
             }
 
             for checklistItem in milestone.checklist {
                 for record in checklistItem.progressRecords {
-                    records.append((date: record.date, milestone: "\(milestone.title) - \(checklistItem.text)", record: record))
+                    records.append((date: record.date, milestone: "\(milestone.title.localizedBucket) - \(checklistItem.text.localizedBucket)", record: record))
                 }
             }
         }
@@ -5577,9 +5576,7 @@ struct TimelineRecordCard: View {
     let isFirst: Bool
 
     var formattedDate: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 M월 d일 HH:mm"
-        return formatter.string(from: date)
+        date.formatted(date: .long, time: .shortened)
     }
 
     var body: some View {
@@ -5670,7 +5667,7 @@ struct AddProgressRecordView: View {
                     Picker("마일스톤", selection: $selectedMilestone) {
                         Text("선택하세요").tag(nil as Milestone?)
                         ForEach(item.milestones) { milestone in
-                            Text(milestone.title).tag(milestone as Milestone?)
+                            Text(milestone.title.localizedBucket).tag(milestone as Milestone?)
                         }
                     }
                 }
@@ -5804,5 +5801,44 @@ struct ImagePicker: UIViewControllerRepresentable {
                 }
             }
         }
+    }
+}
+
+// MARK: - 돈 표시
+/// 원화로 정해 둔 금액·단위를 기기 지역의 통화로 보여 준다. 한국(KRW)이면 지금과 똑같다.
+/// 저장 값의 단위는 그대로 "원" 이고, 화면에서만 바꾼다.
+enum DreamMoney {
+    static var code: String { Locale.current.currency?.identifier ?? "KRW" }
+    static var isKRW: Bool { code == "KRW" }
+
+    /// 통화 1단위가 대략 몇 원인지. 기본 금액을 어림잡아 옮기는 용도라 정밀할 필요는 없다.
+    private static let wonPerUnit: [String: Double] = [
+        "KRW": 1, "JPY": 9.5, "CNY": 195, "TWD": 45, "HKD": 180, "THB": 40, "VND": 0.055, "IDR": 0.085,
+        "EUR": 1500, "GBP": 1800, "CHF": 1600, "CZK": 60, "PLN": 350, "DKK": 200, "NOK": 130, "SEK": 130,
+        "RUB": 17, "TRY": 40, "BRL": 250, "USD": 1400, "CAD": 1000, "AUD": 900
+    ]
+
+    /// 원화 크기로 적어 둔 기본 금액을 기기 통화의 어림수(앞 두 자리)로.
+    static func scaled(_ krw: Double) -> Double {
+        guard !isKRW else { return krw }
+        let value = krw / (wonPerUnit[code] ?? 1400)
+        guard value >= 10 else { return max(1, value.rounded()) }
+        let step = pow(10, floor(log10(value)) - 1)
+        return (value / step).rounded() * step
+    }
+
+    static func scaled(_ krw: String) -> String {
+        guard let value = Double(krw) else { return krw }
+        return String(Int(scaled(value)))
+    }
+
+    /// 저장된 단위를 화면용으로. "원" 은 기기 통화 기호, 나머지는 번역 표에서 찾는다.
+    static func unit(_ unit: String) -> String {
+        guard unit == "원" else { return unit.localizedBucket }
+        return isKRW ? String(localized: "원") : (Locale.current.currencySymbol ?? code)
+    }
+
+    static func format(_ value: Double) -> String {
+        value.formatted(.currency(code: code).precision(.fractionLength(0)))
     }
 }

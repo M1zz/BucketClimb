@@ -14,3 +14,6 @@ build/
 
 # macOS
 .DS_Store
+
+# 스크린샷 원본 캡처 — scripts/capture_screenshots.sh 로 언제든 다시 찍는다
+docs/screenshots/raw/

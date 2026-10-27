@@ -78,6 +78,9 @@ struct ForgeMainView: View {
             if !isInitialized {
                 treasureViewModel.setBucketListViewModel(viewModel)
                 isInitialized = true
+                #if DEBUG
+                if let tab = ScreenshotSeed.tab { selectedTab = tab }
+                #endif
             }
             treasureViewModel.syncFromBucketList()
         }
