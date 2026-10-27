@@ -1,0 +1,794 @@
+{
+ "ko": {
+  "slides": [
+   [
+    "꿈을 작은 단계로",
+    "지금 할 일이 맨 위에 보여요"
+   ],
+   [
+    "590가지 꿈이 떠다녀요",
+    "마음에 드는 상자를 가져오세요"
+   ],
+   [
+    "꿈마다 열쇠를 만들어요",
+    "톱니 하나가 한 걸음이에요"
+   ],
+   [
+    "이룬 꿈은 보물로",
+    "해낸 순간을 보물함에 모아요"
+   ],
+   [
+    "가고 싶은 곳을 지도에",
+    "장소가 있는 꿈이 한눈에"
+   ]
+  ],
+  "header": [
+   "버킷리스트",
+   "꿈을 열쇠로 만들어<br>보물상자를 여세요"
+  ],
+  "search": [
+   "버킷리스트",
+   "꿈을<br>작은 단계로",
+   "지금 할 일이 맨 위에 보여요"
+  ]
+ },
+ "en": {
+  "slides": [
+   [
+    "Big dreams, small steps",
+    "Always know what to do next"
+   ],
+   [
+    "590 dreams to explore",
+    "Pick a box that speaks to you"
+   ],
+   [
+    "Forge a key for every dream",
+    "Each tooth is one step forward"
+   ],
+   [
+    "Turn dreams into treasure",
+    "Every dream you achieve, collected"
+   ],
+   [
+    "Your dreams on a map",
+    "Every place you want to go"
+   ]
+  ],
+  "header": [
+   "Bucket list",
+   "Forge a key,<br>open your dream"
+  ],
+  "search": [
+   "Bucket list",
+   "Big dreams,<br>small steps",
+   "Always know what to do next"
+  ]
+ },
+ "en-GB": {
+  "slides": [
+   [
+    "Big dreams, small steps",
+    "Always know what to do next"
+   ],
+   [
+    "590 dreams to explore",
+    "Pick a box that speaks to you"
+   ],
+   [
+    "Forge a key for every dream",
+    "Each tooth is one step forward"
+   ],
+   [
+    "Turn dreams into treasure",
+    "Every dream you achieve, collected"
+   ],
+   [
+    "Your dreams on a map",
+    "Every place you want to go"
+   ]
+  ],
+  "header": [
+   "Bucket list",
+   "Forge a key,<br>open your dream"
+  ],
+  "search": [
+   "Bucket list",
+   "Big dreams,<br>small steps",
+   "Always know what to do next"
+  ]
+ },
+ "zh-Hans": {
+  "slides": [
+   [
+    "把大梦想拆成小步骤",
+    "现在要做的事，就在最上面"
+   ],
+   [
+    "590个梦想在梦想之海漂流",
+    "挑一个心动的箱子带回工坊"
+   ],
+   [
+    "每个梦想都有一把钥匙",
+    "每一个齿，就是一步"
+   ],
+   [
+    "实现的梦想，变成宝藏",
+    "把做到的瞬间收进宝库"
+   ],
+   [
+    "想去的地方，都在地图上",
+    "有地点的梦想一目了然"
+   ]
+  ],
+  "header": [
+   "愿望清单",
+   "把梦想变成钥匙<br>打开你的宝箱"
+  ],
+  "search": [
+   "愿望清单",
+   "大梦想<br>拆成小步骤",
+   "现在要做的事，就在最上面"
+  ]
+ },
+ "zh-Hant": {
+  "slides": [
+   [
+    "把大夢想拆成小步驟",
+    "現在該做的事，就在最上面"
+   ],
+   [
+    "590個夢想在夢想之海漂流",
+    "挑一個心動的寶箱帶回工坊"
+   ],
+   [
+    "為每個夢想打造鑰匙",
+    "每一個齒，就是一步"
+   ],
+   [
+    "實現的夢想，化為寶藏",
+    "把做到的瞬間收進寶藏庫"
+   ],
+   [
+    "想去的地方，都在地圖上",
+    "有地點的夢想一目了然"
+   ]
+  ],
+  "header": [
+   "願望清單",
+   "把夢想變成鑰匙<br>打開你的寶箱"
+  ],
+  "search": [
+   "願望清單",
+   "大夢想<br>拆成小步驟",
+   "現在該做的事，就在最上面"
+  ]
+ },
+ "ja": {
+  "slides": [
+   [
+    "大きな夢を、小さな一歩に",
+    "今やることがいちばん上に"
+   ],
+   [
+    "590の夢が漂う夢の海",
+    "心ひかれる箱をマイ工房へ"
+   ],
+   [
+    "夢ごとに鍵をつくります",
+    "鍵の歯ひとつが、一歩です"
+   ],
+   [
+    "叶えた夢は宝物に",
+    "やりとげた瞬間を宝物庫へ"
+   ],
+   [
+    "行きたい場所をマップに",
+    "場所のある夢がひと目でわかります"
+   ]
+  ],
+  "header": [
+   "やりたいことリスト",
+   "夢を鍵に変えて<br>箱を開けましょう"
+  ],
+  "search": [
+   "やりたいことリスト",
+   "大きな夢を<br>小さな一歩に",
+   "今やることがいちばん上に"
+  ]
+ },
+ "ru": {
+  "slides": [
+   [
+    "Большая мечта, маленькие шаги",
+    "Следующий шаг всегда наверху"
+   ],
+   [
+    "590 мечтаний плывут к вам",
+    "Выберите сундук по душе"
+   ],
+   [
+    "У каждой мечты свой ключ",
+    "Один зубец — один шаг вперёд"
+   ],
+   [
+    "Мечты становятся сокровищами",
+    "Собирайте победы в Сокровищнице"
+   ],
+   [
+    "Ваши мечты на карте",
+    "Все места, где хочется побывать"
+   ]
+  ],
+  "header": [
+   "Список желаний",
+   "Превратите мечту<br>в ключ к сундуку"
+  ],
+  "search": [
+   "Список желаний",
+   "Большая мечта,<br>маленькие шаги",
+   "Следующий шаг всегда наверху"
+  ]
+ },
+ "es": {
+  "slides": [
+   [
+    "Grandes sueños, pequeños pasos",
+    "Siempre sabrás qué toca ahora"
+   ],
+   [
+    "590 sueños flotando para ti",
+    "Elige el cofre que te inspire"
+   ],
+   [
+    "Una llave para cada sueño",
+    "Cada diente es un paso adelante"
+   ],
+   [
+    "Convierte tus sueños en tesoro",
+    "Guarda cada logro en tu Tesoro"
+   ],
+   [
+    "Tus sueños en el mapa",
+    "Todos los lugares que sueñas pisar"
+   ]
+  ],
+  "header": [
+   "Lista de deseos",
+   "Haz de tu sueño<br>la llave del cofre"
+  ],
+  "search": [
+   "Lista de deseos",
+   "Grandes sueños,<br>pequeños pasos",
+   "Siempre sabrás qué toca ahora"
+  ]
+ },
+ "de": {
+  "slides": [
+   [
+    "Große Träume, kleine Schritte",
+    "Was jetzt dran ist, steht ganz oben"
+   ],
+   [
+    "590 Träume im Traumozean",
+    "Hol dir die Truhe, die dich anspricht"
+   ],
+   [
+    "Für jeden Traum ein Schlüssel",
+    "Jede Zacke ist ein Schritt nach vorn"
+   ],
+   [
+    "Erfüllte Träume werden Schätze",
+    "Sammle deine Erfolge in der Schatzkammer"
+   ],
+   [
+    "Deine Träume auf der Karte",
+    "Alle Orte, die du sehen willst"
+   ]
+  ],
+  "header": [
+   "Bucket List",
+   "Mach deinen Traum<br>zum Schlüssel"
+  ],
+  "search": [
+   "Bucket List",
+   "Große Träume,<br>kleine Schritte",
+   "Was jetzt dran ist, steht ganz oben"
+  ]
+ },
+ "fr": {
+  "slides": [
+   [
+    "Grands rêves, petits pas",
+    "La prochaine étape, toujours en haut"
+   ],
+   [
+    "590 rêves à la dérive",
+    "Choisissez le coffre qui vous parle"
+   ],
+   [
+    "Une clé pour chaque rêve",
+    "Chaque dent, un pas de plus"
+   ],
+   [
+    "Vos rêves deviennent trésors",
+    "Gardez chaque réussite dans Trésors"
+   ],
+   [
+    "Vos rêves sur la carte",
+    "Tous les lieux qui vous font rêver"
+   ]
+  ],
+  "header": [
+   "Bucket list",
+   "Forgez la clé<br>de vos rêves"
+  ],
+  "search": [
+   "Bucket list",
+   "Grands rêves,<br>petits pas",
+   "La prochaine étape, toujours en haut"
+  ]
+ },
+ "it": {
+  "slides": [
+   [
+    "Grandi sogni, piccoli passi",
+    "Sai sempre cosa fare adesso"
+   ],
+   [
+    "590 sogni nel Mare dei sogni",
+    "Scegli lo scrigno che ti ispira"
+   ],
+   [
+    "Una chiave per ogni sogno",
+    "Ogni dente è un passo avanti"
+   ],
+   [
+    "I sogni realizzati sono tesori",
+    "Raccogli ogni traguardo nel Tesoro"
+   ],
+   [
+    "I tuoi sogni sulla mappa",
+    "Tutti i posti che vuoi vedere"
+   ]
+  ],
+  "header": [
+   "Bucket list",
+   "Forgia la chiave<br>dei tuoi sogni"
+  ],
+  "search": [
+   "Bucket list",
+   "Grandi sogni,<br>piccoli passi",
+   "Sai sempre cosa fare adesso"
+  ]
+ },
+ "pt-BR": {
+  "slides": [
+   [
+    "Grandes sonhos, pequenos passos",
+    "Você sempre sabe o próximo passo"
+   ],
+   [
+    "590 sonhos no Mar de Sonhos",
+    "Escolha a caixa que tem a sua cara"
+   ],
+   [
+    "Uma chave para cada sonho",
+    "Cada dente é um passo à frente"
+   ],
+   [
+    "Sonhos realizados viram tesouro",
+    "Guarde cada conquista no Tesouro"
+   ],
+   [
+    "Seus sonhos no mapa",
+    "Todos os lugares aonde você quer ir"
+   ]
+  ],
+  "header": [
+   "Lista de desejos",
+   "Transforme seu sonho<br>em uma chave"
+  ],
+  "search": [
+   "Lista de desejos",
+   "Grandes sonhos,<br>pequenos passos",
+   "Você sempre sabe o próximo passo"
+  ]
+ },
+ "th": {
+  "slides": [
+   [
+    "ฝันใหญ่ เริ่มจากก้าวเล็กๆ",
+    "รู้เสมอว่าต้องทำอะไรต่อ"
+   ],
+   [
+    "ความฝัน 590 อย่างลอยอยู่",
+    "เลือกกล่องที่ใช่ เก็บเข้าคลังของฉัน"
+   ],
+   [
+    "สร้างกุญแจให้ทุกความฝัน",
+    "ฟันกุญแจหนึ่งซี่ คือหนึ่งก้าว"
+   ],
+   [
+    "ฝันที่เป็นจริงกลายเป็นสมบัติ",
+    "เก็บทุกความสำเร็จไว้ในคลังสมบัติ"
+   ],
+   [
+    "ความฝันของคุณบนแผนที่",
+    "ทุกที่ที่อยากไป เห็นได้ในทันที"
+   ]
+  ],
+  "header": [
+   "บักเก็ตลิสต์",
+   "เปลี่ยนความฝันเป็นกุญแจ<br>เปิดกล่องสมบัติ"
+  ],
+  "search": [
+   "บักเก็ตลิสต์",
+   "ฝันใหญ่<br>เริ่มจากก้าวเล็กๆ",
+   "รู้เสมอว่าต้องทำอะไรต่อ"
+  ]
+ },
+ "vi": {
+  "slides": [
+   [
+    "Ước mơ lớn, từng bước nhỏ",
+    "Luôn biết việc cần làm tiếp theo"
+   ],
+   [
+    "590 ước mơ trôi trên Biển Ước Mơ",
+    "Chọn chiếc hộp khiến bạn rung động"
+   ],
+   [
+    "Mỗi ước mơ một chìa khóa",
+    "Mỗi răng khóa là một bước tiến"
+   ],
+   [
+    "Biến ước mơ thành kho báu",
+    "Cất mọi thành công vào Kho báu"
+   ],
+   [
+    "Ước mơ của bạn trên bản đồ",
+    "Mọi nơi bạn muốn đặt chân đến"
+   ]
+  ],
+  "header": [
+   "Danh sách ước mơ",
+   "Tạo chìa khóa<br>mở hộp ước mơ"
+  ],
+  "search": [
+   "Danh sách ước mơ",
+   "Ước mơ lớn,<br>từng bước nhỏ",
+   "Luôn biết việc cần làm tiếp theo"
+  ]
+ },
+ "cs": {
+  "slides": [
+   [
+    "Velké sny, malé kroky",
+    "Vždy víš, co tě čeká dál"
+   ],
+   [
+    "590 snů v Oceánu snů",
+    "Vyber si truhlu, která tě osloví"
+   ],
+   [
+    "Ke každému snu vlastní klíč",
+    "Každý zub je jeden krok vpřed"
+   ],
+   [
+    "Splněné sny jako poklad",
+    "Sbírej své úspěchy v Pokladnici"
+   ],
+   [
+    "Tvoje sny na mapě",
+    "Všechna místa, kam se chceš podívat"
+   ]
+  ],
+  "header": [
+   "Seznam přání",
+   "Udělej ze snu<br>klíč k truhle"
+  ],
+  "search": [
+   "Seznam přání",
+   "Velké sny,<br>malé kroky",
+   "Vždy víš, co tě čeká dál"
+  ]
+ },
+ "da": {
+  "slides": [
+   [
+    "Store drømme, små skridt",
+    "Du ved altid, hvad næste skridt er"
+   ],
+   [
+    "590 drømme i Drømmehavet",
+    "Vælg den kiste, der taler til dig"
+   ],
+   [
+    "En nøgle til hver drøm",
+    "Hver tand er et skridt fremad"
+   ],
+   [
+    "Opfyldte drømme bliver skatte",
+    "Saml dine sejre i Skatkammeret"
+   ],
+   [
+    "Dine drømme på kortet",
+    "Alle de steder, du vil hen"
+   ]
+  ],
+  "header": [
+   "Bucket list",
+   "Gør din drøm<br>til en nøgle"
+  ],
+  "search": [
+   "Bucket list",
+   "Store drømme,<br>små skridt",
+   "Du ved altid, hvad næste skridt er"
+  ]
+ },
+ "el": {
+  "slides": [
+   [
+    "Μεγάλα όνειρα, μικρά βήματα",
+    "Ξέρεις πάντα τι έχεις να κάνεις"
+   ],
+   [
+    "590 όνειρα σε περιμένουν",
+    "Διάλεξε το κουτί που σου μιλάει"
+   ],
+   [
+    "Ένα κλειδί για κάθε όνειρο",
+    "Κάθε δόντι είναι ένα βήμα μπροστά"
+   ],
+   [
+    "Τα όνειρα γίνονται θησαυροί",
+    "Μάζεψε τις επιτυχίες στο Θησαυροφυλάκιο"
+   ],
+   [
+    "Τα όνειρά σου στον χάρτη",
+    "Όλα τα μέρη που θες να δεις"
+   ]
+  ],
+  "header": [
+   "Λίστα επιθυμιών",
+   "Φτιάξε το κλειδί<br>του ονείρου σου"
+  ],
+  "search": [
+   "Λίστα επιθυμιών",
+   "Μεγάλα όνειρα,<br>μικρά βήματα",
+   "Ξέρεις πάντα τι έχεις να κάνεις"
+  ]
+ },
+ "fi": {
+  "slides": [
+   [
+    "Suuret unelmat, pienet askeleet",
+    "Tiedät aina, mitä tehdä seuraavaksi"
+   ],
+   [
+    "590 unelmaa Unelmien meressä",
+    "Valitse arkku, joka puhuttelee sinua"
+   ],
+   [
+    "Jokaiselle unelmalle avain",
+    "Jokainen hammas on askel eteenpäin"
+   ],
+   [
+    "Toteutuneista unelmista aarteita",
+    "Kokoa onnistumisesi Aarrekammioon"
+   ],
+   [
+    "Unelmasi kartalla",
+    "Kaikki paikat, joihin haluat"
+   ]
+  ],
+  "header": [
+   "Unelmalista",
+   "Tee unelmastasi<br>avain arkkuun"
+  ],
+  "search": [
+   "Unelmalista",
+   "Suuret unelmat,<br>pienet askeleet",
+   "Tiedät aina, mitä tehdä seuraavaksi"
+  ]
+ },
+ "id": {
+  "slides": [
+   [
+    "Mimpi besar, langkah kecil",
+    "Selalu tahu apa yang harus dilakukan"
+   ],
+   [
+    "590 mimpi di Laut Mimpi",
+    "Pilih peti yang paling kamu suka"
+   ],
+   [
+    "Satu kunci untuk tiap mimpi",
+    "Tiap gigi kunci adalah satu langkah"
+   ],
+   [
+    "Mimpi yang tercapai jadi harta",
+    "Kumpulkan setiap pencapaian di Brankas"
+   ],
+   [
+    "Mimpimu di atas peta",
+    "Semua tempat yang ingin kamu datangi"
+   ]
+  ],
+  "header": [
+   "Daftar impian",
+   "Ubah mimpimu<br>jadi kunci peti"
+  ],
+  "search": [
+   "Daftar impian",
+   "Mimpi besar,<br>langkah kecil",
+   "Selalu tahu apa yang harus dilakukan"
+  ]
+ },
+ "nb": {
+  "slides": [
+   [
+    "Store drømmer, små steg",
+    "Du vet alltid hva som er neste steg"
+   ],
+   [
+    "590 drømmer i Drømmehavet",
+    "Velg den esken som frister deg"
+   ],
+   [
+    "En nøkkel til hver drøm",
+    "Hver tann er et steg videre"
+   ],
+   [
+    "Oppfylte drømmer blir skatter",
+    "Samle seierne dine i Skattkammeret"
+   ],
+   [
+    "Drømmene dine på kartet",
+    "Alle stedene du vil reise til"
+   ]
+  ],
+  "header": [
+   "Bucket list",
+   "Gjør drømmen din<br>til en nøkkel"
+  ],
+  "search": [
+   "Bucket list",
+   "Store drømmer,<br>små steg",
+   "Du vet alltid hva som er neste steg"
+  ]
+ },
+ "nl": {
+  "slides": [
+   [
+    "Grote dromen, kleine stappen",
+    "Je weet altijd wat je nu moet doen"
+   ],
+   [
+    "590 dromen in de Droomoceaan",
+    "Kies de kist die je aanspreekt"
+   ],
+   [
+    "Voor elke droom een sleutel",
+    "Elke tand is een stap vooruit"
+   ],
+   [
+    "Uitgekomen dromen worden schatten",
+    "Verzamel je successen in de Schatkamer"
+   ],
+   [
+    "Je dromen op de kaart",
+    "Alle plekken waar je heen wilt"
+   ]
+  ],
+  "header": [
+   "Bucketlist",
+   "Maak van je droom<br>een sleutel"
+  ],
+  "search": [
+   "Bucketlist",
+   "Grote dromen,<br>kleine stappen",
+   "Je weet altijd wat je nu moet doen"
+  ]
+ },
+ "pl": {
+  "slides": [
+   [
+    "Wielkie marzenia, małe kroki",
+    "Zawsze wiesz, co zrobić teraz"
+   ],
+   [
+    "590 marzeń w Oceanie marzeń",
+    "Wybierz skrzynię, która cię kusi"
+   ],
+   [
+    "Klucz do każdego marzenia",
+    "Każdy ząbek to krok naprzód"
+   ],
+   [
+    "Spełnione marzenia to skarby",
+    "Zbieraj swoje sukcesy w Skarbcu"
+   ],
+   [
+    "Twoje marzenia na mapie",
+    "Wszystkie miejsca, które chcesz zobaczyć"
+   ]
+  ],
+  "header": [
+   "Lista marzeń",
+   "Zamień marzenie<br>w klucz do skrzyni"
+  ],
+  "search": [
+   "Lista marzeń",
+   "Wielkie marzenia,<br>małe kroki",
+   "Zawsze wiesz, co zrobić teraz"
+  ]
+ },
+ "sv": {
+  "slides": [
+   [
+    "Stora drömmar, små steg",
+    "Du vet alltid vad som är nästa steg"
+   ],
+   [
+    "590 drömmar i Drömhavet",
+    "Välj lådan som lockar dig"
+   ],
+   [
+    "En nyckel till varje dröm",
+    "Varje tand är ett steg framåt"
+   ],
+   [
+    "Uppfyllda drömmar blir skatter",
+    "Samla dina segrar i Skattkammaren"
+   ],
+   [
+    "Dina drömmar på kartan",
+    "Alla platser du vill besöka"
+   ]
+  ],
+  "header": [
+   "Bucket list",
+   "Gör din dröm<br>till en nyckel"
+  ],
+  "search": [
+   "Bucket list",
+   "Stora drömmar,<br>små steg",
+   "Du vet alltid vad som är nästa steg"
+  ]
+ },
+ "tr": {
+  "slides": [
+   [
+    "Büyük hayaller, küçük adımlar",
+    "Sırada ne var, hep en üstte"
+   ],
+   [
+    "590 hayal seni bekliyor",
+    "Sana hitap eden sandığı seç"
+   ],
+   [
+    "Her hayale bir anahtar",
+    "Her diş, ileriye bir adım"
+   ],
+   [
+    "Gerçekleşen hayaller hazine olur",
+    "Başardığın anları Hazinem'de topla"
+   ],
+   [
+    "Hayallerin haritada",
+    "Gitmek istediğin her yer"
+   ]
+  ],
+  "header": [
+   "Hayal listesi",
+   "Hayalini anahtara<br>dönüştür"
+  ],
+  "search": [
+   "Hayal listesi",
+   "Büyük hayaller,<br>küçük adımlar",
+   "Sırada ne var, hep en üstte"
+  ]
+ }
+}
