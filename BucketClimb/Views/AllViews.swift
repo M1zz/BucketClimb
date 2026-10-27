@@ -4894,6 +4894,33 @@ struct SettingsView: View {
                         }
                     }
 
+                    // 인스타그램 DM
+                    Button {
+                        openInstagram()
+                    } label: {
+                        HStack {
+                            Image(systemName: "paperplane.fill")
+                                .foregroundColor(.pink)
+                                .font(.title3)
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("인스타그램 DM")
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+
+                                Text("@lee25_ios 로 편하게 문의해주세요")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+
+                            Spacer()
+
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.secondary)
+                                .font(.caption)
+                        }
+                    }
+
                     // 앱 공유하기
                     Button {
                         shareApp()
@@ -4982,6 +5009,13 @@ struct SettingsView: View {
         let encodedBody = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
 
         if let url = URL(string: "mailto:\(email)?subject=\(encodedSubject)&body=\(encodedBody)") {
+            UIApplication.shared.open(url)
+        }
+    }
+
+    private func openInstagram() {
+        // 인스타 앱이 설치돼 있으면 유니버설 링크로 앱이 자동으로 열립니다
+        if let url = URL(string: "https://instagram.com/lee25_ios") {
             UIApplication.shared.open(url)
         }
     }
