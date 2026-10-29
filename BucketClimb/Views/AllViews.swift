@@ -5210,20 +5210,24 @@ struct BucketMapView: View {
                                             .foregroundColor(.white)
                                             .font(.system(size: 20))
 
-                                        // 상태 아이콘
+                                        // 상태 아이콘 (색만으로 구별하지 않게 모양도 다르게)
                                         if item.status == .climbing {
-                                            Circle()
-                                                .fill(Color.green)
-                                                .frame(width: 12, height: 12)
+                                            Image(systemName: "arrow.up")
+                                                .font(.system(size: 7, weight: .black))
+                                                .foregroundColor(.white)
+                                                .frame(width: 14, height: 14)
+                                                .background(Circle().fill(Color.green))
                                                 .overlay(
                                                     Circle()
                                                         .stroke(Color.white, lineWidth: 2)
                                                 )
                                                 .offset(x: 2, y: -2)
                                         } else if item.status == .completed {
-                                            Circle()
-                                                .fill(Color.orange)
-                                                .frame(width: 12, height: 12)
+                                            Image(systemName: "checkmark")
+                                                .font(.system(size: 7, weight: .black))
+                                                .foregroundColor(.white)
+                                                .frame(width: 14, height: 14)
+                                                .background(Circle().fill(Color.orange))
                                                 .overlay(
                                                     Circle()
                                                         .stroke(Color.white, lineWidth: 2)
@@ -5239,10 +5243,13 @@ struct BucketMapView: View {
                                         .fontWeight(.semibold)
                                         .padding(.horizontal, 6)
                                         .padding(.vertical, 3)
-                                        .background(Color.white)
+                                        .background(Color(.systemBackground))
                                         .cornerRadius(4)
                                         .shadow(radius: 2)
                                 }
+                                .accessibilityElement(children: .ignore)
+                                .accessibilityLabel(Text(item.title.localizedBucket))
+                                .accessibilityValue(mapStatusText(for: item))
                             }
                         }
                     }
@@ -5254,6 +5261,7 @@ struct BucketMapView: View {
                         Image(systemName: "map")
                             .font(.system(size: 60))
                             .foregroundColor(.gray)
+                            .accessibilityHidden(true)
 
                         Text("위치가 설정된 버킷리스트가 없습니다")
                             .font(.headline)
@@ -5264,7 +5272,7 @@ struct BucketMapView: View {
                             .foregroundColor(.secondary)
                     }
                     .padding()
-                    .background(Color.white.opacity(0.9))
+                    .background(.regularMaterial)
                     .cornerRadius(12)
                     .padding()
                 }
@@ -5277,6 +5285,7 @@ struct BucketMapView: View {
                         Image(systemName: "gearshape")
                             .font(.system(size: 18, weight: .semibold))
                     }
+                    .accessibilityLabel(Text("설정"))
                 }
             }
             .sheet(isPresented: $showingSettings) {
@@ -5304,6 +5313,18 @@ struct BucketMapView: View {
             } else {
                 Logger().warning("  ⚠️ 위치 정보가 있는 꿈이 없어서 카메라 이동 안 함")
             }
+        }
+    }
+}
+
+extension BucketMapView {
+    /// 지도 핀의 상태: "등반 중" / "완료"
+    func mapStatusText(for item: BucketListItem) -> Text {
+        let category = Text(item.category.displayName)
+        switch item.status {
+        case .climbing: return category + Text(verbatim: ", ") + Text("등반 중")
+        case .completed: return category + Text(verbatim: ", ") + Text("완료")
+        default: return category
         }
     }
 }
@@ -5548,6 +5569,7 @@ struct ProgressTimelineView: View {
                         Image(systemName: "plus.circle.fill")
                             .foregroundColor(.blue)
                     }
+                    .accessibilityLabel(Text("진행 기록 추가"))
                 }
             }
             .sheet(isPresented: $showAddRecord) {
@@ -5564,6 +5586,7 @@ struct EmptyTimelineView: View {
             Image(systemName: "timeline.selection")
                 .font(.system(size: 60))
                 .foregroundColor(.gray.opacity(0.5))
+                .accessibilityHidden(true)
 
             Text("아직 기록이 없어요")
                 .font(.title3)
@@ -5602,6 +5625,7 @@ struct TimelineRecordCard: View {
                         .frame(width: 2)
                 }
             }
+            .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 8) {
                 // Date
@@ -5712,6 +5736,7 @@ struct AddProgressRecordView: View {
                                                 .foregroundColor(.white)
                                                 .background(Circle().fill(Color.black.opacity(0.6)))
                                         }
+                                        .accessibilityLabel(Text("사진 삭제"))
                                         .padding(4)
                                     }
                                 }

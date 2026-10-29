@@ -29,19 +29,19 @@ struct OnboardingView: View {
 
                 // 페이지 콘텐츠
                 TabView(selection: $currentPage) {
-                    WelcomePageLight()
+                    FitOrScroll { WelcomePageLight() }
                         .tag(0)
 
-                    DreamOceanPageLight()
+                    FitOrScroll { DreamOceanPageLight() }
                         .tag(1)
 
-                    ForgePageLight()
+                    FitOrScroll { ForgePageLight() }
                         .tag(2)
 
-                    TreasurePageLight()
+                    FitOrScroll { TreasurePageLight() }
                         .tag(3)
 
-                    StartPageLight()
+                    FitOrScroll { StartPageLight() }
                         .tag(4)
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
@@ -58,6 +58,7 @@ struct OnboardingView: View {
                                 .animation(.spring(), value: currentPage)
                         }
                     }
+                    .accessibilityHidden(true)
 
                     // 다음/시작 버튼
                     Button {
@@ -74,6 +75,7 @@ struct OnboardingView: View {
                                 .fontWeight(.semibold)
 
                             Image(systemName: currentPage < totalPages - 1 ? "arrow.right" : "sparkles")
+                                .accessibilityHidden(true)
                         }
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
@@ -107,6 +109,7 @@ struct OnboardingView: View {
 // MARK: - Page 1: 환영 페이지
 struct WelcomePageLight: View {
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var isAnimating = false
 
     var body: some View {
@@ -136,10 +139,12 @@ struct WelcomePageLight: View {
                         )
                     )
             }
+            .accessibilityHidden(true)
 
             VStack(spacing: 12) {
                 Text("내 창고")
-                    .font(.system(size: 34, weight: .bold))
+                    .font(.largeTitle.bold())
+                    .accessibilityAddTraits(.isHeader)
                     .foregroundColor(.primary)
 
                 Text("환영합니다")
@@ -159,6 +164,7 @@ struct WelcomePageLight: View {
         }
         .padding()
         .onAppear {
+            guard !reduceMotion else { return }
             withAnimation(.easeInOut(duration: 2).repeatForever(autoreverses: true)) {
                 isAnimating = true
             }
@@ -169,6 +175,7 @@ struct WelcomePageLight: View {
 // MARK: - Page 2: 꿈의 바다
 struct DreamOceanPageLight: View {
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var waveOffset: CGFloat = 0
 
     var body: some View {
@@ -200,11 +207,13 @@ struct DreamOceanPageLight: View {
                 }
             }
             .frame(height: 200)
+            .accessibilityHidden(true)
 
             VStack(spacing: 16) {
                 // 타이틀
                 Label("꿈의 바다", systemImage: "water.waves")
-                    .font(.system(size: 26, weight: .bold))
+                    .font(.title.bold())
+                    .accessibilityAddTraits(.isHeader)
                     .foregroundColor(.primary)
 
                 Text("수많은 꿈들이 상자에 담겨\n바다 위를 떠다니고 있어요")
@@ -230,6 +239,7 @@ struct DreamOceanPageLight: View {
         }
         .padding()
         .onAppear {
+            guard !reduceMotion else { return }
             withAnimation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true)) {
                 waveOffset = 1
             }
@@ -244,6 +254,7 @@ struct DreamOceanPageLight: View {
 // MARK: - Page 3: 내 창고
 struct ForgePageLight: View {
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var hammerRotation: Double = 0
 
     var body: some View {
@@ -276,11 +287,13 @@ struct ForgePageLight: View {
                 }
             }
             .frame(height: 180)
+            .accessibilityHidden(true)
 
             VStack(spacing: 16) {
                 // 타이틀
                 Label("내 창고", systemImage: "hammer.fill")
-                    .font(.system(size: 26, weight: .bold))
+                    .font(.title.bold())
+                    .accessibilityAddTraits(.isHeader)
                     .foregroundColor(.primary)
 
                 Text("꿈 상자를 열 열쇠를\n직접 만들어보세요")
@@ -300,6 +313,7 @@ struct ForgePageLight: View {
                                 .font(.system(size: 20))
                                 .foregroundColor(.orange)
                         }
+                        .accessibilityHidden(true)
 
                         VStack(alignment: .leading, spacing: 3) {
                             Text("열쇠 = 꿈을 이루는 과정")
@@ -324,6 +338,7 @@ struct ForgePageLight: View {
                                 .font(.system(size: 20))
                                 .foregroundColor(.purple)
                         }
+                        .accessibilityHidden(true)
 
                         VStack(alignment: .leading, spacing: 3) {
                             Text("톱니 = 작은 단계들")
@@ -348,6 +363,7 @@ struct ForgePageLight: View {
         }
         .padding()
         .onAppear {
+            guard !reduceMotion else { return }
             withAnimation(.easeInOut(duration: 0.4).repeatForever(autoreverses: true)) {
                 hammerRotation = -15
             }
@@ -358,6 +374,7 @@ struct ForgePageLight: View {
 // MARK: - Page 4: 보물창고
 struct TreasurePageLight: View {
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var shine = false
 
     var body: some View {
@@ -382,7 +399,7 @@ struct TreasurePageLight: View {
                             .foregroundColor(.cyan)
                     }
                     .font(.system(size: 22))
-                    .offset(y: shine ? -8 : 0)
+                    .offset(y: shine && !reduceMotion ? -8 : 0)
                     .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true), value: shine)
 
                     Image(systemName: "shippingbox.fill")
@@ -397,11 +414,13 @@ struct TreasurePageLight: View {
                 }
             }
             .frame(height: 180)
+            .accessibilityHidden(true)
 
             VStack(spacing: 16) {
                 // 타이틀
                 Label("보물함", systemImage: "sparkles")
-                    .font(.system(size: 26, weight: .bold))
+                    .font(.title.bold())
+                    .accessibilityAddTraits(.isHeader)
                     .foregroundColor(.primary)
 
                 Text("열쇠가 완성되면\n상자를 열 수 있어요!")
@@ -435,6 +454,7 @@ struct TreasurePageLight: View {
 // MARK: - Page 5: 시작
 struct StartPageLight: View {
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var pulse = false
 
     var body: some View {
@@ -444,16 +464,15 @@ struct StartPageLight: View {
             // 전체 플로우 다이어그램
             HStack(spacing: 12) {
                 FlowIconLight(icon: "water.waves", label: "꿈의 바다", color: .cyan)
-
                 Image(systemName: "arrow.right")
                     .font(.caption)
                     .foregroundColor(.secondary)
-
+                    .accessibilityHidden(true)
                 FlowIconLight(icon: "hammer.fill", label: "내 창고", color: .orange)
-
                 Image(systemName: "arrow.right")
                     .font(.caption)
                     .foregroundColor(.secondary)
+                    .accessibilityHidden(true)
 
                 FlowIconLight(icon: "sparkles", label: "보물함", color: .yellow)
             }
@@ -464,7 +483,8 @@ struct StartPageLight: View {
 
             VStack(spacing: 12) {
                 Text("준비되셨나요?")
-                    .font(.system(size: 30, weight: .bold))
+                    .font(.title.bold())
+                    .accessibilityAddTraits(.isHeader)
                     .foregroundColor(.primary)
 
                 Text("이제 당신만의 꿈을\n열쇠로 만들어볼 시간이에요")
@@ -479,7 +499,8 @@ struct StartPageLight: View {
                 Image(systemName: "hand.point.down.fill")
                     .font(.system(size: 36))
                     .foregroundColor(.orange)
-                    .scaleEffect(pulse ? 1.1 : 1.0)
+                    .scaleEffect(pulse && !reduceMotion ? 1.1 : 1.0)
+                    .accessibilityHidden(true)
                     .animation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true), value: pulse)
 
                 Text("아래 '시작하기' 버튼을 눌러\n첫 번째 꿈을 찾아보세요")
@@ -503,6 +524,18 @@ struct StartPageLight: View {
 }
 
 // MARK: - Helper Views
+
+/// 큰 글씨에서 한 화면에 안 들어가면 스크롤로 보여 준다
+struct FitOrScroll<Content: View>: View {
+    @ViewBuilder var content: Content
+
+    var body: some View {
+        ViewThatFits(in: .vertical) {
+            content
+            ScrollView { content }
+        }
+    }
+}
 struct FeatureRowLight: View {
     let icon: String
     let iconColor: Color
@@ -514,6 +547,7 @@ struct FeatureRowLight: View {
                 .font(.system(size: 18))
                 .foregroundColor(iconColor)
                 .frame(width: 24)
+                .accessibilityHidden(true)
 
             Text(text)
                 .font(.subheadline)
@@ -540,6 +574,7 @@ struct FlowIconLight: View {
                     .font(.system(size: 20))
                     .foregroundColor(color)
             }
+            .accessibilityHidden(true)
 
             Text(label)
                 .font(.caption2)

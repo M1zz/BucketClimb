@@ -1075,6 +1075,9 @@ struct KeyProgressView: View {
                 }
             }
         }
+        // 열쇠 그림은 VoiceOver 에서 "3 / 5 톱니 완성" 한 문장으로
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("\(teeth.filter(\.isCompleted).count) / \(teeth.count) 톱니 완성"))
     }
 }
 
@@ -1619,10 +1622,12 @@ struct TreasureOceanView: View {
             ScrollView {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
                     ForEach(viewModel.oceanBoxes) { box in
-                        OceanBoxCard(box: box)
-                            .onTapGesture {
-                                selectedBox = box
-                            }
+                        Button {
+                            selectedBox = box
+                        } label: {
+                            OceanBoxCard(box: box)
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
                 .padding()
@@ -1642,6 +1647,7 @@ struct TreasureOceanView: View {
                         Image(systemName: "gearshape")
                             .font(.system(size: 18, weight: .semibold))
                     }
+                    .accessibilityLabel(Text("설정"))
                 }
             }
             .sheet(item: $selectedBox) { box in
@@ -1691,9 +1697,11 @@ struct WaveBackground: View {
 
 struct WaveBackgroundAdaptive: View {
     @Environment(\.colorScheme) var colorScheme
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
-        TimelineView(.animation) { timeline in
+        // 동작 줄이기: 물결을 멈춘 그림으로
+        TimelineView(.animation(paused: reduceMotion)) { timeline in
             Canvas { context, size in
                 let phase = timeline.date.timeIntervalSinceReferenceDate * 0.5
                 let waveColor = colorScheme == .dark ? Color.white : Color.blue
@@ -1772,6 +1780,7 @@ struct OceanBoxCard: View {
             }
             .frame(height: 100)
             .clipped()
+            .accessibilityHidden(true)
 
             // 하단 정보
             VStack(spacing: 4) {
@@ -1779,7 +1788,7 @@ struct OceanBoxCard: View {
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundColor(.primary)
-                    .lineLimit(1)
+                    .lineLimit(2)
                     .multilineTextAlignment(.center)
 
                 HStack(spacing: 4) {
@@ -1801,9 +1810,9 @@ struct OceanBoxCard: View {
             }
             .padding(.vertical, 12)
             .padding(.horizontal, 8)
-            .frame(height: 80)
+            .frame(minHeight: 80)
         }
-        .frame(height: 180)
+        .frame(minHeight: 180, alignment: .top)
         .background(Color.cardBackgroundAdaptive)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .overlay(
@@ -1811,6 +1820,7 @@ struct OceanBoxCard: View {
                 .stroke(Color.cardBorderAdaptive, lineWidth: 1)
         )
         .shadow(color: Color.black.opacity(0.08), radius: 6, x: 0, y: 2)
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -1836,6 +1846,7 @@ struct OceanBoxDetailSheet: View {
                                 .font(.system(size: 50))
                                 .foregroundColor(.boxWood)
                         }
+                        .accessibilityHidden(true)
 
                         // 제목
                         VStack(spacing: 8) {
@@ -1866,6 +1877,7 @@ struct OceanBoxDetailSheet: View {
                             Text("열쇠의 톱니 (해결해야 할 것들)")
                                 .font(.headline)
                                 .foregroundColor(.keyGold)
+                                .accessibilityAddTraits(.isHeader)
 
                             ForEach(box.teeth) { tooth in
                                 HStack(spacing: 12) {
@@ -1941,6 +1953,7 @@ struct TreasureWarehouseView: View {
                         Image(systemName: "hammer")
                             .font(.system(size: 60))
                             .foregroundColor(.secondary)
+                            .accessibilityHidden(true)
 
                         Text("제작 중인 열쇠가 없어요")
                             .font(.headline)
@@ -2012,10 +2025,12 @@ struct TreasureWarehouseView: View {
                             Image(systemName: "plus")
                                 .font(.system(size: 18, weight: .semibold))
                         }
+                        .accessibilityLabel(Text("새 꿈 추가"))
                         Button(action: { showingSettings = true }) {
                             Image(systemName: "gearshape")
                                 .font(.system(size: 18, weight: .semibold))
                         }
+                        .accessibilityLabel(Text("설정"))
                     }
                 }
             }
@@ -2088,6 +2103,7 @@ struct AddNewDreamSheet: View {
                                         .foregroundColor(.red)
                                 }
                                 .buttonStyle(BorderlessButtonStyle())
+                                .accessibilityLabel(Text("단계 삭제"))
                             }
                         }
                     }
@@ -2242,14 +2258,14 @@ struct WarehouseBoxCard: View {
                     backgroundImage: box.imageName ?? fallbackImageName,
                     fallbackImages: [fallbackImageName]
                 )
-                .frame(height: 140)
 
                 // 오버레이
                 RoundedRectangle(cornerRadius: 16)
                     .fill(Color.cardBackgroundAdaptive.opacity(0.6))
             }
         )
-        .frame(height: 140)
+        // 큰 글씨에서 제목이 잘리지 않게 높이는 최소값만
+        .frame(minHeight: 140)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .overlay(
             RoundedRectangle(cornerRadius: 16)
@@ -2346,6 +2362,7 @@ struct ForgeView: View {
                                 .aspectRatio(contentMode: .fill)
                                 .frame(height: 200)
                                 .clipped()
+                                .accessibilityHidden(true)
                         }
 
                         // 그라디언트 오버레이 (텍스트 가독성)
@@ -2361,6 +2378,8 @@ struct ForgeView: View {
                                 .font(.title2)
                                 .fontWeight(.bold)
                                 .foregroundColor(.white)
+                                .minimumScaleFactor(0.6)
+                                .accessibilityAddTraits(.isHeader)
 
                             HStack {
                                 Image(systemName: currentBox.category.icon)
@@ -2379,6 +2398,7 @@ struct ForgeView: View {
                                 .padding(12)
                                 .background(Circle().fill(Color.black.opacity(0.5)))
                         }
+                        .accessibilityLabel(Text("사진 수정하기"))
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                         .padding(12)
                     }
@@ -2394,6 +2414,7 @@ struct ForgeView: View {
                             .tint(.keyGold)
                             .scaleEffect(x: 1, y: 2, anchor: .center)
                             .padding(.horizontal, 40)
+                            .accessibilityHidden(true)  // 위 글이 같은 내용을 읽어 준다
                     }
 
                     // 현재 진행 중인 단계 (하나만 표시)
@@ -2477,6 +2498,7 @@ struct ForgeView: View {
                 } label: {
                     Image(systemName: "ellipsis.circle")
                 }
+                .accessibilityLabel(Text("더 보기"))
             }
         }
         .alert("꿈을 포기할까요?", isPresented: $showDeleteAlert) {
@@ -2585,6 +2607,7 @@ struct CurrentStepSection: View {
                     Text("지금 해야 할 것")
                         .font(.headline)
                         .foregroundColor(.primary)
+                        .accessibilityAddTraits(.isHeader)
 
                     Text("\(completedCount)/\(box.teeth.count) 완료")
                         .font(.caption)
@@ -2795,6 +2818,7 @@ struct CurrentStepCard: View {
                             }
                         }
                         .frame(height: 4)
+                        .accessibilityHidden(true)
                     }
 
                     // 질문
@@ -2841,6 +2865,7 @@ struct CurrentStepCard: View {
                                                 .background(Circle().fill(Color.black.opacity(0.5)))
                                         }
                                         .offset(x: 6, y: -6)
+                                        .accessibilityLabel(Text("사진 삭제"))
                                     }
                                 }
 
@@ -2966,6 +2991,7 @@ struct AllStepsCompletedCard: View {
             Image(systemName: "checkmark.seal.fill")
                 .font(.system(size: 50))
                 .foregroundColor(.keyGold)
+                .accessibilityHidden(true)
 
             Text("모든 준비가 완료되었어요!")
                 .font(.title3)
@@ -3100,6 +3126,10 @@ struct StepListRow: View {
                             .foregroundColor(isCurrentStep ? .white : .primary)
                     }
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(tooth.isCompleted
+                    ? Text("STEP \(stepNumber)") + Text(verbatim: ", ") + Text("완료")
+                    : Text("STEP \(stepNumber)"))
 
                 // 내용
                 VStack(alignment: .leading, spacing: 4) {
@@ -3129,6 +3159,7 @@ struct StepListRow: View {
                             .foregroundColor(.secondary)
                             .padding(8)
                     }
+                    .accessibilityLabel(isExpanded ? Text("접기") : Text("펼치기"))
                 }
 
                 // 토글 버튼
@@ -3140,6 +3171,7 @@ struct StepListRow: View {
                         .background(Color(UIColor.secondarySystemBackground))
                         .cornerRadius(8)
                 }
+                .accessibilityLabel(tooth.isCompleted ? Text("되돌리기") : Text("완료"))
             }
             .padding()
             .background(
@@ -3160,6 +3192,7 @@ struct StepListRow: View {
                                 .font(.system(size: 6))
                                 .foregroundColor(.keyGold.opacity(0.6))
                                 .padding(.top, 5)
+                                .accessibilityHidden(true)
                             Text(criteria.localizedBucket)
                                 .font(.caption)
                                 .foregroundColor(.secondary)
@@ -3221,9 +3254,11 @@ struct ForgeNotesSection: View {
             HStack {
                 Image(systemName: "note.text")
                     .foregroundColor(.keyGold)
+                    .accessibilityHidden(true)
                 Text("내 기록")
                     .font(.headline)
                     .foregroundColor(.primary)
+                    .accessibilityAddTraits(.isHeader)
 
                 Spacer()
 
@@ -3240,6 +3275,7 @@ struct ForgeNotesSection: View {
                     Image(systemName: "pencil.and.list.clipboard")
                         .font(.system(size: 24))
                         .foregroundColor(.secondary.opacity(0.5))
+                        .accessibilityHidden(true)
 
                     Text("아직 기록이 없어요")
                         .font(.subheadline)
@@ -3307,13 +3343,13 @@ struct RecordPreviewCard: View {
                 // 질문
                 Text(record.question.localizedBucket)
                     .font(.caption)
-                    .foregroundColor(.gray)
-                    .lineLimit(1)
+                    .foregroundColor(.secondary)
+                    .lineLimit(2)
 
                 // 답변
                 Text(record.answer.localizedBucket)
                     .font(.subheadline)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
                     .lineLimit(2)
             }
 
@@ -3327,12 +3363,14 @@ struct RecordPreviewCard: View {
                     .scaledToFill()
                     .frame(width: 50, height: 50)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .accessibilityHidden(true)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(12)
-        .background(Color.white.opacity(0.05))
+        .background(Color(UIColor.tertiarySystemFill))
         .cornerRadius(10)
+        .accessibilityElement(children: .combine)
     }
 
     private func loadImageFromDocuments(filename: String) -> UIImage? {
@@ -3377,9 +3415,11 @@ struct AllRecordsView: View {
                                 Image(systemName: "flag.fill")
                                     .font(.caption)
                                     .foregroundColor(.keyGold)
+                                    .accessibilityHidden(true)
                                 Text(group.milestone.localizedBucket)
                                     .font(.headline)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.primary)
+                                    .accessibilityAddTraits(.isHeader)
                             }
 
                             // 질문-답변 리스트
@@ -3395,18 +3435,15 @@ struct AllRecordsView: View {
                             }
                         }
                         .padding()
-                        .background(Color.black.opacity(0.3))
+                        .background(Color.cardBackgroundAdaptive)
                         .cornerRadius(16)
                     }
                 }
                 .padding()
             }
-            .background(Color.forgeBackground.ignoresSafeArea())
+            .background(Color.forgeBackgroundAdaptive.ignoresSafeArea())
             .navigationTitle("내 기록")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(.visible, for: .navigationBar)
-            .toolbarBackground(Color.forgeBackground, for: .navigationBar)
-            .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("닫기") { dismiss() }
@@ -3437,21 +3474,23 @@ struct RecordDetailCard: View {
 
                 Text(question.localizedBucket)
                     .font(.subheadline)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
             }
+            .accessibilityElement(children: .combine)
 
             // 답변
             HStack(alignment: .top, spacing: 8) {
                 Text("A")
                     .font(.caption)
                     .fontWeight(.bold)
-                    .foregroundColor(.white.opacity(0.5))
+                    .foregroundColor(.secondary)
                     .frame(width: 24)
 
                 Text(answer.localizedBucket)
                     .font(.body)
-                    .foregroundColor(.white)
+                    .foregroundColor(.primary)
             }
+            .accessibilityElement(children: .combine)
 
             // 사진
             if let photoFilename = photoFilename,
@@ -3468,6 +3507,7 @@ struct RecordDetailCard: View {
                                 .stroke(Color.keyGold.opacity(0.3), lineWidth: 1)
                         )
                 }
+                .accessibilityLabel(Text("사진 크게 보기"))
                 .sheet(isPresented: $showFullImage) {
                     PhotoFullScreenView(image: image)
                 }
@@ -3475,7 +3515,7 @@ struct RecordDetailCard: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
-        .background(Color.white.opacity(0.05))
+        .background(Color(UIColor.tertiarySystemFill))
         .cornerRadius(12)
     }
 
@@ -3521,6 +3561,7 @@ struct PhotoFullScreenView: View {
                             .font(.title2)
                             .foregroundColor(.white.opacity(0.7))
                     }
+                    .accessibilityLabel(Text("닫기"))
                 }
             }
         }
@@ -3637,6 +3678,7 @@ struct UnlockingView: View {
     @State private var boxOpen = false
     @State private var showSparkles = false
     @State private var showCongrats = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     enum UnlockPhase {
         case ready, inserting, turning, opening, complete
@@ -3718,6 +3760,7 @@ struct UnlockingView: View {
                         }
                     }
                 }
+                .accessibilityHidden(true)
 
                 // 텍스트
                 VStack(spacing: 12) {
@@ -3729,14 +3772,14 @@ struct UnlockingView: View {
 
                         Text(box.title.localizedBucket)
                             .font(.title2)
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
 
                         Text("보물을 획득했습니다!")
-                            .foregroundColor(.white.opacity(0.8))
+                            .foregroundColor(.secondary)
                     } else {
                         Text(phaseText)
                             .font(.title2)
-                            .foregroundColor(.white)
+                            .foregroundColor(.primary)
                     }
                 }
 
@@ -3777,6 +3820,16 @@ struct UnlockingView: View {
     }
 
     func startAnimation() {
+        // 동작 줄이기: 열쇠·상자 움직임 없이 바로 열린 상태로
+        if reduceMotion {
+            keyOffset = 0
+            boxOpen = true
+            phase = .complete
+            withAnimation(.easeInOut(duration: 0.3)) { showCongrats = true }
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
+            return
+        }
+
         // 1. 열쇠 삽입
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             phase = .inserting
@@ -3853,6 +3906,7 @@ struct TreasureTreasureView: View {
                         Image(systemName: "sparkles")
                             .font(.system(size: 60))
                             .foregroundColor(.keyGold.opacity(0.5))
+                            .accessibilityHidden(true)
 
                         Text("아직 열린 상자가 없어요")
                             .font(.headline)
@@ -3883,6 +3937,7 @@ struct TreasureTreasureView: View {
                                     Text("달성한 꿈")
                                         .font(.headline)
                                         .foregroundColor(.primary)
+                                        .accessibilityAddTraits(.isHeader)
                                     Spacer()
                                 }
                                 .padding(.horizontal)
@@ -3903,6 +3958,7 @@ struct TreasureTreasureView: View {
                                     Text("잠시 멈춘 꿈")
                                         .font(.headline)
                                         .foregroundColor(.primary)
+                                        .accessibilityAddTraits(.isHeader)
                                     Spacer()
                                 }
                                 .padding(.horizontal)
@@ -3922,6 +3978,7 @@ struct TreasureTreasureView: View {
                         Image(systemName: "gearshape")
                             .font(.system(size: 18, weight: .semibold))
                     }
+                    .accessibilityLabel(Text("설정"))
                 }
             }
             .sheet(isPresented: $showingSettings) {
@@ -3953,6 +4010,7 @@ struct AbandonedDreamCard: View {
                         .font(.system(size: 24))
                         .foregroundColor(.secondary)
                 }
+                .accessibilityHidden(true)
 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(completedBox.box.title.localizedBucket)
@@ -4071,6 +4129,7 @@ struct TreasureCard: View {
                         .font(.system(size: 24))
                         .foregroundColor(.keyGold)
                 }
+                .accessibilityHidden(true)
 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(completedBox.box.title.localizedBucket)
@@ -4095,6 +4154,8 @@ struct TreasureCard: View {
                             .foregroundColor(.keyGold)
                     }
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(Text("별점 \(completedBox.rating)/5"))
             }
 
             // 완료 날짜
@@ -4127,6 +4188,7 @@ struct TreasureCard: View {
                 )
         )
         .shadow(color: Color.black.opacity(0.08), radius: 8, x: 0, y: 2)
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -4154,9 +4216,12 @@ struct TimelineNavigationSection: View {
             HStack {
                 Image(systemName: "clock.arrow.circlepath")
                     .foregroundColor(.keyGold)
+                    .accessibilityHidden(true)
+
                 Text("진행 타임라인")
                     .font(.headline)
                     .foregroundColor(.primary)
+                    .accessibilityAddTraits(.isHeader)
 
                 Spacer()
 
