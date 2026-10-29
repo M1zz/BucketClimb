@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LeeoKit
 import PhotosUI
 import OSLog
 
@@ -3831,6 +3832,7 @@ struct UnlockingView: View {
 
 struct TreasureTreasureView: View {
     @EnvironmentObject var viewModel: TreasureBoxViewModel
+    @EnvironmentObject var bucketViewModel: BucketListViewModel
     @State private var showingSettings = false
 
     // 완료된 꿈 (성공적으로 달성)
@@ -3864,6 +3866,10 @@ struct TreasureTreasureView: View {
                     .padding(.top, 100)
                 } else {
                     LazyVStack(spacing: 16) {
+                        // 이룬 꿈을 돌아보는 자리. 숫자가 쌓였을 때만, 드물게 응원을 부탁한다 (모달 아님)
+                        LeeoTipAskSlot<BucketClimbSpec>(tipJar: BucketClimbSpec.tipJar,
+                                                        reached: BucketClimbTipMoments.reached(in: bucketViewModel))
+
                         // 완료된 꿈 섹션
                         if !completedDreams.isEmpty {
                             Section {

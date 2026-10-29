@@ -2,6 +2,7 @@ import SwiftUI
 import MapKit
 import PhotosUI
 import OSLog
+import LeeoKit
 
 // MARK: - Sky Lantern Animation View
 struct SkyLanternView: View {
@@ -1754,6 +1755,11 @@ struct ArchiveView: View {
                         VStack(spacing: 20) {
                             StatsCard(completedCount: viewModel.itemsCompleted.count)
                                 .padding()
+
+                            // 이룬 꿈을 돌아보는 자리. 숫자가 쌓였을 때만, 드물게 응원을 부탁한다 (모달 아님)
+                            LeeoTipAskSlot<BucketClimbSpec>(tipJar: BucketClimbSpec.tipJar,
+                                                            reached: BucketClimbTipMoments.reached(in: viewModel))
+                                .padding(.horizontal)
 
                             VStack(alignment: .leading, spacing: 15) {
                                 Text("피어난 꿈들 🌸")
@@ -4949,6 +4955,9 @@ struct SettingsView: View {
                                 .font(.caption)
                         }
                     }
+
+                    // 개발자 응원하기 — 판매 중인 팁이 있어야 선다.
+                    LeeoTipJarLink<BucketClimbSpec>(tipJar: BucketClimbSpec.tipJar)
 
                     // 앱 평가하기
                     Button {
