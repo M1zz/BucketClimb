@@ -1,0 +1,221 @@
+{
+  "title": "Dream Seeker: de bucketlist die je stap voor stap afmaakt",
+  "description": "Kies een droom en de kleine stappen ernaartoe worden de tanden van een sleutel. Vraag voor vraag maak je de sleutel af en gaat de kist open.",
+  "hero": {
+    "headline": "Schrijf je bucketlist\nniet alleen op",
+    "lead": "Kies een droom en de kleine stappen ernaartoe worden de tanden van een sleutel. Beantwoord de stap van vandaag, vraag voor vraag, en voor je het weet is de kist open.",
+    "cta": "Download in de App Store",
+    "note": "Eén keer kopen en alle functies zijn van jou. Geen abonnement, geen advertenties."
+  },
+  "demo": {
+    "title": "Maak de sleutel af",
+    "lead": "Bij de droom van het noorderlicht zijn nog twee stappen over. Beantwoord elke vraag in één regel (of laat hem leeg) en tik op ‘Volgende’. Elke afgeronde stap vult een tand, en met een volle sleutel gaat de kist open.",
+    "note": "Dezelfde droom, stappen en vragen als in de app. Wat je hier typt, wordt niet bewaard.",
+    "again": "Opnieuw beginnen",
+    "app": {
+      "dream": "De noorderlichten zien in IJsland",
+      "category": "Reizen",
+      "steps": [
+        {
+          "title": "Onderzoek naar het noorderlichtseizoen",
+          "qs": [
+            "Noteer welke apps of sites je hebt gebruikt voor de noorderlichtverwachting",
+            "Deel hoe je de beste maanloze periode hebt gevonden",
+            "Beschrijf waar je naar uitkijkt tijdens je verblijf van 4 tot 5 dagen"
+          ]
+        },
+        {
+          "title": "Budget plannen en sparen",
+          "qs": [
+            "Noteer welke opties je hebt vergeleken bij het plannen van je vliegbudget",
+            "Deel hoe je de verblijfskosten hebt berekend en welk type accommodatie je koos",
+            "Beschrijf je totale budget, inclusief tours en eten"
+          ]
+        },
+        {
+          "title": "Vliegtickets boeken",
+          "qs": [
+            "Noteer de beste optie die je vond bij het vergelijken van ticketprijzen",
+            "Deel welke overstaplocatie je koos en waarom",
+            "Beschrijf wat je hebt voorbereid na het checken van de bagageregels"
+          ]
+        },
+        {
+          "title": "Accommodatie boeken",
+          "qs": [
+            "Noteer waarom je een plek met weinig lichtvervuiling hebt gekozen",
+            "Deel hoe je een accommodatie met noorderlichtmelding hebt gevonden",
+            "Beschrijf waar je op lette bij het checken van het annuleringsbeleid"
+          ]
+        },
+        {
+          "title": "Een noorderlichttour boeken",
+          "qs": [
+            "Noteer welke aanbieder je koos na het lezen van reviews",
+            "Deel bijzondere voordelen, zoals een gratis herkansing",
+            "Beschrijf je plan voor het huren van winterkleding en -uitrusting"
+          ]
+        },
+        {
+          "title": "Winteruitrusting voorbereiden",
+          "qs": [
+            "Noteer welke winterkleding je hebt voorbereid voor de extreme kou",
+            "Deel je paklijst, zoals handwarmers en waterdichte handschoenen",
+            "Beschrijf welke uitrusting je hebt voorbereid om het noorderlicht te fotograferen"
+          ]
+        }
+      ],
+      "now": "Wat je nu moet doen",
+      "step": "STAP %d",
+      "teeth": "%d / %d tanden klaar",
+      "answer": "Mijn antwoord...",
+      "next": "Volgende",
+      "done": "Klaar!",
+      "open": "Kist openen",
+      "found": "Je hebt de schat gevonden!",
+      "all": "Maak alle tanden af en de sleutel is klaar!"
+    }
+  },
+  "problem": {
+    "title": "Ooit een bucketlist gemaakt en die vergeten?",
+    "text": "‘Het noorderlicht zien’ is zo groot dat je niet weet waar je moet beginnen, dus blijft het jaren op de lijst staan. Dream Seeker deelt de droom op in stappen die je vandaag kunt zetten, zoals het seizoen uitzoeken, sparen en vluchten boeken, en laat alleen de stap zien die nu aan de beurt is."
+  },
+  "features": [
+    {
+      "title": "Kies uit meer dan 590 dromen",
+      "text": "Reizen, ervaringen, prestaties, gezondheid, leren en relaties. Dromen uit zes gebieden drijven in kisten over de Droomoceaan. Haal er een naar je werkplaats en de stappen liggen al klaar.\nStaat jouw droom er niet bij? Maak hem zelf, met een titel, een gebied en de stappen die nodig zijn.",
+      "shot": "ocean"
+    },
+    {
+      "title": "Eén tand tegelijk, net genoeg voor vandaag",
+      "text": "In Mijn werkplaats zie je hoe ver de sleutel van elke droom is. De stap van nu staat bovenaan, en als je de vragen ervan beantwoordt, vult zich een tand.\nJe antwoorden en foto’s komen in Mijn notities, en in de Tijdlijn van je voortgang kijk je de hele weg terug.",
+      "shot": "workshop"
+    },
+    {
+      "title": "Uitgekomen dromen naar de Schatkamer, plekken op de kaart",
+      "text": "Vul alle tanden en open de kist. Uitgekomen dromen verzamelen zich met datum in de Schatkamer, en gepauzeerde dromen wachten daar tot je verdergaat.\nDromen met een plek verschijnen op de kaart, zodat je alle plekken ziet waar je heen wilt.",
+      "shot": "treasury"
+    }
+  ],
+  "steps": {
+    "title": "In drie stappen beginnen",
+    "items": [
+      {
+        "title": "Kies een droom",
+        "text": "Tik op een kist in de Droomoceaan en kies ‘Naar mijn werkplaats halen’."
+      },
+      {
+        "title": "Beantwoord de stap van vandaag",
+        "text": "Beantwoord de vragen van de bovenste stap een voor een om een tand te vullen."
+      },
+      {
+        "title": "Open de kist",
+        "text": "Zijn alle tanden gevuld, dan is de sleutel klaar en gaat de kist open."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Zes gebieden in de Droomoceaan",
+    "rows": [
+      [
+        "Reizen",
+        "De noorderlichten zien in IJsland · Zonsondergang bekijken op Santorini"
+      ],
+      [
+        "Ervaring",
+        "Skydiven · Paragliden"
+      ],
+      [
+        "Prestatie",
+        "Loop een volledige marathon uit · Trek naar het Everest Base Camp"
+      ],
+      [
+        "Gezondheid",
+        "20 pull-ups doen · Een sixpack krijgen"
+      ],
+      [
+        "Leren",
+        "Vloeiend Engels leren spreken · Vloeiend Frans leren spreken"
+      ],
+      [
+        "Relaties",
+        "Een wereldreis maken met je ouders · Een maand op Jeju wonen met vrienden"
+      ]
+    ],
+    "note": "Elk gebied heeft bijna honderd dromen. Maak je eigen dromen met ‘Nieuwe droom toevoegen’ in Mijn werkplaats."
+  },
+  "pricing": {
+    "title": "Eén keer kopen, alles erin",
+    "free": {
+      "name": "De app",
+      "items": [
+        "Meer dan 590 dromen met vragen bij elke stap",
+        "Je eigen dromen",
+        "Mijn notities met foto’s en de tijdlijn van je voortgang",
+        "Schatkamer en kaart",
+        "Groeimodus",
+        "Toekomstige updates"
+      ]
+    },
+    "pro": {
+      "name": "Steun de ontwikkelaar (optioneel)",
+      "items": [
+        "Helpt de app je, dan kun je via Instellingen een kleine fooi geven",
+        "Een fooi ontgrendelt niets. Ook zonder blijven alle functies van jou"
+      ],
+      "note": "Losse fooien, geen abonnement."
+    },
+    "note": "In de app kost niets extra. Geen account, geen advertenties."
+  },
+  "faq": {
+    "title": "Veelgestelde vragen",
+    "items": [
+      {
+        "q": "Hoe begin ik?",
+        "a": "Tik in het tabblad Droomoceaan op een kist die je aanspreekt en kies ‘Naar mijn werkplaats halen’. Beantwoord in Mijn werkplaats de vragen van de huidige stap, dan vullen de tanden zich een voor een. Zijn ze allemaal vol, dan open je de kist."
+      },
+      {
+        "q": "Kan ik een eigen droom toevoegen?",
+        "a": "Ja. Tik in Mijn werkplaats op ‘Nieuwe droom toevoegen’ en vul een titel, een gebied en de stappen ernaartoe in."
+      },
+      {
+        "q": "Hoe pauzeer ik een droom of pak ik hem weer op?",
+        "a": "Kies in het menu van een lopende droom ‘Deze droom opgeven’. Hij gaat dan naar Gepauzeerde dromen in de Schatkamer. Tik daar op ‘Opnieuw beginnen’ om hem terug te halen naar je werkplaats, of op ‘Definitief verwijderen’ om hem te wissen."
+      },
+      {
+        "q": "Wat is de groeimodus?",
+        "a": "Een weergave waarin je je dromen beheert als het beklimmen van een berg. Zet hem aan of uit via Instellingen > Weergave. Je houdt er deadlines per stap en obstakels zoals kosten en tijd bij, net als bij een project."
+      },
+      {
+        "q": "Foto’s worden niet getoond.",
+        "a": "Sommige achtergrondfoto’s worden van internet geladen. Controleer of je online bent. Zonder verbinding zie je een standaardafbeelding."
+      },
+      {
+        "q": "Kan ik mijn notities naar een nieuwe iPhone zetten?",
+        "a": "Je notities staan alleen op dit apparaat, zonder account of synchronisatie. Zet je een nieuwe iPhone terug vanaf een iCloud- of computerreservekopie, dan gaan ze mee met je andere appgegevens."
+      },
+      {
+        "q": "Kun je in de app iets kopen?",
+        "a": "Nee. Met de app zijn alle functies van jou. De fooien in Instellingen zijn er alleen als je dankjewel wilt zeggen."
+      },
+      {
+        "q": "Worden mijn dromen en notities ergens heen gestuurd?",
+        "a": "Nee. Er is geen account, geen advertenties en geen analysetools. Je dromen, notities en foto’s blijven op je apparaat."
+      },
+      {
+        "q": "Hoe neem ik contact op?",
+        "a": "Bugs, ideeën of iets anders: stuur het via ‘Feedback sturen’ in de instellingen van de app, of via een Instagram-DM (@lee25_ios)."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Die droom die je steeds uitstelt.\nVandaag één tand.",
+    "cta": "Download in de App Store"
+  },
+  "ui": {
+    "skip": "Naar inhoud",
+    "languages": "Taal",
+    "privacy": "Privacybeleid",
+    "contact": "Vragen of problemen? Schrijf naar {email}."
+  }
+}

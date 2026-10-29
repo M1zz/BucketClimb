@@ -1,0 +1,221 @@
+{
+  "title": "Dream Seeker : la liste de rêves qu’on réalise pas à pas",
+  "description": "Choisissez un rêve : les petites étapes pour y arriver deviennent les dents d’une clé. Une question à la fois, la clé se forme et le coffre s’ouvre.",
+  "hero": {
+    "headline": "Ne vous contentez pas\nd’écrire vos rêves",
+    "lead": "Choisissez un rêve, et les petites étapes qui y mènent deviennent les dents d’une clé. Répondez à l’étape du jour, une question à la fois, et le coffre finit par s’ouvrir.",
+    "cta": "Télécharger dans l’App Store",
+    "note": "Un seul achat, toutes les fonctions. Ni abonnement, ni publicité."
+  },
+  "demo": {
+    "title": "Terminez la clé",
+    "lead": "Il reste deux étapes au rêve des aurores boréales. Répondez à chaque question en une ligne (ou laissez vide) et touchez « Suivant ». Chaque étape terminée remplit une dent, et une clé complète ouvre le coffre.",
+    "note": "Le même rêve, les mêmes étapes et les mêmes questions que dans l’app. Rien de ce que vous tapez ici n’est enregistré.",
+    "again": "Recommencer",
+    "app": {
+      "dream": "Voir des aurores boréales en Islande",
+      "category": "Voyage",
+      "steps": [
+        {
+          "title": "Étudier la saison des aurores",
+          "qs": [
+            "Notez les applis ou sites que vous avez consultés pour suivre les prévisions d'aurores",
+            "Partagez comment vous avez repéré la meilleure période, sans lune",
+            "Décrivez ce que vous attendez d'un séjour de 4 à 5 jours"
+          ]
+        },
+        {
+          "title": "Budget et épargne",
+          "qs": [
+            "Notez les options de vol que vous avez comparées pour votre budget",
+            "Partagez comment vous avez calculé l'hébergement et le type de logement choisi",
+            "Décrivez votre budget complet, avec les excursions et les repas"
+          ]
+        },
+        {
+          "title": "Réservation des billets d'avion",
+          "qs": [
+            "Notez la meilleure option trouvée en comparant les prix des billets",
+            "Partagez l'escale choisie et pourquoi vous l'avez choisie",
+            "Décrivez ce que vous avez préparé en vérifiant les règles sur les bagages"
+          ]
+        },
+        {
+          "title": "Réservation de l'hébergement",
+          "qs": [
+            "Notez pourquoi vous avez choisi un lieu peu touché par la pollution lumineuse",
+            "Partagez comment vous avez trouvé un logement avec alerte aurores boréales",
+            "Décrivez ce que vous avez pris en compte en lisant les conditions d'annulation"
+          ]
+        },
+        {
+          "title": "Réservation d'une excursion aurores boréales",
+          "qs": [
+            "Notez l'agence choisie après avoir lu les avis sur les excursions",
+            "Partagez les avantages particuliers, comme une nouvelle sortie gratuite",
+            "Décrivez votre projet de location de vêtements chauds"
+          ]
+        },
+        {
+          "title": "Préparation de l'équipement grand froid",
+          "qs": [
+            "Notez les vêtements chauds que vous avez préparés contre le froid extrême",
+            "Partagez ce que vous emportez, comme des chaufferettes et des gants imperméables",
+            "Décrivez le matériel préparé pour photographier les aurores"
+          ]
+        }
+      ],
+      "now": "À faire maintenant",
+      "step": "ÉTAPE %d",
+      "teeth": "%d / %d dents terminées",
+      "answer": "Ma réponse…",
+      "next": "Suivant",
+      "done": "Terminé !",
+      "open": "Ouvrir le coffre",
+      "found": "Vous avez obtenu un trésor !",
+      "all": "Terminez toutes les dents pour achever la clé !"
+    }
+  },
+  "problem": {
+    "title": "Déjà écrit une liste de rêves… puis oubliée ?",
+    "text": "« Voir des aurores boréales », c’est si vaste qu’on ne sait pas par où commencer, alors ça reste sur la liste pendant des années. Dream Seeker découpe ce rêve en étapes faisables aujourd’hui, comme vérifier la saison, mettre de l’argent de côté ou réserver les vols, et ne vous montre que celle du moment."
+  },
+  "features": [
+    {
+      "title": "Plus de 590 rêves au choix",
+      "text": "Voyages, expériences, réussites, santé, apprentissage et relations : des rêves de six domaines flottent dans des coffres sur l’Océan des rêves. Prenez-en un dans votre atelier, ses étapes sont déjà prêtes.\nLe vôtre n’y est pas ? Créez-le avec un titre, un domaine et les étapes nécessaires.",
+      "shot": "ocean"
+    },
+    {
+      "title": "Une dent à la fois, juste ce qu’il faut pour aujourd’hui",
+      "text": "Mon atelier montre où en est la clé de chaque rêve. L’étape du moment est tout en haut, et répondre à ses questions remplit une dent.\nVos réponses et vos photos s’accumulent dans Mon journal, et la chronologie vous permet de revoir tout le chemin parcouru.",
+      "shot": "workshop"
+    },
+    {
+      "title": "Les rêves réalisés au trésor, les lieux sur la carte",
+      "text": "Remplissez toutes les dents et ouvrez le coffre. Les rêves réalisés s’ajoutent aux Trésors avec leur date, et les rêves en pause y attendent que vous les repreniez.\nLes rêves liés à un lieu apparaissent sur la carte : tous les endroits où vous voulez aller, d’un coup d’œil.",
+      "shot": "treasury"
+    }
+  ],
+  "steps": {
+    "title": "Trois étapes pour commencer",
+    "items": [
+      {
+        "title": "Choisissez un rêve",
+        "text": "Touchez un coffre sur l’Océan des rêves, puis « Prendre dans mon atelier »."
+      },
+      {
+        "title": "Répondez à l’étape du jour",
+        "text": "Répondez une à une aux questions de l’étape en haut pour remplir une dent."
+      },
+      {
+        "title": "Ouvrez le coffre",
+        "text": "Quand toutes les dents sont remplies, la clé est prête et le coffre s’ouvre."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Six domaines sur l’Océan des rêves",
+    "rows": [
+      [
+        "Voyage",
+        "Voir des aurores boréales en Islande · Admirer le coucher de soleil à Santorin"
+      ],
+      [
+        "Expérience",
+        "Faire du parachutisme · Voler en parapente"
+      ],
+      [
+        "Réussite",
+        "Terminer un marathon · Trek jusqu'au camp de base de l'Everest"
+      ],
+      [
+        "Santé",
+        "Faire 20 tractions · Se sculpter des abdos"
+      ],
+      [
+        "Apprentissage",
+        "Parler couramment anglais · Parler couramment français"
+      ],
+      [
+        "Relations",
+        "Faire le tour du monde avec ses parents · Passer un mois à Jeju entre amis"
+      ]
+    ],
+    "note": "Chaque domaine compte près d’une centaine de rêves. Créez les vôtres avec « Ajouter un nouveau rêve » dans Mon atelier."
+  },
+  "pricing": {
+    "title": "Un seul achat, tout est inclus",
+    "free": {
+      "name": "L’app",
+      "items": [
+        "Plus de 590 rêves avec des questions à chaque étape",
+        "Vos propres rêves",
+        "Mon journal avec photos, et la chronologie",
+        "Trésors et carte",
+        "Mode Ascension",
+        "Les mises à jour à venir"
+      ]
+    },
+    "pro": {
+      "name": "Soutenir le développeur (facultatif)",
+      "items": [
+        "Si l’app vous aide, vous pouvez laisser un petit pourboire depuis les réglages",
+        "Un pourboire ne débloque rien. Sans lui, toutes les fonctions restent à vous"
+      ],
+      "note": "Des pourboires ponctuels, pas un abonnement."
+    },
+    "note": "Rien n’est payant dans l’app. Ni compte, ni publicité."
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "items": [
+      {
+        "q": "Comment commencer ?",
+        "a": "Dans l’onglet Océan des rêves, touchez un coffre qui vous plaît, puis « Prendre dans mon atelier ». Dans Mon atelier, répondez aux questions de l’étape en cours et les dents se remplissent une à une. Une fois toutes remplies, vous ouvrez le coffre."
+      },
+      {
+        "q": "Puis-je ajouter mon propre rêve ?",
+        "a": "Oui. Dans Mon atelier, touchez « Ajouter un nouveau rêve » et indiquez un titre, un domaine et les étapes pour y arriver."
+      },
+      {
+        "q": "Comment mettre un rêve en pause ou le reprendre ?",
+        "a": "Dans le menu d’un rêve en cours, choisissez « Abandonner ce rêve » : il passe dans Rêves en pause, dans les Trésors. Touchez « Reprendre » pour le ramener dans Mon atelier, ou « Supprimer définitivement » pour l’effacer."
+      },
+      {
+        "q": "Qu’est-ce que le mode Ascension ?",
+        "a": "Un écran qui gère vos rêves comme l’ascension d’une montagne. Activez-le ou désactivez-le dans Réglages > Affichage. Vous y suivez les échéances de chaque étape et les obstacles comme le coût et le temps, à la manière d’un projet."
+      },
+      {
+        "q": "Les photos ne s’affichent pas.",
+        "a": "Certaines images de fond sont téléchargées depuis Internet. Vérifiez votre connexion. Sans connexion, une image par défaut s’affiche."
+      },
+      {
+        "q": "Puis-je transférer mon journal sur un nouvel iPhone ?",
+        "a": "Votre journal est stocké uniquement sur cet appareil, sans compte ni synchronisation. En restaurant un nouvel iPhone depuis une sauvegarde iCloud ou ordinateur, il suit avec les autres données des apps."
+      },
+      {
+        "q": "Y a-t-il des achats dans l’app ?",
+        "a": "Non. Une fois l’app achetée, toutes les fonctions sont à vous. Les pourboires des réglages ne servent qu’à dire merci, si vous le souhaitez."
+      },
+      {
+        "q": "Mes rêves et mon journal sont-ils envoyés quelque part ?",
+        "a": "Non. Il n’y a ni compte, ni publicité, ni outil d’analyse. Vos rêves, votre journal et vos photos restent sur votre appareil."
+      },
+      {
+        "q": "Comment vous contacter ?",
+        "a": "Bug, idée ou autre : envoyez-le via « Envoyer un avis » dans les réglages de l’app, ou par message Instagram (@lee25_ios)."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Un rêve que vous repoussez.\nUne dent aujourd’hui.",
+    "cta": "Télécharger dans l’App Store"
+  },
+  "ui": {
+    "skip": "Aller au contenu",
+    "languages": "Langue",
+    "privacy": "Politique de confidentialité",
+    "contact": "Une question ou un problème ? Écrivez à {email}."
+  }
+}

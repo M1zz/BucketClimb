@@ -1,0 +1,221 @@
+{
+  "title": "Dream Seeker: unelmalista, jonka toteutat askel kerrallaan",
+  "description": "Valitse unelma, niin pienistä askelista sitä kohti tulee avaimen hampaat. Vastaa kysymys kerrallaan, viimeistele avain ja avaa unelma-arkku.",
+  "hero": {
+    "headline": "Älä vain kirjoita\nunelmiasi ylös",
+    "lead": "Valitse unelma, niin pienistä askelista sitä kohti tulee avaimen hampaat. Vastaa päivän askeleeseen kysymys kerrallaan, ja ennen kuin huomaatkaan, arkku on auki.",
+    "cta": "Lataa App Storesta",
+    "note": "Osta kerran, niin kaikki ominaisuudet ovat käytössäsi. Ei tilausta, ei mainoksia."
+  },
+  "demo": {
+    "title": "Viimeistele avain",
+    "lead": "Unelmasta nähdä revontulet Islannissa puuttuu kaksi askelta. Vastaa jokaiseen kysymykseen yhdellä rivillä (tai jätä tyhjäksi) ja napauta Seuraava. Jokainen valmis askel täyttää hampaan, ja täysi avain avaa arkun.",
+    "note": "Sama unelma, askeleet ja kysymykset kuin sovelluksessa. Mitä tähän kirjoitat, ei tallennu.",
+    "again": "Aloita alusta",
+    "app": {
+      "dream": "Nähdä revontulet Islannissa",
+      "category": "Matkailu",
+      "steps": [
+        {
+          "title": "Revontulikauden selvitys",
+          "qs": [
+            "Kirjaa ylös sovellukset ja sivustot, joilla seuraat revontuliennustetta",
+            "Jaa, miten löysit parhaan kuuttoman ajankohdan",
+            "Kuvaile, mitä odotat 4-5 päivän matkaltasi"
+          ]
+        },
+        {
+          "title": "Budjetti ja säästäminen",
+          "qs": [
+            "Kirjaa ylös lentobudjetti ja vertailemasi vaihtoehdot",
+            "Jaa, miten laskit majoituskulut ja minkä majoitustyypin valitsit",
+            "Kuvaile kokonaisbudjetti retkien ja ruokailujen kanssa"
+          ]
+        },
+        {
+          "title": "Lentojen varaus",
+          "qs": [
+            "Kirjaa ylös paras vaihtoehto lentohintoja vertailtuasi",
+            "Jaa, minkä välilaskupaikan valitsit ja miksi",
+            "Kuvaile, mitä teit matkatavarasääntöjen vuoksi"
+          ]
+        },
+        {
+          "title": "Majoituksen varaus",
+          "qs": [
+            "Kirjaa ylös, miksi valitsit paikan, jossa on vähän valosaastetta",
+            "Jaa, miten löysit majoituksen, jossa on revontulihälytys",
+            "Kuvaile, mitä huomioit peruutusehdoista"
+          ]
+        },
+        {
+          "title": "Revontulaiheisen retken varaus",
+          "qs": [
+            "Kirjaa ylös valitsemasi yritys arvostelujen perusteella",
+            "Jaa erikoisedut, kuten ilmainen uusintaretki",
+            "Kuvaile suunnitelmasi lämpövarusteiden vuokraamisesta"
+          ]
+        },
+        {
+          "title": "Lämpövarusteet",
+          "qs": [
+            "Kirjaa ylös pakkaseen hankkimasi vaatteet",
+            "Jaa varustelistasi, esimerkiksi taskulämmittimet ja vedenpitävät hanskat",
+            "Kuvaile, mitä varusteita otat revontulikuvausta varten"
+          ]
+        }
+      ],
+      "now": "Tehtävä nyt",
+      "step": "VAIHE %d",
+      "teeth": "%d / %d hammasta valmiina",
+      "answer": "Vastaukseni...",
+      "next": "Seuraava",
+      "done": "Valmis!",
+      "open": "Avaa arkku",
+      "found": "Sait aarteen!",
+      "all": "Kun kaikki hampaat ovat valmiita, avain on valmis!"
+    }
+  },
+  "problem": {
+    "title": "Oletko kirjoittanut unelmalistan ja unohtanut sen?",
+    "text": "”Nähdä revontulet” on niin iso asia, ettei tiedä mistä aloittaa, joten se jää listalle vuosiksi. Dream Seeker jakaa unelman askeliin, jotka voit ottaa jo tänään, kuten selvittää sesongin, säästää rahaa ja varata lennot, ja näyttää vain sen yhden, joka on nyt vuorossa."
+  },
+  "features": [
+    {
+      "title": "Valitse yli 590 unelmasta",
+      "text": "Matkat, elämykset, saavutukset, terveys, oppiminen ja ihmissuhteet. Kuuden alueen unelmat ajelehtivat arkuissa Unelmien merellä. Tuo mieluisa omaan työpajaan, ja askeleet on jo jaettu valmiiksi.\nEikö omaasi löydy? Tee se itse: otsikko, alue ja tarvittavat askeleet.",
+      "shot": "ocean"
+    },
+    {
+      "title": "Hammas kerrallaan, juuri sen verran kuin tänään",
+      "text": "Omassa työpajassa näet heti, kuinka pitkällä kunkin unelman avain on. Nyt vuorossa oleva askel on ylimpänä, ja kun vastaat sen kysymyksiin, yksi hammas täyttyy.\nVastaukset ja kuvat kertyvät Omiin merkintöihin, ja edistymisen aikajanalta näet koko kuljetun matkan.",
+      "shot": "workshop"
+    },
+    {
+      "title": "Toteutuneet unelmat aarrekammioon, paikat kartalle",
+      "text": "Täytä kaikki hampaat ja avaa arkku. Toteutuneet unelmat kertyvät päivämäärineen aarrekammioon, ja tauolla olevat unelmat odottavat siellä, kunnes jatkat.\nPaikkaan liittyvät unelmat näkyvät kartalla, joten näet kaikki paikat, joihin haluat mennä.",
+      "shot": "treasury"
+    }
+  ],
+  "steps": {
+    "title": "Aloita kolmella askeleella",
+    "items": [
+      {
+        "title": "Valitse unelma",
+        "text": "Napauta arkkua Unelmien merellä ja valitse Tuo työpajaan."
+      },
+      {
+        "title": "Vastaa päivän askeleeseen",
+        "text": "Vastaa ylimmän askeleen kysymyksiin yksi kerrallaan, niin hammas täyttyy."
+      },
+      {
+        "title": "Avaa arkku",
+        "text": "Kun kaikki hampaat ovat täynnä, avain on valmis ja arkku aukeaa."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Unelmien meren kuusi aluetta",
+    "rows": [
+      [
+        "Matkailu",
+        "Nähdä revontulet Islannissa · Ihailla auringonlaskua Santorinilla"
+      ],
+      [
+        "Kokemus",
+        "Laskuvarjohyppää tandemina · Kokeile riippuliitoa"
+      ],
+      [
+        "Saavutus",
+        "Juosta maraton · Vaella Everestin base campille"
+      ],
+      [
+        "Terveys",
+        "Tee 20 leuanvetoa · Hanki näkyvät vatsalihakset"
+      ],
+      [
+        "Oppiminen",
+        "Opi puhumaan englantia sujuvasti · Opi puhumaan ranskaa sujuvasti"
+      ],
+      [
+        "Ihmissuhteet",
+        "Matkusta maailmaa vanhempiesi kanssa · Asu kuukausi Jejulla ystävien kanssa"
+      ]
+    ],
+    "note": "Jokaisella alueella on lähes sata unelmaa. Omat unelmat teet Omassa työpajassa kohdasta Lisää uusi unelma."
+  },
+  "pricing": {
+    "title": "Yksi osto, kaikki mukana",
+    "free": {
+      "name": "Sovellus",
+      "items": [
+        "Yli 590 unelmaa ja kysymykset jokaiseen askeleeseen",
+        "Omat unelmat",
+        "Omat merkinnät kuvineen ja edistymisen aikajana",
+        "Aarrekammio ja kartta",
+        "Unelmien kasvatustila",
+        "Tulevat päivitykset"
+      ]
+    },
+    "pro": {
+      "name": "Tue kehittäjää (vapaaehtoinen)",
+      "items": [
+        "Jos sovellus auttaa, voit antaa pienen tipin asetuksista",
+        "Tippi ei avaa mitään. Ilman sitäkin kaikki ominaisuudet ovat käytössäsi"
+      ],
+      "note": "Kertamaksuja, ei tilausta."
+    },
+    "note": "Sovelluksessa ei ole mitään lisämaksullista. Ei tiliä, ei mainoksia."
+  },
+  "faq": {
+    "title": "Usein kysyttyä",
+    "items": [
+      {
+        "q": "Miten pääsen alkuun?",
+        "a": "Napauta Unelmien meri -välilehdellä mieluisaa arkkua ja valitse Tuo työpajaan. Vastaa Omassa työpajassa nykyisen askeleen kysymyksiin, niin hampaat täyttyvät yksi kerrallaan. Kun kaikki ovat täynnä, voit avata arkun."
+      },
+      {
+        "q": "Voinko lisätä oman unelman?",
+        "a": "Voit. Napauta Omassa työpajassa Lisää uusi unelma ja kirjoita otsikko, alue ja askeleet sitä kohti."
+      },
+      {
+        "q": "Miten laitan unelman tauolle tai jatkan sitä?",
+        "a": "Valitse käynnissä olevan unelman valikosta Luovu tästä unelmasta, niin se siirtyy aarrekammion Tauolla olevat unelmat -kohtaan. Siellä Aloita uudelleen palauttaa sen työpajaan ja Poista kokonaan poistaa sen."
+      },
+      {
+        "q": "Mikä on unelmien kasvatustila?",
+        "a": "Näkymä, jossa hallitset unelmia kuin vuorelle kiipeämistä. Kytke se päälle tai pois kohdassa Asetukset > Näyttö. Voit seurata kunkin askeleen määräaikoja ja esteitä, kuten rahaa ja aikaa, projektin tapaan."
+      },
+      {
+        "q": "Kuvat eivät näy.",
+        "a": "Osa taustakuvista ladataan internetistä. Tarkista, että olet verkossa. Ilman yhteyttä näytetään oletuskuva."
+      },
+      {
+        "q": "Voinko siirtää merkinnät uuteen iPhoneen?",
+        "a": "Merkinnät tallentuvat vain tähän laitteeseen ilman tiliä tai synkronointia. Kun palautat uuden iPhonen iCloud- tai tietokonevarmuuskopiosta, ne siirtyvät muiden appien tietojen mukana."
+      },
+      {
+        "q": "Voiko sovelluksessa ostaa jotain?",
+        "a": "Ei. Sovelluksen myötä kaikki ominaisuudet ovat käytössäsi. Asetusten tipit ovat olemassa vain, jos haluat kiittää."
+      },
+      {
+        "q": "Lähetetäänkö unelmani ja merkintäni jonnekin?",
+        "a": "Ei. Tiliä, mainoksia tai analytiikkatyökaluja ei ole. Unelmasi, merkintäsi ja kuvasi pysyvät laitteessa."
+      },
+      {
+        "q": "Miten saan teihin yhteyden?",
+        "a": "Virheet, ideat tai mitä tahansa muuta: lähetä ne sovelluksen asetuksista kohdasta Lähetä palautetta tai Instagramin yksityisviestillä (@lee25_ios)."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Unelma, jota olet lykännyt.\nTänään yksi hammas.",
+    "cta": "Lataa App Storesta"
+  },
+  "ui": {
+    "skip": "Siirry sisältöön",
+    "languages": "Kieli",
+    "privacy": "Tietosuojakäytäntö",
+    "contact": "Kysyttävää tai ongelmia? Kirjoita osoitteeseen {email}."
+  }
+}

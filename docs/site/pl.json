@@ -1,0 +1,221 @@
+{
+  "title": "Dream Seeker: lista marzeń, którą spełniasz krok po kroku",
+  "description": "Wybierz marzenie, a małe kroki do niego staną się zębami klucza. Odpowiadaj na pytania po kolei, dokończ klucz i otwórz skrzynię marzeń.",
+  "hero": {
+    "headline": "Nie tylko zapisuj\nswoje marzenia",
+    "lead": "Wybierz marzenie, a małe kroki, które do niego prowadzą, staną się zębami klucza. Odpowiadaj na dzisiejszy krok pytanie po pytaniu, a skrzynia marzeń otworzy się, zanim się obejrzysz.",
+    "cta": "Pobierz z App Store",
+    "note": "Kupujesz raz i masz wszystkie funkcje. Bez subskrypcji i reklam."
+  },
+  "demo": {
+    "title": "Dokończ klucz",
+    "lead": "Marzeniu o zorzy polarnej na Islandii zostały dwa kroki. Odpowiedz na każde pytanie jedną linijką (albo zostaw puste) i stuknij Dalej. Każdy ukończony krok wypełnia ząb, a pełny klucz otwiera skrzynię.",
+    "note": "To samo marzenie, te same kroki i pytania co w aplikacji. Nic, co tu wpiszesz, nie jest zapisywane.",
+    "again": "Zacznij od nowa",
+    "app": {
+      "dream": "Zobaczyć zorzę polarną w Islandii",
+      "category": "Podróże",
+      "steps": [
+        {
+          "title": "Zorza polarna: rozeznanie",
+          "qs": [
+            "Zapisz, z jakich aplikacji i stron korzystasz przy prognozach zorzy",
+            "Podziel się tym, jak ustalasz najlepszy termin bez Księżyca",
+            "Opisz, na co liczysz, planując 4-5 dni pobytu"
+          ]
+        },
+        {
+          "title": "Budżet i oszczędzanie",
+          "qs": [
+            "Zapisz, jakie opcje lotów porównujesz, planując budżet",
+            "Podziel się wyliczeniem kosztów noclegu i wybranym typem miejsca",
+            "Opisz cały budżet, razem z kosztami wycieczek i jedzenia"
+          ]
+        },
+        {
+          "title": "Rezerwacja lotu",
+          "qs": [
+            "Zapisz najlepszą opcję, którą znajdujesz, porównując ceny biletów",
+            "Podziel się wybranym miejscem przesiadki i powodem",
+            "Opisz, co przygotowujesz po sprawdzeniu zasad bagażowych"
+          ]
+        },
+        {
+          "title": "Rezerwacja noclegu",
+          "qs": [
+            "Zapisz, dlaczego wybierasz miejsce z małym zanieczyszczeniem światłem",
+            "Podziel się tym, jak szukasz noclegu z alertami o zorzy",
+            "Opisz, co bierzesz pod uwagę, sprawdzając zasady anulowania"
+          ]
+        },
+        {
+          "title": "Rezerwacja wycieczki na zorzę",
+          "qs": [
+            "Zapisz, którego organizatora wybierasz po przeczytaniu opinii",
+            "Podziel się dodatkowymi korzyściami, np. bezpłatną powtórką wycieczki",
+            "Opisz plan wypożyczenia ciepłego sprzętu"
+          ]
+        },
+        {
+          "title": "Ciepły sprzęt",
+          "qs": [
+            "Zapisz, jaką odzież zimową przygotowujesz na mróz",
+            "Podziel się listą rzeczy, np. ogrzewaczy i wodoodpornych rękawic",
+            "Opisz sprzęt przygotowany do fotografowania zorzy"
+          ]
+        }
+      ],
+      "now": "Do zrobienia teraz",
+      "step": "KROK %d",
+      "teeth": "Ząbki: %d / %d",
+      "answer": "Moja odpowiedź...",
+      "next": "Dalej",
+      "done": "Gotowe!",
+      "open": "Otwórz skrzynię",
+      "found": "Skarb zdobyty!",
+      "all": "Gdy skończysz wszystkie ząbki, klucz jest gotowy!"
+    }
+  },
+  "problem": {
+    "title": "Zdarzyło ci się spisać listę marzeń i o niej zapomnieć?",
+    "text": "„Zobaczyć zorzę polarną” to coś tak dużego, że nie wiadomo, od czego zacząć, więc latami wisi na liście. Dream Seeker dzieli to marzenie na kroki do zrobienia jeszcze dziś, jak sprawdzenie sezonu, odkładanie pieniędzy czy kupno biletów, i pokazuje tylko ten jeden, który jest teraz."
+  },
+  "features": [
+    {
+      "title": "Ponad 590 marzeń do wyboru",
+      "text": "Podróże, przeżycia, osiągnięcia, zdrowie, nauka i relacje. Marzenia z sześciu dziedzin dryfują w skrzyniach po Oceanie marzeń. Zabierz wybrane do warsztatu, a kroki do niego są już rozpisane.\nNie ma twojego? Stwórz własne: tytuł, dziedzina i potrzebne kroki.",
+      "shot": "ocean"
+    },
+    {
+      "title": "Jeden ząb na raz, tyle, ile na dziś",
+      "text": "W Moim warsztacie od razu widać, jak daleko jest klucz każdego marzenia. Bieżący krok jest na górze, a odpowiedzi na jego pytania wypełniają ząb.\nOdpowiedzi i zdjęcia trafiają do Mojego zapisu, a na Osi postępów możesz przejrzeć całą drogę.",
+      "shot": "workshop"
+    },
+    {
+      "title": "Spełnione marzenia do Skarbca, miejsca na mapę",
+      "text": "Wypełnij wszystkie zęby i otwórz skrzynię. Spełnione marzenia trafiają z datą do Skarbca, a wstrzymane czekają tam, aż zechcesz do nich wrócić.\nMarzenia związane z miejscem pojawiają się na mapie, więc widzisz wszystkie miejsca, do których chcesz pojechać.",
+      "shot": "treasury"
+    }
+  ],
+  "steps": {
+    "title": "Zacznij w trzech krokach",
+    "items": [
+      {
+        "title": "Wybierz marzenie",
+        "text": "Stuknij skrzynię w Oceanie marzeń i wybierz Zabierz do warsztatu."
+      },
+      {
+        "title": "Odpowiedz na dzisiejszy krok",
+        "text": "Odpowiadaj po kolei na pytania górnego kroku, a wypełnisz ząb."
+      },
+      {
+        "title": "Otwórz skrzynię",
+        "text": "Gdy wszystkie zęby są wypełnione, klucz jest gotowy i skrzynia się otwiera."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Sześć dziedzin w Oceanie marzeń",
+    "rows": [
+      [
+        "Podróże",
+        "Zobaczyć zorzę polarną w Islandii · Podziwiać zachód słońca na Santorini"
+      ],
+      [
+        "Przeżycia",
+        "Skok ze spadochronem · Lot paralotnią"
+      ],
+      [
+        "Osiągnięcia",
+        "Przebiegnij pełny maraton · Trekking do bazy pod Everestem"
+      ],
+      [
+        "Zdrowie",
+        "Zrobić 20 podciągnięć · Wyrzeźbić mięśnie brzucha"
+      ],
+      [
+        "Nauka",
+        "Mówić płynnie po angielsku · Mówić płynnie po francusku"
+      ],
+      [
+        "Relacje",
+        "Zwiedzić świat z rodzicami · Spędzić miesiąc na Czedżu z przyjaciółmi"
+      ]
+    ],
+    "note": "Każda dziedzina ma prawie sto marzeń. Własne stworzysz w Moim warsztacie przyciskiem Dodaj nowe marzenie."
+  },
+  "pricing": {
+    "title": "Jeden zakup i masz wszystko",
+    "free": {
+      "name": "Aplikacja",
+      "items": [
+        "Ponad 590 marzeń z pytaniami do każdego kroku",
+        "Własne marzenia",
+        "Mój zapis ze zdjęciami i Oś postępów",
+        "Skarbiec i mapa",
+        "Tryb rozwoju marzeń",
+        "Przyszłe aktualizacje"
+      ]
+    },
+    "pro": {
+      "name": "Wesprzyj twórcę (dobrowolnie)",
+      "items": [
+        "Jeśli aplikacja ci pomaga, możesz w Ustawieniach zostawić mały napiwek",
+        "Napiwek niczego nie odblokowuje. Bez niego wszystkie funkcje i tak są twoje"
+      ],
+      "note": "Jednorazowe napiwki, nie subskrypcja."
+    },
+    "note": "W aplikacji nic nie trzeba dokupować. Bez konta i reklam."
+  },
+  "faq": {
+    "title": "Częste pytania",
+    "items": [
+      {
+        "q": "Jak zacząć?",
+        "a": "Na karcie Ocean marzeń stuknij skrzynię, która ci się podoba, i wybierz Zabierz do warsztatu. W Moim warsztacie odpowiadaj na pytania bieżącego kroku, a zęby będą się wypełniać jeden po drugim. Gdy wypełnisz wszystkie, otworzysz skrzynię."
+      },
+      {
+        "q": "Czy mogę dodać własne marzenie?",
+        "a": "Tak. W Moim warsztacie stuknij Dodaj nowe marzenie i wpisz tytuł, dziedzinę i kroki, które do niego prowadzą."
+      },
+      {
+        "q": "Jak wstrzymać marzenie albo do niego wrócić?",
+        "a": "W menu trwającego marzenia wybierz Zrezygnuj z marzenia, a trafi ono do Wstrzymanych marzeń w Skarbcu. Tam stuknij Zacznij od nowa, aby wróciło do warsztatu, albo Usuń na stałe, aby je skasować."
+      },
+      {
+        "q": "Czym jest tryb rozwoju marzeń?",
+        "a": "To ekran, na którym prowadzisz marzenia jak wspinaczkę na szczyt. Włączysz go i wyłączysz w Ustawienia > Ekran. Możesz w nim śledzić terminy kroków i przeszkody, takie jak pieniądze i czas, jak w projekcie."
+      },
+      {
+        "q": "Nie widać zdjęć.",
+        "a": "Część zdjęć w tle pobiera się z internetu. Sprawdź połączenie. Bez połączenia wyświetla się domyślny obrazek."
+      },
+      {
+        "q": "Czy mogę przenieść zapis na nowego iPhone’a?",
+        "a": "Zapis jest przechowywany tylko na tym urządzeniu, bez konta i synchronizacji. Gdy odtworzysz nowego iPhone’a z kopii w iCloud lub na komputerze, przeniesie się razem z danymi innych aplikacji."
+      },
+      {
+        "q": "Czy w aplikacji są zakupy?",
+        "a": "Nie. Mając aplikację, masz wszystkie funkcje. Napiwki w Ustawieniach są tylko dla tych, którzy chcą podziękować."
+      },
+      {
+        "q": "Czy moje marzenia i zapis są gdzieś wysyłane?",
+        "a": "Nie. Nie ma konta, reklam ani narzędzi analitycznych. Twoje marzenia, zapis i zdjęcia zostają na urządzeniu."
+      },
+      {
+        "q": "Jak się z wami skontaktować?",
+        "a": "Błędy, pomysły czy cokolwiek innego wyślij przez Wyślij opinię w Ustawieniach aplikacji albo wiadomością na Instagramie (@lee25_ios)."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Marzenie, które ciągle odkładasz.\nDziś jeden ząb.",
+    "cta": "Pobierz z App Store"
+  },
+  "ui": {
+    "skip": "Przejdź do treści",
+    "languages": "Język",
+    "privacy": "Polityka prywatności",
+    "contact": "Pytania albo problemy? Napisz na {email}."
+  }
+}

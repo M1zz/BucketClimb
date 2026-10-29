@@ -1,0 +1,221 @@
+{
+  "title": "Dream Seeker: la lista de sueños que cumples paso a paso",
+  "description": "Elige un sueño y los pequeños pasos para lograrlo serán los dientes de una llave. Pregunta a pregunta, la completas y el cofre se abre.",
+  "hero": {
+    "headline": "No te limites a\napuntar tus sueños",
+    "lead": "Elige un sueño y los pequeños pasos que te llevan hasta él se convierten en los dientes de una llave. Responde al paso de hoy, pregunta a pregunta, y cuando te des cuenta el cofre estará abierto.",
+    "cta": "Descargar en el App Store",
+    "note": "Compras una vez y tienes todas las funciones. Sin suscripción ni anuncios."
+  },
+  "demo": {
+    "title": "Completa la llave",
+    "lead": "Al sueño de la aurora boreal le quedan dos pasos. Responde cada pregunta en una línea (o déjala en blanco) y toca «Siguiente». Cada paso terminado llena un diente, y con la llave completa se abre el cofre.",
+    "note": "El mismo sueño, los mismos pasos y las mismas preguntas que en la app. Nada de lo que escribas aquí se guarda.",
+    "again": "Empezar de nuevo",
+    "app": {
+      "dream": "Ver la aurora boreal en Islandia",
+      "category": "Viajes",
+      "steps": [
+        {
+          "title": "Investigar la temporada de auroras",
+          "qs": [
+            "Anota las apps o webs que encontraste para ver el pronóstico de auroras",
+            "Comparte cómo identificaste la mejor época, sin luna",
+            "Describe lo que esperas de tu plan de 4 o 5 días"
+          ]
+        },
+        {
+          "title": "Presupuesto y ahorro",
+          "qs": [
+            "Anota las opciones de vuelo que comparaste para tu presupuesto",
+            "Comparte cómo calculaste el alojamiento y qué tipo elegiste",
+            "Describe tu presupuesto total, con tours y comidas incluidos"
+          ]
+        },
+        {
+          "title": "Reservar vuelos",
+          "qs": [
+            "Anota la mejor opción que encontraste al comparar precios",
+            "Comparte qué escala elegiste y por qué",
+            "Describe lo que preparaste tras revisar las normas de equipaje"
+          ]
+        },
+        {
+          "title": "Reservar alojamiento",
+          "qs": [
+            "Anota por qué elegiste un lugar con poca contaminación lumínica",
+            "Comparte cómo encontraste un alojamiento con aviso de auroras",
+            "Describe lo que tuviste en cuenta de la política de cancelación"
+          ]
+        },
+        {
+          "title": "Reservar el tour de auroras",
+          "qs": [
+            "Anota qué empresa elegiste tras leer las reseñas",
+            "Comparte ventajas especiales, como repetir el tour gratis",
+            "Describe tu plan para alquilar ropa de abrigo"
+          ]
+        },
+        {
+          "title": "Preparar ropa de abrigo",
+          "qs": [
+            "Anota la ropa de abrigo que preparaste para el frío extremo",
+            "Comparte lo que llevarás, como calentadores y guantes impermeables",
+            "Describe el equipo que preparaste para fotografiar auroras"
+          ]
+        }
+      ],
+      "now": "Lo que toca hacer ahora",
+      "step": "PASO %d",
+      "teeth": "%d / %d dientes completados",
+      "answer": "Mi respuesta...",
+      "next": "Siguiente",
+      "done": "¡Listo!",
+      "open": "Abrir cofre",
+      "found": "¡Has conseguido el tesoro!",
+      "all": "¡Completa todos los dientes y la llave estará lista!"
+    }
+  },
+  "problem": {
+    "title": "¿Alguna vez escribiste una lista de sueños y la olvidaste?",
+    "text": "«Ver la aurora boreal» es tan grande que no sabes por dónde empezar, y se queda en la lista durante años. Dream Seeker lo divide en pasos que puedes hacer hoy, como mirar la temporada, ahorrar y reservar los vuelos, y solo te muestra el que toca ahora."
+  },
+  "features": [
+    {
+      "title": "Más de 590 sueños para elegir",
+      "text": "Viajes, experiencias, logros, salud, aprendizaje y relaciones. Sueños de seis áreas flotan en cofres por el Océano de sueños. Lleva uno a tu taller y sus pasos ya están preparados.\n¿No ves el tuyo? Créalo con un título, un área y los pasos que hacen falta.",
+      "shot": "ocean"
+    },
+    {
+      "title": "Un diente cada vez, lo justo para hoy",
+      "text": "Mi taller muestra cuánto ha avanzado la llave de cada sueño. El paso que toca está arriba, y al responder sus preguntas se llena un diente.\nTus respuestas y fotos se guardan en Mi registro, y la Cronología de progreso te deja revisar todo el camino.",
+      "shot": "workshop"
+    },
+    {
+      "title": "Los sueños cumplidos al Tesoro, los lugares al mapa",
+      "text": "Llena todos los dientes y abre el cofre. Los sueños cumplidos se guardan en el Tesoro con su fecha, y los sueños en pausa esperan ahí hasta que quieras retomarlos.\nLos sueños con un lugar aparecen en el mapa, para ver de un vistazo todos los sitios a los que quieres ir.",
+      "shot": "treasury"
+    }
+  ],
+  "steps": {
+    "title": "Empieza en tres pasos",
+    "items": [
+      {
+        "title": "Elige un sueño",
+        "text": "Toca un cofre en el Océano de sueños y elige «Llevar a mi taller»."
+      },
+      {
+        "title": "Responde el paso de hoy",
+        "text": "Responde una a una las preguntas del paso de arriba para llenar un diente."
+      },
+      {
+        "title": "Abre el cofre",
+        "text": "Cuando todos los dientes están llenos, la llave está lista y el cofre se abre."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Seis áreas en el Océano de sueños",
+    "rows": [
+      [
+        "Viajes",
+        "Ver la aurora boreal en Islandia · Ver el atardecer en Santorini"
+      ],
+      [
+        "Experiencia",
+        "Hacer paracaidismo · Volar en parapente"
+      ],
+      [
+        "Logro",
+        "Completar un maratón · Hacer el trekking al campo base del Everest"
+      ],
+      [
+        "Salud",
+        "Hacer 20 dominadas · Marcar abdominales"
+      ],
+      [
+        "Aprendizaje",
+        "Hablar inglés con fluidez · Hablar francés con fluidez"
+      ],
+      [
+        "Relaciones",
+        "Dar la vuelta al mundo con mis padres · Vivir un mes en la isla de Jeju con amigos"
+      ]
+    ],
+    "note": "Cada área tiene casi cien sueños. Crea los tuyos con «Añadir nuevo sueño» en Mi taller."
+  },
+  "pricing": {
+    "title": "Una compra y lo tienes todo",
+    "free": {
+      "name": "La app",
+      "items": [
+        "Más de 590 sueños con preguntas en cada paso",
+        "Tus propios sueños",
+        "Mi registro con fotos y la Cronología de progreso",
+        "Tesoro y mapa",
+        "Modo Escalada",
+        "Las próximas actualizaciones"
+      ]
+    },
+    "pro": {
+      "name": "Apoyar al desarrollador (opcional)",
+      "items": [
+        "Si la app te ayuda, puedes dejar una pequeña propina desde Ajustes",
+        "Las propinas no desbloquean nada. Sin ellas, todas las funciones siguen siendo tuyas"
+      ],
+      "note": "Propinas sueltas, no una suscripción."
+    },
+    "note": "Dentro de la app no hay nada de pago. Sin cuenta ni anuncios."
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "q": "¿Cómo empiezo?",
+        "a": "En la pestaña Océano de sueños, toca un cofre que te guste y elige «Llevar a mi taller». En Mi taller, responde las preguntas del paso actual y los dientes se irán llenando. Cuando estén todos, podrás abrir el cofre."
+      },
+      {
+        "q": "¿Puedo añadir mi propio sueño?",
+        "a": "Sí. En Mi taller, toca «Añadir nuevo sueño» y escribe un título, un área y los pasos para lograrlo."
+      },
+      {
+        "q": "¿Cómo pongo un sueño en pausa o lo retomo?",
+        "a": "En el menú de un sueño en curso, elige «Renunciar a este sueño» y pasará a Sueño en pausa, en el Tesoro. Ahí puedes tocar «Retomar» para devolverlo a Mi taller, o «Eliminar para siempre» para borrarlo."
+      },
+      {
+        "q": "¿Qué es el Modo Escalada?",
+        "a": "Una pantalla que gestiona tus sueños como si escalaras una montaña. Actívalo o desactívalo en Ajustes > Ajustes de pantalla. Te permite seguir plazos por paso y obstáculos como el dinero o el tiempo, como en un proyecto."
+      },
+      {
+        "q": "No se ven las fotos.",
+        "a": "Algunas imágenes de fondo se descargan de internet. Comprueba que tienes conexión. Sin conexión se muestra una imagen predeterminada."
+      },
+      {
+        "q": "¿Puedo pasar mi registro a un iPhone nuevo?",
+        "a": "Tu registro solo se guarda en este dispositivo, sin cuenta ni sincronización. Si restauras un iPhone nuevo desde una copia de iCloud o del ordenador, se pasa junto con los datos de tus otras apps."
+      },
+      {
+        "q": "¿Hay compras dentro de la app?",
+        "a": "No. Con la app tienes todas las funciones. Las propinas de Ajustes solo están por si quieres dar las gracias."
+      },
+      {
+        "q": "¿Se envían mis sueños y mi registro a algún sitio?",
+        "a": "No. No hay cuenta, ni anuncios, ni herramientas de análisis. Tus sueños, tu registro y tus fotos se quedan en tu dispositivo."
+      },
+      {
+        "q": "¿Cómo contacto con vosotros?",
+        "a": "Errores, ideas o lo que sea: envíalo desde «Enviar comentarios» en los Ajustes de la app, o por mensaje directo de Instagram (@lee25_ios)."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Ese sueño que vas aplazando.\nHoy, un diente.",
+    "cta": "Descargar en el App Store"
+  },
+  "ui": {
+    "skip": "Saltar al contenido",
+    "languages": "Idioma",
+    "privacy": "Política de privacidad",
+    "contact": "¿Dudas o problemas? Escribe a {email}."
+  }
+}

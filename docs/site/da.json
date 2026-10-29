@@ -1,0 +1,221 @@
+{
+  "title": "Dream Seeker: bucketlisten, du gennemfører trin for trin",
+  "description": "Vælg en drøm, og de små trin derhen bliver tænderne i en nøgle. Svar på ét spørgsmål ad gangen, gør nøglen færdig, og åbn drømmekisten.",
+  "hero": {
+    "headline": "Skriv ikke bare\nbucketlisten ned",
+    "lead": "Vælg en drøm, og de små trin, der fører derhen, bliver tænderne i en nøgle. Svar på dagens trin, ét spørgsmål ad gangen, og før du ved af det, står kisten åben.",
+    "cta": "Hent i App Store",
+    "note": "Køb én gang, og alle funktioner er dine. Intet abonnement, ingen reklamer."
+  },
+  "demo": {
+    "title": "Gør nøglen færdig",
+    "lead": "Drømmen om nordlyset på Island mangler to trin. Svar på hvert spørgsmål med en linje (eller lad det stå tomt), og tryk på Næste. Hvert færdigt trin fylder en tand, og en hel nøgle åbner kisten.",
+    "note": "Samme drøm, trin og spørgsmål som i appen. Det, du skriver her, bliver ikke gemt.",
+    "again": "Start forfra",
+    "app": {
+      "dream": "Se nordlys på Island",
+      "category": "Rejse",
+      "steps": [
+        {
+          "title": "Undersøg nordlyssæsonen",
+          "qs": [
+            "Skriv ned, hvilke apps eller sider du fandt til nordlysprognoser",
+            "Del, hvordan du fandt den bedste tid uden måne",
+            "Beskriv, hvad du glæder dig til på de 4-5 dage"
+          ]
+        },
+        {
+          "title": "Budget og opsparing",
+          "qs": [
+            "Skriv ned, hvilke muligheder du sammenlignede for flybilletterne",
+            "Del, hvordan du regnede overnatningen ud, og hvilken type du valgte",
+            "Beskriv hele budgettet inklusive ture og mad"
+          ]
+        },
+        {
+          "title": "Book flybilletter",
+          "qs": [
+            "Skriv ned, hvilken billet du fandt bedst efter at have sammenlignet priser",
+            "Del, hvilken mellemlanding du valgte, og hvorfor",
+            "Beskriv, hvad du har forberedt efter at have tjekket bagagereglerne"
+          ]
+        },
+        {
+          "title": "Book overnatning",
+          "qs": [
+            "Skriv ned, hvorfor du valgte et sted med lidt lysforurening",
+            "Del, hvordan du fandt overnatning med nordlysalarm",
+            "Beskriv, hvad du tog højde for, da du tjekkede afbestillingsreglerne"
+          ]
+        },
+        {
+          "title": "Book nordlystur",
+          "qs": [
+            "Skriv ned, hvilket selskab du valgte efter at have læst anmeldelser",
+            "Del særlige fordele som gratis ekstratur",
+            "Beskriv din plan for at leje vintertøj og udstyr"
+          ]
+        },
+        {
+          "title": "Pak udstyr til kulde",
+          "qs": [
+            "Skriv ned, hvilket vintertøj du har pakket til ekstrem kulde",
+            "Del, hvad du har med af håndvarmere, vandtætte handsker osv.",
+            "Beskriv det udstyr, du har pakket til at fotografere nordlys"
+          ]
+        }
+      ],
+      "now": "Det skal du gøre nu",
+      "step": "TRIN %d",
+      "teeth": "%d / %d tænder færdige",
+      "answer": "Mit svar...",
+      "next": "Næste",
+      "done": "Færdig!",
+      "open": "Åbn kisten",
+      "found": "Du har fundet skatten!",
+      "all": "Færdiggør alle tænder, så er nøglen klar!"
+    }
+  },
+  "problem": {
+    "title": "Har du skrevet en bucketliste og glemt den igen?",
+    "text": "\"Se nordlyset\" er så stort, at du ikke ved, hvor du skal begynde, så det bliver stående på listen i årevis. Dream Seeker deler drømmen op i trin, du kan tage i dag, som at undersøge sæsonen, spare op og bestille fly, og viser kun det ene, der er aktuelt nu."
+  },
+  "features": [
+    {
+      "title": "Vælg mellem over 590 drømme",
+      "text": "Rejser, oplevelser, præstationer, sundhed, læring og relationer. Drømme fra seks områder flyder rundt i kister på Drømmehavet. Hent en til dit værksted, og trinnene er allerede delt op.\nEr din drøm der ikke? Lav den selv med en titel, et område og de trin, der skal til.",
+      "shot": "ocean"
+    },
+    {
+      "title": "Én tand ad gangen, lige nok til i dag",
+      "text": "I Mit værksted ser du med det samme, hvor langt hver drøms nøgle er nået. Det aktuelle trin står øverst, og når du svarer på dets spørgsmål, fyldes en tand.\nSvar og billeder samles i Mine optegnelser, og på tidslinjen kan du se hele vejen tilbage.",
+      "shot": "workshop"
+    },
+    {
+      "title": "Opfyldte drømme i skatkammeret, steder på kortet",
+      "text": "Fyld alle tænder, og åbn kisten. Opfyldte drømme samles med dato i skatkammeret, og drømme på pause venter der, til du vil fortsætte.\nDrømme med et sted vises på kortet, så du kan se alle de steder, du gerne vil hen.",
+      "shot": "treasury"
+    }
+  ],
+  "steps": {
+    "title": "Kom i gang på tre trin",
+    "items": [
+      {
+        "title": "Vælg en drøm",
+        "text": "Tryk på en kiste på Drømmehavet, og vælg Hent til mit værksted."
+      },
+      {
+        "title": "Svar på dagens trin",
+        "text": "Svar på spørgsmålene i det øverste trin ét ad gangen for at fylde en tand."
+      },
+      {
+        "title": "Åbn kisten",
+        "text": "Når alle tænder er fyldt, er nøglen færdig, og kisten åbner."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Seks områder på Drømmehavet",
+    "rows": [
+      [
+        "Rejse",
+        "Se nordlys på Island · Se solnedgangen på Santorini"
+      ],
+      [
+        "Oplevelse",
+        "Prøv faldskærmsspring · Prøv paragliding"
+      ],
+      [
+        "Præstation",
+        "Løb et helt maraton · Trek til Everest Base Camp"
+      ],
+      [
+        "Sundhed",
+        "Tag 20 pull-ups · Få synlige mavemuskler"
+      ],
+      [
+        "Læring",
+        "Tal flydende engelsk · Tal flydende fransk"
+      ],
+      [
+        "Relationer",
+        "Rejs jorden rundt med mine forældre · Bo en måned på Jeju med venner"
+      ]
+    ],
+    "note": "Hvert område har næsten hundrede drømme. Lav dine egne med Tilføj ny drøm i Mit værksted."
+  },
+  "pricing": {
+    "title": "Køb én gang, få det hele",
+    "free": {
+      "name": "Appen",
+      "items": [
+        "Over 590 drømme med spørgsmål til hvert trin",
+        "Dine egne drømme",
+        "Mine optegnelser med billeder og tidslinjen",
+        "Skatkammer og kort",
+        "Vækst-tilstand",
+        "Fremtidige opdateringer"
+      ]
+    },
+    "pro": {
+      "name": "Støt udvikleren (frivilligt)",
+      "items": [
+        "Hvis appen hjælper dig, kan du give lidt drikkepenge i Indstillinger",
+        "Drikkepenge låser ikke noget op. Uden dem har du stadig alle funktioner"
+      ],
+      "note": "Engangsbeløb, ikke et abonnement."
+    },
+    "note": "Intet i appen koster ekstra. Ingen konto, ingen reklamer."
+  },
+  "faq": {
+    "title": "Ofte stillede spørgsmål",
+    "items": [
+      {
+        "q": "Hvordan kommer jeg i gang?",
+        "a": "Tryk på en kiste, du kan lide, under fanen Drømmehavet, og vælg Hent til mit værksted. Svar på spørgsmålene til det aktuelle trin i Mit værksted, så fyldes tænderne én efter én. Når de alle er fyldt, kan du åbne kisten."
+      },
+      {
+        "q": "Kan jeg tilføje min egen drøm?",
+        "a": "Ja. Tryk på Tilføj ny drøm i Mit værksted, og skriv en titel, et område og trinnene derhen."
+      },
+      {
+        "q": "Hvordan sætter jeg en drøm på pause eller tager den op igen?",
+        "a": "Vælg Opgiv denne drøm i menuen for en igangværende drøm, så flytter den til Drøm på pause i skatkammeret. Tryk på Start igen der for at hente den tilbage til værkstedet, eller på Slet helt for at fjerne den."
+      },
+      {
+        "q": "Hvad er Vækst-tilstand?",
+        "a": "En skærm, hvor du styrer dine drømme som en bjergbestigning. Slå den til eller fra under Indstillinger > Visning. Du kan holde styr på frister for hvert trin og forhindringer som penge og tid, som i et projekt."
+      },
+      {
+        "q": "Billederne vises ikke.",
+        "a": "Nogle baggrundsbilleder hentes fra internettet. Tjek, at du er online. Uden forbindelse vises et standardbillede."
+      },
+      {
+        "q": "Kan jeg flytte mine optegnelser til en ny iPhone?",
+        "a": "Dine optegnelser gemmes kun på denne enhed, uden konto eller synkronisering. Gendanner du en ny iPhone fra en iCloud- eller computerbackup, kommer de med sammen med dine andre appdata."
+      },
+      {
+        "q": "Kan man købe noget i appen?",
+        "a": "Nej. Med appen er alle funktioner dine. Drikkepengene i Indstillinger er der kun, hvis du vil sige tak."
+      },
+      {
+        "q": "Bliver mine drømme og optegnelser sendt nogen steder hen?",
+        "a": "Nej. Der er ingen konto, ingen reklamer og ingen analyseværktøjer. Dine drømme, optegnelser og billeder bliver på din enhed."
+      },
+      {
+        "q": "Hvordan kontakter jeg jer?",
+        "a": "Fejl, idéer eller hvad som helst: send det via Send feedback i appens indstillinger eller som DM på Instagram (@lee25_ios)."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Den drøm, du bliver ved med at udskyde.\nI dag én tand.",
+    "cta": "Hent i App Store"
+  },
+  "ui": {
+    "skip": "Gå til indhold",
+    "languages": "Sprog",
+    "privacy": "Privatlivspolitik",
+    "contact": "Spørgsmål eller problemer? Skriv til {email}."
+  }
+}

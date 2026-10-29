@@ -1,0 +1,221 @@
+{
+  "title": "Dream Seeker: die Bucket List, die du Schritt für Schritt abhakst",
+  "description": "Wähle einen Traum, und die kleinen Schritte dorthin werden die Zacken eines Schlüssels. Frage für Frage wird der Schlüssel fertig, die Truhe geht auf.",
+  "hero": {
+    "headline": "Schreib deine Bucket List\nnicht nur auf",
+    "lead": "Wähle einen Traum, und die kleinen Schritte, die dich hinbringen, werden zu den Zacken eines Schlüssels. Beantworte den Schritt von heute, Frage für Frage, und plötzlich ist die Truhe offen.",
+    "cta": "Im App Store laden",
+    "note": "Einmal kaufen, alle Funktionen nutzen. Kein Abo, keine Werbung."
+  },
+  "demo": {
+    "title": "Mach den Schlüssel fertig",
+    "lead": "Beim Traum mit den Polarlichtern fehlen noch zwei Schritte. Beantworte jede Frage mit einer Zeile (oder lass sie leer) und tippe auf „Weiter“. Jeder fertige Schritt füllt eine Zacke, und mit dem vollen Schlüssel öffnest du die Truhe.",
+    "note": "Derselbe Traum mit denselben Schritten und Fragen wie in der App. Was du hier eintippst, wird nicht gespeichert.",
+    "again": "Von vorn",
+    "app": {
+      "dream": "Polarlichter in Island sehen",
+      "category": "Reisen",
+      "steps": [
+        {
+          "title": "Recherche zur Polarlicht-Saison",
+          "qs": [
+            "Notiere, welche Apps oder Seiten du für Polarlicht-Prognosen gefunden hast",
+            "Teile, wie du die beste mondlose Zeit herausgefunden hast",
+            "Beschreibe, worauf du dich bei 4 bis 5 Tagen Aufenthalt freust"
+          ]
+        },
+        {
+          "title": "Budget planen und sparen",
+          "qs": [
+            "Notiere die Flugoptionen, die du für dein Budget verglichen hast",
+            "Teile, wie du die Unterkunftskosten berechnet hast und welche Art du gewählt hast",
+            "Beschreibe dein Gesamtbudget inklusive Touren und Essen"
+          ]
+        },
+        {
+          "title": "Flug buchen",
+          "qs": [
+            "Notiere die beste Option, die du beim Preisvergleich gefunden hast",
+            "Teile, welchen Zwischenstopp du gewählt hast und warum",
+            "Beschreibe, was du nach Prüfung der Gepäckbestimmungen vorbereitet hast"
+          ]
+        },
+        {
+          "title": "Unterkunft buchen",
+          "qs": [
+            "Notiere, warum du einen Ort mit wenig Lichtverschmutzung gewählt hast",
+            "Teile, wie du eine Unterkunft mit Polarlicht-Alarm gefunden hast",
+            "Beschreibe, was du bei der Prüfung der Stornobedingungen bedacht hast"
+          ]
+        },
+        {
+          "title": "Polarlicht-Tour buchen",
+          "qs": [
+            "Notiere, welchen Anbieter du nach den Bewertungen gewählt hast",
+            "Teile besondere Vorteile wie die kostenlose Wiederholungstour",
+            "Beschreibe, wie du Winterausrüstung leihen willst"
+          ]
+        },
+        {
+          "title": "Kälteausrüstung vorbereiten",
+          "qs": [
+            "Notiere, welche Winterkleidung du für die extreme Kälte vorbereitet hast",
+            "Teile, was du an Handwärmern und wasserdichten Handschuhen eingepackt hast",
+            "Beschreibe, welche Ausrüstung du für Polarlicht-Fotos vorbereitet hast"
+          ]
+        }
+      ],
+      "now": "Das ist jetzt dran",
+      "step": "SCHRITT %d",
+      "teeth": "%d / %d Zacken fertig",
+      "answer": "Meine Antwort …",
+      "next": "Weiter",
+      "done": "Fertig!",
+      "open": "Truhe öffnen",
+      "found": "Du hast einen Schatz gewonnen!",
+      "all": "Sind alle Zacken fertig, ist der Schlüssel komplett!"
+    }
+  },
+  "problem": {
+    "title": "Schon mal eine Bucket List geschrieben und vergessen?",
+    "text": "„Polarlichter sehen“ ist so groß, dass du nicht weißt, wo du anfangen sollst, also bleibt es jahrelang auf der Liste. Dream Seeker teilt den Traum in Schritte, die du heute schaffen kannst, etwa die Saison prüfen, Geld zurücklegen und Flüge buchen, und zeigt dir nur den einen, der jetzt dran ist."
+  },
+  "features": [
+    {
+      "title": "Über 590 Träume zur Auswahl",
+      "text": "Reisen, Erlebnisse, Erfolge, Gesundheit, Lernen und Beziehungen. Träume aus sechs Bereichen treiben in Truhen über den Traumozean. Hol dir einen in deine Werkstatt, und die Schritte dorthin sind schon aufgeteilt.\nDein Traum ist nicht dabei? Leg ihn selbst an, mit Titel, Bereich und den nötigen Schritten.",
+      "shot": "ocean"
+    },
+    {
+      "title": "Eine Zacke nach der anderen, so viel wie heute geht",
+      "text": "In „Meine Werkstatt“ siehst du auf einen Blick, wie weit der Schlüssel jedes Traums ist. Der aktuelle Schritt steht ganz oben, und wenn du seine Fragen beantwortest, füllt sich eine Zacke.\nAntworten und Fotos sammeln sich in „Meine Einträge“, und im Fortschrittsverlauf siehst du den ganzen Weg zurück.",
+      "shot": "workshop"
+    },
+    {
+      "title": "Erfüllte Träume in die Schatzkammer, Orte auf die Karte",
+      "text": "Sind alle Zacken voll, öffnest du die Truhe. Erfüllte Träume sammeln sich mit Datum in der Schatzkammer, und pausierte Träume warten dort, bis du weitermachen willst.\nTräume mit einem Ort erscheinen auf der Karte, so siehst du alle Orte, an die du willst.",
+      "shot": "treasury"
+    }
+  ],
+  "steps": {
+    "title": "In drei Schritten loslegen",
+    "items": [
+      {
+        "title": "Traum wählen",
+        "text": "Tippe im Traumozean auf eine Truhe und dann auf „In meine Werkstatt holen“."
+      },
+      {
+        "title": "Heutigen Schritt beantworten",
+        "text": "Beantworte die Fragen des obersten Schritts nacheinander, dann füllt sich eine Zacke."
+      },
+      {
+        "title": "Truhe öffnen",
+        "text": "Sind alle Zacken gefüllt, ist der Schlüssel fertig und die Truhe geht auf."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Sechs Bereiche im Traumozean",
+    "rows": [
+      [
+        "Reisen",
+        "Polarlichter in Island sehen · Sonnenuntergang auf Santorin erleben"
+      ],
+      [
+        "Erlebnis",
+        "Fallschirmspringen erleben · Gleitschirmfliegen erleben"
+      ],
+      [
+        "Erfolg",
+        "Einen Marathon laufen · Zum Everest-Basislager wandern"
+      ],
+      [
+        "Gesundheit",
+        "20 Klimmzüge schaffen · Sixpack bekommen"
+      ],
+      [
+        "Lernen",
+        "Fließend Englisch sprechen · Fließend Französisch sprechen"
+      ],
+      [
+        "Beziehung",
+        "Mit den Eltern um die Welt reisen · Mit Freunden einen Monat auf Jeju leben"
+      ]
+    ],
+    "note": "Jeder Bereich hat fast hundert Träume. Eigene legst du in „Meine Werkstatt“ mit „Neuen Traum hinzufügen“ an."
+  },
+  "pricing": {
+    "title": "Einmal kaufen, alles drin",
+    "free": {
+      "name": "Die App",
+      "items": [
+        "Über 590 Träume mit Fragen zu jedem Schritt",
+        "Eigene Träume",
+        "Meine Einträge mit Fotos und der Fortschrittsverlauf",
+        "Schatzkammer und Karte",
+        "Wachstumsmodus",
+        "Künftige Updates"
+      ]
+    },
+    "pro": {
+      "name": "Entwickler unterstützen (freiwillig)",
+      "items": [
+        "Wenn dir die App hilft, kannst du in den Einstellungen ein kleines Trinkgeld geben",
+        "Trinkgeld schaltet nichts frei. Auch ohne bleiben alle Funktionen da"
+      ],
+      "note": "Einmalige Beträge, kein Abo."
+    },
+    "note": "In der App kostet nichts extra. Kein Konto, keine Werbung."
+  },
+  "faq": {
+    "title": "Häufige Fragen",
+    "items": [
+      {
+        "q": "Wie fange ich an?",
+        "a": "Tippe im Tab „Traumozean“ auf eine Truhe, die dir gefällt, und dann auf „In meine Werkstatt holen“. Beantworte in „Meine Werkstatt“ die Fragen des aktuellen Schritts, und die Zacken füllen sich eine nach der anderen. Sind alle voll, öffnest du die Truhe."
+      },
+      {
+        "q": "Kann ich eigene Träume hinzufügen?",
+        "a": "Ja. Tippe in „Meine Werkstatt“ auf „Neuen Traum hinzufügen“ und gib Titel, Bereich und die Schritte dorthin ein."
+      },
+      {
+        "q": "Wie pausiere ich einen Traum oder setze ihn fort?",
+        "a": "Wähle im Menü eines laufenden Traums „Diesen Traum aufgeben“. Er landet dann unter „Pausierte Träume“ in der Schatzkammer. Dort holst du ihn mit „Neu starten“ zurück in deine Werkstatt oder entfernst ihn mit „Endgültig löschen“."
+      },
+      {
+        "q": "Was ist der Wachstumsmodus?",
+        "a": "Eine Ansicht, in der du deine Träume wie eine Bergbesteigung verwaltest. Du schaltest ihn unter Einstellungen > Anzeige ein oder aus. Dort planst du Fristen für jeden Schritt und Hindernisse wie Kosten und Zeit wie ein Projekt."
+      },
+      {
+        "q": "Fotos werden nicht angezeigt.",
+        "a": "Manche Hintergrundbilder werden aus dem Internet geladen. Prüfe, ob du online bist. Ohne Verbindung erscheint ein Standardbild."
+      },
+      {
+        "q": "Kann ich meine Einträge auf ein neues iPhone mitnehmen?",
+        "a": "Deine Einträge liegen nur auf diesem Gerät, ohne Konto oder Sync. Stellst du ein neues iPhone aus einem iCloud- oder Computer-Backup wieder her, kommen sie mit deinen anderen App-Daten mit."
+      },
+      {
+        "q": "Kann man in der App etwas kaufen?",
+        "a": "Nein. Mit der App gehören dir alle Funktionen. Das Trinkgeld in den Einstellungen ist nur da, wenn du Danke sagen möchtest."
+      },
+      {
+        "q": "Werden meine Träume und Einträge irgendwohin gesendet?",
+        "a": "Nein. Es gibt kein Konto, keine Werbung und keine Analyse-Tools. Träume, Einträge und Fotos bleiben auf deinem Gerät."
+      },
+      {
+        "q": "Wie erreiche ich euch?",
+        "a": "Fehler, Ideen oder sonst etwas: Schick es über „Feedback senden“ in den Einstellungen der App oder per Instagram-DM (@lee25_ios)."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Ein Traum, den du aufschiebst.\nHeute eine Zacke.",
+    "cta": "Im App Store laden"
+  },
+  "ui": {
+    "skip": "Zum Inhalt springen",
+    "languages": "Sprache",
+    "privacy": "Datenschutz",
+    "contact": "Fragen oder Probleme? Schreib an {email}."
+  }
+}

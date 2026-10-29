@@ -1,0 +1,221 @@
+{
+  "title": "Dream Seeker: bucketlistan du fullföljer steg för steg",
+  "description": "Välj en dröm så blir de små stegen dit tänderna i en nyckel. Svara på en fråga i taget, gör klart nyckeln och öppna drömlådan.",
+  "hero": {
+    "headline": "Skriv inte bara\nner din bucketlista",
+    "lead": "Välj en dröm så blir de små stegen som leder dit tänderna i en nyckel. Svara på dagens steg, en fråga i taget, och innan du vet ordet av är lådan öppen.",
+    "cta": "Hämta på App Store",
+    "note": "Köp en gång så är alla funktioner dina. Ingen prenumeration, ingen reklam."
+  },
+  "demo": {
+    "title": "Gör klart nyckeln",
+    "lead": "Drömmen om norrskenet på Island har två steg kvar. Svara på varje fråga med en rad (eller lämna den tom) och tryck på Nästa. Varje färdigt steg fyller en tand, och en hel nyckel öppnar lådan.",
+    "note": "Samma dröm, steg och frågor som i appen. Det du skriver här sparas inte.",
+    "again": "Börja om",
+    "app": {
+      "dream": "Se norrsken på Island",
+      "category": "Resor",
+      "steps": [
+        {
+          "title": "Undersök norrskenssäsongen",
+          "qs": [
+            "Skriv ner vilka appar eller sajter du kollade för norrskensprognoser",
+            "Dela hur du hittade den bästa tiden utan månsken",
+            "Beskriv vad du ser fram emot med en vistelse på 4-5 dagar"
+          ]
+        },
+        {
+          "title": "Budget och sparande",
+          "qs": [
+            "Skriv ner vilka flygalternativ du jämförde för flygbudgeten",
+            "Dela hur du räknade ut boendekostnaden och vilken sorts boende du valde",
+            "Beskriv hela budgeten, inklusive turer och mat"
+          ]
+        },
+        {
+          "title": "Boka flyg",
+          "qs": [
+            "Skriv ner det bästa alternativet du hittade när du jämförde flygpriser",
+            "Dela vilken mellanlandning du valde och varför",
+            "Beskriv vad du förberedde efter att ha kollat bagageregler"
+          ]
+        },
+        {
+          "title": "Boka boende",
+          "qs": [
+            "Skriv ner varför du valde en plats med lite ljusföroreningar",
+            "Dela hur du hittade boende med norrskenslarm",
+            "Beskriv vad du tänkte på när du kollade avbokningsreglerna"
+          ]
+        },
+        {
+          "title": "Boka norrskenstur",
+          "qs": [
+            "Skriv ner vilken arrangör du valde efter att ha läst recensioner",
+            "Dela särskilda förmåner, som gratis ombokning",
+            "Beskriv din plan för att hyra vinterutrustning"
+          ]
+        },
+        {
+          "title": "Förbered vinterutrustning",
+          "qs": [
+            "Skriv ner vilka vinterkläder du packade för extrem kyla",
+            "Dela vad du packade, som värmekuddar och vattentäta handskar",
+            "Beskriv vilken utrustning du förberedde för att fotografera norrsken"
+          ]
+        }
+      ],
+      "now": "Att göra nu",
+      "step": "STEG %d",
+      "teeth": "%d / %d tänder klara",
+      "answer": "Mitt svar...",
+      "next": "Nästa",
+      "done": "Klart!",
+      "open": "Öppna lådan",
+      "found": "Du fick en skatt!",
+      "all": "Klara alla tänder så är nyckeln klar!"
+    }
+  },
+  "problem": {
+    "title": "Har du skrivit en bucketlista och glömt bort den?",
+    "text": "”Se norrsken” är så stort att du inte vet var du ska börja, så det blir stående på listan i åratal. Dream Seeker delar upp drömmen i steg du kan ta i dag, som att kolla säsongen, spara pengar och boka flyg, och visar bara det steg som gäller nu."
+  },
+  "features": [
+    {
+      "title": "Välj bland över 590 drömmar",
+      "text": "Resor, upplevelser, prestationer, hälsa, lärande och relationer. Drömmar från sex områden flyter i lådor på Drömhavet. Hämta en till din verkstad så är stegen redan uppdelade.\nHittar du inte din? Skapa den själv med titel, område och de steg som behövs.",
+      "shot": "ocean"
+    },
+    {
+      "title": "En tand i taget, lagom för i dag",
+      "text": "I Min verkstad ser du direkt hur långt varje drömnyckel har kommit. Steget som gäller nu står överst, och när du svarar på dess frågor fylls en tand.\nSvar och bilder samlas i Mina anteckningar, och i framstegstidslinjen kan du se tillbaka på hela vägen.",
+      "shot": "workshop"
+    },
+    {
+      "title": "Uppfyllda drömmar till skattkammaren, platser på kartan",
+      "text": "Fyll alla tänder och öppna lådan. Uppfyllda drömmar samlas med datum i skattkammaren, och pausade drömmar väntar där tills du vill fortsätta.\nDrömmar med en plats visas på kartan, så att du ser alla ställen du vill åka till.",
+      "shot": "treasury"
+    }
+  ],
+  "steps": {
+    "title": "Kom igång på tre steg",
+    "items": [
+      {
+        "title": "Välj en dröm",
+        "text": "Tryck på en låda på Drömhavet och välj Hämta till min verkstad."
+      },
+      {
+        "title": "Svara på dagens steg",
+        "text": "Svara på frågorna i det översta steget en i taget för att fylla en tand."
+      },
+      {
+        "title": "Öppna lådan",
+        "text": "När alla tänder är fyllda är nyckeln klar och lådan öppnas."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Sex områden på Drömhavet",
+    "rows": [
+      [
+        "Resor",
+        "Se norrsken på Island · Njut av solnedgången på Santorini"
+      ],
+      [
+        "Upplevelse",
+        "Hoppa fallskärm · Prova paragliding"
+      ],
+      [
+        "Prestation",
+        "Springa ett helt maraton · Vandra till Everest Base Camp"
+      ],
+      [
+        "Hälsa",
+        "Ta 20 chins · Få tydliga magmuskler"
+      ],
+      [
+        "Lärande",
+        "Tala flytande engelska · Tala flytande franska"
+      ],
+      [
+        "Relationer",
+        "Res jorden runt med föräldrarna · Bo en månad på Jejudo med vännerna"
+      ]
+    ],
+    "note": "Varje område har nästan hundra drömmar. Skapa egna med Lägg till ny dröm i Min verkstad."
+  },
+  "pricing": {
+    "title": "Köp en gång, få allt",
+    "free": {
+      "name": "Appen",
+      "items": [
+        "Över 590 drömmar med frågor till varje steg",
+        "Egna drömmar",
+        "Mina anteckningar med bilder och framstegstidslinjen",
+        "Skattkammare och karta",
+        "Odlingsläge",
+        "Framtida uppdateringar"
+      ]
+    },
+    "pro": {
+      "name": "Stötta utvecklaren (frivilligt)",
+      "items": [
+        "Om appen hjälper dig kan du ge en liten dricks i Inställningar",
+        "Dricks låser inte upp något. Utan den har du fortfarande alla funktioner"
+      ],
+      "note": "Engångsbelopp, inte en prenumeration."
+    },
+    "note": "Inget i appen kostar extra. Inget konto, ingen reklam."
+  },
+  "faq": {
+    "title": "Vanliga frågor",
+    "items": [
+      {
+        "q": "Hur kommer jag igång?",
+        "a": "Tryck på en låda du gillar under fliken Drömhavet och välj Hämta till min verkstad. Svara på frågorna i det aktuella steget i Min verkstad så fylls tänderna en efter en. När alla är fyllda kan du öppna lådan."
+      },
+      {
+        "q": "Kan jag lägga till en egen dröm?",
+        "a": "Ja. Tryck på Lägg till ny dröm i Min verkstad och skriv in titel, område och stegen dit."
+      },
+      {
+        "q": "Hur pausar jag en dröm eller tar upp den igen?",
+        "a": "Välj Ge upp den här drömmen i menyn för en pågående dröm så flyttas den till Pausade drömmar i skattkammaren. Tryck på Börja om där för att ta tillbaka den till verkstaden, eller Radera helt för att ta bort den."
+      },
+      {
+        "q": "Vad är odlingsläget?",
+        "a": "En skärm där du hanterar drömmarna som en bergsbestigning. Slå på eller av det under Inställningar > Visning. Du kan följa deadlines för varje steg och hinder som pengar och tid, som i ett projekt."
+      },
+      {
+        "q": "Bilderna visas inte.",
+        "a": "Vissa bakgrundsbilder hämtas från internet. Kontrollera att du är uppkopplad. Utan anslutning visas en standardbild."
+      },
+      {
+        "q": "Kan jag flytta mina anteckningar till en ny iPhone?",
+        "a": "Anteckningarna sparas bara på den här enheten, utan konto eller synkning. Återställer du en ny iPhone från en iCloud- eller datorsäkerhetskopia följer de med tillsammans med dina andra appdata."
+      },
+      {
+        "q": "Går det att köpa något i appen?",
+        "a": "Nej. Med appen är alla funktioner dina. Dricksen i Inställningar finns bara om du vill säga tack."
+      },
+      {
+        "q": "Skickas mina drömmar och anteckningar någonstans?",
+        "a": "Nej. Det finns inget konto, ingen reklam och inga analysverktyg. Dina drömmar, anteckningar och bilder stannar på enheten."
+      },
+      {
+        "q": "Hur kontaktar jag er?",
+        "a": "Fel, idéer eller vad som helst: skicka det via Skicka feedback i appens inställningar eller som DM på Instagram (@lee25_ios)."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Drömmen du skjuter upp.\nI dag en tand.",
+    "cta": "Hämta på App Store"
+  },
+  "ui": {
+    "skip": "Hoppa till innehållet",
+    "languages": "Språk",
+    "privacy": "Integritetspolicy",
+    "contact": "Frågor eller problem? Skriv till {email}."
+  }
+}

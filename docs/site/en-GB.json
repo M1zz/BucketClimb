@@ -1,0 +1,221 @@
+{
+  "title": "Dream Seeker: a bucket list you finish step by step",
+  "description": "Pick a dream and the small steps to get there become the teeth of a key. Answer one question at a time, finish the key and open the treasure box.",
+  "hero": {
+    "headline": "Don't just write\nyour bucket list down",
+    "lead": "Pick a dream and the small steps that get you there become the teeth of a key. Answer today's step, one question at a time, and before you know it the box is open.",
+    "cta": "Download on the App Store",
+    "note": "Buy once and every feature is yours. No subscription, no adverts."
+  },
+  "demo": {
+    "title": "Finish the key",
+    "lead": "Two steps are left on the Northern Lights dream. Answer each question in a line (or leave it blank) and tap Next. Each finished step fills a tooth, and a full key opens the box.",
+    "note": "The same dream, steps and questions as in the app. Nothing you type here is saved.",
+    "again": "Start again",
+    "app": {
+      "dream": "See the Northern Lights in Iceland",
+      "category": "Travel",
+      "steps": [
+        {
+          "title": "Research the aurora season",
+          "qs": [
+            "Write down the apps or sites you found for aurora forecasts",
+            "Share how you found the moonless dates that work best",
+            "Describe what you're looking forward to on your 4-5 day stay"
+          ]
+        },
+        {
+          "title": "Plan your budget and save",
+          "qs": [
+            "Write down the options you compared while budgeting for flights",
+            "Share how you worked out lodging costs and the type of stay you chose",
+            "Describe your full budget, including tours and meals"
+          ]
+        },
+        {
+          "title": "Book flights",
+          "qs": [
+            "Write down the best option you found while comparing fares",
+            "Share the layover you chose and why",
+            "Describe how you prepared after checking baggage rules"
+          ]
+        },
+        {
+          "title": "Book a place to stay",
+          "qs": [
+            "Write down why you chose a spot with little light pollution",
+            "Share how you found a place with aurora alerts",
+            "Describe what you weighed after checking the cancellation policy"
+          ]
+        },
+        {
+          "title": "Book an aurora tour",
+          "qs": [
+            "Write down which operator you chose after reading reviews",
+            "Share any special perks, like a free re-tour policy",
+            "Describe your plan for renting cold-weather gear"
+          ]
+        },
+        {
+          "title": "Pack cold-weather gear",
+          "qs": [
+            "Write down the winter clothes you packed for the extreme cold",
+            "Share what you packed, like hand warmers and waterproof gloves",
+            "Describe the gear you packed for aurora photos"
+          ]
+        }
+      ],
+      "now": "What to Do Now",
+      "step": "STEP %d",
+      "teeth": "%d / %d teeth done",
+      "answer": "Your answer...",
+      "next": "Next",
+      "done": "Done!",
+      "open": "Open Box",
+      "found": "You found the treasure!",
+      "all": "Finish every tooth to complete the key!"
+    }
+  },
+  "problem": {
+    "title": "Ever written a bucket list and forgotten all about it?",
+    "text": "\"See the Northern Lights\" is so big you don't know where to begin, so it sits on the list for years. Dream Seeker breaks it into steps you can do today, such as checking the season, saving up and booking flights, and only shows you the one to work on now."
+  },
+  "features": [
+    {
+      "title": "Choose from more than 590 dreams",
+      "text": "Travel, experiences, achievements, health, learning and relationships. Dreams from six areas float past in boxes on the Dream Ocean. Bring one to your workshop and its steps are already laid out.\nCan't see yours? Create your own with a title, an area and the steps it takes.",
+      "shot": "ocean"
+    },
+    {
+      "title": "One tooth at a time, just enough for today",
+      "text": "My Workshop shows how far each dream's key has come. The step to do now sits at the top, and answering its questions fills one tooth.\nYour answers and photos collect in My Notes, and the Progress Timeline lets you look back over the whole journey.",
+      "shot": "workshop"
+    },
+    {
+      "title": "Achieved dreams go to the Treasury, places go on the map",
+      "text": "Fill every tooth and open the box. Achieved dreams build up in the Treasury with their dates, and paused dreams wait there until you're ready to pick them up again.\nDreams tied to a place appear on the map, so you can see everywhere you want to go.",
+      "shot": "treasury"
+    }
+  ],
+  "steps": {
+    "title": "Three steps to start",
+    "items": [
+      {
+        "title": "Pick a dream",
+        "text": "Tap a box on the Dream Ocean and choose Bring to My Workshop."
+      },
+      {
+        "title": "Answer today's step",
+        "text": "Answer the questions on the step at the top, one by one, to fill a tooth."
+      },
+      {
+        "title": "Open the box",
+        "text": "Once every tooth is filled, the key is finished and the box opens."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Six areas on the Dream Ocean",
+    "rows": [
+      [
+        "Travel",
+        "See the Northern Lights in Iceland · Watch the sunset in Santorini"
+      ],
+      [
+        "Experience",
+        "Go skydiving · Try paragliding"
+      ],
+      [
+        "Achievement",
+        "Run a full marathon · Trek to Everest Base Camp"
+      ],
+      [
+        "Health",
+        "Do 20 pull-ups · Build visible abs"
+      ],
+      [
+        "Learning",
+        "Become fluent in English · Become fluent in French"
+      ],
+      [
+        "Relationships",
+        "Travel the world with your parents · Spend a month on Jeju Island with friends"
+      ]
+    ],
+    "note": "Each area holds nearly a hundred dreams. Create your own with Add New Dream in My Workshop."
+  },
+  "pricing": {
+    "title": "Buy once, get everything",
+    "free": {
+      "name": "The app",
+      "items": [
+        "More than 590 dreams with step-by-step questions",
+        "Your own dreams",
+        "My Notes with photos, and the Progress Timeline",
+        "Treasury and map",
+        "Climb Mode",
+        "Future updates"
+      ]
+    },
+    "pro": {
+      "name": "Tip the developer (optional)",
+      "items": [
+        "If the app helps, you can send a small tip from Settings",
+        "Tips don't unlock anything. Without one, every feature is still yours"
+      ],
+      "note": "One-off tips, not a subscription."
+    },
+    "note": "Nothing inside the app costs extra. No account, no adverts."
+  },
+  "faq": {
+    "title": "Questions",
+    "items": [
+      {
+        "q": "How do I get started?",
+        "a": "On the Dream Ocean tab, tap a box you like and choose Bring to My Workshop. In My Workshop, answer the questions on the current step and the teeth fill in one by one. Fill them all to open the box."
+      },
+      {
+        "q": "Can I add my own dream?",
+        "a": "Yes. In My Workshop, tap Add New Dream and enter a title, an area and the steps to get there."
+      },
+      {
+        "q": "How do I pause a dream or pick it up again?",
+        "a": "In an active dream's menu, choose Give Up This Dream and it moves to Paused Dreams in the Treasury. Tap Restart there to bring it back to My Workshop, or Delete Forever to remove it."
+      },
+      {
+        "q": "What is Climb Mode?",
+        "a": "A screen that manages your dreams like climbing a mountain. Switch it on or off in Settings > Display. You can track deadlines for each step and obstacles such as cost and time, project-style."
+      },
+      {
+        "q": "Photos aren't showing.",
+        "a": "Some dream backgrounds are downloaded from the internet, so check that you're online. Without a connection, a default picture is shown."
+      },
+      {
+        "q": "Can I move my notes to a new iPhone?",
+        "a": "Your notes are stored only on this device, with no account or sync. Restoring a new iPhone from an iCloud or computer backup brings them across with your other app data."
+      },
+      {
+        "q": "Is there anything to buy inside the app?",
+        "a": "No. Once you have the app, every feature is yours. The tips in Settings are only there if you'd like to say thank you."
+      },
+      {
+        "q": "Are my dreams and notes sent anywhere?",
+        "a": "No. There's no account, and no adverts or analytics. Your dreams, notes and photos stay on your device."
+      },
+      {
+        "q": "How do I get in touch?",
+        "a": "Bug reports, ideas, anything at all. Send them from Send Feedback in the app's Settings, or by Instagram DM (@lee25_ios)."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "One dream you've been putting off.\nOne tooth today.",
+    "cta": "Download on the App Store"
+  },
+  "ui": {
+    "skip": "Skip to content",
+    "languages": "Language",
+    "privacy": "Privacy Policy",
+    "contact": "Questions or problems? Write to {email}."
+  }
+}

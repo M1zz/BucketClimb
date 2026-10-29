@@ -1,0 +1,221 @@
+{
+  "title": "Dream Seeker: seznam snů, které plníte krok za krokem",
+  "description": "Vyberte si sen a malé kroky k němu se stanou zuby klíče. Odpovídejte na otázky jednu po druhé, dokončete klíč a otevřete truhlu snů.",
+  "hero": {
+    "headline": "Sny si jen\nnezapisujte",
+    "lead": "Vyberte si sen a malé kroky, které k němu vedou, se stanou zuby klíče. Odpovídejte na dnešní krok otázku po otázce a než se nadějete, truhla snů je otevřená.",
+    "cta": "Stáhnout z App Storu",
+    "note": "Koupíte jednou a máte všechny funkce. Bez předplatného a bez reklam."
+  },
+  "demo": {
+    "title": "Dokončete klíč",
+    "lead": "Snu vidět polární záři na Islandu zbývají dva kroky. Odpovězte na každou otázku jedním řádkem (nebo ji nechte prázdnou) a klepněte na Další. Každý hotový krok vyplní jeden zub a plný klíč otevře truhlu.",
+    "note": "Stejný sen, kroky i otázky jako v aplikaci. Nic, co sem napíšete, se neukládá.",
+    "again": "Začít znovu",
+    "app": {
+      "dream": "Spatřit polární záři na Islandu",
+      "category": "Cestování",
+      "steps": [
+        {
+          "title": "Průzkum sezóny polární záře",
+          "qs": [
+            "Zapiš si aplikace a weby, které jsi našel jako předpověď polární záře",
+            "Sdílej, jak jsi zjistil nejlepší dobu bez měsíčního svitu",
+            "Popiš, na co se těšíš při plánování čtyř až pěti dnů"
+          ]
+        },
+        {
+          "title": "Rozpočet a spoření",
+          "qs": [
+            "Zapiš si možnosti letenek, které jsi porovnával",
+            "Sdílej, jak jsi spočítal cenu ubytování a jaký typ sis vybral",
+            "Popiš celý rozpočet včetně výletů a jídla"
+          ]
+        },
+        {
+          "title": "Rezervace letenek",
+          "qs": [
+            "Zapiš si nejlepší variantu, kterou jsi našel při porovnání cen",
+            "Sdílej, kde budeš přestupovat a proč",
+            "Popiš, co sis připravil podle pravidel pro zavazadla"
+          ]
+        },
+        {
+          "title": "Rezervace ubytování",
+          "qs": [
+            "Zapiš si, proč sis vybral místo s malým světelným smogem",
+            "Sdílej, jak jsi hledal ubytování s upozorněním na polární záři",
+            "Popiš, co jsi zvažoval u storno podmínek"
+          ]
+        },
+        {
+          "title": "Rezervace výletu za polární září",
+          "qs": [
+            "Zapiš si pořadatele, kterého jsi vybral podle recenzí",
+            "Sdílej zvláštní výhody, například opakovaný výlet zdarma",
+            "Popiš, jak si zajistíš půjčení teplého vybavení"
+          ]
+        },
+        {
+          "title": "Příprava na zimu",
+          "qs": [
+            "Zapiš si teplé oblečení, které sis připravil do mrazu",
+            "Sdílej, co sis zabalil, třeba ohřívače rukou a nepromokavé rukavice",
+            "Popiš vybavení, které sis připravil na focení polární záře"
+          ]
+        }
+      ],
+      "now": "Co je třeba udělat teď",
+      "step": "KROK %d",
+      "teeth": "Hotové zuby: %d / %d",
+      "answer": "Moje odpověď...",
+      "next": "Další",
+      "done": "Hotovo!",
+      "open": "Otevřít truhlu",
+      "found": "Získal(a) jsi poklad!",
+      "all": "Dokonči všechny zuby a klíč je hotový!"
+    }
+  },
+  "problem": {
+    "title": "Sepsali jste si seznam snů a pak na něj zapomněli?",
+    "text": "„Vidět polární záři“ je tak velké, že nevíte, kde začít, a tak to na seznamu leží roky. Dream Seeker sen rozdělí na kroky, které zvládnete ještě dnes, třeba zjistit sezonu, našetřit peníze a koupit letenky, a ukáže vám jen ten jeden, který je na řadě."
+  },
+  "features": [
+    {
+      "title": "Vybírejte z více než 590 snů",
+      "text": "Cestování, zážitky, úspěchy, zdraví, učení a vztahy. Sny ze šesti oblastí plují v truhlách po Oceánu snů. Vezměte si ten, který se vám líbí, do dílny a kroky k němu už jsou rozdělené.\nVáš sen tam není? Vytvořte si ho sami: název, oblast a potřebné kroky.",
+      "shot": "ocean"
+    },
+    {
+      "title": "Jeden zub po druhém, jen tolik, kolik dnes zvládnete",
+      "text": "V Mé dílně hned vidíte, jak daleko je klíč každého snu. Aktuální krok je nahoře a odpověďmi na jeho otázky vyplníte jeden zub.\nOdpovědi a fotky se ukládají do Mých záznamů a na časové ose postupu si můžete projít celou cestu.",
+      "shot": "workshop"
+    },
+    {
+      "title": "Splněné sny do pokladnice, místa na mapu",
+      "text": "Vyplňte všechny zuby a otevřete truhlu. Splněné sny se s datem ukládají do pokladnice a pozastavené sny tam čekají, dokud se k nim nevrátíte.\nSny spojené s místem se zobrazí na mapě, takže vidíte všechna místa, kam se chcete podívat.",
+      "shot": "treasury"
+    }
+  ],
+  "steps": {
+    "title": "Začněte ve třech krocích",
+    "items": [
+      {
+        "title": "Vyberte sen",
+        "text": "Klepněte na truhlu v Oceánu snů a zvolte Vzít do dílny."
+      },
+      {
+        "title": "Odpovězte na dnešní krok",
+        "text": "Odpovězte postupně na otázky horního kroku a vyplníte zub."
+      },
+      {
+        "title": "Otevřete truhlu",
+        "text": "Když jsou všechny zuby vyplněné, klíč je hotový a truhla se otevře."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Šest oblastí v Oceánu snů",
+    "rows": [
+      [
+        "Cestování",
+        "Spatřit polární záři na Islandu · Zažít západ slunce na Santorini"
+      ],
+      [
+        "Zážitek",
+        "Seskočit z letadla s padákem · Zalétat si na paraglidingu"
+      ],
+      [
+        "Úspěch",
+        "Uběhnout celý maraton · Vyrazit k základnímu táboru Mount Everestu"
+      ],
+      [
+        "Zdraví",
+        "Zvládnout 20 shybů · Vyrýsovat břišní svaly"
+      ],
+      [
+        "Učení",
+        "Mluvit plynně anglicky · Mluvit plynně francouzsky"
+      ],
+      [
+        "Vztahy",
+        "Procestovat svět s rodiči · Strávit měsíc na Jeju s přáteli"
+      ]
+    ],
+    "note": "V každé oblasti je skoro sto snů. Vlastní sen vytvoříte v Mé dílně pomocí Přidat nový sen."
+  },
+  "pricing": {
+    "title": "Jeden nákup, všechno v ceně",
+    "free": {
+      "name": "Aplikace",
+      "items": [
+        "Přes 590 snů s otázkami ke každému kroku",
+        "Vlastní sny",
+        "Moje záznamy s fotkami a časová osa postupu",
+        "Pokladnice a mapa",
+        "Režim pěstování snů",
+        "Budoucí aktualizace"
+      ]
+    },
+    "pro": {
+      "name": "Podpořte vývojáře (dobrovolně)",
+      "items": [
+        "Pokud vám aplikace pomáhá, můžete v Nastavení poslat malé spropitné",
+        "Spropitné nic neodemyká. I bez něj máte všechny funkce"
+      ],
+      "note": "Jednorázové spropitné, žádné předplatné."
+    },
+    "note": "V aplikaci se nic dalšího neplatí. Žádný účet, žádné reklamy."
+  },
+  "faq": {
+    "title": "Časté otázky",
+    "items": [
+      {
+        "q": "Jak začít?",
+        "a": "Na kartě Oceán snů klepněte na truhlu, která se vám líbí, a zvolte Vzít do dílny. V Mé dílně odpovídejte na otázky aktuálního kroku a zuby se budou postupně vyplňovat. Až budou všechny, truhlu otevřete."
+      },
+      {
+        "q": "Můžu přidat vlastní sen?",
+        "a": "Ano. V Mé dílně klepněte na Přidat nový sen a zadejte název, oblast a kroky, které k němu vedou."
+      },
+      {
+        "q": "Jak sen pozastavit nebo se k němu vrátit?",
+        "a": "V nabídce rozpracovaného snu zvolte Vzdát se tohoto snu a sen se přesune do Pozastavených snů v pokladnici. Tam klepnutím na Začít znovu vrátíte sen do dílny, nebo ho pomocí Smazat natrvalo odstraníte."
+      },
+      {
+        "q": "Co je režim pěstování snů?",
+        "a": "Obrazovka, kde sny spravujete jako výstup na horu. Zapnete ho a vypnete v Nastavení > Zobrazení. Můžete v něm hlídat termíny jednotlivých kroků a překážky jako peníze a čas, jako u projektu."
+      },
+      {
+        "q": "Nezobrazují se fotky.",
+        "a": "Některé fotky na pozadí se stahují z internetu. Zkontrolujte připojení. Bez připojení se zobrazí výchozí obrázek."
+      },
+      {
+        "q": "Můžu záznamy přenést do nového iPhonu?",
+        "a": "Záznamy se ukládají jen v tomto zařízení, bez účtu a synchronizace. Když nový iPhone obnovíte ze zálohy na iCloudu nebo v počítači, přenesou se spolu s daty ostatních aplikací."
+      },
+      {
+        "q": "Dá se v aplikaci něco dokoupit?",
+        "a": "Ne. S aplikací máte všechny funkce. Spropitné v Nastavení je tu jen pro případ, že chcete poděkovat."
+      },
+      {
+        "q": "Posílají se moje sny a záznamy někam?",
+        "a": "Ne. Není tu účet, reklamy ani analytické nástroje. Vaše sny, záznamy a fotky zůstávají v zařízení."
+      },
+      {
+        "q": "Jak vás kontaktovat?",
+        "a": "Chyby, nápady nebo cokoli jiného posílejte přes Poslat zpětnou vazbu v Nastavení aplikace nebo zprávou na Instagramu (@lee25_ios)."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Sen, který pořád odkládáte.\nDnes jeden zub.",
+    "cta": "Stáhnout z App Storu"
+  },
+  "ui": {
+    "skip": "Přejít na obsah",
+    "languages": "Jazyk",
+    "privacy": "Zásady ochrany osobních údajů",
+    "contact": "Dotazy nebo problémy? Napište na {email}."
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "title": "Dream Seeker: danh sách ước mơ thực hiện từng bước",
+  "description": "Chọn một ước mơ, những bước nhỏ để đạt được sẽ thành răng của chiếc chìa khóa. Trả lời từng câu hỏi, hoàn thành chìa khóa và mở hộp ước mơ.",
+  "hero": {
+    "headline": "Đừng chỉ viết\nước mơ ra giấy",
+    "lead": "Chọn một ước mơ, những bước nhỏ đưa bạn đến đó sẽ thành răng của chiếc chìa khóa. Trả lời bước của hôm nay, từng câu một, rồi chẳng mấy chốc hộp ước mơ sẽ mở ra.",
+    "cta": "Tải về trên App Store",
+    "note": "Mua một lần là dùng mọi tính năng. Không gói đăng ký, không quảng cáo."
+  },
+  "demo": {
+    "title": "Thử hoàn thành chìa khóa",
+    "lead": "Ước mơ ngắm cực quang ở Iceland chỉ còn hai bước. Trả lời mỗi câu hỏi một dòng (để trống cũng được) rồi chạm Tiếp theo. Mỗi bước xong sẽ lấp một răng, đủ răng là mở được hộp.",
+    "note": "Đúng ước mơ, các bước và câu hỏi như trong ứng dụng. Những gì bạn gõ ở đây không được lưu lại.",
+    "again": "Làm lại từ đầu",
+    "app": {
+      "dream": "Ngắm cực quang ở Iceland",
+      "category": "Du lịch",
+      "steps": [
+        {
+          "title": "Tìm hiểu về mùa cực quang",
+          "qs": [
+            "Ghi lại các ứng dụng hoặc trang web bạn đã tìm để xem dự báo cực quang",
+            "Chia sẻ cách bạn xác định thời điểm đẹp nhất, khi không có trăng",
+            "Mô tả những điều bạn mong đợi khi lên kế hoạch ở lại 4-5 ngày"
+          ]
+        },
+        {
+          "title": "Lập ngân sách và tiết kiệm",
+          "qs": [
+            "Ghi lại các lựa chọn bạn đã so sánh khi lên ngân sách vé máy bay",
+            "Chia sẻ cách bạn tính chi phí lưu trú và loại chỗ ở đã chọn",
+            "Mô tả toàn bộ ngân sách, gồm cả phí tour và ăn uống"
+          ]
+        },
+        {
+          "title": "Đặt vé máy bay",
+          "qs": [
+            "Ghi lại lựa chọn tốt nhất bạn tìm được khi so sánh giá vé",
+            "Chia sẻ điểm nối chuyến bạn đã chọn và lý do",
+            "Mô tả những gì bạn chuẩn bị sau khi xem quy định hành lý"
+          ]
+        },
+        {
+          "title": "Đặt chỗ ở",
+          "qs": [
+            "Ghi lại lý do bạn chọn nơi ít ô nhiễm ánh sáng",
+            "Chia sẻ cách bạn tìm chỗ ở có dịch vụ báo cực quang",
+            "Mô tả những điều bạn cân nhắc khi xem chính sách hủy"
+          ]
+        },
+        {
+          "title": "Đặt tour ngắm cực quang",
+          "qs": [
+            "Ghi lại đơn vị bạn đã chọn sau khi xem đánh giá tour",
+            "Chia sẻ các ưu đãi đặc biệt như chính sách đi lại miễn phí",
+            "Mô tả kế hoạch thuê đồ giữ ấm"
+          ]
+        },
+        {
+          "title": "Chuẩn bị đồ giữ ấm",
+          "qs": [
+            "Ghi lại những món đồ giữ ấm bạn đã chuẩn bị cho cái lạnh khắc nghiệt",
+            "Chia sẻ những thứ bạn mang theo như miếng dán giữ nhiệt và găng tay chống nước",
+            "Mô tả thiết bị bạn chuẩn bị để chụp cực quang"
+          ]
+        }
+      ],
+      "now": "Việc cần làm lúc này",
+      "step": "BƯỚC %d",
+      "teeth": "%d / %d răng hoàn thành",
+      "answer": "Câu trả lời của tôi...",
+      "next": "Tiếp",
+      "done": "Xong!",
+      "open": "Mở hộp",
+      "found": "Bạn đã nhận được kho báu!",
+      "all": "Hoàn thành mọi răng là chìa khóa hoàn tất!"
+    }
+  },
+  "problem": {
+    "title": "Bạn từng viết danh sách ước mơ rồi quên mất?",
+    "text": "“Ngắm cực quang” lớn đến mức không biết bắt đầu từ đâu, thế là nằm yên trong danh sách nhiều năm. Dream Seeker chia ước mơ ấy thành những bước làm được ngay hôm nay, như tìm hiểu mùa, để dành tiền, đặt vé máy bay, và chỉ cho bạn thấy đúng một bước cần làm lúc này."
+  },
+  "features": [
+    {
+      "title": "Chọn trong hơn 590 ước mơ",
+      "text": "Du lịch, trải nghiệm, thành tựu, sức khỏe, học tập và các mối quan hệ. Ước mơ của sáu lĩnh vực nằm trong những chiếc hộp trôi trên Biển Ước Mơ. Mang hộp bạn thích về xưởng của tôi, các bước đã được chia sẵn.\nKhông thấy ước mơ của mình? Tự tạo với tiêu đề, lĩnh vực và các bước cần làm.",
+      "shot": "ocean"
+    },
+    {
+      "title": "Từng răng một, vừa đủ cho hôm nay",
+      "text": "Trong Xưởng của tôi, bạn thấy ngay chìa khóa của từng ước mơ đã xong đến đâu. Bước cần làm nằm trên cùng, trả lời các câu hỏi đã chuẩn bị là lấp được một răng.\nCâu trả lời và ảnh được lưu trong Ghi chép của tôi, và bạn có thể nhìn lại cả chặng đường trong Dòng thời gian tiến trình.",
+      "shot": "workshop"
+    },
+    {
+      "title": "Ước mơ đã thành vào Kho báu, nơi muốn đến lên bản đồ",
+      "text": "Lấp đủ răng rồi mở hộp. Ước mơ đã thành được cất vào Kho báu kèm ngày tháng, còn ước mơ tạm dừng cũng chờ ở đó để bạn bắt đầu lại bất cứ lúc nào.\nƯớc mơ có địa điểm sẽ hiện trên bản đồ, để bạn thấy hết những nơi muốn đến.",
+      "shot": "treasury"
+    }
+  ],
+  "steps": {
+    "title": "Bắt đầu chỉ với ba bước",
+    "items": [
+      {
+        "title": "Chọn ước mơ",
+        "text": "Chạm một chiếc hộp trên Biển Ước Mơ và chọn Mang về xưởng của tôi."
+      },
+      {
+        "title": "Trả lời bước hôm nay",
+        "text": "Lần lượt trả lời câu hỏi của bước trên cùng để lấp một răng."
+      },
+      {
+        "title": "Mở hộp",
+        "text": "Khi đủ răng, chìa khóa hoàn thành và hộp ước mơ mở ra."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Sáu lĩnh vực trên Biển Ước Mơ",
+    "rows": [
+      [
+        "Du lịch",
+        "Ngắm cực quang ở Iceland · Ngắm hoàng hôn ở Santorini"
+      ],
+      [
+        "Trải nghiệm",
+        "Trải nghiệm nhảy dù · Trải nghiệm dù lượn"
+      ],
+      [
+        "Thành tựu",
+        "Hoàn thành marathon full · Trekking đến trại căn cứ Everest"
+      ],
+      [
+        "Sức khỏe",
+        "Hít xà 20 cái · Có cơ bụng sáu múi"
+      ],
+      [
+        "Học hỏi",
+        "Nói tiếng Anh trôi chảy · Nói tiếng Pháp trôi chảy"
+      ],
+      [
+        "Mối quan hệ",
+        "Du lịch vòng quanh thế giới cùng bố mẹ · Sống một tháng ở đảo Jeju cùng bạn bè"
+      ]
+    ],
+    "note": "Mỗi lĩnh vực có gần một trăm ước mơ. Tạo ước mơ của riêng bạn bằng Thêm ước mơ mới trong Xưởng của tôi."
+  },
+  "pricing": {
+    "title": "Mua một lần, có tất cả",
+    "free": {
+      "name": "Ứng dụng",
+      "items": [
+        "Hơn 590 ước mơ với câu hỏi cho từng bước",
+        "Ước mơ của riêng bạn",
+        "Ghi chép của tôi kèm ảnh và Dòng thời gian tiến trình",
+        "Kho báu và bản đồ",
+        "Chế độ Vun ước mơ",
+        "Các bản cập nhật sau này"
+      ]
+    },
+    "pro": {
+      "name": "Ủng hộ nhà phát triển (tùy chọn)",
+      "items": [
+        "Nếu thấy hữu ích, bạn có thể gửi một khoản tip nhỏ trong Cài đặt",
+        "Tip không mở khóa gì cả. Không gửi thì mọi tính năng vẫn như cũ"
+      ],
+      "note": "Tip trả từng lần, không phải gói đăng ký."
+    },
+    "note": "Trong ứng dụng không có gì phải trả thêm. Không tài khoản, không quảng cáo."
+  },
+  "faq": {
+    "title": "Câu hỏi thường gặp",
+    "items": [
+      {
+        "q": "Bắt đầu thế nào?",
+        "a": "Ở thẻ Biển Ước Mơ, chạm vào chiếc hộp bạn thích rồi chọn Mang về xưởng của tôi. Trong Xưởng của tôi, trả lời câu hỏi của bước hiện tại, các răng sẽ lần lượt được lấp. Đủ răng là mở được hộp."
+      },
+      {
+        "q": "Tôi có thể thêm ước mơ của riêng mình không?",
+        "a": "Có. Trong Xưởng của tôi, chạm Thêm ước mơ mới rồi nhập tiêu đề, lĩnh vực và các bước để đạt được."
+      },
+      {
+        "q": "Làm sao tạm dừng hoặc bắt đầu lại một ước mơ?",
+        "a": "Trong menu của ước mơ đang thực hiện, chọn Từ bỏ ước mơ này, ước mơ sẽ chuyển sang Ước mơ tạm dừng trong Kho báu. Ở đó, chạm Bắt đầu lại để đưa về Xưởng của tôi, hoặc Xóa hẳn để xóa."
+      },
+      {
+        "q": "Chế độ Vun ước mơ là gì?",
+        "a": "Đó là màn hình quản lý ước mơ theo kiểu leo núi. Bật hoặc tắt trong Cài đặt > Cài đặt hiển thị. Bạn có thể đặt hạn chót cho từng bước và quản lý trở ngại như chi phí, thời gian giống một dự án."
+      },
+      {
+        "q": "Ảnh không hiện.",
+        "a": "Một số ảnh nền của ước mơ được tải từ Internet. Hãy kiểm tra kết nối mạng. Khi không có mạng, ứng dụng hiện hình mặc định."
+      },
+      {
+        "q": "Tôi có chuyển ghi chép sang iPhone mới được không?",
+        "a": "Ghi chép chỉ lưu trên thiết bị này, không có tài khoản hay đồng bộ. Khi khôi phục iPhone mới từ bản sao lưu iCloud hoặc máy tính, ghi chép sẽ được chuyển cùng dữ liệu các ứng dụng khác."
+      },
+      {
+        "q": "Trong ứng dụng có gì phải trả thêm không?",
+        "a": "Không. Có ứng dụng là dùng được mọi tính năng. Tip trong Cài đặt chỉ là tùy chọn khi bạn muốn nói lời cảm ơn."
+      },
+      {
+        "q": "Ước mơ và ghi chép của tôi có bị gửi đi đâu không?",
+        "a": "Không. Không có tài khoản, không quảng cáo, không công cụ phân tích. Ước mơ, ghi chép và ảnh của bạn chỉ nằm trên thiết bị."
+      },
+      {
+        "q": "Liên hệ bằng cách nào?",
+        "a": "Báo lỗi, góp ý tính năng hay bất cứ điều gì, cứ gửi cho chúng tôi qua Gửi góp ý trong Cài đặt của ứng dụng, hoặc nhắn tin Instagram (@lee25_ios)."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Ước mơ bạn cứ mãi hẹn lại,\nhôm nay lấp một răng",
+    "cta": "Tải về trên App Store"
+  },
+  "ui": {
+    "skip": "Bỏ qua đến nội dung",
+    "languages": "Ngôn ngữ",
+    "privacy": "Chính sách quyền riêng tư",
+    "contact": "Có câu hỏi hoặc gặp sự cố, hãy gửi về {email}."
+  }
+}

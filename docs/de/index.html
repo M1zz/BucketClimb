@@ -3,71 +3,191 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dream Seeker – eine Bucketlist, die du Schritt für Schritt abschließt</title>
-  <meta name="description" content="Verwandle deine Träume in Schlüssel und öffne die Schatztruhe">
-  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/BucketClimb/ko/index.html">
-  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/BucketClimb/en/index.html">
-  <link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/BucketClimb/en-GB/index.html">
-  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/BucketClimb/zh-Hans/index.html">
-  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/BucketClimb/zh-Hant/index.html">
-  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/BucketClimb/ja/index.html">
-  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/BucketClimb/ru/index.html">
-  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/BucketClimb/es/index.html">
-  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/BucketClimb/de/index.html">
-  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/BucketClimb/fr/index.html">
-  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/BucketClimb/it/index.html">
-  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/BucketClimb/pt-BR/index.html">
-  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/BucketClimb/th/index.html">
-  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/BucketClimb/vi/index.html">
-  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/BucketClimb/cs/index.html">
-  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/BucketClimb/da/index.html">
-  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/BucketClimb/el/index.html">
-  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/BucketClimb/fi/index.html">
-  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/BucketClimb/id/index.html">
-  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/BucketClimb/nb/index.html">
-  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/BucketClimb/nl/index.html">
-  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/BucketClimb/pl/index.html">
-  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/BucketClimb/sv/index.html">
-  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/BucketClimb/tr/index.html">
-  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/BucketClimb/index.html">
-  <link rel="icon" href="../assets/icon.png">
-  <link rel="stylesheet" href="../style.css">
+  <title>Dream Seeker: die Bucket List, die du Schritt für Schritt abhakst</title>
+  <meta name="description" content="Wähle einen Traum, und die kleinen Schritte dorthin werden die Zacken eines Schlüssels. Frage für Frage wird der Schlüssel fertig, die Truhe geht auf.">
+  <meta name="theme-color" content="#9A6200" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6755934506">
+  <link rel="canonical" href="https://m1zz.github.io/BucketClimb/de/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/BucketClimb/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/BucketClimb/ko/">
+  <link rel="alternate" hreflang="en-GB" href="https://m1zz.github.io/BucketClimb/en-GB/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/BucketClimb/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/BucketClimb/zh-Hant/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/BucketClimb/ja/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/BucketClimb/ru/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/BucketClimb/es/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/BucketClimb/de/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/BucketClimb/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/BucketClimb/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/BucketClimb/pt-BR/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/BucketClimb/th/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/BucketClimb/vi/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/BucketClimb/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/BucketClimb/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/BucketClimb/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/BucketClimb/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/BucketClimb/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/BucketClimb/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/BucketClimb/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/BucketClimb/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/BucketClimb/sv/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/BucketClimb/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/BucketClimb/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dream Seeker: die Bucket List, die du Schritt für Schritt abhakst">
+  <meta property="og:description" content="Wähle einen Traum, und die kleinen Schritte dorthin werden die Zacken eines Schlüssels. Frage für Frage wird der Schlüssel fertig, die Truhe geht auf.">
+  <meta property="og:url" content="https://m1zz.github.io/BucketClimb/de/">
+  <meta property="og:image" content="https://m1zz.github.io/BucketClimb/img/de/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#9A6200}@media (prefers-color-scheme:dark){:root{--accent:#FFD60A}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-  <header class="top">
-    <div class="wrap">
-      <a class="brand" href="index.html"><img src="../assets/icon.png" alt=""><span>Dream Seeker</span></a>
-      <select class="lang-select" aria-label="Language" onchange="location.href=this.value"><option value="../ko/index.html">한국어</option><option value="../en/index.html">English</option><option value="../en-GB/index.html">English (UK)</option><option value="../zh-Hans/index.html">简体中文</option><option value="../zh-Hant/index.html">繁體中文</option><option value="../ja/index.html">日本語</option><option value="../ru/index.html">Русский</option><option value="../es/index.html">Español</option><option value="../de/index.html" selected>Deutsch</option><option value="../fr/index.html">Français</option><option value="../it/index.html">Italiano</option><option value="../pt-BR/index.html">Português (Brasil)</option><option value="../th/index.html">ไทย</option><option value="../vi/index.html">Tiếng Việt</option><option value="../cs/index.html">Čeština</option><option value="../da/index.html">Dansk</option><option value="../el/index.html">Ελληνικά</option><option value="../fi/index.html">Suomi</option><option value="../id/index.html">Bahasa Indonesia</option><option value="../nb/index.html">Norsk bokmål</option><option value="../nl/index.html">Nederlands</option><option value="../pl/index.html">Polski</option><option value="../sv/index.html">Svenska</option><option value="../tr/index.html">Türkçe</option></select>
-    </div>
+  <a class="skip" href="#main">Zum Inhalt springen</a>
+  <header class="bar">
+    <a class="brand" href="../de/"><img src="../icon.png" alt="" width="32" height="32">Dream Seeker</a>
+    <a class="lang-link" href="#languages">Sprache</a>
   </header>
-  <main>
-    <section class="hero wrap">
-      <img class="hero-icon" src="../assets/icon.png" alt="" width="112" height="112">
-      <h1>Dream Seeker</h1>
-      <p class="tagline">Verwandle deine Träume in Schlüssel und öffne die Schatztruhe</p>
-      <p class="lead">Such dir einen Traum aus, den du verwirklichen willst, und die kleinen Schritte dorthin werden zu den Zähnen eines Schlüssels. Beantworte eine Frage nach der anderen, und schon steht die Truhe offen.</p>
-      <a class="badge" href="https://apps.apple.com/app/id6740034706">Laden im App Store</a>
-    </section>
-    <section class="wrap">
-      <div class="grid">
-        <div class="card"><h3>Der Traumozean</h3><p>Über 590 Träume aus Reisen, Erlebnis, Erfolg, Gesundheit, Lernen und Beziehung treiben in Truhen vorbei. Hol dir die, die dir gefallen, oder erfinde eigene.</p></div>
-        <div class="card"><h3>Den Schlüssel schmieden</h3><p>Jeder Traum wird in Schritte aufgeteilt, die die Zähne eines Schlüssels bilden. Der Schritt, der jetzt dran ist, steht oben, und eine Leitfrage hilft dir, ihn abzuschließen.</p></div>
-        <div class="card"><h3>Notizen und Fotos</h3><p>Deine Antworten und Fotos sammeln sich in Meine Einträge. Im Fortschrittsverlauf blickst du auf den ganzen Weg zurück.</p></div>
-        <div class="card"><h3>Schatzkammer und Karte</h3><p>Erfüllte Träume werden in der Schatzkammer aufbewahrt, Träume mit einem Ort erscheinen auf der Karte. Pausierte Träume kannst du jederzeit wieder aufgreifen.</p></div>
+
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>Schreib deine Bucket List<br>nicht nur auf</h1>
+        <p class="lead">Wähle einen Traum, und die kleinen Schritte, die dich hinbringen, werden zu den Zacken eines Schlüssels. Beantworte den Schritt von heute, Frage für Frage, und plötzlich ist die Truhe offen.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6755934506">Im App Store laden</a><a class="try" href="#try">Mach den Schlüssel fertig ↓</a></div>
+        <p class="muted small">Einmal kaufen, alle Funktionen nutzen. Kein Abo, keine Werbung.</p>
       </div>
-      <p class="note">Kein Konto und keine Werbung. Deine Träume und Notizen bleiben auf deinem Gerät.</p>
+      <div class="phone"><img src="../img/de/forge.jpg" alt="Schreib deine Bucket List nicht nur auf" width="720" height="1564" decoding="async"></div>
+    </section>
+
+
+    <section class="reveal" id="try">
+      <h2>Mach den Schlüssel fertig</h2>
+      <p class="muted">Beim Traum mit den Polarlichtern fehlen noch zwei Schritte. Beantworte jede Frage mit einer Zeile (oder lass sie leer) und tippe auf „Weiter“. Jeder fertige Schritt füllt eine Zacke, und mit dem vollen Schlüssel öffnest du die Truhe.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Mach den Schlüssel fertig&quot;, &quot;lead&quot;: &quot;Beim Traum mit den Polarlichtern fehlen noch zwei Schritte. Beantworte jede Frage mit einer Zeile (oder lass sie leer) und tippe auf „Weiter“. Jeder fertige Schritt füllt eine Zacke, und mit dem vollen Schlüssel öffnest du die Truhe.&quot;, &quot;note&quot;: &quot;Derselbe Traum mit denselben Schritten und Fragen wie in der App. Was du hier eintippst, wird nicht gespeichert.&quot;, &quot;again&quot;: &quot;Von vorn&quot;, &quot;app&quot;: {&quot;dream&quot;: &quot;Polarlichter in Island sehen&quot;, &quot;category&quot;: &quot;Reisen&quot;, &quot;steps&quot;: [{&quot;title&quot;: &quot;Recherche zur Polarlicht-Saison&quot;, &quot;qs&quot;: [&quot;Notiere, welche Apps oder Seiten du für Polarlicht-Prognosen gefunden hast&quot;, &quot;Teile, wie du die beste mondlose Zeit herausgefunden hast&quot;, &quot;Beschreibe, worauf du dich bei 4 bis 5 Tagen Aufenthalt freust&quot;]}, {&quot;title&quot;: &quot;Budget planen und sparen&quot;, &quot;qs&quot;: [&quot;Notiere die Flugoptionen, die du für dein Budget verglichen hast&quot;, &quot;Teile, wie du die Unterkunftskosten berechnet hast und welche Art du gewählt hast&quot;, &quot;Beschreibe dein Gesamtbudget inklusive Touren und Essen&quot;]}, {&quot;title&quot;: &quot;Flug buchen&quot;, &quot;qs&quot;: [&quot;Notiere die beste Option, die du beim Preisvergleich gefunden hast&quot;, &quot;Teile, welchen Zwischenstopp du gewählt hast und warum&quot;, &quot;Beschreibe, was du nach Prüfung der Gepäckbestimmungen vorbereitet hast&quot;]}, {&quot;title&quot;: &quot;Unterkunft buchen&quot;, &quot;qs&quot;: [&quot;Notiere, warum du einen Ort mit wenig Lichtverschmutzung gewählt hast&quot;, &quot;Teile, wie du eine Unterkunft mit Polarlicht-Alarm gefunden hast&quot;, &quot;Beschreibe, was du bei der Prüfung der Stornobedingungen bedacht hast&quot;]}, {&quot;title&quot;: &quot;Polarlicht-Tour buchen&quot;, &quot;qs&quot;: [&quot;Notiere, welchen Anbieter du nach den Bewertungen gewählt hast&quot;, &quot;Teile besondere Vorteile wie die kostenlose Wiederholungstour&quot;, &quot;Beschreibe, wie du Winterausrüstung leihen willst&quot;]}, {&quot;title&quot;: &quot;Kälteausrüstung vorbereiten&quot;, &quot;qs&quot;: [&quot;Notiere, welche Winterkleidung du für die extreme Kälte vorbereitet hast&quot;, &quot;Teile, was du an Handwärmern und wasserdichten Handschuhen eingepackt hast&quot;, &quot;Beschreibe, welche Ausrüstung du für Polarlicht-Fotos vorbereitet hast&quot;]}], &quot;now&quot;: &quot;Das ist jetzt dran&quot;, &quot;step&quot;: &quot;SCHRITT %d&quot;, &quot;teeth&quot;: &quot;%d / %d Zacken fertig&quot;, &quot;answer&quot;: &quot;Meine Antwort …&quot;, &quot;next&quot;: &quot;Weiter&quot;, &quot;done&quot;: &quot;Fertig!&quot;, &quot;open&quot;: &quot;Truhe öffnen&quot;, &quot;found&quot;: &quot;Du hast einen Schatz gewonnen!&quot;, &quot;all&quot;: &quot;Sind alle Zacken fertig, ist der Schlüssel komplett!&quot;}}"></div>
+    </section>
+
+    <section class="problem reveal">
+      <h2>Schon mal eine Bucket List geschrieben und vergessen?</h2>
+      <p>„Polarlichter sehen“ ist so groß, dass du nicht weißt, wo du anfangen sollst, also bleibt es jahrelang auf der Liste. Dream Seeker teilt den Traum in Schritte, die du heute schaffen kannst, etwa die Saison prüfen, Geld zurücklegen und Flüge buchen, und zeigt dir nur den einen, der jetzt dran ist.</p>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Über 590 Träume zur Auswahl</h2>
+        <p>Reisen, Erlebnisse, Erfolge, Gesundheit, Lernen und Beziehungen. Träume aus sechs Bereichen treiben in Truhen über den Traumozean. Hol dir einen in deine Werkstatt, und die Schritte dorthin sind schon aufgeteilt.<br>Dein Traum ist nicht dabei? Leg ihn selbst an, mit Titel, Bereich und den nötigen Schritten.</p>
+      </div>
+      <div class="phone"><img src="../img/de/ocean.jpg" alt="Über 590 Träume zur Auswahl" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Eine Zacke nach der anderen, so viel wie heute geht</h2>
+        <p>In „Meine Werkstatt“ siehst du auf einen Blick, wie weit der Schlüssel jedes Traums ist. Der aktuelle Schritt steht ganz oben, und wenn du seine Fragen beantwortest, füllt sich eine Zacke.<br>Antworten und Fotos sammeln sich in „Meine Einträge“, und im Fortschrittsverlauf siehst du den ganzen Weg zurück.</p>
+      </div>
+      <div class="phone"><img src="../img/de/workshop.jpg" alt="Eine Zacke nach der anderen, so viel wie heute geht" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Erfüllte Träume in die Schatzkammer, Orte auf die Karte</h2>
+        <p>Sind alle Zacken voll, öffnest du die Truhe. Erfüllte Träume sammeln sich mit Datum in der Schatzkammer, und pausierte Träume warten dort, bis du weitermachen willst.<br>Träume mit einem Ort erscheinen auf der Karte, so siehst du alle Orte, an die du willst.</p>
+      </div>
+      <div class="phone"><img src="../img/de/treasury.jpg" alt="Erfüllte Träume in die Schatzkammer, Orte auf die Karte" width="720" height="1564" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>In drei Schritten loslegen</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Traum wählen</h3><p>Tippe im Traumozean auf eine Truhe und dann auf „In meine Werkstatt holen“.</p></li>
+<li class="card"><span class="n">2</span><h3>Heutigen Schritt beantworten</h3><p>Beantworte die Fragen des obersten Schritts nacheinander, dann füllt sich eine Zacke.</p></li>
+<li class="card"><span class="n">3</span><h3>Truhe öffnen</h3><p>Sind alle Zacken gefüllt, ist der Schlüssel fertig und die Truhe geht auf.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>Sechs Bereiche im Traumozean</h2>
+      <div class="card table">
+        <dl><div><dt>Reisen</dt><dd>Polarlichter in Island sehen · Sonnenuntergang auf Santorin erleben</dd></div><div><dt>Erlebnis</dt><dd>Fallschirmspringen erleben · Gleitschirmfliegen erleben</dd></div><div><dt>Erfolg</dt><dd>Einen Marathon laufen · Zum Everest-Basislager wandern</dd></div><div><dt>Gesundheit</dt><dd>20 Klimmzüge schaffen · Sixpack bekommen</dd></div><div><dt>Lernen</dt><dd>Fließend Englisch sprechen · Fließend Französisch sprechen</dd></div><div><dt>Beziehung</dt><dd>Mit den Eltern um die Welt reisen · Mit Freunden einen Monat auf Jeju leben</dd></div></dl>
+      </div>
+      <p class="muted">Jeder Bereich hat fast hundert Träume. Eigene legst du in „Meine Werkstatt“ mit „Neuen Traum hinzufügen“ an.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>Einmal kaufen, alles drin</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>Die App</h3>
+          <ul><li>Über 590 Träume mit Fragen zu jedem Schritt</li><li>Eigene Träume</li><li>Meine Einträge mit Fotos und der Fortschrittsverlauf</li><li>Schatzkammer und Karte</li><li>Wachstumsmodus</li><li>Künftige Updates</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>Entwickler unterstützen (freiwillig)</h3>
+          <ul><li>Wenn dir die App hilft, kannst du in den Einstellungen ein kleines Trinkgeld geben</li><li>Trinkgeld schaltet nichts frei. Auch ohne bleiben alle Funktionen da</li></ul>
+          <p class="muted">Einmalige Beträge, kein Abo.</p>
+        </div>
+      </div>
+      <p class="muted">In der App kostet nichts extra. Kein Konto, keine Werbung.</p>
+    </section>
+
+    <section class="reveal" id="faq">
+      <h2>Häufige Fragen</h2>
+      <div class="faq"><details><summary>Wie fange ich an?</summary><p>Tippe im Tab „Traumozean“ auf eine Truhe, die dir gefällt, und dann auf „In meine Werkstatt holen“. Beantworte in „Meine Werkstatt“ die Fragen des aktuellen Schritts, und die Zacken füllen sich eine nach der anderen. Sind alle voll, öffnest du die Truhe.</p></details>
+<details><summary>Kann ich eigene Träume hinzufügen?</summary><p>Ja. Tippe in „Meine Werkstatt“ auf „Neuen Traum hinzufügen“ und gib Titel, Bereich und die Schritte dorthin ein.</p></details>
+<details><summary>Wie pausiere ich einen Traum oder setze ihn fort?</summary><p>Wähle im Menü eines laufenden Traums „Diesen Traum aufgeben“. Er landet dann unter „Pausierte Träume“ in der Schatzkammer. Dort holst du ihn mit „Neu starten“ zurück in deine Werkstatt oder entfernst ihn mit „Endgültig löschen“.</p></details>
+<details><summary>Was ist der Wachstumsmodus?</summary><p>Eine Ansicht, in der du deine Träume wie eine Bergbesteigung verwaltest. Du schaltest ihn unter Einstellungen &gt; Anzeige ein oder aus. Dort planst du Fristen für jeden Schritt und Hindernisse wie Kosten und Zeit wie ein Projekt.</p></details>
+<details><summary>Fotos werden nicht angezeigt.</summary><p>Manche Hintergrundbilder werden aus dem Internet geladen. Prüfe, ob du online bist. Ohne Verbindung erscheint ein Standardbild.</p></details>
+<details><summary>Kann ich meine Einträge auf ein neues iPhone mitnehmen?</summary><p>Deine Einträge liegen nur auf diesem Gerät, ohne Konto oder Sync. Stellst du ein neues iPhone aus einem iCloud- oder Computer-Backup wieder her, kommen sie mit deinen anderen App-Daten mit.</p></details>
+<details><summary>Kann man in der App etwas kaufen?</summary><p>Nein. Mit der App gehören dir alle Funktionen. Das Trinkgeld in den Einstellungen ist nur da, wenn du Danke sagen möchtest.</p></details>
+<details><summary>Werden meine Träume und Einträge irgendwohin gesendet?</summary><p>Nein. Es gibt kein Konto, keine Werbung und keine Analyse-Tools. Träume, Einträge und Fotos bleiben auf deinem Gerät.</p></details>
+<details><summary>Wie erreiche ich euch?</summary><p>Fehler, Ideen oder sonst etwas: Schick es über „Feedback senden“ in den Einstellungen der App oder per Instagram-DM (@lee25_ios).</p></details></div>
+      <p class="contact">Fragen oder Probleme? Schreib an <a href="mailto:leeo@kakao.com">leeo@kakao.com</a>.</p>
+    </section>
+
+    <section class="closing reveal">
+      <h2>Ein Traum, den du aufschiebst.<br>Heute eine Zacke.</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6755934506">Im App Store laden</a>
     </section>
   </main>
+
   <footer>
-    <div class="wrap">
-      <nav>
-        <a href="index.html">Start</a>
-        <a href="support.html">Support</a>
-        <a href="privacy.html">Datenschutzerklärung</a>
-        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Nutzungsbedingungen (Apple-Standard-EULA)</a>
-      </nav>
-      <p>© 2026 Dream Seeker</p>
-    </div>
+    <nav id="languages" class="langs" aria-label="Sprache"><a href="../" hreflang="en" lang="en">English</a>
+<a href="../ko/" hreflang="ko" lang="ko">한국어</a>
+<a href="../en-GB/" hreflang="en-GB" lang="en-GB">English (UK)</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../de/" hreflang="de" lang="de" aria-current="page">Deutsch</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Bahasa Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk bokmål</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a></nav>
+    <p><a href="privacy.html">Datenschutz</a> · <a href="mailto:leeo@kakao.com">leeo@kakao.com</a> · © 2026 Dream Seeker</p>
   </footer>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

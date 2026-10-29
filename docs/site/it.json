@@ -1,0 +1,221 @@
+{
+  "title": "Dream Seeker: la lista dei sogni da realizzare passo dopo passo",
+  "description": "Scegli un sogno: i piccoli passi per arrivarci diventano i denti di una chiave. Una domanda alla volta, la chiave è pronta e lo scrigno si apre.",
+  "hero": {
+    "headline": "Non limitarti a\nscrivere i tuoi sogni",
+    "lead": "Scegli un sogno e i piccoli passi che ti ci portano diventano i denti di una chiave. Rispondi al passo di oggi, una domanda alla volta, e prima che te ne accorga lo scrigno è aperto.",
+    "cta": "Scarica su App Store",
+    "note": "Lo compri una volta e hai tutte le funzioni. Niente abbonamento, niente pubblicità."
+  },
+  "demo": {
+    "title": "Completa la chiave",
+    "lead": "Al sogno dell’aurora boreale mancano due passi. Rispondi a ogni domanda con una riga (o lasciala vuota) e tocca «Avanti». Ogni passo completato riempie un dente, e con la chiave completa si apre lo scrigno.",
+    "note": "Lo stesso sogno, gli stessi passi e le stesse domande dell’app. Quello che scrivi qui non viene salvato.",
+    "again": "Ricomincia",
+    "app": {
+      "dream": "Vedere l'aurora boreale in Islanda",
+      "category": "Viaggio",
+      "steps": [
+        {
+          "title": "Ricerca sulla stagione delle aurore",
+          "qs": [
+            "Annota le app o i siti che hai trovato per controllare le previsioni delle aurore",
+            "Condividi come hai individuato il periodo migliore, senza luna",
+            "Descrivi cosa ti aspetti mentre pianifichi un soggiorno di 4-5 giorni"
+          ]
+        },
+        {
+          "title": "Budget e risparmi",
+          "qs": [
+            "Annota le opzioni che hai confrontato pianificando il budget per il volo",
+            "Condividi come hai calcolato il costo dell'alloggio e che tipo di sistemazione hai scelto",
+            "Descrivi il piano di spesa complessivo, tour e pasti inclusi"
+          ]
+        },
+        {
+          "title": "Prenotazione del volo",
+          "qs": [
+            "Annota l'opzione migliore che hai trovato confrontando i prezzi dei voli",
+            "Condividi lo scalo che hai scelto e perché",
+            "Descrivi cosa hai preparato dopo aver controllato le regole sul bagaglio"
+          ]
+        },
+        {
+          "title": "Prenotazione dell'alloggio",
+          "qs": [
+            "Annota perché hai scelto una zona con poco inquinamento luminoso",
+            "Condividi come hai trovato un alloggio con servizio di avviso aurora",
+            "Descrivi cosa hai considerato leggendo la politica di cancellazione"
+          ]
+        },
+        {
+          "title": "Prenotazione del tour dell'aurora",
+          "qs": [
+            "Annota quale operatore hai scelto dopo aver letto le recensioni dei tour",
+            "Condividi i vantaggi speciali, come la politica di tour gratuito di recupero",
+            "Descrivi come pensi di noleggiare l'abbigliamento termico"
+          ]
+        },
+        {
+          "title": "Attrezzatura per il freddo",
+          "qs": [
+            "Annota i vestiti pesanti che hai preparato per il freddo estremo",
+            "Condividi cosa hai messo in valigia, come scaldamani e guanti impermeabili",
+            "Descrivi l'attrezzatura che hai preparato per fotografare l'aurora"
+          ]
+        }
+      ],
+      "now": "Da fare ora",
+      "step": "PASSO %d",
+      "teeth": "%d / %d denti completati",
+      "answer": "La mia risposta...",
+      "next": "Avanti",
+      "done": "Fatto!",
+      "open": "Apri lo scrigno",
+      "found": "Hai ottenuto il tesoro!",
+      "all": "Completa tutti i denti e la chiave è pronta!"
+    }
+  },
+  "problem": {
+    "title": "Hai mai scritto una lista dei sogni e poi l’hai dimenticata?",
+    "text": "«Vedere l’aurora boreale» è così grande che non sai da dove cominciare, e resta sulla lista per anni. Dream Seeker lo divide in passi che puoi fare oggi, come informarti sulla stagione, mettere da parte i soldi e prenotare i voli, e ti mostra solo quello da fare adesso."
+  },
+  "features": [
+    {
+      "title": "Più di 590 sogni tra cui scegliere",
+      "text": "Viaggi, esperienze, traguardi, salute, apprendimento e relazioni. I sogni di sei aree galleggiano in scrigni nel Mare dei sogni. Portane uno nella tua officina e i suoi passi sono già pronti.\nIl tuo non c’è? Crealo con un titolo, un’area e i passi necessari.",
+      "shot": "ocean"
+    },
+    {
+      "title": "Un dente alla volta, quanto basta per oggi",
+      "text": "La mia officina mostra a che punto è la chiave di ogni sogno. Il passo da fare è in cima, e rispondendo alle sue domande si riempie un dente.\nRisposte e foto si raccolgono in Le mie note, e la Cronologia dei progressi ti fa ripercorrere tutta la strada.",
+      "shot": "workshop"
+    },
+    {
+      "title": "I sogni realizzati nel Tesoro, i luoghi sulla mappa",
+      "text": "Riempi tutti i denti e apri lo scrigno. I sogni realizzati si accumulano nel Tesoro con la loro data, e i sogni in pausa ti aspettano lì finché non li riprendi.\nI sogni legati a un luogo compaiono sulla mappa, così vedi tutti i posti dove vuoi andare.",
+      "shot": "treasury"
+    }
+  ],
+  "steps": {
+    "title": "Inizia in tre passi",
+    "items": [
+      {
+        "title": "Scegli un sogno",
+        "text": "Tocca uno scrigno nel Mare dei sogni e scegli «Porta nella mia officina»."
+      },
+      {
+        "title": "Rispondi al passo di oggi",
+        "text": "Rispondi una alla volta alle domande del passo in cima per riempire un dente."
+      },
+      {
+        "title": "Apri lo scrigno",
+        "text": "Quando tutti i denti sono pieni, la chiave è pronta e lo scrigno si apre."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Sei aree nel Mare dei sogni",
+    "rows": [
+      [
+        "Viaggio",
+        "Vedere l'aurora boreale in Islanda · Ammirare il tramonto a Santorini"
+      ],
+      [
+        "Esperienza",
+        "Provare il paracadutismo · Provare il parapendio"
+      ],
+      [
+        "Traguardi raggiunti",
+        "Correre una maratona completa · Trekking al campo base dell'Everest"
+      ],
+      [
+        "Salute",
+        "Fare 20 trazioni alla sbarra · Avere gli addominali scolpiti"
+      ],
+      [
+        "Studio",
+        "Parlare inglese fluentemente · Parlare francese fluentemente"
+      ],
+      [
+        "Relazioni",
+        "Fare il giro del mondo con i genitori · Passare un mese a Jeju con gli amici"
+      ]
+    ],
+    "note": "Ogni area ha quasi cento sogni. Crea i tuoi con «Aggiungi un nuovo sogno» in La mia officina."
+  },
+  "pricing": {
+    "title": "Un solo acquisto, tutto incluso",
+    "free": {
+      "name": "L’app",
+      "items": [
+        "Più di 590 sogni con domande per ogni passo",
+        "I tuoi sogni personali",
+        "Le mie note con foto e la Cronologia dei progressi",
+        "Tesoro e mappa",
+        "Modalità Coltiva i sogni",
+        "Gli aggiornamenti futuri"
+      ]
+    },
+    "pro": {
+      "name": "Sostieni lo sviluppatore (facoltativo)",
+      "items": [
+        "Se l’app ti è utile, puoi lasciare una piccola mancia dalle Impostazioni",
+        "La mancia non sblocca nulla. Anche senza, tutte le funzioni restano tue"
+      ],
+      "note": "Mance singole, non un abbonamento."
+    },
+    "note": "Nell’app non c’è niente da pagare a parte. Niente account, niente pubblicità."
+  },
+  "faq": {
+    "title": "Domande frequenti",
+    "items": [
+      {
+        "q": "Come inizio?",
+        "a": "Nella scheda Mare dei sogni, tocca uno scrigno che ti piace e scegli «Porta nella mia officina». In La mia officina rispondi alle domande del passo attuale e i denti si riempiono uno alla volta. Quando sono tutti pieni, apri lo scrigno."
+      },
+      {
+        "q": "Posso aggiungere un mio sogno?",
+        "a": "Sì. In La mia officina tocca «Aggiungi un nuovo sogno» e inserisci titolo, area e i passi per arrivarci."
+      },
+      {
+        "q": "Come metto in pausa un sogno o lo riprendo?",
+        "a": "Nel menu di un sogno in corso scegli «Rinuncia a questo sogno»: passa in Sogni in pausa, nel Tesoro. Lì tocca «Riprendi» per riportarlo in officina, oppure «Elimina definitivamente» per cancellarlo."
+      },
+      {
+        "q": "Cos’è la modalità Coltiva i sogni?",
+        "a": "Una schermata che gestisce i sogni come la scalata di una montagna. Attivala o disattivala in Impostazioni > Schermata. Puoi seguire scadenze per ogni passo e ostacoli come costi e tempo, come in un progetto."
+      },
+      {
+        "q": "Le foto non si vedono.",
+        "a": "Alcune immagini di sfondo vengono scaricate da Internet. Controlla di essere connesso. Senza connessione compare un’immagine predefinita."
+      },
+      {
+        "q": "Posso trasferire le note su un nuovo iPhone?",
+        "a": "Le note sono salvate solo su questo dispositivo, senza account né sincronizzazione. Se ripristini un nuovo iPhone da un backup iCloud o dal computer, arrivano insieme ai dati delle altre app."
+      },
+      {
+        "q": "Ci sono acquisti nell’app?",
+        "a": "No. Con l’app hai tutte le funzioni. Le mance nelle Impostazioni servono solo se vuoi dire grazie."
+      },
+      {
+        "q": "I miei sogni e le note vengono inviati da qualche parte?",
+        "a": "No. Non c’è account, né pubblicità, né strumenti di analisi. Sogni, note e foto restano sul tuo dispositivo."
+      },
+      {
+        "q": "Come vi contatto?",
+        "a": "Bug, idee o qualsiasi altra cosa: inviala da «Invia feedback» nelle Impostazioni dell’app, oppure con un DM su Instagram (@lee25_ios)."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Quel sogno che continui a rimandare.\nOggi, un dente.",
+    "cta": "Scarica su App Store"
+  },
+  "ui": {
+    "skip": "Vai al contenuto",
+    "languages": "Lingua",
+    "privacy": "Privacy",
+    "contact": "Domande o problemi? Scrivi a {email}."
+  }
+}

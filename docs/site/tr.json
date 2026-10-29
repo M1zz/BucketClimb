@@ -1,0 +1,221 @@
+{
+  "title": "Dream Seeker: adım adım gerçekleştirdiğin hayal listesi",
+  "description": "Bir hayal seç; oraya giden küçük adımlar bir anahtarın dişleri olur. Soruları tek tek yanıtla, anahtarı tamamla ve hayal sandığını aç.",
+  "hero": {
+    "headline": "Hayal listeni\nyazıp bırakma",
+    "lead": "Bir hayal seç; seni oraya götüren küçük adımlar bir anahtarın dişleri olsun. Bugünün adımını soru soru yanıtla, bir bakmışsın hayal sandığın açılmış.",
+    "cta": "App Store'dan indir",
+    "note": "Bir kez satın al, tüm özellikleri kullan. Abonelik yok, reklam yok."
+  },
+  "demo": {
+    "title": "Anahtarı tamamla",
+    "lead": "İzlanda'da kuzey ışıkları hayalinin son iki adımı kaldı. Her soruyu bir satırla yanıtla (boş da bırakabilirsin) ve İleri'ye dokun. Biten her adım bir dişi doldurur, tamamlanan anahtar sandığı açar.",
+    "note": "Uygulamadakiyle aynı hayal, aynı adımlar ve sorular. Buraya yazdıkların hiçbir yere kaydedilmez.",
+    "again": "Baştan başla",
+    "app": {
+      "dream": "İzlanda'da kuzey ışıklarını görmek",
+      "category": "Seyahat",
+      "steps": [
+        {
+          "title": "Kuzey ışıkları araştırması",
+          "qs": [
+            "Kuzey ışıkları tahminini takip etmek için bulduğun uygulama ve siteleri not et",
+            "Ay'ın olmadığı en uygun zamanı nasıl bulduğunu paylaş",
+            "4-5 günlük planı yaparken nelerin seni heyecanlandırdığını anlat"
+          ]
+        },
+        {
+          "title": "Bütçe planı ve birikim",
+          "qs": [
+            "Uçak bileti bütçesini planlarken karşılaştırdığın seçenekleri not et",
+            "Konaklama maliyetini nasıl hesapladığını ve seçtiğin tesis türünü paylaş",
+            "Tur ve yemek giderleri dahil toplam bütçe planını anlat"
+          ]
+        },
+        {
+          "title": "Uçak bileti alma",
+          "qs": [
+            "Fiyatları karşılaştırırken bulduğun en iyi seçeneği not et",
+            "Seçtiğin aktarma noktasını ve nedenini paylaş",
+            "Bagaj kurallarına bakarken yaptığın hazırlıkları anlat"
+          ]
+        },
+        {
+          "title": "Konaklama rezervasyonu",
+          "qs": [
+            "Işık kirliliğinin az olduğu yeri neden seçtiğini not et",
+            "Kuzey ışıkları uyarı hizmeti olan bir yeri nasıl bulduğunu paylaş",
+            "İptal koşullarına bakarken nelere dikkat ettiğini anlat"
+          ]
+        },
+        {
+          "title": "Kuzey ışıkları turu rezervasyonu",
+          "qs": [
+            "Tur yorumlarına bakarak seçtiğin firmayı not et",
+            "Ücretsiz tekrar tur gibi özel avantajları paylaş",
+            "Kışlık ekipman kiralama planını anlat"
+          ]
+        },
+        {
+          "title": "Kışlık ekipman hazırlığı",
+          "qs": [
+            "Aşırı soğuğa karşı hazırladığın kışlık kıyafetleri not et",
+            "Isıtma paketleri ve su geçirmez eldiven gibi eşyalarını paylaş",
+            "Kuzey ışıklarını çekmek için hazırladığın ekipmanı anlat"
+          ]
+        }
+      ],
+      "now": "Şimdi yapılacaklar",
+      "step": "ADIM %d",
+      "teeth": "%d / %d diş tamam",
+      "answer": "Cevabım...",
+      "next": "Sonraki",
+      "done": "Bitti!",
+      "open": "Sandığı aç",
+      "found": "Hazineyi kazandın!",
+      "all": "Tüm dişleri tamamla, anahtar hazır olsun!"
+    }
+  },
+  "problem": {
+    "title": "Bir hayal listesi yazıp unuttun mu hiç?",
+    "text": "\"Kuzey ışıklarını görmek\" o kadar büyük ki nereden başlayacağını bilemezsin, o da yıllarca listede kalır. Dream Seeker bu hayali sezonu araştırmak, bütçe biriktirmek, uçak bileti almak gibi bugün yapılabilecek adımlara böler ve sana yalnızca şimdi yapacağın adımı gösterir."
+  },
+  "features": [
+    {
+      "title": "590'dan fazla hayal arasından seç",
+      "text": "Seyahat, deneyim, başarı, sağlık, öğrenme ve ilişkiler. Altı alandan hayaller, sandıklar içinde Hayal Okyanusu'nda süzülür. Beğendiğini Atölyem'e al; adımları zaten ayrılmış olur.\nSeninki yok mu? Başlık, alan ve gereken adımlarla kendin oluştur.",
+      "shot": "ocean"
+    },
+    {
+      "title": "Her seferinde bir diş, bugüne yetecek kadar",
+      "text": "Atölyem'de her hayalin anahtarının ne kadar tamamlandığını bir bakışta görürsün. Şimdi yapılacak adım en üstte durur; hazırlanmış soruları yanıtladıkça bir diş dolar.\nYanıtların ve fotoğrafların Kayıtlarım'da birikir, İlerleme zaman çizelgesinde bütün yolu yeniden görebilirsin.",
+      "shot": "workshop"
+    },
+    {
+      "title": "Gerçekleşen hayaller Hazinem'e, gidilecek yerler haritaya",
+      "text": "Bütün dişleri doldur ve sandığı aç. Gerçekleşen hayaller tarihleriyle Hazinem'de birikir; ara verilen hayaller de orada seni bekler, istediğin an yeniden başlarsın.\nBir yere bağlı hayaller haritada toplanır, gitmek istediğin her yeri tek bakışta görürsün.",
+      "shot": "treasury"
+    }
+  ],
+  "steps": {
+    "title": "Üç adımda başla",
+    "items": [
+      {
+        "title": "Bir hayal seç",
+        "text": "Hayal Okyanusu'nda bir sandığa dokun ve Atölyeme al'ı seç."
+      },
+      {
+        "title": "Bugünün adımını yanıtla",
+        "text": "En üstteki adımın sorularını tek tek yanıtla, bir diş dolsun."
+      },
+      {
+        "title": "Sandığı aç",
+        "text": "Bütün dişler dolunca anahtar tamamlanır ve hayal sandığı açılır."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Hayal Okyanusu'ndaki altı alan",
+    "rows": [
+      [
+        "Seyahat",
+        "İzlanda'da kuzey ışıklarını görmek · Santorini'de gün batımını izlemek"
+      ],
+      [
+        "Deneyim",
+        "Paraşütle atlamak · Yamaç paraşütü uçmak"
+      ],
+      [
+        "Başarı",
+        "Tam maraton koşmak · Everest Base Camp trekingini yapmak"
+      ],
+      [
+        "Sağlık",
+        "20 barfiks çekmek · Karın kasları kazanmak"
+      ],
+      [
+        "Öğrenme",
+        "İngilizceyi akıcı konuşmak · Fransızcayı akıcı konuşmak"
+      ],
+      [
+        "İlişkiler",
+        "Ailenle dünya turuna çıkmak · Arkadaşlarla Jeju'da bir ay yaşamak"
+      ]
+    ],
+    "note": "Her alanda yüze yakın hayal var. Kendi hayalini Atölyem'deki Yeni hayal ekle ile oluştur."
+  },
+  "pricing": {
+    "title": "Bir kez al, hepsi senin",
+    "free": {
+      "name": "Uygulama",
+      "items": [
+        "Her adımı için soruları olan 590'dan fazla hayal",
+        "Kendi hayallerin",
+        "Fotoğraflı Kayıtlarım ve İlerleme zaman çizelgesi",
+        "Hazinem ve harita",
+        "Hayal Büyütme Modu",
+        "Gelecek güncellemeler"
+      ]
+    },
+    "pro": {
+      "name": "Geliştiriciye destek ol (isteğe bağlı)",
+      "items": [
+        "Uygulama işine yaradıysa Ayarlar'dan küçük bir bahşiş gönderebilirsin",
+        "Bahşiş hiçbir şeyin kilidini açmaz. Göndermesen de tüm özellikler senin"
+      ],
+      "note": "Tek seferlik bahşişler, abonelik değil."
+    },
+    "note": "Uygulama içinde ayrıca ücretli bir şey yok. Hesap yok, reklam yok."
+  },
+  "faq": {
+    "title": "Sık sorulan sorular",
+    "items": [
+      {
+        "q": "Nasıl başlarım?",
+        "a": "Hayal Okyanusu sekmesinde beğendiğin bir sandığa dokun ve Atölyeme al'ı seç. Atölyem'de şu anki adımın sorularını yanıtladıkça dişler tek tek dolar. Hepsi dolunca sandığı açabilirsin."
+      },
+      {
+        "q": "Kendi hayalimi ekleyebilir miyim?",
+        "a": "Evet. Atölyem'de Yeni hayal ekle'ye dokun; başlığı, alanı ve oraya giden adımları yaz."
+      },
+      {
+        "q": "Bir hayale nasıl ara verir ya da yeniden başlarım?",
+        "a": "Devam eden bir hayalin menüsünde Bu hayalden vazgeç'i seçersen hayal, Hazinem'deki Ara verilen hayaller bölümüne taşınır. Orada Yeniden başla ile Atölyem'e geri alabilir ya da Kalıcı olarak sil ile silebilirsin."
+      },
+      {
+        "q": "Hayal Büyütme Modu nedir?",
+        "a": "Hayallerini dağa tırmanır gibi yönettiğin bir ekran. Ayarlar > Ekran ayarları'ndan açıp kapatabilirsin. Her adım için son tarih koyabilir, maliyet ve zaman gibi engelleri bir proje gibi takip edebilirsin."
+      },
+      {
+        "q": "Fotoğraflar görünmüyor.",
+        "a": "Bazı hayallerin arka plan fotoğrafları internetten indirilir. İnternete bağlı olduğunu kontrol et. Bağlantı yokken varsayılan bir görsel gösterilir."
+      },
+      {
+        "q": "Kayıtlarımı yeni iPhone'a taşıyabilir miyim?",
+        "a": "Kayıtların hesap ya da eşzamanlama olmadan yalnızca bu cihazda saklanır. Yeni iPhone'u iCloud ya da bilgisayar yedeğinden geri yüklediğinde diğer uygulama verileriyle birlikte taşınır."
+      },
+      {
+        "q": "Uygulama içinde ayrıca satın alınan bir şey var mı?",
+        "a": "Yok. Uygulamayı aldığında tüm özellikler senin. Ayarlar'daki bahşiş yalnızca teşekkür etmek istersen diye orada."
+      },
+      {
+        "q": "Hayallerim ve kayıtlarım bir yere gönderiliyor mu?",
+        "a": "Hayır. Hesap yok, reklam ya da analiz aracı kullanılmıyor. Hayallerin, kayıtların ve fotoğrafların bu cihazda kalır."
+      },
+      {
+        "q": "Size nasıl ulaşırım?",
+        "a": "Hata bildirimi, özellik önerisi ya da başka her şey için uygulamanın Ayarlar bölümündeki Geri bildirim gönder'i veya Instagram DM'i (@lee25_ios) kullanabilirsin."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Hep ertelediğin o hayal,\nbugün bir dişle başlasın",
+    "cta": "App Store'dan indir"
+  },
+  "ui": {
+    "skip": "İçeriğe geç",
+    "languages": "Dil",
+    "privacy": "Gizlilik Politikası",
+    "contact": "Merak ettiğin ya da takıldığın bir şey mi var? {email} adresine yaz."
+  }
+}

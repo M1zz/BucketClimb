@@ -1,0 +1,221 @@
+{
+  "title": "Dream Seeker: bucket list yang diwujudkan langkah demi langkah",
+  "description": "Pilih mimpi, dan langkah kecil menuju ke sana menjadi gerigi sebuah kunci. Jawab satu per satu, selesaikan kuncinya, lalu buka peti mimpimu.",
+  "hero": {
+    "headline": "Jangan cuma menulis\nbucket list-mu",
+    "lead": "Pilih satu mimpi, dan langkah-langkah kecil menuju ke sana menjadi gerigi sebuah kunci. Jawab langkah hari ini satu pertanyaan demi satu, dan tanpa terasa peti mimpimu terbuka.",
+    "cta": "Unduh di App Store",
+    "note": "Sekali beli, semua fitur bisa dipakai. Tanpa langganan, tanpa iklan."
+  },
+  "demo": {
+    "title": "Selesaikan kuncinya",
+    "lead": "Mimpi melihat aurora di Islandia tinggal dua langkah lagi. Jawab tiap pertanyaan dalam satu baris (boleh dikosongkan) lalu ketuk Berikutnya. Tiap langkah yang selesai mengisi satu gerigi, dan kunci yang lengkap membuka peti.",
+    "note": "Mimpi, langkah, dan pertanyaannya sama persis dengan di aplikasi. Apa pun yang kamu ketik di sini tidak disimpan.",
+    "again": "Ulangi dari awal",
+    "app": {
+      "dream": "Melihat aurora di Islandia",
+      "category": "Perjalanan",
+      "steps": [
+        {
+          "title": "Riset musim aurora",
+          "qs": [
+            "Catat aplikasi atau situs yang kamu pakai untuk mengecek prakiraan aurora",
+            "Ceritakan bagaimana kamu menemukan waktu terbaik saat bulan tidak terlihat",
+            "Jelaskan apa yang kamu harapkan dari rencana menginap 4-5 hari"
+          ]
+        },
+        {
+          "title": "Rencana anggaran dan tabungan",
+          "qs": [
+            "Catat opsi yang kamu bandingkan saat merencanakan anggaran tiket pesawat",
+            "Ceritakan cara kamu menghitung biaya penginapan dan tipe penginapan yang dipilih",
+            "Jelaskan rencana anggaran lengkap, termasuk biaya tur dan makan"
+          ]
+        },
+        {
+          "title": "Pesan tiket pesawat",
+          "qs": [
+            "Catat opsi terbaik yang kamu temukan setelah membandingkan harga tiket",
+            "Ceritakan kota transit pilihanmu dan alasannya",
+            "Jelaskan apa yang kamu siapkan setelah mengecek aturan bagasi"
+          ]
+        },
+        {
+          "title": "Pesan penginapan",
+          "qs": [
+            "Catat alasanmu memilih lokasi dengan polusi cahaya minim",
+            "Ceritakan bagaimana kamu menemukan penginapan dengan layanan peringatan aurora",
+            "Jelaskan hal yang kamu pertimbangkan setelah membaca kebijakan pembatalan"
+          ]
+        },
+        {
+          "title": "Pesan tur aurora",
+          "qs": [
+            "Catat operator pilihanmu setelah membaca ulasan tur",
+            "Ceritakan keuntungan khusus seperti kebijakan tur ulang gratis",
+            "Jelaskan rencanamu menyewa perlengkapan penghangat"
+          ]
+        },
+        {
+          "title": "Siapkan perlengkapan penghangat",
+          "qs": [
+            "Catat pakaian hangat yang kamu siapkan untuk cuaca ekstrem dingin",
+            "Ceritakan perlengkapan seperti penghangat tangan dan sarung tangan antiair",
+            "Jelaskan peralatan yang kamu siapkan untuk memotret aurora"
+          ]
+        }
+      ],
+      "now": "Yang harus dilakukan sekarang",
+      "step": "LANGKAH %d",
+      "teeth": "%d / %d gigi selesai",
+      "answer": "Jawabanku...",
+      "next": "Berikutnya",
+      "done": "Selesai!",
+      "open": "Buka peti",
+      "found": "Kamu mendapat harta karun!",
+      "all": "Selesaikan semua gigi, dan kuncimu jadi!"
+    }
+  },
+  "problem": {
+    "title": "Pernah menulis bucket list lalu melupakannya?",
+    "text": "\"Melihat aurora\" terlalu besar sampai bingung mulai dari mana, jadi hanya diam di daftar bertahun-tahun. Dream Seeker memecahnya jadi langkah yang bisa dikerjakan hari ini, seperti mencari tahu musimnya, menabung, dan memesan tiket pesawat, lalu hanya menampilkan satu langkah untuk sekarang."
+  },
+  "features": [
+    {
+      "title": "Pilih dari lebih dari 590 mimpi",
+      "text": "Perjalanan, pengalaman, pencapaian, kesehatan, belajar, dan hubungan. Mimpi dari enam bidang mengapung di dalam peti di Laut Mimpi. Bawa yang kamu suka ke Gudang Saya, langkah-langkahnya sudah dipecah.\nMimpimu tidak ada? Buat sendiri dengan judul, bidang, dan langkah yang diperlukan.",
+      "shot": "ocean"
+    },
+    {
+      "title": "Satu gerigi demi satu, secukupnya untuk hari ini",
+      "text": "Di Gudang Saya, terlihat sekilas sejauh mana kunci tiap mimpi sudah jadi. Langkah yang perlu dikerjakan sekarang ada di paling atas, dan menjawab pertanyaannya mengisi satu gerigi.\nJawaban dan foto tersimpan di Catatanku, dan kamu bisa melihat lagi seluruh perjalanan di Linimasa progres.",
+      "shot": "workshop"
+    },
+    {
+      "title": "Mimpi yang terwujud masuk Brankas, tempat impian masuk peta",
+      "text": "Isi semua gerigi lalu buka petinya. Mimpi yang terwujud tersimpan di Brankas beserta tanggalnya, dan mimpi yang dijeda juga menunggu di sana sampai kamu siap melanjutkan.\nMimpi yang punya tempat tampil di peta, jadi semua tempat yang ingin kamu datangi terlihat sekaligus.",
+      "shot": "treasury"
+    }
+  ],
+  "steps": {
+    "title": "Mulai dalam tiga langkah",
+    "items": [
+      {
+        "title": "Pilih mimpi",
+        "text": "Ketuk peti di Laut Mimpi, lalu pilih Bawa ke Gudang Saya."
+      },
+      {
+        "title": "Jawab langkah hari ini",
+        "text": "Jawab pertanyaan di langkah paling atas satu per satu untuk mengisi gerigi."
+      },
+      {
+        "title": "Buka petinya",
+        "text": "Saat semua gerigi terisi, kunci selesai dan peti mimpi terbuka."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Enam bidang di Laut Mimpi",
+    "rows": [
+      [
+        "Perjalanan",
+        "Melihat aurora di Islandia · Menikmati matahari terbenam di Santorini"
+      ],
+      [
+        "Pengalaman",
+        "Mencoba skydiving · Mencoba paralayang"
+      ],
+      [
+        "Pencapaian",
+        "Selesaikan maraton penuh · Trekking ke Everest Base Camp"
+      ],
+      [
+        "Kesehatan",
+        "Pull-up 20 kali · Bentuk otot perut"
+      ],
+      [
+        "Belajar",
+        "Fasih berbahasa Inggris · Fasih berbahasa Prancis"
+      ],
+      [
+        "Hubungan",
+        "Keliling dunia bersama orang tua · Tinggal sebulan di Jeju bersama teman"
+      ]
+    ],
+    "note": "Tiap bidang berisi hampir seratus mimpi. Buat mimpimu sendiri lewat Tambah mimpi baru di Gudang Saya."
+  },
+  "pricing": {
+    "title": "Sekali beli, dapat semuanya",
+    "free": {
+      "name": "Aplikasinya",
+      "items": [
+        "Lebih dari 590 mimpi dengan pertanyaan di tiap langkah",
+        "Mimpi buatan sendiri",
+        "Catatanku dengan foto dan Linimasa progres",
+        "Brankas dan peta",
+        "Mode Tumbuhkan Mimpi",
+        "Pembaruan berikutnya"
+      ]
+    },
+    "pro": {
+      "name": "Dukung pengembang (opsional)",
+      "items": [
+        "Kalau aplikasinya membantu, kamu bisa mengirim tip kecil dari Pengaturan",
+        "Tip tidak membuka apa pun. Tanpa tip, semua fitur tetap bisa dipakai"
+      ],
+      "note": "Tip sekali bayar, bukan langganan."
+    },
+    "note": "Tidak ada fitur berbayar tambahan di dalam aplikasi. Tanpa akun, tanpa iklan."
+  },
+  "faq": {
+    "title": "Pertanyaan umum",
+    "items": [
+      {
+        "q": "Bagaimana cara mulai?",
+        "a": "Di tab Laut Mimpi, ketuk peti yang kamu suka lalu pilih Bawa ke Gudang Saya. Di Gudang Saya, jawab pertanyaan pada langkah saat ini dan gerigi akan terisi satu per satu. Setelah semuanya terisi, petinya bisa dibuka."
+      },
+      {
+        "q": "Bisakah menambah mimpi sendiri?",
+        "a": "Bisa. Di Gudang Saya, ketuk Tambah mimpi baru lalu isi judul, bidang, dan langkah untuk mewujudkannya."
+      },
+      {
+        "q": "Bagaimana menjeda atau melanjutkan mimpi?",
+        "a": "Di menu mimpi yang sedang berjalan, pilih Lepaskan mimpi ini dan mimpi itu pindah ke Mimpi yang dijeda di Brankas. Di sana, ketuk Mulai lagi untuk mengembalikannya ke Gudang Saya, atau Hapus permanen untuk menghapusnya."
+      },
+      {
+        "q": "Apa itu Mode Tumbuhkan Mimpi?",
+        "a": "Layar yang mengelola mimpi seperti mendaki gunung. Nyalakan atau matikan di Pengaturan > Tampilan. Kamu bisa mengatur tenggat tiap langkah dan hambatan seperti biaya dan waktu layaknya sebuah proyek."
+      },
+      {
+        "q": "Fotonya tidak muncul.",
+        "a": "Sebagian foto latar mimpi diunduh dari internet. Periksa apakah kamu terhubung ke internet. Tanpa koneksi, gambar bawaan yang ditampilkan."
+      },
+      {
+        "q": "Bisakah memindahkan catatan ke iPhone baru?",
+        "a": "Catatan hanya tersimpan di perangkat ini, tanpa akun atau sinkronisasi. Saat memulihkan iPhone baru dari cadangan iCloud atau komputer, catatan ikut pindah bersama data aplikasi lain."
+      },
+      {
+        "q": "Apakah ada pembelian di dalam aplikasi?",
+        "a": "Tidak ada. Setelah punya aplikasinya, semua fitur bisa dipakai. Tip di Pengaturan hanya pilihan kalau kamu ingin berterima kasih."
+      },
+      {
+        "q": "Apakah mimpi dan catatanku dikirim ke mana-mana?",
+        "a": "Tidak. Tidak ada akun, iklan, maupun alat analitik. Mimpi, catatan, dan fotomu tetap di perangkat ini."
+      },
+      {
+        "q": "Bagaimana cara menghubungi kalian?",
+        "a": "Laporan bug, ide fitur, atau apa saja, kirim lewat Kirim masukan di Pengaturan aplikasi atau lewat DM Instagram (@lee25_ios)."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Mimpi yang terus kamu tunda,\nhari ini satu gerigi",
+    "cta": "Unduh di App Store"
+  },
+  "ui": {
+    "skip": "Langsung ke konten",
+    "languages": "Bahasa",
+    "privacy": "Kebijakan Privasi",
+    "contact": "Ada pertanyaan atau masalah? Kirim ke {email}."
+  }
+}
