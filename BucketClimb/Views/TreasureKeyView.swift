@@ -1639,6 +1639,8 @@ struct TreasureOceanView: View {
                 }
                 .ignoresSafeArea()
             )
+            // 펼친 아이폰 듀오의 탭 막대 자리. 내비게이션 안에서 비워야 바닥 내용이 막대 위로 올라간다.
+            .foldTabBarRoom()
             .navigationTitle("꿈의 바다")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
@@ -1925,7 +1927,7 @@ struct OceanBoxDetailSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("닫기") {
+                    Button("닫기", systemImage: "xmark") {
                         dismiss()
                     }
                     .foregroundColor(.keyGold)
@@ -2015,6 +2017,8 @@ struct TreasureWarehouseView: View {
                     .padding()
                 }
             }
+            // 펼친 아이폰 듀오의 탭 막대 자리. 내비게이션 안에서 비워야 바닥 내용이 막대 위로 올라간다.
+            .foldTabBarRoom()
             .navigationTitle("내 창고")
             .navigationBarTitleDisplayMode(.large)
             .background(Color.warehouseBackgroundAdaptive.ignoresSafeArea())
@@ -2127,13 +2131,13 @@ struct AddNewDreamSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("취소") {
+                    Button("취소", systemImage: "xmark") {
                         dismiss()
                     }
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("추가") {
+                    Button("추가", systemImage: "plus") {
                         addNewDream()
                         dismiss()
                     }
@@ -2515,6 +2519,7 @@ struct ForgeView: View {
                 viewModel.openBox(currentBox)
                 dismiss()
             }
+            .foldConfined()
         }
         .sheet(isPresented: $showImagePicker) {
             PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
@@ -3051,7 +3056,7 @@ struct AllStepsListView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("닫기") { dismiss() }
+                    Button("닫기", systemImage: "xmark") { dismiss() }
                         .foregroundColor(.keyGold)
                 }
             }
@@ -3446,7 +3451,7 @@ struct AllRecordsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("닫기") { dismiss() }
+                    Button("닫기", systemImage: "xmark") { dismiss() }
                         .foregroundColor(.keyGold)
                 }
             }

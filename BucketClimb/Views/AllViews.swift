@@ -21,77 +21,80 @@ struct SkyLanternView: View {
     }
 
     var body: some View {
-        ZStack {
-            // Dark gradient background (night sky)
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    Color(red: 0.05, green: 0.05, blue: 0.15),
-                    Color(red: 0.1, green: 0.1, blue: 0.25),
-                    Color(red: 0.15, green: 0.1, blue: 0.3)
-                ]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea()
+        // 화면(UIScreen)이 아니라 이 판의 크기로 잰다. 펼친 아이폰 듀오에서는 판 하나에만 서야 한다.
+        GeometryReader { geo in
+            ZStack {
+                // Dark gradient background (night sky)
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color(red: 0.05, green: 0.05, blue: 0.15),
+                        Color(red: 0.1, green: 0.1, blue: 0.25),
+                        Color(red: 0.15, green: 0.1, blue: 0.3)
+                    ]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .ignoresSafeArea()
 
-            // Stars
-            ForEach(0..<50, id: \.self) { i in
-                Circle()
-                    .fill(Color.white.opacity(Double.random(in: 0.3...0.8)))
-                    .frame(width: CGFloat.random(in: 1...3))
-                    .position(
-                        x: CGFloat.random(in: 0...UIScreen.main.bounds.width),
-                        y: CGFloat.random(in: 0...UIScreen.main.bounds.height * 0.6)
-                    )
-            }
-
-            // Lanterns
-            ForEach(lanterns) { lantern in
-                LanternShape()
-                    .position(x: lantern.x, y: lantern.y)
-                    .scaleEffect(lantern.scale)
-                    .opacity(lantern.opacity)
-            }
-
-            // Celebration message
-            VStack(spacing: 20) {
-                if showMessage {
-                    Text("🎊")
-                        .font(.system(size: 60))
-
-                    Text("꿈을 이루셨군요!")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-
-                    Text("당신의 꿈이 밤하늘의 풍등처럼\n아름답게 빛나고 있어요")
-                        .font(.title3)
-                        .foregroundColor(.white.opacity(0.9))
-                        .multilineTextAlignment(.center)
-
-                    Button(action: onDismiss) {
-                        Text("계속하기")
-                            .font(.headline)
-                            .foregroundColor(.orange)
-                            .padding(.horizontal, 40)
-                            .padding(.vertical, 15)
-                            .background(Color.white)
-                            .cornerRadius(25)
-                    }
-                    .padding(.top, 30)
+                // Stars
+                ForEach(0..<50, id: \.self) { i in
+                    Circle()
+                        .fill(Color.white.opacity(Double.random(in: 0.3...0.8)))
+                        .frame(width: CGFloat.random(in: 1...3))
+                        .position(
+                            x: CGFloat.random(in: 0...max(1, geo.size.width)),
+                            y: CGFloat.random(in: 0...max(1, geo.size.height * 0.6))
+                        )
                 }
+
+                // Lanterns
+                ForEach(lanterns) { lantern in
+                    LanternShape()
+                        .position(x: lantern.x, y: lantern.y)
+                        .scaleEffect(lantern.scale)
+                        .opacity(lantern.opacity)
+                }
+
+                // Celebration message
+                VStack(spacing: 20) {
+                    if showMessage {
+                        Text("🎊")
+                            .font(.system(size: 60))
+
+                        Text("꿈을 이루셨군요!")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+
+                        Text("당신의 꿈이 밤하늘의 풍등처럼\n아름답게 빛나고 있어요")
+                            .font(.title3)
+                            .foregroundColor(.white.opacity(0.9))
+                            .multilineTextAlignment(.center)
+
+                        Button(action: onDismiss) {
+                            Text("계속하기")
+                                .font(.headline)
+                                .foregroundColor(.orange)
+                                .padding(.horizontal, 40)
+                                .padding(.vertical, 15)
+                                .background(Color.white)
+                                .cornerRadius(25)
+                        }
+                        .padding(.top, 30)
+                    }
+                }
+                .opacity(messageOpacity)
             }
-            .opacity(messageOpacity)
-        }
-        .onAppear {
-            startLanternAnimation()
+            .onAppear {
+                startLanternAnimation(in: geo.size)
+            }
         }
     }
 
-    func startLanternAnimation() {
+    func startLanternAnimation(in size: CGSize) {
         // Create multiple lanterns
-        let screenWidth = UIScreen.main.bounds.width
-        let screenHeight = UIScreen.main.bounds.height
+        let screenWidth = size.width
+        let screenHeight = size.height
 
         for i in 0..<8 {
             let lantern = Lantern(
@@ -325,6 +328,8 @@ struct BucketFillView: View {
                 )
                 .ignoresSafeArea()
             )
+            // 펼친 아이폰 듀오의 탭 막대 자리. 내비게이션 안에서 비워야 바닥 내용이 막대 위로 올라간다.
+            .foldTabBarRoom()
             .navigationTitle("꿈 키우기")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -357,6 +362,7 @@ struct BucketFillView: View {
             }
             .fullScreenCover(isPresented: $showingRecommendations) {
                 RecommendationsSheetView()
+                    .foldConfined()
             }
             .alert("담기 완료!", isPresented: $showingSuccessAlert) {
                 Button("확인", role: .cancel) { }
@@ -1301,7 +1307,7 @@ struct AddBucketSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("취소") { dismiss() }
+                    Button("취소", systemImage: "xmark") { dismiss() }
                 }
             }
             .onAppear {
@@ -2189,6 +2195,7 @@ struct BucketDetailView: View {
                 viewModel.completeBucket(item: item)
                 dismiss()
             }
+            .foldConfined()
         }
     }
 }
@@ -2833,7 +2840,7 @@ struct MilestoneReorderSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("완료") {
+                    Button("완료", systemImage: "checkmark") {
                         dismiss()
                     }
                     .fontWeight(.semibold)
@@ -3237,12 +3244,12 @@ struct DeadlinePickerSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("취소") {
+                    Button("취소", systemImage: "xmark") {
                         dismiss()
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("저장") {
+                    Button("저장", systemImage: "checkmark") {
                         onSave(deadline)
                         dismiss()
                     }
@@ -3359,7 +3366,7 @@ struct EvidenceInputSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("취소", action: onCancel)
+                    Button("취소", systemImage: "xmark", action: onCancel)
                 }
             }
             .onAppear {
@@ -3459,7 +3466,7 @@ struct EvidenceDetailSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("닫기", action: onDismiss)
+                    Button("닫기", systemImage: "xmark", action: onDismiss)
                 }
             }
         }
@@ -3611,11 +3618,11 @@ struct EditObstacleSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("취소") { dismiss() }
+                    Button("취소", systemImage: "xmark") { dismiss() }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("저장") {
+                    Button("저장", systemImage: "checkmark") {
                         if let value = Double(currentValue) {
                             viewModel.updateObstacle(item: item, obstacle: obstacle, newValue: value)
                             dismiss()
@@ -3720,11 +3727,11 @@ struct AddProgressSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("취소") { dismiss() }
+                    Button("취소", systemImage: "xmark") { dismiss() }
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("기록") {
+                    Button("기록", systemImage: "checkmark") {
                         recordProgress()
                     }
                     .disabled(action.isEmpty || progressValue.isEmpty)
@@ -3776,11 +3783,11 @@ struct EditTitleSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("취소") { dismiss() }
+                    Button("취소", systemImage: "xmark") { dismiss() }
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("저장") {
+                    Button("저장", systemImage: "checkmark") {
                         // 고치지 않았으면 원문을 그대로 둔다 (번역 표에서 계속 찾도록)
                         viewModel.updateBucketTitle(item: item, newTitle: title == item.title.localizedBucket ? item.title : title)
                         dismiss()
@@ -3830,11 +3837,11 @@ struct AddObstacleSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("취소") { dismiss() }
+                    Button("취소", systemImage: "xmark") { dismiss() }
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("추가") {
+                    Button("추가", systemImage: "plus") {
                         if let value = Double(targetValue) {
                             viewModel.addObstacle(
                                 item: item,
@@ -4694,7 +4701,7 @@ struct AddMilestoneSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("취소") { dismiss() }
+                    Button("취소", systemImage: "xmark") { dismiss() }
                 }
             }
         }
@@ -4725,11 +4732,11 @@ struct EditMilestoneSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("취소") { dismiss() }
+                    Button("취소", systemImage: "xmark") { dismiss() }
                 }
 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("저장") {
+                    Button("저장", systemImage: "checkmark") {
                         viewModel.updateMilestone(
                             item: item,
                             milestone: milestone,
@@ -4995,7 +5002,7 @@ struct SettingsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("완료") {
+                    Button("완료", systemImage: "checkmark") {
                         dismiss()
                     }
                 }
@@ -5102,7 +5109,7 @@ struct LocationSearchView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("취소") {
+                    Button("취소", systemImage: "xmark") {
                         dismiss()
                     }
                 }
@@ -5277,6 +5284,8 @@ struct BucketMapView: View {
                     .padding()
                 }
             }
+            // 펼친 아이폰 듀오의 탭 막대 자리. 내비게이션 안에서 비워야 바닥 내용이 막대 위로 올라간다.
+            .foldTabBarRoom()
             .navigationTitle("내 꿈의 지도")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -5413,7 +5422,7 @@ struct AllBucketBrowserView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("닫기") {
+                    Button("닫기", systemImage: "xmark") {
                         dismiss()
                     }
                 }
@@ -5750,10 +5759,10 @@ struct AddProgressRecordView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("취소") { dismiss() }
+                    Button("취소", systemImage: "xmark") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("저장") {
+                    Button("저장", systemImage: "checkmark") {
                         saveRecord()
                     }
                     .disabled(selectedMilestone == nil || (note.isEmpty && selectedPhotos.isEmpty))
