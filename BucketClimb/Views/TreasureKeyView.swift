@@ -788,13 +788,15 @@ class TreasureBoxViewModel: ObservableObject {
     }
 
     func loadAbandonedBoxes() {
-        if let data = UserDefaults.standard.data(forKey: "AbandonedBoxes"),
-           let decoded = try? JSONDecoder().decode([CompletedBox].self, from: data) {
-            // 기존 completedBoxes에 포기한 상자 추가 (중복 제거)
-            let existingIds = Set(completedBoxes.map { $0.id })
-            let newAbandonedBoxes = decoded.filter { !existingIds.contains($0.id) }
-            completedBoxes.append(contentsOf: newAbandonedBoxes)
+        guard let data = UserDefaults.standard.data(forKey: "AbandonedBoxes") else { return }
+        guard let decoded = try? JSONDecoder().decode([CompletedBox].self, from: data) else {
+            // 못 읽은 원본을 옆에 남긴다 — 다음 저장이 덮어써도 되찾을 수 있게
+            UserDefaults.standard.set(data, forKey: "AbandonedBoxes.unreadable")
+            return
         }
+        // 기존 completedBoxes에 포기한 상자 추가 (중복 제거)
+        let existingIds = Set(completedBoxes.map { $0.id })
+        completedBoxes.append(contentsOf: decoded.filter { !existingIds.contains($0.id) })
     }
 
     // 상자의 이미지 업데이트

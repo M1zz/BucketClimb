@@ -580,10 +580,13 @@ class BucketListViewModel: ObservableObject {
     }
 
     private func loadData() {
-        if let savedData = UserDefaults.standard.data(forKey: saveKey),
-           let decoded = try? JSONDecoder().decode([BucketListItem].self, from: savedData) {
-            bucketItems = decoded
+        guard let savedData = UserDefaults.standard.data(forKey: saveKey) else { return }
+        guard let decoded = try? JSONDecoder().decode([BucketListItem].self, from: savedData) else {
+            // 못 읽은 원본을 옆에 남긴다 — 빈 목록으로 시작해 다음 저장이 덮어써도 되찾을 수 있게
+            UserDefaults.standard.set(savedData, forKey: saveKey + ".unreadable")
+            return
         }
+        bucketItems = decoded
     }
 
     // 기존 데이터에 위치 정보가 없는 경우 마이그레이션
