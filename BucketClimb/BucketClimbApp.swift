@@ -6,6 +6,8 @@ struct BucketClimbApp: App {
     @StateObject private var viewModel = BucketListViewModel.shared
 
     init() {
+        // 백업 금고: 저장소를 읽기 전에 예약된 복원을 적용하고 업데이트 직전 백업을 뜬다.
+        LeeoVault.start(BucketClimbSpec.self)
         print("🚀 [BucketClimbApp] init 시작")
 
         // Unsplash API 키 설정
@@ -32,7 +34,7 @@ struct BucketClimbApp: App {
 // MARK: - 팁 (LeeoKit)
 
 /// LeeoKit 은 팁 화면에만 쓴다. 유료 앱이라 따로 파는 것이 없다.
-/// ⚠️ 여기서 bootstrap · 피드백 · 분석을 켜지 않는다 — 계약을 채우는 값일 뿐 아무것도 돌지 않는다.
+/// ⚠️ 여기서 bootstrap · 피드백 · 분석을 켜지 않는다 (백업 금고만 App.init 에서 직접 켠다) — 계약을 채우는 값일 뿐 아무것도 돌지 않는다.
 enum BucketClimbSpec: LeeoAppSpec {
     static let appName = "꿈을 찾아서"
     static let developerEmail = "leeo@kakao.com"
@@ -45,6 +47,8 @@ enum BucketClimbSpec: LeeoAppSpec {
         supportURL: URL(string: "https://m1zz.github.io/BucketClimb/ko/support.html")!
     )
     static let monetization = LeeoMonetization.paidUpfront
+    /// 피드백 허브 iCloud 컨테이너가 entitlements 에 없다 — 금고는 파일로만 백업한다.
+    static let vaultUsesICloud = false
 
     /// 고마운 사람이 조금 더 내고 싶을 때 내는 곳. 소모성 상품 셋, 작은 것부터. 기능을 열지 않는다.
     @MainActor static let tipJar = LeeoTipJar(config: LeeoTipJarConfig(productIDs: [

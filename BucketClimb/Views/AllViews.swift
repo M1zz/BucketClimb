@@ -4966,6 +4966,11 @@ struct SettingsView: View {
                     // 개발자 응원하기 — 판매 중인 팁이 있어야 선다.
                     LeeoTipJarLink<BucketClimbSpec>(tipJar: BucketClimbSpec.tipJar)
 
+                    // 백업 및 복원 (LeeoKit 금고)
+                    NavigationLink { LeeoVaultView(appName: BucketClimbSpec.displayName) } label: {
+                        Label(LeeoVaultText.entry, systemImage: "externaldrive.badge.timemachine")
+                    }
+
                     // 앱 평가하기
                     Button {
                         rateApp()
