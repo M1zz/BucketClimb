@@ -3,7 +3,7 @@ import LeeoKit
 
 @main
 struct BucketClimbApp: App {
-    @StateObject private var viewModel = BucketListViewModel()
+    @StateObject private var viewModel = BucketListViewModel.shared
 
     init() {
         print("🚀 [BucketClimbApp] init 시작")

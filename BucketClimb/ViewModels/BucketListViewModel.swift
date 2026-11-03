@@ -3,6 +3,9 @@ import SwiftUI
 import OSLog
 
 class BucketListViewModel: ObservableObject {
+    /// 앱 화면과 Siri 인텐트가 같은 목록을 쓴다 (→ BucketIntents.swift).
+    @MainActor static let shared = BucketListViewModel()
+
     @Published var bucketItems: [BucketListItem] = []
     @Published var showArchiveTab: Bool = false {
         didSet {

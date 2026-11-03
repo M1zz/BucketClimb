@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2643553B437F47C9B9079B37 /* LeeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 201C7CE851D5411A983DB9FA /* LeeoKit */; };
 		2A000002000000000000000000000002 /* BucketClimbApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000002000000000000000000000012 /* BucketClimbApp.swift */; };
 		2A000003000000000000000000000003 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000003000000000000000000000013 /* ContentView.swift */; };
 		2A000004000000000000000000000004 /* BucketListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000004000000000000000000000014 /* BucketListItem.swift */; };
@@ -17,6 +18,12 @@
 		2A000009000000000000000000000009 /* UnsplashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000009000000000000000000000029 /* UnsplashService.swift */; };
 		2A00000A00000000000000000000000A /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A00000A00000000000000000000002A /* ImageCacheManager.swift */; };
 		2A00000B00000000000000000000000B /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A00000B00000000000000000000002B /* CachedAsyncImage.swift */; };
+		308362403C0F94027614E27A /* BucketIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A318FE94747CF45034F9CA30 /* BucketIntents.swift */; };
+		3B000001000000000000000000000001 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B000001000000000000000000000011 /* Localization.swift */; };
+		3B000002000000000000000000000002 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3B000002000000000000000000000012 /* Localizable.xcstrings */; };
+		3B000003000000000000000000000003 /* Buckets.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3B000003000000000000000000000013 /* Buckets.xcstrings */; };
+		3B000004000000000000000000000004 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3B000004000000000000000000000014 /* InfoPlist.xcstrings */; };
+		3B000006000000000000000000000006 /* ScreenshotSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B000006000000000000000000000016 /* ScreenshotSeed.swift */; };
 		580DFD2D2ED5E8D6008F8FC9 /* TravelBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580DFD2C2ED5E8D6008F8FC9 /* TravelBucket.swift */; };
 		580DFD2E2ED5E8D6008F8FC9 /* HealthBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580DFD292ED5E8D6008F8FC9 /* HealthBucket.swift */; };
 		580DFD2F2ED5E8D6008F8FC9 /* BucketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580DFD272ED5E8D6008F8FC9 /* BucketItem.swift */; };
@@ -25,15 +32,11 @@
 		580DFD322ED5E8D6008F8FC9 /* LearningBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580DFD2A2ED5E8D6008F8FC9 /* LearningBucket.swift */; };
 		580DFD332ED5E8D6008F8FC9 /* RelationshipBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580DFD2B2ED5E8D6008F8FC9 /* RelationshipBucket.swift */; };
 		58AA252D2ED22AE200E8766A /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58AA252C2ED22AE200E8766A /* Asset.xcassets */; };
-		3B000001000000000000000000000001 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B000001000000000000000000000011 /* Localization.swift */; };
-		3B000002000000000000000000000002 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3B000002000000000000000000000012 /* Localizable.xcstrings */; };
-		3B000003000000000000000000000003 /* Buckets.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3B000003000000000000000000000013 /* Buckets.xcstrings */; };
-		3B000004000000000000000000000004 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3B000004000000000000000000000014 /* InfoPlist.xcstrings */; };
-		3B000006000000000000000000000006 /* ScreenshotSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B000006000000000000000000000016 /* ScreenshotSeed.swift */; };
-		2643553B437F47C9B9079B37 /* LeeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 201C7CE851D5411A983DB9FA /* LeeoKit */; };
+		D1CE43E67EDBEDB4E970B027 /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 10545C633CC577FCFDB59F86 /* AppShortcuts.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		10545C633CC577FCFDB59F86 /* AppShortcuts.xcstrings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json.xcstrings; path = AppShortcuts.xcstrings; sourceTree = "<group>"; };
 		2A000001000000000000000000000001 /* BucketClimb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BucketClimb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A000002000000000000000000000012 /* BucketClimbApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketClimbApp.swift; sourceTree = "<group>"; };
 		2A000003000000000000000000000013 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,6 +48,12 @@
 		2A000009000000000000000000000029 /* UnsplashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashService.swift; sourceTree = "<group>"; };
 		2A00000A00000000000000000000002A /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		2A00000B00000000000000000000002B /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
+		3B000001000000000000000000000011 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		3B000002000000000000000000000012 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		3B000003000000000000000000000013 /* Buckets.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Buckets.xcstrings; sourceTree = "<group>"; };
+		3B000004000000000000000000000014 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		3B000005000000000000000000000015 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Version.xcconfig; sourceTree = "<group>"; };
+		3B000006000000000000000000000016 /* ScreenshotSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotSeed.swift; sourceTree = "<group>"; };
 		580DFD262ED5E8D6008F8FC9 /* AchievementBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementBucket.swift; sourceTree = "<group>"; };
 		580DFD272ED5E8D6008F8FC9 /* BucketItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketItem.swift; sourceTree = "<group>"; };
 		580DFD282ED5E8D6008F8FC9 /* ExperienceBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceBucket.swift; sourceTree = "<group>"; };
@@ -53,12 +62,7 @@
 		580DFD2B2ED5E8D6008F8FC9 /* RelationshipBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationshipBucket.swift; sourceTree = "<group>"; };
 		580DFD2C2ED5E8D6008F8FC9 /* TravelBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelBucket.swift; sourceTree = "<group>"; };
 		58AA252C2ED22AE200E8766A /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
-		3B000001000000000000000000000011 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
-		3B000002000000000000000000000012 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		3B000003000000000000000000000013 /* Buckets.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Buckets.xcstrings; sourceTree = "<group>"; };
-		3B000004000000000000000000000014 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
-		3B000005000000000000000000000015 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Version.xcconfig; sourceTree = "<group>"; };
-		3B000006000000000000000000000016 /* ScreenshotSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotSeed.swift; sourceTree = "<group>"; };
+		A318FE94747CF45034F9CA30 /* BucketIntents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BucketIntents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				580DFD2A2ED5E8D6008F8FC9 /* LearningBucket.swift */,
 				580DFD2B2ED5E8D6008F8FC9 /* RelationshipBucket.swift */,
 				580DFD2C2ED5E8D6008F8FC9 /* TravelBucket.swift */,
+				A318FE94747CF45034F9CA30 /* BucketIntents.swift */,
+				10545C633CC577FCFDB59F86 /* AppShortcuts.xcstrings */,
 			);
 			path = BucketClimb;
 			sourceTree = "<group>";
@@ -167,10 +173,10 @@
 			);
 			dependencies = (
 			);
+			name = BucketClimb;
 			packageProductDependencies = (
 				201C7CE851D5411A983DB9FA /* LeeoKit */,
 			);
-			name = BucketClimb;
 			productName = BucketClimb;
 			productReference = 2A000001000000000000000000000001 /* BucketClimb.app */;
 			productType = "com.apple.product-type.application";
@@ -243,6 +249,7 @@
 				3B000002000000000000000000000002 /* Localizable.xcstrings in Resources */,
 				3B000003000000000000000000000003 /* Buckets.xcstrings in Resources */,
 				3B000004000000000000000000000004 /* InfoPlist.xcstrings in Resources */,
+				D1CE43E67EDBEDB4E970B027 /* AppShortcuts.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +279,7 @@
 				2A000008000000000000000000000008 /* OnboardingView.swift in Sources */,
 				3B000001000000000000000000000001 /* Localization.swift in Sources */,
 				3B000006000000000000000000000006 /* ScreenshotSeed.swift in Sources */,
+				308362403C0F94027614E27A /* BucketIntents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
