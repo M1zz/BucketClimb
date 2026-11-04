@@ -429,6 +429,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				CODE_SIGN_ENTITLEMENTS = BucketClimb/BucketClimb.entitlements;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bucketclimb.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -463,6 +464,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				CODE_SIGN_ENTITLEMENTS = BucketClimb/BucketClimb.entitlements;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bucketclimb.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
