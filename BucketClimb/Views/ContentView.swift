@@ -3,6 +3,8 @@ import LeeoKit
 
 struct ContentView: View {
     @EnvironmentObject var viewModel: BucketListViewModel
+    /// Siri · Spotlight 에서 고른 꿈
+    @State private var siriDream: BucketListItem?
 
     var body: some View {
         Group {
@@ -18,6 +20,16 @@ struct ContentView: View {
                 // 내 창고 모드 (기본)
                 ForgeMainView()
             }
+        }
+        // Siri · Spotlight 에서 고른 꿈을 시트로 연다
+        .onChange(of: DreamRouter.shared.dreamID, initial: true) { _, id in
+            guard let id else { return }
+            DreamRouter.shared.dreamID = nil
+            siriDream = viewModel.bucketItems.first { $0.id == id }
+        }
+        .sheet(item: $siriDream) { item in
+            NavigationStack { BucketDetailView(item: item) }
+                .environmentObject(viewModel)
         }
     }
 }

@@ -4,6 +4,7 @@ import LeeoKit
 @main
 struct BucketClimbApp: App {
     @StateObject private var viewModel = BucketListViewModel.shared
+    @Environment(\.scenePhase) private var scenePhase
 
     init() {
         // 백업 금고: 저장소를 읽기 전에 예약된 복원을 적용하고 업데이트 직전 백업을 뜬다.
@@ -27,6 +28,10 @@ struct BucketClimbApp: App {
                 .task { await BucketClimbSpec.tipJar.startStandalone() }
                 // 아이폰 듀오: 접힘을 재서 아래로 흘린다. 시트 · 알림창도 접힌 선을 비킨다 (LeeoKit Fold).
                 .foldAware()
+                // Spotlight · Siri 가 찾는 꿈을 앱을 열 때와 뒤로 보낼 때 맞춘다
+                .onChange(of: scenePhase) { _, phase in
+                    if phase != .inactive { Task { await DreamEntity.reindex() } }
+                }
         }
     }
 }
