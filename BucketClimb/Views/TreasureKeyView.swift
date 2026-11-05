@@ -2577,8 +2577,8 @@ struct CurrentStepSection: View {
     @State private var currentChecklistIndex = 0
     @State private var userAnswer = ""
     @State private var showAnswerField = false
-    @State private var selectedPhoto: PhotosPickerItem?
-    @State private var selectedImage: UIImage?
+    @State private var selectedPhotos: [PhotosPickerItem] = []
+    @State private var selectedImages: [UIImage] = []
 
     // 현재 진행해야 할 단계 (완료되지 않은 첫 번째)
     var currentTooth: Tooth? {
@@ -2650,11 +2650,11 @@ struct CurrentStepSection: View {
                     totalQuestions: totalQuestions,
                     userAnswer: $userAnswer,
                     showAnswerField: $showAnswerField,
-                    selectedPhoto: $selectedPhoto,
-                    selectedImage: $selectedImage,
-                    onAnswer: { answer, image in
+                    selectedPhotos: $selectedPhotos,
+                    selectedImages: $selectedImages,
+                    onAnswer: { answer, images in
                         // 답변 저장 (사진 포함)
-                        saveAnswer(for: tooth, questionIndex: currentChecklistIndex, answer: answer, image: image)
+                        saveAnswer(for: tooth, questionIndex: currentChecklistIndex, answer: answer, images: images)
 
                         // 다음 질문으로 이동 또는 완료
                         if currentChecklistIndex < totalQuestions - 1 {
@@ -2662,8 +2662,8 @@ struct CurrentStepSection: View {
                                 currentChecklistIndex += 1
                                 userAnswer = ""
                                 showAnswerField = false
-                                selectedPhoto = nil
-                                selectedImage = nil
+                                selectedPhotos = []
+                                selectedImages = []
                             }
                         } else {
                             // 모든 체크리스트 완료 -> 마일스톤 완료
@@ -2671,8 +2671,8 @@ struct CurrentStepSection: View {
                             currentChecklistIndex = 0
                             userAnswer = ""
                             showAnswerField = false
-                            selectedPhoto = nil
-                            selectedImage = nil
+                            selectedPhotos = []
+                            selectedImages = []
                         }
                     },
                     onSkipToComplete: {
@@ -2681,8 +2681,8 @@ struct CurrentStepSection: View {
                         currentChecklistIndex = 0
                         userAnswer = ""
                         showAnswerField = false
-                        selectedPhoto = nil
-                        selectedImage = nil
+                        selectedPhotos = []
+                        selectedImages = []
                     }
                 )
             } else {
@@ -2706,13 +2706,13 @@ struct CurrentStepSection: View {
             currentChecklistIndex = 0
             userAnswer = ""
             showAnswerField = false
-            selectedPhoto = nil
-            selectedImage = nil
+            selectedPhotos = []
+            selectedImages = []
         }
     }
 
     // 답변 저장 (사진 포함)
-    func saveAnswer(for tooth: Tooth, questionIndex: Int, answer: String, image: UIImage?) {
+    func saveAnswer(for tooth: Tooth, questionIndex: Int, answer: String, images: [UIImage]) {
         guard let item = bucketItem,
               let milestone = currentMilestone,
               questionIndex < milestone.successCriteria.count else { return }
@@ -2720,17 +2720,12 @@ struct CurrentStepSection: View {
         let question = milestone.successCriteria[questionIndex]
 
         // 사진 저장
-        var photoFileName: String? = nil
-        if let image = image {
-            photoFileName = saveImageToDocuments(image: image, itemId: item.id)
-            if let fileName = photoFileName {
-                item.photos.append(fileName)
-            }
-        }
+        let photoFileNames = images.compactMap { saveImageToDocuments(image: $0, itemId: item.id) }
+        item.photos.append(contentsOf: photoFileNames)
 
-        // 기록 저장 (사진 파일명 포함)
+        // 기록 저장 (사진마다 한 줄씩 파일명)
         var record = "[\(tooth.title)] \(question)\n→ \(answer)"
-        if let fileName = photoFileName {
+        for fileName in photoFileNames {
             record += "\n📷 \(fileName)"
         }
 
@@ -2745,7 +2740,7 @@ struct CurrentStepSection: View {
     func saveImageToDocuments(image: UIImage, itemId: UUID) -> String? {
         guard let data = image.jpegData(compressionQuality: 0.7) else { return nil }
 
-        let fileName = "\(itemId.uuidString)_\(Date().timeIntervalSince1970).jpg"
+        let fileName = "\(itemId.uuidString)_\(UUID().uuidString).jpg"
         let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let filePath = documentsPath.appendingPathComponent(fileName)
 
@@ -2761,6 +2756,9 @@ struct CurrentStepSection: View {
 
 // 현재 단계 카드
 struct CurrentStepCard: View {
+    /// 한 답변에 붙일 수 있는 사진 수
+    static let maxPhotos = 5
+
     let tooth: Tooth
     let milestone: Milestone?
     let stepNumber: Int
@@ -2769,9 +2767,9 @@ struct CurrentStepCard: View {
     let totalQuestions: Int
     @Binding var userAnswer: String
     @Binding var showAnswerField: Bool
-    @Binding var selectedPhoto: PhotosPickerItem?
-    @Binding var selectedImage: UIImage?
-    let onAnswer: (String, UIImage?) -> Void
+    @Binding var selectedPhotos: [PhotosPickerItem]
+    @Binding var selectedImages: [UIImage]
+    let onAnswer: (String, [UIImage]) -> Void
     let onSkipToComplete: () -> Void
 
     var body: some View {
@@ -2848,68 +2846,75 @@ struct CurrentStepCard: View {
                                 .foregroundColor(.primary)
                                 .lineLimit(2...4)
 
-                            // 사진 선택 영역
-                            HStack(spacing: 12) {
-                                // 선택된 사진 미리보기
-                                if let image = selectedImage {
-                                    ZStack(alignment: .topTrailing) {
-                                        Image(uiImage: image)
-                                            .resizable()
-                                            .scaledToFill()
+                            // 사진 선택 영역 (한 답변에 여러 장)
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 12) {
+                                    // 선택된 사진 미리보기
+                                    ForEach(Array(selectedImages.enumerated()), id: \.offset) { index, image in
+                                        ZStack(alignment: .topTrailing) {
+                                            Image(uiImage: image)
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width: 80, height: 80)
+                                                .clipShape(RoundedRectangle(cornerRadius: 10))
+
+                                            // 삭제 버튼
+                                            Button(action: {
+                                                withAnimation {
+                                                    selectedImages.remove(at: index)
+                                                    selectedPhotos.remove(at: index)
+                                                }
+                                            }) {
+                                                Image(systemName: "xmark.circle.fill")
+                                                    .font(.system(size: 20))
+                                                    .foregroundColor(.white)
+                                                    .background(Circle().fill(Color.black.opacity(0.5)))
+                                            }
+                                            .offset(x: 6, y: -6)
+                                            .accessibilityLabel(Text("사진 삭제"))
+                                        }
+                                        .padding(.top, 6)
+                                    }
+
+                                    // 사진 추가 버튼
+                                    if selectedImages.count < Self.maxPhotos {
+                                        PhotosPicker(selection: $selectedPhotos, maxSelectionCount: Self.maxPhotos, matching: .images) {
+                                            VStack(spacing: 4) {
+                                                Image(systemName: "photo.badge.plus")
+                                                    .font(.title2)
+                                                Text("사진 추가")
+                                                    .font(.caption2)
+                                            }
+                                            .foregroundColor(.keyGold)
                                             .frame(width: 80, height: 80)
-                                            .clipShape(RoundedRectangle(cornerRadius: 10))
-
-                                        // 삭제 버튼
-                                        Button(action: {
-                                            withAnimation {
-                                                selectedPhoto = nil
-                                                selectedImage = nil
-                                            }
-                                        }) {
-                                            Image(systemName: "xmark.circle.fill")
-                                                .font(.system(size: 20))
-                                                .foregroundColor(.white)
-                                                .background(Circle().fill(Color.black.opacity(0.5)))
+                                            .background(Color.keyGold.opacity(0.15))
+                                            .cornerRadius(10)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 10)
+                                                    .stroke(Color.keyGold.opacity(0.3), style: StrokeStyle(lineWidth: 1, dash: [5]))
+                                            )
                                         }
-                                        .offset(x: 6, y: -6)
-                                        .accessibilityLabel(Text("사진 삭제"))
+                                        .padding(.top, 6)
                                     }
                                 }
-
-                                // 사진 추가 버튼
-                                PhotosPicker(selection: $selectedPhoto, matching: .images) {
-                                    VStack(spacing: 4) {
-                                        Image(systemName: selectedImage == nil ? "photo.badge.plus" : "arrow.triangle.2.circlepath")
-                                            .font(.title2)
-                                        Text(selectedImage == nil ? "사진 추가" : "변경")
-                                            .font(.caption2)
-                                    }
-                                    .foregroundColor(.keyGold)
-                                    .frame(width: 80, height: 80)
-                                    .background(Color.keyGold.opacity(0.15))
-                                    .cornerRadius(10)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(Color.keyGold.opacity(0.3), style: StrokeStyle(lineWidth: 1, dash: [5]))
-                                    )
-                                }
-                                .onChange(of: selectedPhoto) { _, newItem in
-                                    Task {
-                                        if let data = try? await newItem?.loadTransferable(type: Data.self),
-                                           let uiImage = UIImage(data: data) {
-                                            await MainActor.run {
-                                                selectedImage = uiImage
-                                            }
+                                .padding(.trailing, 6)
+                            }
+                            .onChange(of: selectedPhotos) { _, items in
+                                Task {
+                                    var images: [UIImage] = []
+                                    for item in items {
+                                        if let data = try? await item.loadTransferable(type: Data.self),
+                                           let image = UIImage(data: data) {
+                                            images.append(image)
                                         }
                                     }
+                                    await MainActor.run { selectedImages = images }
                                 }
-
-                                Spacer()
                             }
 
                             // 완료 버튼
                             Button(action: {
-                                onAnswer(userAnswer.isEmpty ? "확인함" : userAnswer, selectedImage)
+                                onAnswer(userAnswer.isEmpty ? "확인함" : userAnswer, selectedImages)
                             }) {
                                 HStack {
                                     Image(systemName: "checkmark")
@@ -3222,10 +3227,10 @@ struct ForgeNotesSection: View {
     @State private var showAllRecords = false
 
     // 기록을 파싱해서 질문-답변-사진 쌍으로 변환
-    var records: [(milestone: String, question: String, answer: String, photoFilename: String?)] {
+    var records: [(milestone: String, question: String, answer: String, photoFilenames: [String])] {
         guard !item.notes.isEmpty else { return [] }
 
-        var result: [(String, String, String, String?)] = []
+        var result: [(String, String, String, [String])] = []
         let blocks = item.notes.components(separatedBy: "\n\n")
 
         for block in blocks {
@@ -3233,12 +3238,10 @@ struct ForgeNotesSection: View {
             if lines.count >= 2 {
                 let firstLine = lines[0]
                 let answerLine = lines[1]
-                var photoFilename: String? = nil
-
-                // 사진 정보 파싱 (📷 filename.jpg 형식)
-                if lines.count >= 3 && lines[2].hasPrefix("📷 ") {
-                    photoFilename = String(lines[2].dropFirst(2)).trimmingCharacters(in: .whitespaces)
-                }
+                // 사진 정보 파싱 (📷 filename.jpg 한 줄에 한 장)
+                let photoFilenames = lines.dropFirst(2)
+                    .filter { $0.hasPrefix("📷 ") }
+                    .map { String($0.dropFirst(2)).trimmingCharacters(in: .whitespaces) }
 
                 // [마일스톤] 질문 형식 파싱
                 if firstLine.hasPrefix("["),
@@ -3247,7 +3250,7 @@ struct ForgeNotesSection: View {
                     let question = String(firstLine[firstLine.index(after: endBracket)...]).trimmingCharacters(in: .whitespaces)
                     let answer = answerLine.hasPrefix("→ ") ? String(answerLine.dropFirst(2)) : answerLine
 
-                    result.append((milestone, question, answer, photoFilename))
+                    result.append((milestone, question, answer, photoFilenames))
                 }
             }
         }
@@ -3332,7 +3335,7 @@ struct ForgeNotesSection: View {
 
 // 기록 미리보기 카드
 struct RecordPreviewCard: View {
-    let record: (milestone: String, question: String, answer: String, photoFilename: String?)
+    let record: (milestone: String, question: String, answer: String, photoFilenames: [String])
 
     var body: some View {
         HStack(spacing: 12) {
@@ -3362,8 +3365,8 @@ struct RecordPreviewCard: View {
 
             Spacer()
 
-            // 사진 썸네일
-            if let photoFilename = record.photoFilename,
+            // 사진 썸네일 (첫 장)
+            if let photoFilename = record.photoFilenames.first,
                let image = loadImageFromDocuments(filename: photoFilename) {
                 Image(uiImage: image)
                     .resizable()
@@ -3389,13 +3392,13 @@ struct RecordPreviewCard: View {
 
 // 전체 기록 뷰
 struct AllRecordsView: View {
-    let records: [(milestone: String, question: String, answer: String, photoFilename: String?)]
+    let records: [(milestone: String, question: String, answer: String, photoFilenames: [String])]
     let itemTitle: String
     @Environment(\.dismiss) var dismiss
 
     // 마일스톤별로 그룹화
-    var groupedRecords: [(milestone: String, items: [(question: String, answer: String, photoFilename: String?)])] {
-        var dict: [String: [(String, String, String?)]] = [:]
+    var groupedRecords: [(milestone: String, items: [(question: String, answer: String, photoFilenames: [String])])] {
+        var dict: [String: [(String, String, [String])]] = [:]
         var order: [String] = []
 
         for record in records {
@@ -3403,7 +3406,7 @@ struct AllRecordsView: View {
                 dict[record.milestone] = []
                 order.append(record.milestone)
             }
-            dict[record.milestone]?.append((record.question, record.answer, record.photoFilename))
+            dict[record.milestone]?.append((record.question, record.answer, record.photoFilenames))
         }
 
         return order.map { milestone in
@@ -3435,7 +3438,7 @@ struct AllRecordsView: View {
                                     RecordDetailCard(
                                         question: item.0,
                                         answer: item.1,
-                                        photoFilename: item.2,
+                                        photoFilenames: item.2,
                                         index: index + 1
                                     )
                                 }
@@ -3465,9 +3468,14 @@ struct AllRecordsView: View {
 struct RecordDetailCard: View {
     let question: String
     let answer: String
-    let photoFilename: String?
+    let photoFilenames: [String]
     let index: Int
-    @State private var showFullImage = false
+    @State private var fullImage: FullImage?
+
+    private struct FullImage: Identifiable {
+        let id = UUID()
+        let image: UIImage
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -3500,23 +3508,21 @@ struct RecordDetailCard: View {
             .accessibilityElement(children: .combine)
 
             // 사진
-            if let photoFilename = photoFilename,
-               let image = loadImageFromDocuments(filename: photoFilename) {
-                Button(action: { showFullImage = true }) {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 150)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.keyGold.opacity(0.3), lineWidth: 1)
-                        )
-                }
-                .accessibilityLabel(Text("사진 크게 보기"))
-                .sheet(isPresented: $showFullImage) {
-                    PhotoFullScreenView(image: image)
+            ForEach(photoFilenames, id: \.self) { photoFilename in
+                if let image = loadImageFromDocuments(filename: photoFilename) {
+                    Button(action: { fullImage = FullImage(image: image) }) {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 150)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.keyGold.opacity(0.3), lineWidth: 1)
+                            )
+                    }
+                    .accessibilityLabel(Text("사진 크게 보기"))
                 }
             }
         }
@@ -3524,6 +3530,9 @@ struct RecordDetailCard: View {
         .padding()
         .background(Color(UIColor.tertiarySystemFill))
         .cornerRadius(12)
+        .sheet(item: $fullImage) { item in
+            PhotoFullScreenView(image: item.image)
+        }
     }
 
     private func loadImageFromDocuments(filename: String) -> UIImage? {
