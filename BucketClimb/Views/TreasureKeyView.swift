@@ -1832,6 +1832,8 @@ struct OceanBoxDetailSheet: View {
     let box: TreasureBox
     @EnvironmentObject var viewModel: TreasureBoxViewModel
     @Environment(\.dismiss) var dismiss
+    /// 무료로 키울 꿈이 다 찼으면 가져오는 대신 페이월을 띄운다.
+    @State private var paywall: ProFeature?
 
     var body: some View {
         NavigationView {
@@ -1906,6 +1908,10 @@ struct OceanBoxDetailSheet: View {
 
                         // 가져오기 버튼
                         Button(action: {
+                            guard ProStore.shared.canTakeAnotherDream else {
+                                paywall = .dreams
+                                return
+                            }
                             viewModel.moveToWarehouse(box)
                             dismiss()
                         }) {
@@ -1936,6 +1942,7 @@ struct OceanBoxDetailSheet: View {
                 }
             }
         }
+        .sheet(item: $paywall) { PaywallView(highlight: $0) }
     }
 }
 
@@ -1948,6 +1955,16 @@ struct TreasureWarehouseView: View {
     @State private var showsScreenshotForge = false
     @State private var showingAddSheet = false
     @State private var showingSettings = false
+    @State private var paywall: ProFeature?
+
+    /// 새 꿈 만들기. 무료로 키울 꿈이 다 찼으면 페이월을 먼저 띄운다 — 다 적고 나서 막히지 않게.
+    private func addDream() {
+        if ProStore.shared.canTakeAnotherDream {
+            showingAddSheet = true
+        } else {
+            paywall = .dreams
+        }
+    }
 
     var body: some View {
         NavigationStack {
@@ -1969,7 +1986,7 @@ struct TreasureWarehouseView: View {
                             .multilineTextAlignment(.center)
 
                         VStack(spacing: 12) {
-                            Button(action: { showingAddSheet = true }) {
+                            Button(action: addDream) {
                                 HStack {
                                     Image(systemName: "plus.circle.fill")
                                     Text("새 꿈 추가하기")
@@ -2027,7 +2044,7 @@ struct TreasureWarehouseView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack(spacing: 16) {
-                        Button(action: { showingAddSheet = true }) {
+                        Button(action: addDream) {
                             Image(systemName: "plus")
                                 .font(.system(size: 18, weight: .semibold))
                         }
@@ -2050,6 +2067,7 @@ struct TreasureWarehouseView: View {
                 AddNewDreamSheet()
                     .environmentObject(viewModel)
             }
+            .sheet(item: $paywall) { PaywallView(highlight: $0) }
             .sheet(isPresented: $showingSettings) {
                 NavigationStack {
                     SettingsView()
@@ -3936,9 +3954,17 @@ struct TreasureTreasureView: View {
                     .padding(.top, 100)
                 } else {
                     LazyVStack(spacing: 16) {
-                        // 이룬 꿈을 돌아보는 자리. 숫자가 쌓였을 때만, 드물게 응원을 부탁한다 (모달 아님)
-                        LeeoTipAskSlot<BucketClimbSpec>(tipJar: BucketClimbSpec.tipJar,
-                                                        reached: BucketClimbTipMoments.reached(in: bucketViewModel))
+                        // 첫 꿈을 이룬 뒤 한 번, 닫기 쉬운 작은 카드로 Pro 를 알린다 (Pro 면 서지 않는다)
+                        if !completedDreams.isEmpty {
+                            FirstTreasureProCard()
+                        }
+
+                        // 이룬 꿈을 돌아보는 자리. 숫자가 쌓였을 때만, 드물게 응원을 부탁한다 (모달 아님).
+                        // 응원 부탁은 이미 Pro 를 가진 사람에게만 한다.
+                        if ProStore.shared.hasPro {
+                            LeeoTipAskSlot<BucketClimbSpec>(tipJar: BucketClimbSpec.tipJar,
+                                                            reached: BucketClimbTipMoments.reached(in: bucketViewModel))
+                        }
 
                         // 완료된 꿈 섹션
                         if !completedDreams.isEmpty {
@@ -4012,6 +4038,8 @@ struct AbandonedDreamCard: View {
     @EnvironmentObject var viewModel: TreasureBoxViewModel
     @State private var showResumeAlert = false
     @State private var showDeleteAlert = false
+    /// 다시 시작도 창고에 꿈을 하나 더 들이는 일이다. 무료로 키울 꿈이 다 찼으면 페이월을 띄운다.
+    @State private var paywall: ProFeature?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -4107,7 +4135,11 @@ struct AbandonedDreamCard: View {
         .alert("다시 시작할까요?", isPresented: $showResumeAlert) {
             Button("취소", role: .cancel) { }
             Button("다시 시작", role: .none) {
-                viewModel.resumeBox(completedBox)
+                if ProStore.shared.canTakeAnotherDream {
+                    viewModel.resumeBox(completedBox)
+                } else {
+                    paywall = .dreams
+                }
             }
         } message: {
             Text("'\(completedBox.box.title.localizedBucket)' 꿈을 내 창고로 다시 가져갑니다.")
@@ -4120,6 +4152,7 @@ struct AbandonedDreamCard: View {
         } message: {
             Text("'\(completedBox.box.title.localizedBucket)' 꿈을 완전히 삭제합니다. 이 작업은 되돌릴 수 없어요.")
         }
+        .sheet(item: $paywall) { PaywallView(highlight: $0) }
     }
 }
 

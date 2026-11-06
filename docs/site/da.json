@@ -5,7 +5,7 @@
     "headline": "Skriv ikke bare\nbucketlisten ned",
     "lead": "Vælg en drøm, og de små trin, der fører derhen, bliver tænderne i en nøgle. Svar på dagens trin, ét spørgsmål ad gangen, og før du ved af det, står kisten åben.",
     "cta": "Hent i App Store",
-    "note": "Køb én gang, og alle funktioner er dine. Intet abonnement, ingen reklamer."
+    "note": "Gratis at hente, med op til fem drømme ad gangen. Ingen reklamer."
   },
   "demo": {
     "title": "Gør nøglen færdig",
@@ -145,27 +145,30 @@
     "note": "Hvert område har næsten hundrede drømme. Lav dine egne med Tilføj ny drøm i Mit værksted."
   },
   "pricing": {
-    "title": "Køb én gang, få det hele",
+    "title": "Start gratis, og vælg Pro, når du vil have mere",
     "free": {
-      "name": "Appen",
+      "name": "Gratis",
       "items": [
         "Over 590 drømme med spørgsmål til hvert trin",
         "Dine egne drømme",
+        "Op til 5 drømme ad gangen",
         "Mine optegnelser med billeder og tidslinjen",
         "Skatkammer og kort",
-        "Vækst-tilstand",
-        "Fremtidige opdateringer"
+        "Eksportér drømmedagbog"
       ]
     },
     "pro": {
-      "name": "Støt udvikleren (frivilligt)",
+      "name": "Dream Seeker Pro",
       "items": [
-        "Hvis appen hjælper dig, kan du give lidt drikkepenge i Indstillinger",
-        "Drikkepenge låser ikke noget op. Uden dem har du stadig alle funktioner"
+        "Alt i gratisversionen",
+        "Ubegrænset antal drømme ad gangen",
+        "Vækst-tilstand",
+        "Frister pr. trin · styr på forhindringer",
+        "Daglig fremskridtslog · fanen Arkiv"
       ],
-      "note": "Engangsbeløb, ikke et abonnement."
+      "note": "Uge-, måneds- eller årsabonnement eller et engangskøb for livet."
     },
-    "note": "Intet i appen koster ekstra. Ingen konto, ingen reklamer."
+    "note": "Har du allerede købt appen? Så har du allerede Pro. Drikkepenge i Indstillinger låser ikke noget op. Ingen konto, ingen reklamer."
   },
   "faq": {
     "title": "Ofte stillede spørgsmål",
@@ -196,7 +199,7 @@
       },
       {
         "q": "Kan man købe noget i appen?",
-        "a": "Nej. Med appen er alle funktioner dine. Drikkepengene i Indstillinger er der kun, hvis du vil sige tak."
+        "a": "Med op til fem drømme ad gangen er alt gratis, fra at smede nøglen til at åbne skatkammeret. Vælg Pro for at arbejde med så mange drømme, du vil, og bruge vækst-tilstand. Vælg et uge-, måneds- eller årsabonnement eller et engangskøb for livet. Hvis du allerede har købt appen, har du allerede Pro."
       },
       {
         "q": "Bliver mine drømme og optegnelser sendt nogen steder hen?",

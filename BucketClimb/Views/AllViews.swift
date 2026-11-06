@@ -1762,10 +1762,13 @@ struct ArchiveView: View {
                             StatsCard(completedCount: viewModel.itemsCompleted.count)
                                 .padding()
 
-                            // 이룬 꿈을 돌아보는 자리. 숫자가 쌓였을 때만, 드물게 응원을 부탁한다 (모달 아님)
-                            LeeoTipAskSlot<BucketClimbSpec>(tipJar: BucketClimbSpec.tipJar,
-                                                            reached: BucketClimbTipMoments.reached(in: viewModel))
-                                .padding(.horizontal)
+                            // 이룬 꿈을 돌아보는 자리. 숫자가 쌓였을 때만, 드물게 응원을 부탁한다 (모달 아님).
+                            // 응원 부탁은 이미 Pro 를 가진 사람에게만 한다.
+                            if ProStore.shared.hasPro {
+                                LeeoTipAskSlot<BucketClimbSpec>(tipJar: BucketClimbSpec.tipJar,
+                                                                reached: BucketClimbTipMoments.reached(in: viewModel))
+                                    .padding(.horizontal)
+                            }
 
                             VStack(alignment: .leading, spacing: 15) {
                                 Text("피어난 꿈들 🌸")
@@ -4760,6 +4763,21 @@ struct EditMilestoneSheet: View {
 struct SettingsView: View {
     @EnvironmentObject var viewModel: BucketListViewModel
     @Environment(\.dismiss) var dismiss
+    /// 꿈 키우기 모드를 켜려는데 Pro 가 아니면 띄운다.
+    @State private var paywall: ProFeature?
+
+    /// 꿈 키우기 모드 스위치. 켜는 것만 Pro 다 — 끄는 것은 언제나 된다.
+    private var growMode: Binding<Bool> {
+        Binding(
+            get: { viewModel.useClassicMode && ProStore.shared.isPro },
+            set: { on in
+                if on, !ProStore.shared.isPro {
+                    paywall = .growMode
+                } else {
+                    viewModel.useClassicMode = on
+                }
+            })
+    }
 
     var body: some View {
         NavigationView {
@@ -4781,20 +4799,52 @@ struct SettingsView: View {
                             }
                         }
                     }
+
+                    // 꿈 · 단계 · 기록을 글로 내보낸다. 기본 내보내기라 잠그지 않는다.
+                    ShareLink(item: viewModel.exportText) {
+                        HStack {
+                            Image(systemName: "square.and.arrow.up")
+                                .foregroundColor(.blue)
+                                .font(.title3)
+
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("꿈 기록 내보내기")
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+
+                                Text("꿈 · 단계 · 기록을 글로 내보냅니다")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    }
+                    .disabled(viewModel.bucketItems.isEmpty)
                 } header: {
                     Text("나의 기록")
                 }
 
+                ProSettingsSection()
+
                 Section {
-                    Toggle(isOn: $viewModel.useClassicMode) {
+                    Toggle(isOn: growMode) {
                         HStack(spacing: 12) {
                             Image(systemName: "mountain.2.fill")
                                 .foregroundColor(.blue)
                                 .font(.title3)
 
                             VStack(alignment: .leading, spacing: 4) {
-                                Text("꿈 키우기 모드")
-                                    .font(.headline)
+                                HStack(spacing: 6) {
+                                    Text("꿈 키우기 모드")
+                                        .font(.headline)
+                                    if !ProStore.shared.isPro {
+                                        Text(verbatim: "Pro")
+                                            .font(.caption.weight(.bold))
+                                            .foregroundColor(.proAccent)
+                                            .padding(.horizontal, 6)
+                                            .padding(.vertical, 2)
+                                            .background(Capsule().fill(Color.proAccent.opacity(0.14)))
+                                    }
+                                }
 
                                 Text("산 오르기 메타포로 버킷리스트를 관리합니다")
                                     .font(.caption)
@@ -4804,7 +4854,7 @@ struct SettingsView: View {
                     }
                     .tint(.blue)
 
-                    if viewModel.useClassicMode {
+                    if growMode.wrappedValue {
                         Toggle(isOn: $viewModel.showArchiveTab) {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("아카이브 탭 표시")
@@ -4819,7 +4869,7 @@ struct SettingsView: View {
                 } header: {
                     Text("화면 설정")
                 } footer: {
-                    if viewModel.useClassicMode {
+                    if growMode.wrappedValue {
                         Text("꿈 키우기 모드에서는 프로젝트형태로 관리합니다.")
                     } else {
                         Text("기본 모드는 '내 창고'입니다. 열쇠를 만들어 보물상자를 열어보세요!")
@@ -5012,6 +5062,7 @@ struct SettingsView: View {
                     }
                 }
             }
+            .sheet(item: $paywall) { PaywallView(highlight: $0) }
         }
     }
 

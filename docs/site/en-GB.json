@@ -5,7 +5,7 @@
     "headline": "Don't just write\nyour bucket list down",
     "lead": "Pick a dream and the small steps that get you there become the teeth of a key. Answer today's step, one question at a time, and before you know it the box is open.",
     "cta": "Download on the App Store",
-    "note": "Buy once and every feature is yours. No subscription, no adverts."
+    "note": "Free to download, with up to five dreams at a time. No ads."
   },
   "demo": {
     "title": "Finish the key",
@@ -145,27 +145,30 @@
     "note": "Each area holds nearly a hundred dreams. Create your own with Add New Dream in My Workshop."
   },
   "pricing": {
-    "title": "Buy once, get everything",
+    "title": "Start free, go Pro when you want more",
     "free": {
-      "name": "The app",
+      "name": "Free",
       "items": [
         "More than 590 dreams with step-by-step questions",
         "Your own dreams",
+        "Up to 5 dreams at a time",
         "My Notes with photos, and the Progress Timeline",
         "Treasury and map",
-        "Climb Mode",
-        "Future updates"
+        "Export Dream Journal"
       ]
     },
     "pro": {
-      "name": "Tip the developer (optional)",
+      "name": "Dream Seeker Pro",
       "items": [
-        "If the app helps, you can send a small tip from Settings",
-        "Tips don't unlock anything. Without one, every feature is still yours"
+        "Everything in Free",
+        "Unlimited dreams at a time",
+        "Climb Mode",
+        "Step deadlines · obstacle tracking",
+        "Daily progress log · Archive tab"
       ],
-      "note": "One-off tips, not a subscription."
+      "note": "Weekly, monthly or yearly subscription, or a one-time lifetime purchase."
     },
-    "note": "Nothing inside the app costs extra. No account, no adverts."
+    "note": "Bought the app before? You already have Pro. Tips in Settings don't unlock anything. No account, no ads."
   },
   "faq": {
     "title": "Questions",
@@ -196,7 +199,7 @@
       },
       {
         "q": "Is there anything to buy inside the app?",
-        "a": "No. Once you have the app, every feature is yours. The tips in Settings are only there if you'd like to say thank you."
+        "a": "With up to five dreams at a time, everything from forging keys to opening the treasury is free. Choose Pro to work on as many dreams as you like and to use Climb Mode. Pick a weekly, monthly or yearly subscription, or a one-time lifetime purchase. If you bought the app before, you already have Pro."
       },
       {
         "q": "Are my dreams and notes sent anywhere?",

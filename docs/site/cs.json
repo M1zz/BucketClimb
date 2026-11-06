@@ -5,7 +5,7 @@
     "headline": "Sny si jen\nnezapisujte",
     "lead": "Vyberte si sen a malé kroky, které k němu vedou, se stanou zuby klíče. Odpovídejte na dnešní krok otázku po otázce a než se nadějete, truhla snů je otevřená.",
     "cta": "Stáhnout z App Storu",
-    "note": "Koupíte jednou a máte všechny funkce. Bez předplatného a bez reklam."
+    "note": "Ke stažení zdarma, až pět snů najednou. Bez reklam."
   },
   "demo": {
     "title": "Dokončete klíč",
@@ -145,27 +145,30 @@
     "note": "V každé oblasti je skoro sto snů. Vlastní sen vytvoříte v Mé dílně pomocí Přidat nový sen."
   },
   "pricing": {
-    "title": "Jeden nákup, všechno v ceně",
+    "title": "Začněte zdarma, Pro si vezměte, až budete chtít víc",
     "free": {
-      "name": "Aplikace",
+      "name": "Zdarma",
       "items": [
         "Přes 590 snů s otázkami ke každému kroku",
         "Vlastní sny",
+        "Až 5 snů najednou",
         "Moje záznamy s fotkami a časová osa postupu",
         "Pokladnice a mapa",
-        "Režim pěstování snů",
-        "Budoucí aktualizace"
+        "Exportovat deník snů"
       ]
     },
     "pro": {
-      "name": "Podpořte vývojáře (dobrovolně)",
+      "name": "Dream Seeker Pro",
       "items": [
-        "Pokud vám aplikace pomáhá, můžete v Nastavení poslat malé spropitné",
-        "Spropitné nic neodemyká. I bez něj máte všechny funkce"
+        "Vše z bezplatné verze",
+        "Neomezeně snů najednou",
+        "Režim pěstování snů",
+        "Termíny kroků · správa překážek",
+        "Denní záznam postupu · karta Archiv"
       ],
-      "note": "Jednorázové spropitné, žádné předplatné."
+      "note": "Týdenní, měsíční nebo roční předplatné, nebo jednorázový doživotní nákup."
     },
-    "note": "V aplikaci se nic dalšího neplatí. Žádný účet, žádné reklamy."
+    "note": "Aplikaci jste si už koupili? Pak Pro už máte. Spropitné v Nastavení nic neodemyká. Bez účtu, bez reklam."
   },
   "faq": {
     "title": "Časté otázky",
@@ -196,7 +199,7 @@
       },
       {
         "q": "Dá se v aplikaci něco dokoupit?",
-        "a": "Ne. S aplikací máte všechny funkce. Spropitné v Nastavení je tu jen pro případ, že chcete poděkovat."
+        "a": "S nejvýš pěti sny najednou je všechno zdarma, od kování klíče až po pokladnici. Zvolte Pro, pokud chcete pěstovat tolik snů, kolik chcete, a používat režim pěstování snů. Vybrat si můžete týdenní, měsíční nebo roční předplatné, nebo jednorázový doživotní nákup. Pokud jste si aplikaci už dříve koupili, Pro už máte."
       },
       {
         "q": "Posílají se moje sny a záznamy někam?",

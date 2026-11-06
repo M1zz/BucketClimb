@@ -5,7 +5,7 @@
     "headline": "Ne vous contentez pas\nd’écrire vos rêves",
     "lead": "Choisissez un rêve, et les petites étapes qui y mènent deviennent les dents d’une clé. Répondez à l’étape du jour, une question à la fois, et le coffre finit par s’ouvrir.",
     "cta": "Télécharger dans l’App Store",
-    "note": "Un seul achat, toutes les fonctions. Ni abonnement, ni publicité."
+    "note": "Téléchargement gratuit, jusqu'à cinq rêves à la fois. Sans publicité."
   },
   "demo": {
     "title": "Terminez la clé",
@@ -145,27 +145,30 @@
     "note": "Chaque domaine compte près d’une centaine de rêves. Créez les vôtres avec « Ajouter un nouveau rêve » dans Mon atelier."
   },
   "pricing": {
-    "title": "Un seul achat, tout est inclus",
+    "title": "Commencez gratuitement, passez à Pro quand vous voulez plus",
     "free": {
-      "name": "L’app",
+      "name": "Gratuit",
       "items": [
         "Plus de 590 rêves avec des questions à chaque étape",
         "Vos propres rêves",
+        "Jusqu'à 5 rêves à la fois",
         "Mon journal avec photos, et la chronologie",
         "Trésors et carte",
-        "Mode Ascension",
-        "Les mises à jour à venir"
+        "Exporter le journal des rêves"
       ]
     },
     "pro": {
-      "name": "Soutenir le développeur (facultatif)",
+      "name": "Dream Seeker Pro",
       "items": [
-        "Si l’app vous aide, vous pouvez laisser un petit pourboire depuis les réglages",
-        "Un pourboire ne débloque rien. Sans lui, toutes les fonctions restent à vous"
+        "Tout ce qu'offre la version gratuite",
+        "Rêves illimités à la fois",
+        "Mode Ascension",
+        "Échéances par étape · suivi des obstacles",
+        "Suivi quotidien · onglet Archives"
       ],
-      "note": "Des pourboires ponctuels, pas un abonnement."
+      "note": "Abonnement hebdomadaire, mensuel ou annuel, ou achat unique à vie."
     },
-    "note": "Rien n’est payant dans l’app. Ni compte, ni publicité."
+    "note": "Vous aviez déjà acheté l'app ? Vous avez déjà Pro. Les pourboires des Réglages ne débloquent rien. Aucun compte, aucune publicité."
   },
   "faq": {
     "title": "Questions fréquentes",
@@ -196,7 +199,7 @@
       },
       {
         "q": "Y a-t-il des achats dans l’app ?",
-        "a": "Non. Une fois l’app achetée, toutes les fonctions sont à vous. Les pourboires des réglages ne servent qu’à dire merci, si vous le souhaitez."
+        "a": "Jusqu'à cinq rêves à la fois, tout est gratuit, de la forge de la clé jusqu'aux trésors. Choisissez Pro pour faire grandir autant de rêves que vous voulez et utiliser le mode Ascension. Optez pour un abonnement hebdomadaire, mensuel ou annuel, ou pour un achat unique à vie. Si vous aviez déjà acheté l'app, vous avez déjà Pro."
       },
       {
         "q": "Mes rêves et mon journal sont-ils envoyés quelque part ?",

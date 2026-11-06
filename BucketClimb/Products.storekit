@@ -1,0 +1,210 @@
+{
+  "identifier": "B1C2D3E4",
+  "nonRenewingSubscriptions": [],
+  "products": [
+    {
+      "displayPrice": "17.99",
+      "familyShareable": true,
+      "internalID": "62100011",
+      "localizations": [
+        {
+          "description": "Unlimited dreams and Climb Mode, for life.",
+          "displayName": "Dream Seeker Pro Lifetime",
+          "locale": "en_US"
+        },
+        {
+          "description": "꿈 무제한과 꿈 키우기 모드를 평생 씁니다",
+          "displayName": "꿈을 찾아서 Pro 평생",
+          "locale": "ko_KR"
+        }
+      ],
+      "productID": "com.bucketclimb.app.pro.lifetime",
+      "referenceName": "Pro Lifetime",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "11.99",
+      "familyShareable": true,
+      "internalID": "62100012",
+      "localizations": [
+        {
+          "description": "Switch your subscription to Pro for life.",
+          "displayName": "Pro Lifetime for Subscribers",
+          "locale": "en_US"
+        },
+        {
+          "description": "구독을 평생 Pro로 바꿉니다",
+          "displayName": "구독자 Pro 평생",
+          "locale": "ko_KR"
+        }
+      ],
+      "productID": "com.bucketclimb.app.pro.graduate",
+      "referenceName": "Pro Graduate",
+      "type": "NonConsumable"
+    },
+    {
+      "displayPrice": "1.99",
+      "familyShareable": false,
+      "internalID": "62100001",
+      "localizations": [
+        {
+          "description": "Support the developer",
+          "displayName": "Small Tip",
+          "locale": "en_US"
+        },
+        {
+          "description": "개발자를 응원합니다",
+          "displayName": "작은 응원",
+          "locale": "ko_KR"
+        }
+      ],
+      "productID": "com.bucketclimb.app.tip.small",
+      "referenceName": "Small Tip",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "4.99",
+      "familyShareable": false,
+      "internalID": "62100002",
+      "localizations": [
+        {
+          "description": "Support the developer",
+          "displayName": "Medium Tip",
+          "locale": "en_US"
+        },
+        {
+          "description": "개발자를 응원합니다",
+          "displayName": "보통 응원",
+          "locale": "ko_KR"
+        }
+      ],
+      "productID": "com.bucketclimb.app.tip.medium",
+      "referenceName": "Medium Tip",
+      "type": "Consumable"
+    },
+    {
+      "displayPrice": "9.99",
+      "familyShareable": false,
+      "internalID": "62100003",
+      "localizations": [
+        {
+          "description": "Support the developer",
+          "displayName": "Large Tip",
+          "locale": "en_US"
+        },
+        {
+          "description": "개발자를 응원합니다",
+          "displayName": "큰 응원",
+          "locale": "ko_KR"
+        }
+      ],
+      "productID": "com.bucketclimb.app.tip.large",
+      "referenceName": "Large Tip",
+      "type": "Consumable"
+    }
+  ],
+  "settings": {
+    "_failTransactionsEnabled": false,
+    "_locale": "ko_KR",
+    "_storefront": "USA",
+    "_storeKitErrors": []
+  },
+  "subscriptionGroups": [
+    {
+      "id": "22100001",
+      "localizations": [],
+      "name": "Bucket Climb Pro",
+      "subscriptions": [
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "5.99",
+          "familyShareable": true,
+          "groupNumber": 1,
+          "internalID": "32100003",
+          "localizations": [
+            {
+              "description": "Unlimited dreams and Climb Mode.",
+              "displayName": "Dream Seeker Pro Yearly",
+              "locale": "en_US"
+            },
+            {
+              "description": "꿈 무제한과 꿈 키우기 모드를 씁니다",
+              "displayName": "꿈을 찾아서 Pro 연 구독",
+              "locale": "ko_KR"
+            }
+          ],
+          "productID": "com.bucketclimb.app.pro.yearly",
+          "recurringSubscriptionPeriod": "P1Y",
+          "referenceName": "Pro Yearly",
+          "subscriptionGroupID": "22100001",
+          "type": "RecurringSubscription",
+          "winbackOffers": [],
+          "introductoryOffer": {
+            "displayPrice": "2.99",
+            "internalID": "42100003",
+            "numberOfPeriods": 1,
+            "paymentMode": "payUpFront",
+            "subscriptionPeriod": "P1Y"
+          }
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "1.99",
+          "familyShareable": true,
+          "groupNumber": 1,
+          "internalID": "32100002",
+          "localizations": [
+            {
+              "description": "Unlimited dreams and Climb Mode.",
+              "displayName": "Dream Seeker Pro Monthly",
+              "locale": "en_US"
+            },
+            {
+              "description": "꿈 무제한과 꿈 키우기 모드를 씁니다",
+              "displayName": "꿈을 찾아서 Pro 월 구독",
+              "locale": "ko_KR"
+            }
+          ],
+          "productID": "com.bucketclimb.app.pro.monthly",
+          "recurringSubscriptionPeriod": "P1M",
+          "referenceName": "Pro Monthly",
+          "subscriptionGroupID": "22100001",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        },
+        {
+          "adHocOffers": [],
+          "codeOffers": [],
+          "displayPrice": "0.99",
+          "familyShareable": true,
+          "groupNumber": 1,
+          "internalID": "32100001",
+          "localizations": [
+            {
+              "description": "Unlimited dreams and Climb Mode.",
+              "displayName": "Dream Seeker Pro Weekly",
+              "locale": "en_US"
+            },
+            {
+              "description": "꿈 무제한과 꿈 키우기 모드를 씁니다",
+              "displayName": "꿈을 찾아서 Pro 주 구독",
+              "locale": "ko_KR"
+            }
+          ],
+          "productID": "com.bucketclimb.app.pro.weekly",
+          "recurringSubscriptionPeriod": "P1W",
+          "referenceName": "Pro Weekly",
+          "subscriptionGroupID": "22100001",
+          "type": "RecurringSubscription",
+          "winbackOffers": []
+        }
+      ]
+    }
+  ],
+  "version": {
+    "major": 4,
+    "minor": 0
+  }
+}

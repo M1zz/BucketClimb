@@ -5,7 +5,7 @@
     "headline": "Jangan cuma menulis\nbucket list-mu",
     "lead": "Pilih satu mimpi, dan langkah-langkah kecil menuju ke sana menjadi gerigi sebuah kunci. Jawab langkah hari ini satu pertanyaan demi satu, dan tanpa terasa peti mimpimu terbuka.",
     "cta": "Unduh di App Store",
-    "note": "Sekali beli, semua fitur bisa dipakai. Tanpa langganan, tanpa iklan."
+    "note": "Gratis diunduh, dengan hingga lima mimpi sekaligus. Tanpa iklan."
   },
   "demo": {
     "title": "Selesaikan kuncinya",
@@ -145,27 +145,30 @@
     "note": "Tiap bidang berisi hampir seratus mimpi. Buat mimpimu sendiri lewat Tambah mimpi baru di Gudang Saya."
   },
   "pricing": {
-    "title": "Sekali beli, dapat semuanya",
+    "title": "Mulai gratis, pilih Pro saat kamu ingin lebih",
     "free": {
-      "name": "Aplikasinya",
+      "name": "Gratis",
       "items": [
         "Lebih dari 590 mimpi dengan pertanyaan di tiap langkah",
         "Mimpi buatan sendiri",
+        "Hingga 5 mimpi sekaligus",
         "Catatanku dengan foto dan Linimasa progres",
         "Brankas dan peta",
-        "Mode Tumbuhkan Mimpi",
-        "Pembaruan berikutnya"
+        "Ekspor jurnal mimpi"
       ]
     },
     "pro": {
-      "name": "Dukung pengembang (opsional)",
+      "name": "Dream Seeker Pro",
       "items": [
-        "Kalau aplikasinya membantu, kamu bisa mengirim tip kecil dari Pengaturan",
-        "Tip tidak membuka apa pun. Tanpa tip, semua fitur tetap bisa dipakai"
+        "Semua yang ada di versi gratis",
+        "Mimpi tanpa batas sekaligus",
+        "Mode Tumbuhkan Mimpi",
+        "Tenggat per langkah · kelola rintangan",
+        "Catatan progres harian · tab Arsip"
       ],
-      "note": "Tip sekali bayar, bukan langganan."
+      "note": "Langganan mingguan, bulanan, atau tahunan, atau sekali beli seumur hidup."
     },
-    "note": "Tidak ada fitur berbayar tambahan di dalam aplikasi. Tanpa akun, tanpa iklan."
+    "note": "Sudah pernah membeli aplikasinya? Kamu sudah punya Pro. Tip di Pengaturan tidak membuka fitur apa pun. Tanpa akun, tanpa iklan."
   },
   "faq": {
     "title": "Pertanyaan umum",
@@ -196,7 +199,7 @@
       },
       {
         "q": "Apakah ada pembelian di dalam aplikasi?",
-        "a": "Tidak ada. Setelah punya aplikasinya, semua fitur bisa dipakai. Tip di Pengaturan hanya pilihan kalau kamu ingin berterima kasih."
+        "a": "Untuk hingga lima mimpi sekaligus, semuanya gratis, dari menempa kunci sampai membuka brankas. Pilih Pro untuk menumbuhkan mimpi sebanyak yang kamu mau dan memakai Mode Tumbuhkan Mimpi. Pilih langganan mingguan, bulanan, atau tahunan, atau beli sekali untuk seumur hidup. Kalau kamu sudah pernah membeli aplikasinya, kamu sudah punya Pro."
       },
       {
         "q": "Apakah mimpi dan catatanku dikirim ke mana-mana?",

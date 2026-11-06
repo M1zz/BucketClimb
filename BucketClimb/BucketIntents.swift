@@ -36,6 +36,11 @@ struct AddDreamIntent: AppIntent {
         guard !title.isEmpty else {
             throw $dream.needsValueError(IntentDialog(LocalizedStringResource("어떤 꿈을 담을까요?", comment: "Siri: ask which goal")))
         }
+        // 무료로 키울 꿈이 다 찼으면 담지 않고 알린다. 영수증을 먼저 읽어 Pro 인 사람을 막지 않는다.
+        await ProStore.shared.refreshEntitlements()
+        guard ProStore.shared.canTakeAnotherDream else {
+            return .result(dialog: IntentDialog(LocalizedStringResource("무료로는 꿈을 \(ProStore.freeDreamLimit)개까지 함께 키울 수 있어요. 꿈을 찾아서 Pro로 더 담을 수 있어요.", comment: "Siri: the free limit of dreams in progress is full. Argument is the limit")))
+        }
         let plan = await DreamPlanner.plan(title)
         let store = BucketListViewModel.shared
         if plan.steps.isEmpty {

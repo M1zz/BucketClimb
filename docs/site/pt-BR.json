@@ -5,7 +5,7 @@
     "headline": "Não deixe seus sonhos\nsó no papel",
     "lead": "Escolha um sonho e os pequenos passos até ele viram os dentes de uma chave. Responda ao passo de hoje, uma pergunta de cada vez, e quando você perceber a caixa já está aberta.",
     "cta": "Baixar na App Store",
-    "note": "Compre uma vez e use todos os recursos. Sem assinatura, sem anúncios."
+    "note": "Baixe grátis e cultive até cinco sonhos ao mesmo tempo. Sem anúncios."
   },
   "demo": {
     "title": "Complete a chave",
@@ -145,27 +145,30 @@
     "note": "Cada área tem quase cem sonhos. Crie os seus com Adicionar novo sonho na Minha Oficina."
   },
   "pricing": {
-    "title": "Uma compra, tudo incluído",
+    "title": "Comece grátis e vá de Pro quando quiser mais",
     "free": {
-      "name": "O app",
+      "name": "Grátis",
       "items": [
         "Mais de 590 sonhos com perguntas em cada passo",
         "Seus próprios sonhos",
+        "Até 5 sonhos ao mesmo tempo",
         "Meus registros com fotos e a Linha do tempo do progresso",
         "Tesouro e mapa",
-        "Modo Cultivar Sonhos",
-        "As próximas atualizações"
+        "Exportar diário de sonhos"
       ]
     },
     "pro": {
-      "name": "Apoie o desenvolvedor (opcional)",
+      "name": "Dream Seeker Pro",
       "items": [
-        "Se o app ajudar, você pode mandar uma pequena gorjeta pelos Ajustes",
-        "A gorjeta não libera nada. Sem ela, todos os recursos continuam seus"
+        "Tudo da versão grátis",
+        "Sonhos ilimitados ao mesmo tempo",
+        "Modo Cultivar Sonhos",
+        "Prazos por etapa · controle de obstáculos",
+        "Progresso diário · aba Arquivo"
       ],
-      "note": "Gorjetas avulsas, não uma assinatura."
+      "note": "Assinatura semanal, mensal ou anual, ou uma compra única vitalícia."
     },
-    "note": "Nada dentro do app é pago à parte. Sem conta, sem anúncios."
+    "note": "Já tinha comprado o app? Você já tem o Pro. As gorjetas nos Ajustes não desbloqueiam nada. Sem conta, sem anúncios."
   },
   "faq": {
     "title": "Perguntas frequentes",
@@ -196,7 +199,7 @@
       },
       {
         "q": "Tem compras dentro do app?",
-        "a": "Não. Com o app, todos os recursos são seus. As gorjetas nos Ajustes existem só se você quiser agradecer."
+        "a": "Com até cinco sonhos ao mesmo tempo, tudo é grátis, de forjar a chave a abrir o tesouro. Escolha o Pro para cultivar quantos sonhos quiser e usar o Modo Cultivar Sonhos. Escolha uma assinatura semanal, mensal ou anual, ou uma compra única vitalícia. Se você já tinha comprado o app, já tem o Pro."
       },
       {
         "q": "Meus sonhos e registros são enviados para algum lugar?",

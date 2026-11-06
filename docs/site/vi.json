@@ -5,7 +5,7 @@
     "headline": "Đừng chỉ viết\nước mơ ra giấy",
     "lead": "Chọn một ước mơ, những bước nhỏ đưa bạn đến đó sẽ thành răng của chiếc chìa khóa. Trả lời bước của hôm nay, từng câu một, rồi chẳng mấy chốc hộp ước mơ sẽ mở ra.",
     "cta": "Tải về trên App Store",
-    "note": "Mua một lần là dùng mọi tính năng. Không gói đăng ký, không quảng cáo."
+    "note": "Tải về miễn phí, vun đắp tối đa năm ước mơ cùng lúc. Không quảng cáo."
   },
   "demo": {
     "title": "Thử hoàn thành chìa khóa",
@@ -145,27 +145,30 @@
     "note": "Mỗi lĩnh vực có gần một trăm ước mơ. Tạo ước mơ của riêng bạn bằng Thêm ước mơ mới trong Xưởng của tôi."
   },
   "pricing": {
-    "title": "Mua một lần, có tất cả",
+    "title": "Bắt đầu miễn phí, nâng lên Pro khi bạn muốn nhiều hơn",
     "free": {
-      "name": "Ứng dụng",
+      "name": "Miễn phí",
       "items": [
         "Hơn 590 ước mơ với câu hỏi cho từng bước",
         "Ước mơ của riêng bạn",
+        "Tối đa 5 ước mơ cùng lúc",
         "Ghi chép của tôi kèm ảnh và Dòng thời gian tiến trình",
         "Kho báu và bản đồ",
-        "Chế độ Vun ước mơ",
-        "Các bản cập nhật sau này"
+        "Xuất nhật ký ước mơ"
       ]
     },
     "pro": {
-      "name": "Ủng hộ nhà phát triển (tùy chọn)",
+      "name": "Dream Seeker Pro",
       "items": [
-        "Nếu thấy hữu ích, bạn có thể gửi một khoản tip nhỏ trong Cài đặt",
-        "Tip không mở khóa gì cả. Không gửi thì mọi tính năng vẫn như cũ"
+        "Mọi thứ trong bản miễn phí",
+        "Không giới hạn số ước mơ cùng lúc",
+        "Chế độ Vun ước mơ",
+        "Hạn chót từng bước · quản lý trở ngại",
+        "Ghi chép tiến trình hằng ngày · tab Lưu trữ"
       ],
-      "note": "Tip trả từng lần, không phải gói đăng ký."
+      "note": "Gói tuần, tháng, năm hoặc mua trọn đời một lần."
     },
-    "note": "Trong ứng dụng không có gì phải trả thêm. Không tài khoản, không quảng cáo."
+    "note": "Bạn đã mua ứng dụng trước đây? Bạn đã có Pro. Tiền tip trong Cài đặt không mở khóa tính năng nào. Không tài khoản, không quảng cáo."
   },
   "faq": {
     "title": "Câu hỏi thường gặp",
@@ -196,7 +199,7 @@
       },
       {
         "q": "Trong ứng dụng có gì phải trả thêm không?",
-        "a": "Không. Có ứng dụng là dùng được mọi tính năng. Tip trong Cài đặt chỉ là tùy chọn khi bạn muốn nói lời cảm ơn."
+        "a": "Khi vun đắp tối đa năm ước mơ cùng lúc, mọi thứ từ rèn chìa khóa đến mở kho báu đều miễn phí. Chọn Pro để vun đắp bao nhiêu ước mơ tùy thích và dùng chế độ Vun ước mơ. Bạn có thể chọn gói tuần, tháng, năm hoặc mua trọn đời một lần. Nếu bạn đã mua ứng dụng trước đây, bạn đã có Pro."
       },
       {
         "q": "Ước mơ và ghi chép của tôi có bị gửi đi đâu không?",

@@ -5,7 +5,7 @@
     "headline": "Non limitarti a\nscrivere i tuoi sogni",
     "lead": "Scegli un sogno e i piccoli passi che ti ci portano diventano i denti di una chiave. Rispondi al passo di oggi, una domanda alla volta, e prima che te ne accorga lo scrigno è aperto.",
     "cta": "Scarica su App Store",
-    "note": "Lo compri una volta e hai tutte le funzioni. Niente abbonamento, niente pubblicità."
+    "note": "Si scarica gratis e puoi coltivare fino a cinque sogni alla volta. Niente pubblicità."
   },
   "demo": {
     "title": "Completa la chiave",
@@ -145,27 +145,30 @@
     "note": "Ogni area ha quasi cento sogni. Crea i tuoi con «Aggiungi un nuovo sogno» in La mia officina."
   },
   "pricing": {
-    "title": "Un solo acquisto, tutto incluso",
+    "title": "Inizia gratis, passa a Pro quando vuoi di più",
     "free": {
-      "name": "L’app",
+      "name": "Gratis",
       "items": [
         "Più di 590 sogni con domande per ogni passo",
         "I tuoi sogni personali",
+        "Fino a 5 sogni alla volta",
         "Le mie note con foto e la Cronologia dei progressi",
         "Tesoro e mappa",
-        "Modalità Coltiva i sogni",
-        "Gli aggiornamenti futuri"
+        "Esporta il diario dei sogni"
       ]
     },
     "pro": {
-      "name": "Sostieni lo sviluppatore (facoltativo)",
+      "name": "Dream Seeker Pro",
       "items": [
-        "Se l’app ti è utile, puoi lasciare una piccola mancia dalle Impostazioni",
-        "La mancia non sblocca nulla. Anche senza, tutte le funzioni restano tue"
+        "Tutto ciò che c'è nella versione gratuita",
+        "Sogni illimitati alla volta",
+        "Modalità Coltiva i sogni",
+        "Scadenze per passo · gestione degli ostacoli",
+        "Progressi giornalieri · scheda Archivio"
       ],
-      "note": "Mance singole, non un abbonamento."
+      "note": "Abbonamento settimanale, mensile o annuale, oppure un acquisto unico a vita."
     },
-    "note": "Nell’app non c’è niente da pagare a parte. Niente account, niente pubblicità."
+    "note": "Avevi già acquistato l'app? Hai già Pro. Le mance nelle Impostazioni non sbloccano nulla. Nessun account, nessuna pubblicità."
   },
   "faq": {
     "title": "Domande frequenti",
@@ -196,7 +199,7 @@
       },
       {
         "q": "Ci sono acquisti nell’app?",
-        "a": "No. Con l’app hai tutte le funzioni. Le mance nelle Impostazioni servono solo se vuoi dire grazie."
+        "a": "Fino a cinque sogni alla volta è tutto gratis, dalla forgia della chiave fino al tesoro. Scegli Pro per coltivare tutti i sogni che vuoi e usare la modalità Coltiva i sogni. Puoi scegliere un abbonamento settimanale, mensile o annuale, oppure un acquisto unico a vita. Se avevi già acquistato l'app, hai già Pro."
       },
       {
         "q": "I miei sogni e le note vengono inviati da qualche parte?",

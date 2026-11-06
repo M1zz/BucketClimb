@@ -24,21 +24,22 @@ struct BucketClimbApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(viewModel)
-                // 팁 상품을 불러오고 끝나지 않은 팁을 마저 센다 (LeeoStore 없이 혼자)
-                .task { await BucketClimbSpec.tipJar.startStandalone() }
+                // 꿈을 찾아서 Pro — 산 것을 다시 읽는다. 팁 상품 · 끝나지 않은 팁도 LeeoStore 가 함께 챙긴다 (→ BucketClimbPro.swift)
+                .task { await ProStore.shared.refresh() }
                 // 아이폰 듀오: 접힘을 재서 아래로 흘린다. 시트 · 알림창도 접힌 선을 비킨다 (LeeoKit Fold).
                 .foldAware()
                 // Spotlight · Siri 가 찾는 꿈을 앱을 열 때와 뒤로 보낼 때 맞춘다
                 .onChange(of: scenePhase) { _, phase in
                     if phase != .inactive { Task { await DreamEntity.reindex() } }
+                    if phase == .active { Task { await ProStore.shared.refresh() } }
                 }
         }
     }
 }
 
-// MARK: - 팁 (LeeoKit)
+// MARK: - 계약 (LeeoKit)
 
-/// LeeoKit 은 팁 화면에만 쓴다. 유료 앱이라 따로 파는 것이 없다.
+/// 앱의 계약. Pro 는 LeeoKit `LeeoStore` 가 맡는다(→ BucketClimbPro.swift).
 /// ⚠️ 여기서 bootstrap · 피드백 · 분석을 켜지 않는다 (백업 금고만 App.init 에서 직접 켠다) — 계약을 채우는 값일 뿐 아무것도 돌지 않는다.
 enum BucketClimbSpec: LeeoAppSpec {
     static let appName = "꿈을 찾아서"
@@ -51,13 +52,24 @@ enum BucketClimbSpec: LeeoAppSpec {
         privacyURL: URL(string: "https://m1zz.github.io/BucketClimb/ko/privacy.html")!,
         supportURL: URL(string: "https://m1zz.github.io/BucketClimb/ko/support.html")!
     )
-    static let monetization = LeeoMonetization.paidUpfront
-    /// 고마운 사람이 조금 더 내고 싶을 때 내는 곳. 소모성 상품 셋, 작은 것부터. 기능을 열지 않는다.
-    @MainActor static let tipJar = LeeoTipJar(config: LeeoTipJarConfig(productIDs: [
-        "com.bucketclimb.app.tip.small",
-        "com.bucketclimb.app.tip.medium",
-        "com.bucketclimb.app.tip.large",
-    ]))
+    /// 무료 다운로드 + 무료 · Pro 두 칸. 꿈 다섯 개를 골라 열쇠를 만들고 보물함을 여는 것은 전부 무료,
+    /// 꿈 무제한 · 꿈 키우기 모드만 Pro. 주 · 월 · 연 구독과 평생, 구독자에게만 보이는 졸업 평생가.
+    /// 잠그는 자리는 `ProStore.isPro` 하나만 본다 — 아래 게이트는 그 자리를 적어 둔 계약이다.
+    static let monetization = LeeoMonetization.freemiumSubscription(
+        LeeoSubscriptionConfig(
+            productIDs: ProProduct.all,
+            // 자체 약관이 없으므로 애플 표준 사용권 계약(EULA)을 건다. 구독을 파는 앱의 심사 필수 항목이다.
+            termsURL: termsURL,
+            gate: LeeoGatePolicy(
+                freeLimits: [ProFeature.dreams.rawValue: ProStore.freeDreamLimit],
+                proOnly: [ProFeature.growMode.rawValue]),
+            // 개발자 응원하기(팁) — 소모성 셋. 기능을 열지 않는다. 거래 리스너가 둘이면 같은 거래를 다투므로 LeeoStore 하나에 둔다.
+            tipJar: LeeoTipJarConfig(productIDs: ProProduct.tips)))
+
+    static let termsURL = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
+
+    /// 고마운 사람이 조금 더 내고 싶을 때 내는 곳. 기능을 열지 않는다.
+    @MainActor static var tipJar: LeeoTipJar { ProStore.shared.tipJar }
 }
 
 /// 팁을 부탁할 만한 순간 — 이룬 꿈과, 꿈을 향해 마친 단계 수.

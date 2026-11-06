@@ -19,6 +19,8 @@
 		2A00000A00000000000000000000000A /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A00000A00000000000000000000002A /* ImageCacheManager.swift */; };
 		2A00000B00000000000000000000000B /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A00000B00000000000000000000002B /* CachedAsyncImage.swift */; };
 		308362403C0F94027614E27A /* BucketIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A318FE94747CF45034F9CA30 /* BucketIntents.swift */; };
+		4C0000010000000000000001 /* BucketClimbPro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0000010000000000000011 /* BucketClimbPro.swift */; };
+		4C0000020000000000000002 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0000020000000000000012 /* PaywallView.swift */; };
 		3B000001000000000000000000000001 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B000001000000000000000000000011 /* Localization.swift */; };
 		3B000002000000000000000000000002 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3B000002000000000000000000000012 /* Localizable.xcstrings */; };
 		3B000003000000000000000000000003 /* Buckets.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 3B000003000000000000000000000013 /* Buckets.xcstrings */; };
@@ -63,6 +65,9 @@
 		580DFD2C2ED5E8D6008F8FC9 /* TravelBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelBucket.swift; sourceTree = "<group>"; };
 		58AA252C2ED22AE200E8766A /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
 		A318FE94747CF45034F9CA30 /* BucketIntents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BucketIntents.swift; sourceTree = "<group>"; };
+		4C0000010000000000000011 /* BucketClimbPro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketClimbPro.swift; sourceTree = "<group>"; };
+		4C0000020000000000000012 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		4C0000030000000000000013 /* Products.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Products.storekit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +113,8 @@
 				580DFD2B2ED5E8D6008F8FC9 /* RelationshipBucket.swift */,
 				580DFD2C2ED5E8D6008F8FC9 /* TravelBucket.swift */,
 				A318FE94747CF45034F9CA30 /* BucketIntents.swift */,
+				4C0000010000000000000011 /* BucketClimbPro.swift */,
+				4C0000030000000000000013 /* Products.storekit */,
 				10545C633CC577FCFDB59F86 /* AppShortcuts.xcstrings */,
 			);
 			path = BucketClimb;
@@ -141,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				2A000003000000000000000000000013 /* ContentView.swift */,
+				4C0000020000000000000012 /* PaywallView.swift */,
 				2A000006000000000000000000000016 /* AllViews.swift */,
 				2A000007000000000000000000000017 /* TreasureKeyView.swift */,
 				2A000008000000000000000000000018 /* OnboardingView.swift */,
@@ -280,6 +288,8 @@
 				3B000001000000000000000000000001 /* Localization.swift in Sources */,
 				3B000006000000000000000000000006 /* ScreenshotSeed.swift in Sources */,
 				308362403C0F94027614E27A /* BucketIntents.swift in Sources */,
+				4C0000010000000000000001 /* BucketClimbPro.swift in Sources */,
+				4C0000020000000000000002 /* PaywallView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,6 +5,8 @@ struct ContentView: View {
     @EnvironmentObject var viewModel: BucketListViewModel
     /// Siri · Spotlight 에서 고른 꿈
     @State private var siriDream: BucketListItem?
+    /// 구독 6개월째 · 갱신 7일 전에 한 번씩 '구독 졸업' 평생가를 제안한다.
+    @State private var showingGraduation = false
 
     var body: some View {
         Group {
@@ -13,8 +15,8 @@ struct ContentView: View {
                 OnboardingView()
                     // 펼친 아이폰 듀오에서는 고르는 쪽 판에만 선다.
                     .foldConfined()
-            } else if viewModel.useClassicMode {
-                // 꿈 키우기 모드 (클래식)
+            } else if viewModel.useClassicMode && ProStore.shared.isPro {
+                // 꿈 키우기 모드 (클래식, Pro). 구독이 끝나면 내 창고로 돌아온다 — 꿈과 기록은 그대로다.
                 ClassicMainView()
             } else {
                 // 내 창고 모드 (기본)
@@ -31,6 +33,12 @@ struct ContentView: View {
             NavigationStack { BucketDetailView(item: item) }
                 .environmentObject(viewModel)
         }
+        .task(id: ProStore.shared.graduationIsDue) {
+            guard ProStore.shared.graduationIsDue, viewModel.hasCompletedOnboarding else { return }
+            ProStore.shared.markGraduationOffered()
+            showingGraduation = true
+        }
+        .sheet(isPresented: $showingGraduation) { ProGraduationSheet() }
     }
 }
 

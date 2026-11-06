@@ -5,7 +5,7 @@
     "headline": "Schrijf je bucketlist\nniet alleen op",
     "lead": "Kies een droom en de kleine stappen ernaartoe worden de tanden van een sleutel. Beantwoord de stap van vandaag, vraag voor vraag, en voor je het weet is de kist open.",
     "cta": "Download in de App Store",
-    "note": "Eén keer kopen en alle functies zijn van jou. Geen abonnement, geen advertenties."
+    "note": "Gratis te downloaden, met maximaal vijf dromen tegelijk. Geen advertenties."
   },
   "demo": {
     "title": "Maak de sleutel af",
@@ -145,27 +145,30 @@
     "note": "Elk gebied heeft bijna honderd dromen. Maak je eigen dromen met ‘Nieuwe droom toevoegen’ in Mijn werkplaats."
   },
   "pricing": {
-    "title": "Eén keer kopen, alles erin",
+    "title": "Begin gratis, kies Pro als je meer wilt",
     "free": {
-      "name": "De app",
+      "name": "Gratis",
       "items": [
         "Meer dan 590 dromen met vragen bij elke stap",
         "Je eigen dromen",
+        "Maximaal 5 dromen tegelijk",
         "Mijn notities met foto’s en de tijdlijn van je voortgang",
         "Schatkamer en kaart",
-        "Groeimodus",
-        "Toekomstige updates"
+        "Droomdagboek exporteren"
       ]
     },
     "pro": {
-      "name": "Steun de ontwikkelaar (optioneel)",
+      "name": "Dream Seeker Pro",
       "items": [
-        "Helpt de app je, dan kun je via Instellingen een kleine fooi geven",
-        "Een fooi ontgrendelt niets. Ook zonder blijven alle functies van jou"
+        "Alles uit de gratis versie",
+        "Onbeperkt dromen tegelijk",
+        "Groeimodus",
+        "Deadlines per stap · obstakels bijhouden",
+        "Dagelijkse voortgang · tabblad Archief"
       ],
-      "note": "Losse fooien, geen abonnement."
+      "note": "Week-, maand- of jaarabonnement of een eenmalige aankoop voor altijd."
     },
-    "note": "In de app kost niets extra. Geen account, geen advertenties."
+    "note": "Heb je de app al eerder gekocht? Dan heb je Pro al. Fooien in Instellingen ontgrendelen niets. Geen account, geen advertenties."
   },
   "faq": {
     "title": "Veelgestelde vragen",
@@ -196,7 +199,7 @@
       },
       {
         "q": "Kun je in de app iets kopen?",
-        "a": "Nee. Met de app zijn alle functies van jou. De fooien in Instellingen zijn er alleen als je dankjewel wilt zeggen."
+        "a": "Met maximaal vijf dromen tegelijk is alles gratis, van het smeden van de sleutel tot het openen van de schatkamer. Kies Pro om aan zoveel dromen te werken als je wilt en de groeimodus te gebruiken. Kies een week-, maand- of jaarabonnement of een eenmalige aankoop voor altijd. Heb je de app al eerder gekocht? Dan heb je Pro al."
       },
       {
         "q": "Worden mijn dromen en notities ergens heen gestuurd?",

@@ -63,6 +63,11 @@ class BucketListViewModel: ObservableObject {
         bucketItems.filter { $0.status == .completed }
     }
 
+    /// 지금 키우는 꿈 수 — 내 창고에 있는 꿈(담김 · 등반 중). 무료 한도가 세는 값이다 (→ ProStore.canTakeAnotherDream).
+    var activeDreamCount: Int {
+        bucketItems.filter { $0.status != .completed }.count
+    }
+
     // 모든 BucketItem을 가져오는 computed property
     var allBucketItems: [BucketItem] {
         let travel = TravelBucket.allCases.map { BucketItem.travel($0) }
@@ -622,4 +627,52 @@ class BucketListViewModel: ObservableObject {
         }
     }
 
+}
+
+// MARK: - 꿈 기록 내보내기 (무료)
+
+extension BucketListViewModel {
+    /// 꿈 · 단계 · 기록을 사람이 읽는 글 한 덩이로. 설정 ▸ 나의 기록에서 공유 시트로 내보낸다.
+    /// 기본 내보내기라 잠그지 않는다. 사진은 파일 이름만 있어 글에서 뺀다.
+    var exportText: String {
+        let date = { (d: Date) in d.formatted(date: .abbreviated, time: .omitted) }
+        var lines = [String(localized: "꿈 기록", comment: "Export: title of the exported text"), date(Date())]
+        let ordered = bucketItems.filter { $0.status != .completed } + itemsCompleted
+        for item in ordered {
+            lines.append("")
+            lines.append("■ " + item.title.localizedBucket)
+            let state = item.isAbandoned ? String(localized: "잠시 멈춘 꿈") : item.status.displayName
+            lines.append(item.category.displayName + " · " + state)
+            var dates = [String(localized: "담은 날 \(date(item.dateAdded))", comment: "Export: date the dream was added")]
+            if let done = item.dateCompleted, !item.isAbandoned {
+                dates.append(String(localized: "이룬 날 \(date(done))", comment: "Export: date the dream was achieved"))
+            }
+            lines.append(dates.joined(separator: " · "))
+            if !item.milestones.isEmpty {
+                lines.append(String(localized: "이루기 위한 단계들"))
+                for step in item.milestones {
+                    var line = (step.isCompleted ? "✓ " : "○ ") + step.title.localizedBucket
+                    if let done = step.completedDate, step.isCompleted {
+                        line += " (\(date(done)))"
+                    } else if let deadline = step.deadline {
+                        line += " · " + String(localized: "마감 \(date(deadline))", comment: "Export: deadline of a step")
+                    }
+                    lines.append(line)
+                }
+            }
+            let notes = item.notes.components(separatedBy: "\n").filter { !$0.hasPrefix("📷 ") }
+                .joined(separator: "\n").trimmingCharacters(in: .whitespacesAndNewlines)
+            if !notes.isEmpty {
+                lines.append(String(localized: "남긴 기록", comment: "Export: heading for the notes and answers written for a dream"))
+                lines.append(notes)
+            }
+            if !item.dailyProgress.isEmpty {
+                lines.append(String(localized: "일일 진행 기록"))
+                for progress in item.dailyProgress.sorted(by: { $0.date < $1.date }) {
+                    lines.append(date(progress.date) + " — " + progress.action)
+                }
+            }
+        }
+        return lines.joined(separator: "\n")
+    }
 }

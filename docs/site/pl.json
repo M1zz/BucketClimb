@@ -5,7 +5,7 @@
     "headline": "Nie tylko zapisuj\nswoje marzenia",
     "lead": "Wybierz marzenie, a małe kroki, które do niego prowadzą, staną się zębami klucza. Odpowiadaj na dzisiejszy krok pytanie po pytaniu, a skrzynia marzeń otworzy się, zanim się obejrzysz.",
     "cta": "Pobierz z App Store",
-    "note": "Kupujesz raz i masz wszystkie funkcje. Bez subskrypcji i reklam."
+    "note": "Do pobrania za darmo, do pięciu marzeń naraz. Bez reklam."
   },
   "demo": {
     "title": "Dokończ klucz",
@@ -145,27 +145,30 @@
     "note": "Każda dziedzina ma prawie sto marzeń. Własne stworzysz w Moim warsztacie przyciskiem Dodaj nowe marzenie."
   },
   "pricing": {
-    "title": "Jeden zakup i masz wszystko",
+    "title": "Zacznij za darmo, wybierz Pro, gdy zechcesz więcej",
     "free": {
-      "name": "Aplikacja",
+      "name": "Za darmo",
       "items": [
         "Ponad 590 marzeń z pytaniami do każdego kroku",
         "Własne marzenia",
+        "Do 5 marzeń naraz",
         "Mój zapis ze zdjęciami i Oś postępów",
         "Skarbiec i mapa",
-        "Tryb rozwoju marzeń",
-        "Przyszłe aktualizacje"
+        "Eksportuj dziennik marzeń"
       ]
     },
     "pro": {
-      "name": "Wesprzyj twórcę (dobrowolnie)",
+      "name": "Dream Seeker Pro",
       "items": [
-        "Jeśli aplikacja ci pomaga, możesz w Ustawieniach zostawić mały napiwek",
-        "Napiwek niczego nie odblokowuje. Bez niego wszystkie funkcje i tak są twoje"
+        "Wszystko z wersji bezpłatnej",
+        "Marzenia bez limitu naraz",
+        "Tryb rozwoju marzeń",
+        "Terminy kroków · zarządzanie przeszkodami",
+        "Dzienny postęp · karta Archiwum"
       ],
-      "note": "Jednorazowe napiwki, nie subskrypcja."
+      "note": "Subskrypcja tygodniowa, miesięczna lub roczna albo jednorazowy zakup na zawsze."
     },
-    "note": "W aplikacji nic nie trzeba dokupować. Bez konta i reklam."
+    "note": "Aplikacja była już przez Ciebie kupiona? W takim razie masz już Pro. Napiwki w Ustawieniach niczego nie odblokowują. Bez konta, bez reklam."
   },
   "faq": {
     "title": "Częste pytania",
@@ -196,7 +199,7 @@
       },
       {
         "q": "Czy w aplikacji są zakupy?",
-        "a": "Nie. Mając aplikację, masz wszystkie funkcje. Napiwki w Ustawieniach są tylko dla tych, którzy chcą podziękować."
+        "a": "Przy maksymalnie pięciu marzeniach naraz wszystko jest bezpłatne, od wykuwania klucza po otwarcie skarbca. Wybierz Pro, aby rozwijać tyle marzeń, ile chcesz, i korzystać z trybu rozwoju marzeń. Do wyboru jest subskrypcja tygodniowa, miesięczna lub roczna albo jednorazowy zakup na zawsze. Jeśli aplikacja została już przez Ciebie kupiona, masz już Pro."
       },
       {
         "q": "Czy moje marzenia i zapis są gdzieś wysyłane?",

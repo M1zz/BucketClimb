@@ -5,7 +5,7 @@
     "headline": "Älä vain kirjoita\nunelmiasi ylös",
     "lead": "Valitse unelma, niin pienistä askelista sitä kohti tulee avaimen hampaat. Vastaa päivän askeleeseen kysymys kerrallaan, ja ennen kuin huomaatkaan, arkku on auki.",
     "cta": "Lataa App Storesta",
-    "note": "Osta kerran, niin kaikki ominaisuudet ovat käytössäsi. Ei tilausta, ei mainoksia."
+    "note": "Ilmainen ladata, enintään viisi unelmaa kerrallaan. Ei mainoksia."
   },
   "demo": {
     "title": "Viimeistele avain",
@@ -145,27 +145,30 @@
     "note": "Jokaisella alueella on lähes sata unelmaa. Omat unelmat teet Omassa työpajassa kohdasta Lisää uusi unelma."
   },
   "pricing": {
-    "title": "Yksi osto, kaikki mukana",
+    "title": "Aloita ilmaiseksi, valitse Pro, kun haluat enemmän",
     "free": {
-      "name": "Sovellus",
+      "name": "Ilmainen",
       "items": [
         "Yli 590 unelmaa ja kysymykset jokaiseen askeleeseen",
         "Omat unelmat",
+        "Enintään 5 unelmaa kerrallaan",
         "Omat merkinnät kuvineen ja edistymisen aikajana",
         "Aarrekammio ja kartta",
-        "Unelmien kasvatustila",
-        "Tulevat päivitykset"
+        "Vie unelmapäiväkirja"
       ]
     },
     "pro": {
-      "name": "Tue kehittäjää (vapaaehtoinen)",
+      "name": "Dream Seeker Pro",
       "items": [
-        "Jos sovellus auttaa, voit antaa pienen tipin asetuksista",
-        "Tippi ei avaa mitään. Ilman sitäkin kaikki ominaisuudet ovat käytössäsi"
+        "Kaikki ilmaisversion ominaisuudet",
+        "Rajattomasti unelmia kerrallaan",
+        "Unelmien kasvatustila",
+        "Vaiheiden määräajat · esteiden seuranta",
+        "Päivittäinen edistyminen · Arkisto-välilehti"
       ],
-      "note": "Kertamaksuja, ei tilausta."
+      "note": "Viikko-, kuukausi- tai vuositilaus tai kertaosto."
     },
-    "note": "Sovelluksessa ei ole mitään lisämaksullista. Ei tiliä, ei mainoksia."
+    "note": "Ostitko sovelluksen jo aiemmin? Sinulla on jo Pro. Asetusten tipit eivät avaa mitään. Ei tiliä, ei mainoksia."
   },
   "faq": {
     "title": "Usein kysyttyä",
@@ -196,7 +199,7 @@
       },
       {
         "q": "Voiko sovelluksessa ostaa jotain?",
-        "a": "Ei. Sovelluksen myötä kaikki ominaisuudet ovat käytössäsi. Asetusten tipit ovat olemassa vain, jos haluat kiittää."
+        "a": "Kun kasvatat enintään viittä unelmaa kerrallaan, kaikki avaimen takomisesta aarrekammion avaamiseen on ilmaista. Valitse Pro, jos haluat kasvattaa niin monta unelmaa kuin haluat ja käyttää unelmien kasvatustilaa. Valittavana on viikko-, kuukausi- tai vuositilaus tai kertaosto. Jos olet jo ostanut sovelluksen, sinulla on jo Pro."
       },
       {
         "q": "Lähetetäänkö unelmani ja merkintäni jonnekin?",

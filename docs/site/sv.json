@@ -5,7 +5,7 @@
     "headline": "Skriv inte bara\nner din bucketlista",
     "lead": "Välj en dröm så blir de små stegen som leder dit tänderna i en nyckel. Svara på dagens steg, en fråga i taget, och innan du vet ordet av är lådan öppen.",
     "cta": "Hämta på App Store",
-    "note": "Köp en gång så är alla funktioner dina. Ingen prenumeration, ingen reklam."
+    "note": "Gratis att ladda ned, med upp till fem drömmar åt gången. Inga annonser."
   },
   "demo": {
     "title": "Gör klart nyckeln",
@@ -145,27 +145,30 @@
     "note": "Varje område har nästan hundra drömmar. Skapa egna med Lägg till ny dröm i Min verkstad."
   },
   "pricing": {
-    "title": "Köp en gång, få allt",
+    "title": "Börja gratis, välj Pro när du vill ha mer",
     "free": {
-      "name": "Appen",
+      "name": "Gratis",
       "items": [
         "Över 590 drömmar med frågor till varje steg",
         "Egna drömmar",
+        "Upp till 5 drömmar åt gången",
         "Mina anteckningar med bilder och framstegstidslinjen",
         "Skattkammare och karta",
-        "Odlingsläge",
-        "Framtida uppdateringar"
+        "Exportera drömdagbok"
       ]
     },
     "pro": {
-      "name": "Stötta utvecklaren (frivilligt)",
+      "name": "Dream Seeker Pro",
       "items": [
-        "Om appen hjälper dig kan du ge en liten dricks i Inställningar",
-        "Dricks låser inte upp något. Utan den har du fortfarande alla funktioner"
+        "Allt i gratisversionen",
+        "Obegränsat antal drömmar åt gången",
+        "Odlingsläge",
+        "Slutdatum per steg · hantera hinder",
+        "Daglig framstegslogg · fliken Arkiv"
       ],
-      "note": "Engångsbelopp, inte en prenumeration."
+      "note": "Vecko-, månads- eller årsprenumeration eller ett engångsköp för livet."
     },
-    "note": "Inget i appen kostar extra. Inget konto, ingen reklam."
+    "note": "Har du redan köpt appen? Då har du redan Pro. Dricks i Inställningar låser inte upp något. Inget konto, inga annonser."
   },
   "faq": {
     "title": "Vanliga frågor",
@@ -196,7 +199,7 @@
       },
       {
         "q": "Går det att köpa något i appen?",
-        "a": "Nej. Med appen är alla funktioner dina. Dricksen i Inställningar finns bara om du vill säga tack."
+        "a": "Med upp till fem drömmar åt gången är allt gratis, från att smida nyckeln till att öppna skattkammaren. Välj Pro för att arbeta med så många drömmar du vill och använda odlingsläget. Välj vecko-, månads- eller årsprenumeration eller ett engångsköp för livet. Har du redan köpt appen har du redan Pro."
       },
       {
         "q": "Skickas mina drömmar och anteckningar någonstans?",

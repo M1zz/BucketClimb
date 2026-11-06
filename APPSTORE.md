@@ -43,10 +43,12 @@
 ■ 꿈 키우기 모드
 설정에서 산을 오르는 방식으로 바꿀 수 있어요. 단계별 마감일, 비용·시간 같은 장애물, 진행 기록을 프로젝트처럼 관리해요.
 
+■ 꿈을 찾아서 Pro
+꿈 다섯 개를 함께 키우며 열쇠를 만들고 보물함을 여는 것까지 모두 무료예요. 꿈을 몇 개든 함께 키우고 꿈 키우기 모드를 쓰려면 Pro를 고르세요. 주·월·연 구독이나 한 번 사는 평생 중에 고를 수 있어요. 예전에 앱을 사신 분은 그대로 Pro예요.
+
 ■ 개인정보
 • 계정이 없고 광고나 분석 도구를 쓰지 않아요
 • 적은 꿈과 기록, 사진은 이 기기에만 저장돼요
-• 모든 기능을 무료로 쓸 수 있어요
 
 이용약관: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 개인정보 처리방침: https://m1zz.github.io/BucketClimb/ko/privacy.html
@@ -104,10 +106,12 @@ Dreams tied to a place appear on the map, so you can see everywhere you want to 
 CLIMB MODE
 Prefer a mountain to climb? Switch to Climb Mode in Settings to manage dreams like projects, with step deadlines, obstacles such as cost and time, and a progress log.
 
+DREAM SEEKER PRO
+With up to five dreams at a time, everything from forging keys to opening the treasury is free. Choose Pro to work on as many dreams as you like and to use Climb Mode. Pick a weekly, monthly or yearly subscription, or a one-time lifetime purchase. If you bought the app before, you already have Pro.
+
 PRIVACY
 • No account, no ads, no analytics
 • Your dreams, notes and photos stay on your device
-• Every feature is free
 
 Terms of Use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Privacy Policy: https://m1zz.github.io/BucketClimb/en/privacy.html
@@ -165,10 +169,12 @@ Dreams tied to a place appear on the map, so you can see everywhere you want to 
 CLIMB MODE
 Prefer a mountain to climb? Switch to Climb Mode in Settings to manage dreams like projects, with step deadlines, obstacles such as cost and time, and a progress log.
 
+DREAM SEEKER PRO
+With up to five dreams at a time, everything from forging keys to opening the treasury is free. Choose Pro to work on as many dreams as you like and to use Climb Mode. Pick a weekly, monthly or yearly subscription, or a one-time lifetime purchase. If you bought the app before, you already have Pro.
+
 PRIVACY
 • No account, no ads, no analytics
 • Your dreams, notes and photos stay on your device
-• Every feature is free
 
 Terms of Use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Privacy Policy: https://m1zz.github.io/BucketClimb/en-GB/privacy.html
@@ -226,10 +232,12 @@ https://m1zz.github.io/BucketClimb/en-GB/index.html
 ■ 养梦模式
 在设置中可以切换成爬山的方式，像管理项目一样管理梦想：设置每一步的截止日期，记下费用、时间等障碍，并留下进展记录。
 
+■ 寻梦 Pro
+同时培养不超过五个梦想时，从打造钥匙到打开宝库全部免费。想同时培养任意数量的梦想、使用养梦模式，请选择 Pro。可选按周、按月、按年订阅，或一次性永久买断。之前购买过本应用的用户，已直接拥有 Pro。
+
 ■ 隐私
 • 无需账号，没有广告，也没有分析工具
 • 你写下的梦想、记录和照片只保存在这台设备上
-• 所有功能免费使用
 
 使用条款：https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 隐私政策：https://m1zz.github.io/BucketClimb/zh-Hans/privacy.html
@@ -287,10 +295,12 @@ https://m1zz.github.io/BucketClimb/zh-Hans/index.html
 ■ 養夢模式
 喜歡像爬山一樣一步步往上？到設定開啟養夢模式，就能像管理專案一樣管理夢想，包含步驟期限、費用與時間等阻礙，還有進度記錄。
 
+■ 尋夢 Pro
+同時培養不超過五個夢想時，從打造鑰匙到打開寶藏庫全部免費。想同時培養任意數量的夢想、使用養夢模式，請選擇 Pro。可選擇週、月、年訂閱，或一次性永久買斷。之前購買過本 App 的使用者，已直接擁有 Pro。
+
 ■ 隱私
 • 不需註冊帳號，沒有廣告，也沒有分析工具
 • 夢想、筆記和照片只存在你的裝置上
-• 所有功能完全免費
 
 使用條款：https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 隱私權政策：https://m1zz.github.io/BucketClimb/zh-Hant/privacy.html
@@ -348,10 +358,12 @@ https://m1zz.github.io/BucketClimb/zh-Hant/index.html
 ■ 夢を育てるモード
 山を登るように夢を進めたい方は、設定で夢を育てるモードをオンに。ステップの期限、費用や時間といった障害、進捗の記録を使って、プロジェクトのように夢を管理できます。
 
+■ 夢をさがして Pro
+同時に育てる夢が5つまでなら、鍵づくりから宝物庫を開けるまですべて無料です。夢をいくつでも一緒に育てたいときや、夢を育てるモードを使いたいときはProをお選びください。週額・月額・年額のサブスクリプションか、1回限りの買い切りから選べます。以前にアプリを購入された方は、そのままProをお使いいただけます。
+
 ■ プライバシー
 • アカウント登録なし、広告なし、分析なし
 • 夢もメモも写真も、お使いの端末の中だけに保存されます
-• すべての機能を無料でお使いいただけます
 
 利用規約: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 プライバシーポリシー: https://m1zz.github.io/BucketClimb/ja/privacy.html
@@ -409,10 +421,12 @@ Dream Seeker разбивает каждую мечту на небольшие 
 РЕЖИМ «РАСТИМ МЕЧТУ»
 Предпочитаете взбираться на гору? Включите этот режим в настройках и ведите мечты как проекты: со сроками для шагов, препятствиями вроде денег и времени и журналом прогресса.
 
+DREAM SEEKER PRO
+Пока вы растите до пяти мечтаний одновременно, всё — от ковки ключа до сокровищницы — бесплатно. Чтобы растить сколько угодно мечтаний и пользоваться режимом «Растим мечту», выберите Pro: подписку на неделю, месяц или год либо разовую покупку навсегда. Если вы уже покупали приложение, Pro у вас уже есть.
+
 КОНФИДЕНЦИАЛЬНОСТЬ
 • Без аккаунта, рекламы и аналитики
 • Мечты, записи и фото хранятся только на вашем устройстве
-• Все функции бесплатны
 
 Условия использования: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Политика конфиденциальности: https://m1zz.github.io/BucketClimb/ru/privacy.html
@@ -470,10 +484,12 @@ Los sueños con un lugar asociado aparecen en el mapa, para ver de un vistazo to
 MODO ESCALADA
 ¿Prefieres escalar una montaña? Activa el Modo Escalada en Ajustes para gestionar tus sueños como proyectos, con fechas límite por paso, obstáculos como el coste y el tiempo, y un registro de progreso.
 
+DREAM SEEKER PRO
+Con hasta cinco sueños a la vez, todo es gratis: desde forjar la llave hasta abrir el tesoro. Elige Pro para trabajar en todos los sueños que quieras y usar el modo Escalada. Puedes elegir una suscripción semanal, mensual o anual, o un pago único de por vida. Si ya compraste la app, ya tienes Pro.
+
 PRIVACIDAD
 • Sin cuenta, sin anuncios y sin herramientas de análisis
 • Tus sueños, notas y fotos se quedan solo en tu dispositivo
-• Todas las funciones son gratuitas
 
 Términos de uso: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Política de privacidad: https://m1zz.github.io/BucketClimb/es/privacy.html
@@ -531,10 +547,12 @@ Träume mit einem Ort erscheinen auf der Karte, sodass du alle Ziele deiner Wün
 WACHSTUMSMODUS
 Lieber einen Berg besteigen? Schalte in den Einstellungen den Wachstumsmodus ein und verwalte Träume wie Projekte: mit Fristen für jeden Schritt, Hindernissen wie Kosten und Zeit sowie einem Fortschrittsprotokoll.
 
+DREAM SEEKER PRO
+Mit bis zu fünf Träumen gleichzeitig ist alles kostenlos, vom Schmieden des Schlüssels bis zur Schatzkammer. Mit Pro arbeitest du an beliebig vielen Träumen und nutzt den Wachstumsmodus. Wähle ein Wochen-, Monats- oder Jahresabo oder einen einmaligen Kauf für immer. Wenn du die App schon gekauft hast, hast du Pro bereits.
+
 DATENSCHUTZ
 • Kein Konto, keine Werbung, keine Analyse
 • Träume, Notizen und Fotos bleiben auf deinem Gerät
-• Alle Funktionen sind kostenlos
 
 Nutzungsbedingungen: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Datenschutzerklärung: https://m1zz.github.io/BucketClimb/de/privacy.html
@@ -592,10 +610,12 @@ Les rêves liés à un lieu apparaissent sur la carte : vous voyez d'un coup d'�
 MODE ASCENSION
 Vous préférez gravir une montagne ? Activez le mode Ascension dans les Réglages pour gérer vos rêves comme des projets, avec des échéances par étape, des obstacles comme le coût et le temps, et un suivi de progression.
 
+DREAM SEEKER PRO
+Jusqu'à cinq rêves à la fois, tout est gratuit, de la forge de la clé jusqu'aux trésors. Choisissez Pro pour faire grandir autant de rêves que vous voulez et utiliser le mode Ascension. Optez pour un abonnement hebdomadaire, mensuel ou annuel, ou pour un achat unique à vie. Si vous aviez déjà acheté l'app, vous avez déjà Pro.
+
 CONFIDENTIALITÉ
 • Aucun compte, aucune publicité, aucune analyse
 • Vos rêves, notes et photos restent sur votre appareil
-• Toutes les fonctions sont gratuites
 
 Conditions d'utilisation : https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Politique de confidentialité : https://m1zz.github.io/BucketClimb/fr/privacy.html
@@ -653,10 +673,12 @@ I sogni legati a un luogo compaiono sulla mappa, così vedi a colpo d'occhio tut
 MODALITÀ COLTIVA I SOGNI
 Preferisci una montagna da scalare? Attiva la modalità nelle Impostazioni per gestire i sogni come progetti, con scadenze per ogni passo, ostacoli come costi e tempo e un registro dei progressi.
 
+DREAM SEEKER PRO
+Fino a cinque sogni alla volta è tutto gratis, dalla forgia della chiave fino al tesoro. Scegli Pro per coltivare tutti i sogni che vuoi e usare la modalità Coltiva i sogni. Puoi scegliere un abbonamento settimanale, mensile o annuale, oppure un acquisto unico a vita. Se avevi già acquistato l'app, hai già Pro.
+
 PRIVACY
 • Nessun account, nessuna pubblicità, nessuna analisi
 • Sogni, note e foto restano sul tuo dispositivo
-• Tutte le funzioni sono gratuite
 
 Condizioni d'uso: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Informativa sulla privacy: https://m1zz.github.io/BucketClimb/it/privacy.html
@@ -714,10 +736,12 @@ Os sonhos ligados a um lugar aparecem no mapa, e você vê de relance todos os d
 MODO CULTIVAR SONHOS
 Prefere escalar uma montanha? Ative o Modo Cultivar Sonhos nos Ajustes para cuidar dos sonhos como projetos, com prazos para cada etapa, obstáculos como custo e tempo e um registro do progresso.
 
+DREAM SEEKER PRO
+Com até cinco sonhos ao mesmo tempo, tudo é grátis, de forjar a chave a abrir o tesouro. Escolha o Pro para cultivar quantos sonhos quiser e usar o Modo Cultivar Sonhos. Escolha uma assinatura semanal, mensal ou anual, ou uma compra única vitalícia. Se você já tinha comprado o app, já tem o Pro.
+
 PRIVACIDADE
 • Sem conta, sem anúncios, sem análise de uso
 • Seus sonhos, anotações e fotos ficam só no seu aparelho
-• Todos os recursos são gratuitos
 
 Termos de Uso: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Política de Privacidade: https://m1zz.github.io/BucketClimb/pt-BR/privacy.html
@@ -775,10 +799,12 @@ Dream Seeker แบ่งความฝันแต่ละข้อเป็�
 ■ โหมดปลูกฝัน
 ชอบปีนเขามากกว่า? เปิดโหมดปลูกฝันในตั้งค่า เพื่อจัดการความฝันแบบการปีนภูเขา มีกำหนดเสร็จของแต่ละขั้น อุปสรรคอย่างค่าใช้จ่ายและเวลา และบันทึกความคืบหน้า
 
+■ Dream Seeker Pro
+ถ้าปลูกความฝันพร้อมกันไม่เกินห้าข้อ ทุกอย่างตั้งแต่หล่อกุญแจไปจนถึงเปิดคลังสมบัติใช้ได้ฟรี เลือก Pro เพื่อปลูกความฝันพร้อมกันได้ไม่จำกัดและใช้โหมดปลูกฝัน เลือกได้ทั้งแบบรายสัปดาห์ รายเดือน รายปี หรือซื้อครั้งเดียวใช้ตลอดชีพ ใครที่เคยซื้อแอปไว้แล้วจะได้ Pro ทันที
+
 ■ ความเป็นส่วนตัว
 • ไม่มีบัญชี ไม่มีโฆษณา ไม่มีการวิเคราะห์ข้อมูล
 • ความฝัน บันทึก และรูปภาพอยู่ในเครื่องของคุณเท่านั้น
-• ใช้ได้ฟรีทุกฟีเจอร์
 
 เงื่อนไขการใช้งาน: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 นโยบายความเป็นส่วนตัว: https://m1zz.github.io/BucketClimb/th/privacy.html
@@ -836,10 +862,12 @@ Những ước mơ gắn với một địa điểm sẽ hiện trên bản đ�
 CHẾ ĐỘ VUN ƯỚC MƠ
 Thích leo núi hơn? Bật Chế độ Vun ước mơ trong Cài đặt để quản lý ước mơ như một dự án, với hạn chót cho từng bước, các trở ngại như chi phí và thời gian, cùng nhật ký tiến trình.
 
+DREAM SEEKER PRO
+Khi vun đắp tối đa năm ước mơ cùng lúc, mọi thứ từ rèn chìa khóa đến mở kho báu đều miễn phí. Chọn Pro để vun đắp bao nhiêu ước mơ tùy thích và dùng chế độ Vun ước mơ. Bạn có thể chọn gói tuần, tháng, năm hoặc mua trọn đời một lần. Nếu bạn đã mua ứng dụng trước đây, bạn đã có Pro.
+
 QUYỀN RIÊNG TƯ
 • Không cần tài khoản, không quảng cáo, không phân tích dữ liệu
 • Ước mơ, ghi chú và ảnh của bạn chỉ nằm trên thiết bị
-• Mọi tính năng đều miễn phí
 
 Điều khoản sử dụng: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Chính sách quyền riêng tư: https://m1zz.github.io/BucketClimb/vi/privacy.html
@@ -897,10 +925,12 @@ Sny spojené s konkrétním místem se zobrazí na mapě, takže na první pohle
 REŽIM PĚSTOVÁNÍ SNŮ
 Bližší je vám horolezectví? V Nastavení zapněte Režim pěstování snů a spravujte sny jako projekty: s termíny kroků, překážkami, jako jsou náklady a čas, a záznamem postupu.
 
+DREAM SEEKER PRO
+S nejvýš pěti sny najednou je všechno zdarma, od kování klíče až po pokladnici. Zvolte Pro, pokud chcete pěstovat tolik snů, kolik chcete, a používat režim pěstování snů. Vybrat si můžete týdenní, měsíční nebo roční předplatné, nebo jednorázový doživotní nákup. Pokud jste si aplikaci už dříve koupili, Pro už máte.
+
 SOUKROMÍ
 • Bez účtu, bez reklam, bez analytiky
 • Vaše sny, poznámky a fotky zůstávají jen v zařízení
-• Všechny funkce jsou zdarma
 
 Podmínky použití: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Zásady ochrany osobních údajů: https://m1zz.github.io/BucketClimb/cs/privacy.html
@@ -958,10 +988,12 @@ Drømme med et sted vises på kortet, så du med et blik kan se alle de steder, 
 VÆKST-TILSTAND
 Hellere et bjerg at bestige? Slå Vækst-tilstand til under Indstillinger, og styr dine drømme som projekter med frister for trin, forhindringer som pris og tid og en log over fremskridt.
 
+DREAM SEEKER PRO
+Med op til fem drømme ad gangen er alt gratis, fra at smede nøglen til at åbne skatkammeret. Vælg Pro for at arbejde med så mange drømme, du vil, og bruge vækst-tilstand. Vælg et uge-, måneds- eller årsabonnement eller et engangskøb for livet. Hvis du allerede har købt appen, har du allerede Pro.
+
 PRIVATLIV
 • Ingen konto, ingen reklamer, ingen analyse
 • Dine drømme, noter og fotos bliver på din enhed
-• Alle funktioner er gratis
 
 Brugsvilkår: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Privatlivspolitik: https://m1zz.github.io/BucketClimb/da/privacy.html
@@ -1019,10 +1051,12 @@ Dream Seeker: Λίστα Επιθυμιών
 ΛΕΙΤΟΥΡΓΙΑ ΑΝΑΠΤΥΞΗΣ ΟΝΕΙΡΩΝ
 Προτιμάς να σκαρφαλώνεις ένα βουνό; Ενεργοποίησε τη λειτουργία στις Ρυθμίσεις και διαχειρίσου τα όνειρα σαν έργα, με προθεσμίες βημάτων, εμπόδια όπως το κόστος και ο χρόνος, και καταγραφή προόδου.
 
+DREAM SEEKER PRO
+Με έως πέντε όνειρα ταυτόχρονα, όλα είναι δωρεάν, από το σφυρηλάτημα του κλειδιού μέχρι το θησαυροφυλάκιο. Διάλεξε το Pro για να καλλιεργείς όσα όνειρα θέλεις και να χρησιμοποιείς τη λειτουργία ανάπτυξης ονείρων. Επίλεξε εβδομαδιαία, μηνιαία ή ετήσια συνδρομή ή εφάπαξ αγορά εφ' όρου ζωής. Αν είχες ήδη αγοράσει την εφαρμογή, έχεις ήδη το Pro.
+
 ΙΔΙΩΤΙΚΟΤΗΤΑ
 • Χωρίς λογαριασμό, χωρίς διαφημίσεις, χωρίς αναλυτικά στοιχεία
 • Τα όνειρα, οι σημειώσεις και οι φωτογραφίες σου μένουν στη συσκευή σου
-• Όλες οι λειτουργίες είναι δωρεάν
 
 Όροι χρήσης: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Πολιτική απορρήτου: https://m1zz.github.io/BucketClimb/el/privacy.html
@@ -1080,10 +1114,12 @@ Paikkaan liittyvät unelmat näkyvät kartalla, joten näet yhdellä silmäyksel
 UNELMIEN KASVATUSTILA
 Tykkäätkö enemmän vuoren valloittamisesta? Ota Asetuksista käyttöön Unelmien kasvatustila ja hallitse unelmia kuin projekteja: vaiheille voi asettaa määräajan, esteiksi voi merkitä esimerkiksi kustannukset ja ajan, ja edistymistä voi kirjata.
 
+DREAM SEEKER PRO
+Kun kasvatat enintään viittä unelmaa kerrallaan, kaikki avaimen takomisesta aarrekammion avaamiseen on ilmaista. Valitse Pro, jos haluat kasvattaa niin monta unelmaa kuin haluat ja käyttää unelmien kasvatustilaa. Valittavana on viikko-, kuukausi- tai vuositilaus tai kertaosto. Jos olet jo ostanut sovelluksen, sinulla on jo Pro.
+
 YKSITYISYYS
 • Ei tiliä, ei mainoksia, ei analytiikkaa
 • Unelmasi, muistiinpanosi ja kuvasi pysyvät laitteellasi
-• Kaikki ominaisuudet ovat ilmaisia
 
 Käyttöehdot: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Tietosuojakäytäntö: https://m1zz.github.io/BucketClimb/fi/privacy.html
@@ -1141,10 +1177,12 @@ Mimpi yang terkait dengan suatu tempat muncul di peta, jadi kamu bisa melihat se
 MODE TUMBUHKAN MIMPI
 Lebih suka mendaki gunung? Aktifkan Mode Tumbuhkan Mimpi di Pengaturan untuk mengelola mimpi seperti proyek, lengkap dengan tenggat tiap langkah, rintangan seperti biaya dan waktu, serta catatan progres.
 
+DREAM SEEKER PRO
+Untuk hingga lima mimpi sekaligus, semuanya gratis, dari menempa kunci sampai membuka brankas. Pilih Pro untuk menumbuhkan mimpi sebanyak yang kamu mau dan memakai Mode Tumbuhkan Mimpi. Pilih langganan mingguan, bulanan, atau tahunan, atau beli sekali untuk seumur hidup. Kalau kamu sudah pernah membeli aplikasinya, kamu sudah punya Pro.
+
 PRIVASI
 • Tanpa akun, tanpa iklan, tanpa analitik
 • Mimpi, catatan, dan fotomu tetap ada di perangkatmu
-• Semua fitur gratis
 
 Syarat Penggunaan: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Kebijakan Privasi: https://m1zz.github.io/BucketClimb/id/privacy.html
@@ -1202,10 +1240,12 @@ Drømmer knyttet til et sted vises på kartet, så du ser alle stedene du vil dr
 DRØMMEKLATRINGSMODUS
 Får du mer ut av å bestige et fjell? Slå på drømmeklatringsmodus i innstillingene, så kan du styre drømmer som prosjekter, med frister for trinnene, hindre som kostnader og tid, og en logg over framdriften.
 
+DREAM SEEKER PRO
+Med opptil fem drømmer om gangen er alt gratis, fra å smi nøkkelen til å åpne skattkammeret. Velg Pro for å jobbe med så mange drømmer du vil og bruke drømmeklatringsmodus. Velg ukes-, måneds- eller årsabonnement eller et engangskjøp for livet. Hvis du allerede har kjøpt appen, har du allerede Pro.
+
 PERSONVERN
 • Ingen konto, ingen reklame, ingen analyse
 • Drømmene, notatene og bildene dine blir på enheten din
-• Alle funksjoner er gratis
 
 Bruksvilkår: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Personvernerklæring: https://m1zz.github.io/BucketClimb/nb/privacy.html
@@ -1263,10 +1303,12 @@ Dromen met een locatie verschijnen op de kaart, zodat je in één oogopslag ziet
 GROEIMODUS
 Liever een berg beklimmen? Zet de groeimodus aan in Instellingen en beheer je dromen als projecten, met deadlines per stap, obstakels zoals kosten en tijd, en een voortgangslogboek.
 
+DREAM SEEKER PRO
+Met maximaal vijf dromen tegelijk is alles gratis, van het smeden van de sleutel tot het openen van de schatkamer. Kies Pro om aan zoveel dromen te werken als je wilt en de groeimodus te gebruiken. Kies een week-, maand- of jaarabonnement of een eenmalige aankoop voor altijd. Heb je de app al eerder gekocht? Dan heb je Pro al.
+
 PRIVACY
 • Geen account, geen advertenties, geen analyses
 • Je dromen, notities en foto's blijven op je apparaat
-• Alle functies zijn gratis
 
 Gebruiksvoorwaarden: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Privacybeleid: https://m1zz.github.io/BucketClimb/nl/privacy.html
@@ -1324,10 +1366,12 @@ Marzenia związane z miejscem pojawiają się na mapie, więc jednym spojrzeniem
 TRYB ROZWOJU MARZEŃ
 Wolisz wspinaczkę na szczyt? Włącz tryb rozwoju marzeń w Ustawieniach, by zarządzać marzeniami jak projektami: z terminami kroków, przeszkodami takimi jak koszty i czas oraz zapisem postępów.
 
+DREAM SEEKER PRO
+Przy maksymalnie pięciu marzeniach naraz wszystko jest bezpłatne, od wykuwania klucza po otwarcie skarbca. Wybierz Pro, aby rozwijać tyle marzeń, ile chcesz, i korzystać z trybu rozwoju marzeń. Do wyboru jest subskrypcja tygodniowa, miesięczna lub roczna albo jednorazowy zakup na zawsze. Jeśli aplikacja została już przez Ciebie kupiona, masz już Pro.
+
 PRYWATNOŚĆ
 • Bez konta, bez reklam, bez analityki
 • Marzenia, notatki i zdjęcia zostają na Twoim urządzeniu
-• Wszystkie funkcje są bezpłatne
 
 Warunki użytkowania: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Polityka prywatności: https://m1zz.github.io/BucketClimb/pl/privacy.html
@@ -1385,10 +1429,12 @@ Drömmar som hör till en plats visas på kartan, så du ser alla ställen du vi
 ODLINGSLÄGE
 Vill du hellre bestiga ett berg? Slå på Odlingsläge i Inställningar och hantera drömmar som projekt, med tidsfrister för stegen, hinder som kostnad och tid samt en framstegslogg.
 
+DREAM SEEKER PRO
+Med upp till fem drömmar åt gången är allt gratis, från att smida nyckeln till att öppna skattkammaren. Välj Pro för att arbeta med så många drömmar du vill och använda odlingsläget. Välj vecko-, månads- eller årsprenumeration eller ett engångsköp för livet. Har du redan köpt appen har du redan Pro.
+
 INTEGRITET
 • Inget konto, inga annonser, ingen analys
 • Dina drömmar, anteckningar och foton stannar på din enhet
-• Alla funktioner är gratis
 
 Användarvillkor: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Integritetspolicy: https://m1zz.github.io/BucketClimb/sv/privacy.html
@@ -1446,10 +1492,12 @@ Bir yere bağlı hayaller haritada görünür. Gitmek istediğin her yeri tek ba
 HAYAL BÜYÜTME MODU
 Dağa tırmanır gibi ilerlemeyi mi seversin? Ayarlar'dan Hayal Büyütme Modu'nu aç; hayallerini adım son tarihleri, maliyet ve zaman gibi engeller ve ilerleme kaydıyla bir proje gibi yönet.
 
+DREAM SEEKER PRO
+Aynı anda en fazla beş hayalle, anahtarı yapmaktan hazineyi açmaya kadar her şey ücretsiz. İstediğin kadar hayali birlikte büyütmek ve Hayal Büyütme Modu'nu kullanmak için Pro'yu seç. Haftalık, aylık ya da yıllık abonelik veya tek seferlik ömür boyu satın alma arasından seçebilirsin. Uygulamayı daha önce satın aldıysan Pro zaten sende.
+
 GİZLİLİK
 • Hesap, reklam ve analiz yok
 • Hayallerin, notların ve fotoğrafların yalnızca cihazında kalır
-• Tüm özellikler ücretsiz
 
 Kullanım Koşulları: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Gizlilik Politikası: https://m1zz.github.io/BucketClimb/tr/privacy.html

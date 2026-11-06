@@ -5,7 +5,7 @@
     "headline": "No te limites a\napuntar tus sueños",
     "lead": "Elige un sueño y los pequeños pasos que te llevan hasta él se convierten en los dientes de una llave. Responde al paso de hoy, pregunta a pregunta, y cuando te des cuenta el cofre estará abierto.",
     "cta": "Descargar en el App Store",
-    "note": "Compras una vez y tienes todas las funciones. Sin suscripción ni anuncios."
+    "note": "Descárgala gratis y trabaja en hasta cinco sueños a la vez. Sin anuncios."
   },
   "demo": {
     "title": "Completa la llave",
@@ -145,27 +145,30 @@
     "note": "Cada área tiene casi cien sueños. Crea los tuyos con «Añadir nuevo sueño» en Mi taller."
   },
   "pricing": {
-    "title": "Una compra y lo tienes todo",
+    "title": "Empieza gratis y pásate a Pro cuando quieras más",
     "free": {
-      "name": "La app",
+      "name": "Gratis",
       "items": [
         "Más de 590 sueños con preguntas en cada paso",
         "Tus propios sueños",
+        "Hasta 5 sueños a la vez",
         "Mi registro con fotos y la Cronología de progreso",
         "Tesoro y mapa",
-        "Modo Escalada",
-        "Las próximas actualizaciones"
+        "Exportar diario de sueños"
       ]
     },
     "pro": {
-      "name": "Apoyar al desarrollador (opcional)",
+      "name": "Dream Seeker Pro",
       "items": [
-        "Si la app te ayuda, puedes dejar una pequeña propina desde Ajustes",
-        "Las propinas no desbloquean nada. Sin ellas, todas las funciones siguen siendo tuyas"
+        "Todo lo de la versión gratuita",
+        "Sueños ilimitados a la vez",
+        "Modo Escalada",
+        "Fechas límite por paso · control de obstáculos",
+        "Registro diario · pestaña Archivo"
       ],
-      "note": "Propinas sueltas, no una suscripción."
+      "note": "Suscripción semanal, mensual o anual, o un pago único de por vida."
     },
-    "note": "Dentro de la app no hay nada de pago. Sin cuenta ni anuncios."
+    "note": "¿Ya compraste la app? Ya tienes Pro. Las propinas de Ajustes no desbloquean nada. Sin cuenta y sin anuncios."
   },
   "faq": {
     "title": "Preguntas frecuentes",
@@ -196,7 +199,7 @@
       },
       {
         "q": "¿Hay compras dentro de la app?",
-        "a": "No. Con la app tienes todas las funciones. Las propinas de Ajustes solo están por si quieres dar las gracias."
+        "a": "Con hasta cinco sueños a la vez, todo es gratis: desde forjar la llave hasta abrir el tesoro. Elige Pro para trabajar en todos los sueños que quieras y usar el modo Escalada. Puedes elegir una suscripción semanal, mensual o anual, o un pago único de por vida. Si ya compraste la app, ya tienes Pro."
       },
       {
         "q": "¿Se envían mis sueños y mi registro a algún sitio?",
