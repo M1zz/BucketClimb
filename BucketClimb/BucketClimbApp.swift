@@ -23,6 +23,8 @@ struct BucketClimbApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                // 개발자가 보낸 의견에 답장하면, 앱이 앞으로 올 때 답장을 시트로 보여 준다 (LeeoKit).
+                .leeoFeedbackReplyNotice(BucketClimbSpec.self)
                 .environmentObject(viewModel)
                 // 꿈을 찾아서 Pro — 산 것을 다시 읽는다. 팁 상품 · 끝나지 않은 팁도 LeeoStore 가 함께 챙긴다 (→ BucketClimbPro.swift)
                 .task { await ProStore.shared.refresh() }
