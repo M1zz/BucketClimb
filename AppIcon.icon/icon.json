@@ -1,0 +1,77 @@
+{
+  "color-space-for-untagged-svg-colors": "display-p3",
+  "fill-specializations": [
+    {
+      "value": {
+        "linear-gradient": [
+          "display-p3:0.29000,0.56000,1.00000,1.00000",
+          "display-p3:0.09000,0.24000,0.72000,1.00000"
+        ],
+        "orientation": {
+          "start": { "x": 0.5, "y": 0 },
+          "stop": { "x": 0.5, "y": 1 }
+        }
+      }
+    },
+    {
+      "appearance": "dark",
+      "value": {
+        "linear-gradient": [
+          "display-p3:0.07000,0.11000,0.27000,1.00000",
+          "display-p3:0.01500,0.02500,0.08000,1.00000"
+        ],
+        "orientation": {
+          "start": { "x": 0.5, "y": 0 },
+          "stop": { "x": 0.5, "y": 1 }
+        }
+      }
+    }
+  ],
+  "groups": [
+    {
+      "layers": [
+        {
+          "glass": true,
+          "image-name-specializations": [ { "value": "mountain-front.svg" } ],
+          "name": "mountain-front"
+        }
+      ],
+      "lighting": "individual",
+      "name": "앞산",
+      "shadow": { "kind": "neutral", "opacity": 0.5 },
+      "specular": true,
+      "translucency": { "enabled": false, "value": 0.5 }
+    },
+    {
+      "layers": [
+        {
+          "glass": true,
+          "image-name-specializations": [ { "value": "key.svg" } ],
+          "name": "key"
+        }
+      ],
+      "lighting": "individual",
+      "name": "열쇠",
+      "shadow": { "kind": "layer-color", "opacity": 0.6 },
+      "specular": true,
+      "translucency": { "enabled": false, "value": 0.5 }
+    },
+    {
+      "layers": [
+        {
+          "glass": true,
+          "image-name-specializations": [ { "value": "mountain-back.svg" }, { "appearance": "dark", "value": "mountain-back-dark.svg" } ],
+          "name": "mountain-back"
+        }
+      ],
+      "lighting": "individual",
+      "name": "뒷산",
+      "shadow": { "kind": "neutral", "opacity": 0.3 },
+      "specular": true,
+      "translucency": { "enabled": true, "value": 0.3 }
+    }
+  ],
+  "supported-platforms": {
+    "squares": "shared"
+  }
+}

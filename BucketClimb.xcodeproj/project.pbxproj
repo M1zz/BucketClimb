@@ -33,6 +33,7 @@
 		580DFD312ED5E8D6008F8FC9 /* AchievementBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580DFD262ED5E8D6008F8FC9 /* AchievementBucket.swift */; };
 		580DFD322ED5E8D6008F8FC9 /* LearningBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580DFD2A2ED5E8D6008F8FC9 /* LearningBucket.swift */; };
 		580DFD332ED5E8D6008F8FC9 /* RelationshipBucket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580DFD2B2ED5E8D6008F8FC9 /* RelationshipBucket.swift */; };
+		1C0000010000000000000A01 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1C0000020000000000000A02 /* AppIcon.icon */; };
 		58AA252D2ED22AE200E8766A /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58AA252C2ED22AE200E8766A /* Asset.xcassets */; };
 		D1CE43E67EDBEDB4E970B027 /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 10545C633CC577FCFDB59F86 /* AppShortcuts.xcstrings */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		580DFD2A2ED5E8D6008F8FC9 /* LearningBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningBucket.swift; sourceTree = "<group>"; };
 		580DFD2B2ED5E8D6008F8FC9 /* RelationshipBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelationshipBucket.swift; sourceTree = "<group>"; };
 		580DFD2C2ED5E8D6008F8FC9 /* TravelBucket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelBucket.swift; sourceTree = "<group>"; };
+		1C0000020000000000000A02 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		58AA252C2ED22AE200E8766A /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
 		A318FE94747CF45034F9CA30 /* BucketIntents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BucketIntents.swift; sourceTree = "<group>"; };
 		4C0000010000000000000011 /* BucketClimbPro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketClimbPro.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				3B000005000000000000000000000015 /* Version.xcconfig */,
+				1C0000020000000000000A02 /* AppIcon.icon */,
 				58AA252C2ED22AE200E8766A /* Asset.xcassets */,
 				2A000011000000000000000000000011 /* BucketClimb */,
 				2A000012000000000000000000000019 /* Products */,
@@ -253,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C0000010000000000000A01 /* AppIcon.icon in Resources */,
 				58AA252D2ED22AE200E8766A /* Asset.xcassets in Resources */,
 				3B000002000000000000000000000002 /* Localizable.xcstrings in Resources */,
 				3B000003000000000000000000000003 /* Buckets.xcstrings in Resources */,
