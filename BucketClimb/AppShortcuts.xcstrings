@@ -1,149 +1,308 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Add a dream to ${applicationName}" : {
+    "${applicationName} next step" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} další krok"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} næste skridt"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} nächster Schritt"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} επόμενο βήμα"
+          }
+        },
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "${applicationName} next step",
+              "What’s my next step in ${applicationName}"
+            ]
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} next step"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} siguiente paso"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} seuraava vaihe"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} étape suivante"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} langkah berikutnya"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} prossimo passo"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName}の次のステップ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} 다음 단계"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} neste steg"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} volgende stap"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} następny krok"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} próximo passo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} следующий шаг"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} nästa steg"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} ขั้นต่อไป"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} sonraki adım"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName} bước tiếp theo"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName}下一步"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "${applicationName}下一步"
+          }
+        }
+      }
+    },
+    "Add a goal to ${applicationName}" : {
       "localizations" : {
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Přidej sen do ${applicationName}"
+            "value" : "Přidej cíl do ${applicationName}"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tilføj en drøm i ${applicationName}"
+            "value" : "Tilføj et mål til ${applicationName}"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Füge in ${applicationName} einen Traum hinzu"
+            "value" : "Ziel zu ${applicationName} hinzufügen"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Πρόσθεσε ένα όνειρο στο ${applicationName}"
+            "value" : "Πρόσθεσε στόχο στο ${applicationName}"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add a goal to ${applicationName}"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Add a dream to ${applicationName}"
+            "value" : "Add a goal to ${applicationName}"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Añade un sueño a ${applicationName}"
+            "value" : "Añadir una meta a ${applicationName}"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lisää unelma ${applicationName}iin"
+            "value" : "Lisää tavoite appiin ${applicationName}"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ajoute un rêve dans ${applicationName}"
+            "value" : "Ajouter un objectif dans ${applicationName}"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tambahkan impian ke ${applicationName}"
+            "value" : "Tambah target ke ${applicationName}"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aggiungi un sogno a ${applicationName}"
+            "value" : "Aggiungi un obiettivo a ${applicationName}"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "${applicationName}に夢を追加"
+            "value" : "${applicationName}に目標を追加"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "${applicationName}에 꿈 담아줘"
+            "value" : "${applicationName}에 목표 추가"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Legg til en drøm i ${applicationName}"
+            "value" : "Legg til et mål i ${applicationName}"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voeg een droom toe aan ${applicationName}"
+            "value" : "Voeg een doel toe aan ${applicationName}"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dodaj marzenie w ${applicationName}"
+            "value" : "Dodaj cel w ${applicationName}"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Adicione um sonho no ${applicationName}"
+            "value" : "Adicionar uma meta ao ${applicationName}"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Добавь мечту в ${applicationName}"
+            "value" : "Добавь цель в ${applicationName}"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lägg till en dröm i ${applicationName}"
+            "value" : "Lägg till ett mål i ${applicationName}"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เพิ่มความฝันใน ${applicationName}"
+            "value" : "เพิ่มเป้าหมายใน ${applicationName}"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "${applicationName} içine hayal ekle"
+            "value" : "${applicationName} uygulamasına hedef ekle"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Thêm ước mơ vào ${applicationName}"
+            "value" : "Thêm mục tiêu vào ${applicationName}"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在${applicationName}添加梦想"
+            "value" : "在${applicationName}中添加目标"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在${applicationName}新增夢想"
+            "value" : "在${applicationName}新增目標"
           }
         }
       }
     },
-    "New bucket list goal in ${applicationName}" : {
+    "New goal in ${applicationName}" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -160,7 +319,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neues Lebensziel in ${applicationName}"
+            "value" : "Neues Ziel in ${applicationName}"
           }
         },
         "el" : {
@@ -169,10 +328,16 @@
             "value" : "Νέος στόχος στο ${applicationName}"
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New goal in ${applicationName}"
+          }
+        },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "New bucket list goal in ${applicationName}"
+            "value" : "New goal in ${applicationName}"
           }
         },
         "es" : {
@@ -184,7 +349,7 @@
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uusi tavoite ${applicationName}issa"
+            "value" : "Uusi tavoite apissa ${applicationName}"
           }
         },
         "fr" : {
@@ -196,7 +361,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tujuan baru di ${applicationName}"
+            "value" : "Target baru di ${applicationName}"
           }
         },
         "it" : {
@@ -208,13 +373,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "${applicationName}で新しいバケットリスト"
+            "value" : "${applicationName}で新しい目標"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "${applicationName} 새 버킷리스트"
+            "value" : "${applicationName} 새 목표"
           }
         },
         "nb" : {
@@ -262,7 +427,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "${applicationName} içinde yeni hedef"
+            "value" : "${applicationName} uygulamasında yeni hedef"
           }
         },
         "vi" : {
@@ -274,160 +439,19 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "${applicationName}新的愿望清单目标"
+            "value" : "在${applicationName}中新建目标"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "${applicationName}新的願望清單目標"
-          }
-        }
-      }
-    },
-    "${applicationName} next step" : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} další krok"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} næste skridt"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} nächster Schritt"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} επόμενο βήμα"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} next step"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} siguiente paso"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} seuraava vaihe"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} étape suivante"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} langkah berikutnya"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} prossimo passo"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName}の次のステップ"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} 다음 단계"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} neste steg"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} volgende stap"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} następny krok"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} próximo passo"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} следующий шаг"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} nästa steg"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} ขั้นต่อไป"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} sonraki adım"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName} bước tiếp theo"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName}下一步"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "${applicationName}下一步"
+            "value" : "在${applicationName}建立新目標"
           }
         }
       }
     },
     "What’s my next step in ${applicationName}" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

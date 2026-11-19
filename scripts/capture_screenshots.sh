@@ -34,10 +34,8 @@ shot() { # <로케일> <이름> <기다림초> <인자...>
 
 for loc in $LOCALES; do
   mkdir -p "$ROOT/docs/screenshots/raw/$loc"
-  shot "$loc" forge 16 -ScreenshotTab 0 -ScreenshotForge
-  shot "$loc" ocean 10 -ScreenshotTab 1
-  shot "$loc" workshop 7 -ScreenshotTab 0
-  shot "$loc" treasury 6 -ScreenshotTab 2
-  shot "$loc" map 14 -ScreenshotTab 3
+  shot "$loc" goals 8
+  shot "$loc" detail 8 -ScreenshotDetail
+  shot "$loc" done 8 -ScreenshotDone
   echo "📸 $loc"
 done

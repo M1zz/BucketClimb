@@ -7,37 +7,20 @@ class BucketListViewModel: ObservableObject {
     @MainActor static let shared = BucketListViewModel()
 
     @Published var bucketItems: [BucketListItem] = []
-    @Published var showArchiveTab: Bool = false {
-        didSet {
-            UserDefaults.standard.set(showArchiveTab, forKey: "ShowArchiveTab")
-        }
-    }
-    // 꿈 키우기 모드 (기본은 내 창고, 이 값이 true면 꿈 키우기 모드)
-    @Published var useClassicMode: Bool = false {
-        didSet {
-            UserDefaults.standard.set(useClassicMode, forKey: "UseClassicMode")
-        }
-    }
-    // 온보딩 완료 여부
+    /// 첫 실행 화면(첫 목표 입력)을 지났는가.
     @Published var hasCompletedOnboarding: Bool = false {
         didSet {
             UserDefaults.standard.set(hasCompletedOnboarding, forKey: "HasCompletedOnboarding")
         }
-    }
-    // 레거시 호환용 (기존 useForgeView 사용하는 코드 대응)
-    var useForgeView: Bool {
-        get { !useClassicMode }
-        set { useClassicMode = !newValue }
     }
 
     private let saveKey = "SavedBucketList"
 
     init() {
         loadData()
-        migrateLocationData()
-        showArchiveTab = UserDefaults.standard.bool(forKey: "ShowArchiveTab")
-        useClassicMode = UserDefaults.standard.bool(forKey: "UseClassicMode")
-        hasCompletedOnboarding = UserDefaults.standard.bool(forKey: "HasCompletedOnboarding")
+        fillCatalogSteps()
+        // 목표가 이미 있는 사람에게는 첫 실행 화면을 보이지 않는다.
+        hasCompletedOnboarding = UserDefaults.standard.bool(forKey: "HasCompletedOnboarding") || !bucketItems.isEmpty
         #if DEBUG
         if ScreenshotSeed.isOn { ScreenshotSeed.apply(to: self) }
         #endif
@@ -47,255 +30,183 @@ class BucketListViewModel: ObservableObject {
         hasCompletedOnboarding = true
     }
 
-    func resetOnboarding() {
-        hasCompletedOnboarding = false
+    // MARK: - 목록
+
+    /// 완료하지 않은 목표, 추가한 순서로. 예전 판의 '시작 전' · '진행 중' 을 가리지 않는다.
+    var openGoals: [BucketListItem] {
+        bucketItems.filter { $0.status != .completed }.sorted { $0.dateAdded < $1.dateAdded }
     }
 
-    var myBucketLists: [BucketListItem] {
-        bucketItems.filter { $0.status == .inBucket }
+    /// 완료한 목표, 최근에 완료한 것부터.
+    var doneGoals: [BucketListItem] {
+        bucketItems.filter { $0.status == .completed && !$0.isAbandoned }
+            .sorted { ($0.dateCompleted ?? .distantPast) > ($1.dateCompleted ?? .distantPast) }
     }
 
-    var climbingBucketLists: [BucketListItem] {
-        bucketItems.filter { $0.status == .climbing }
+    /// 그만둔 목표. 저장 형식에서는 완료 상태에 `isAbandoned` 가 붙어 있다.
+    var stoppedGoals: [BucketListItem] {
+        bucketItems.filter { $0.status == .completed && $0.isAbandoned }
+            .sorted { ($0.dateCompleted ?? .distantPast) > ($1.dateCompleted ?? .distantPast) }
     }
 
-    var itemsCompleted: [BucketListItem] {
-        bucketItems.filter { $0.status == .completed }
-    }
-
-    /// 지금 키우는 꿈 수 — 내 창고에 있는 꿈(담김 · 등반 중). 무료 한도가 세는 값이다 (→ ProStore.canTakeAnotherDream).
-    var activeDreamCount: Int {
+    /// 완료하지 않은 목표 수. 무료 한도가 세는 값이다 (→ ProStore.canTakeAnotherGoal).
+    var openGoalCount: Int {
         bucketItems.filter { $0.status != .completed }.count
     }
 
-    // 모든 BucketItem을 가져오는 computed property
-    var allBucketItems: [BucketItem] {
-        let travel = TravelBucket.allCases.map { BucketItem.travel($0) }
-        let experience = ExperienceBucket.allCases.map { BucketItem.experience($0) }
-        let achievement = AchievementBucket.allCases.map { BucketItem.achievement($0) }
-        let learning = LearningBucket.allCases.map { BucketItem.learning($0) }
-        let health = HealthBucket.allCases.map { BucketItem.health($0) }
-        let relationship = RelationshipBucket.allCases.map { BucketItem.relationship($0) }
-        return travel + experience + achievement + learning + health + relationship
+    var doneStepCount: Int {
+        bucketItems.reduce(0) { $0 + $1.doneStepCount }
     }
 
-    func getRandomPopularBuckets(count: Int = 5) -> [(title: String, category: BucketCategory, thumbnail: String, backgroundImage: String, location: LocationInfo?)] {
-        let icelandAurora = BucketItem.travel(.아이슬란드에서_오로라_보기)
-        let others = allBucketItems.filter { $0.title != icelandAurora.title }.shuffled().prefix(count - 1)
+    // MARK: - 목표
 
-        let result = [icelandAurora] + others
-        return result.map { ($0.title, $0.category, $0.thumbnail, $0.backgroundImage, $0.location) }
-    }
-
-    func addBucketItem(title: String, category: BucketCategory, thumbnail: String? = nil, backgroundImage: String? = nil, location: LocationInfo? = nil, notes: String? = nil) {
-        let newItem = BucketListItem(title: title, category: category, thumbnail: thumbnail, backgroundImage: backgroundImage, location: location)
-        if let notes = notes, !notes.isEmpty {
-            newItem.notes = notes
-        }
-        bucketItems.append(newItem)
+    /// 고친 뒤 화면을 다시 그리고 저장한다. 목표는 참조 타입이라 배열이 바뀐 것으로 잡히지 않는다.
+    private func change(_ item: BucketListItem, _ body: (BucketListItem) -> Void) {
+        objectWillChange.send()
+        body(item)
         saveData()
     }
 
-    func addBucketItemWithMilestones(title: String, category: BucketCategory, milestones: [Milestone], location: LocationInfo? = nil) {
-        let newItem = BucketListItem(title: title, category: category, location: location)
-        newItem.milestones = milestones
-        bucketItems.append(newItem)
+    /// 단계 하나를 고친다.
+    private func changeStep(_ item: BucketListItem, _ stepID: UUID, _ body: (inout Milestone) -> Void) {
+        guard let index = item.milestones.firstIndex(where: { $0.id == stepID }) else { return }
+        change(item) { body(&$0.milestones[index]) }
+    }
+
+    @discardableResult
+    func addGoal(title: String, category: BucketCategory, steps: [String] = [], location: LocationInfo? = nil,
+                 start: Bool = true) -> BucketListItem {
+        let item = BucketListItem(title: title, category: category, location: location)
+        item.milestones = steps.map { Milestone(title: $0, description: "", successCriteria: []) }
+        if start {
+            item.status = .climbing
+            item.dateStarted = Date()
+        }
+        bucketItems.append(item)
         saveData()
+        return item
     }
 
-    func startClimbing(item: BucketListItem) {
-        if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
-            bucketItems[index].status = .climbing
-            bucketItems[index].dateStarted = Date()
-            objectWillChange.send()
-            saveData()
-            // 프리셋 마일스톤 자동 생성
-            generatePresetMilestones(for: bucketItems[index])
+    func complete(_ item: BucketListItem) {
+        change(item) {
+            $0.status = .completed
+            $0.dateCompleted = Date()
+            $0.isAbandoned = false
         }
     }
 
-    func completeMilestonesPhase(item: BucketListItem) {
-        if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
-            bucketItems[index].milestonesPhaseCompleted = true
-            objectWillChange.send()
-            saveData()
+    /// 그만둔다. 단계와 기록은 그대로 남고 완료 탭의 '그만둔 목표'로 옮겨 간다.
+    func stop(_ item: BucketListItem) {
+        change(item) {
+            $0.status = .completed
+            $0.dateCompleted = Date()
+            $0.isAbandoned = true
         }
     }
 
-    func completeBucket(item: BucketListItem) {
-        if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
-            bucketItems[index].status = .completed
-            bucketItems[index].dateCompleted = Date()
-            objectWillChange.send()
-            saveData()
+    /// 완료했거나 그만둔 목표를 다시 진행 중으로 돌린다.
+    func resume(_ item: BucketListItem) {
+        change(item) {
+            $0.status = .climbing
+            $0.dateStarted = $0.dateStarted ?? Date()
+            $0.dateCompleted = nil
+            $0.isAbandoned = false
+            $0.touchedAt = Date()
         }
     }
 
-    func deleteBucket(item: BucketListItem) {
+    /// 오래 손대지 않은 목표를 계속하기로 한다. 한 달 뒤에 다시 묻는다.
+    func keep(_ item: BucketListItem) {
+        change(item) { $0.touchedAt = Date() }
+    }
+
+    func delete(_ item: BucketListItem) {
         bucketItems.removeAll { $0.id == item.id }
         saveData()
     }
 
-    // 꿈 포기 (상태만 변경, 데이터는 유지)
-    func abandonBucket(item: BucketListItem) {
-        // 포기한 꿈은 완료 상태로 변경하고 포기 플래그 설정
-        if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
-            bucketItems[index].status = .completed
-            bucketItems[index].dateCompleted = Date()
-            bucketItems[index].isAbandoned = true
-            objectWillChange.send()
-        }
-        saveData()
+    func rename(_ item: BucketListItem, to title: String) {
+        change(item) { $0.title = title }
     }
 
-    // 포기한 꿈 다시 시작
-    func resumeBucket(item: BucketListItem) {
-        if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
-            bucketItems[index].status = .climbing
-            bucketItems[index].dateStarted = Date()
-            bucketItems[index].dateCompleted = nil
-            bucketItems[index].isAbandoned = false
-            objectWillChange.send()
-            saveData()
+    // MARK: - 구체화
+
+    /// 빈칸 하나의 답을 적는다. 비우면 빈칸으로 돌아간다.
+    func setAnswer(_ item: BucketListItem, _ blank: GoalBlank, _ text: String) {
+        let text = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard text != item.answer(blank) else { return }
+        change(item) {
+            $0.answers[blank.rawValue] = text.isEmpty ? nil : text
+            $0.touchedAt = Date()
         }
     }
 
-    func updateObstacle(item: BucketListItem, obstacle: Obstacle, newValue: Double) {
-        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
-           let obstacleIndex = bucketItems[itemIndex].obstacles.firstIndex(where: { $0.id == obstacle.id }) {
-            bucketItems[itemIndex].obstacles[obstacleIndex].currentValue = newValue
-            saveData()
+    // MARK: - 단계
+
+    func addStep(_ item: BucketListItem, title: String) {
+        change(item) {
+            $0.milestones.append(Milestone(title: title, description: "", successCriteria: []))
+            $0.touchedAt = Date()
         }
     }
 
-    func addDailyProgress(item: BucketListItem, action: String, distance: Double) {
-        if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
-            let progress = DailyProgress(date: Date(), action: action, distance: distance)
-            bucketItems[index].dailyProgress.append(progress)
-            saveData()
+    func addSteps(_ item: BucketListItem, titles: [String]) {
+        change(item) {
+            $0.milestones += titles.map { Milestone(title: $0, description: "", successCriteria: []) }
+            $0.touchedAt = Date()
         }
     }
 
-    func deleteDailyProgress(item: BucketListItem, progress: DailyProgress) {
-        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
-           let progressIndex = bucketItems[itemIndex].dailyProgress.firstIndex(where: { $0.id == progress.id }) {
-            bucketItems[itemIndex].dailyProgress.remove(at: progressIndex)
-            saveData()
-        }
-    }
-
-    func toggleMilestone(item: BucketListItem, milestone: Milestone) {
-        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
-           let campIndex = bucketItems[itemIndex].milestones.firstIndex(where: { $0.id == milestone.id }) {
-            bucketItems[itemIndex].milestones[campIndex].isCompleted.toggle()
-            if bucketItems[itemIndex].milestones[campIndex].isCompleted {
-                bucketItems[itemIndex].milestones[campIndex].completedDate = Date()
-            } else {
-                bucketItems[itemIndex].milestones[campIndex].completedDate = nil
+    /// 단계를 마치거나 되돌린다. 마치면 그 단계의 체크 항목도 함께 마친다.
+    func toggleStep(_ item: BucketListItem, _ stepID: UUID) {
+        changeStep(item, stepID) { step in
+            step.isCompleted.toggle()
+            step.completedDate = step.isCompleted ? Date() : nil
+            guard step.isCompleted else { return }
+            for index in step.checklist.indices where !step.checklist[index].isCompleted {
+                step.checklist[index].isCompleted = true
+                step.checklist[index].completedDate = Date()
             }
-            saveData()
         }
     }
 
-    // 체크리스트 완료 (근거 입력 필수)
-    func completeChecklistItem(item: BucketListItem, milestone: Milestone, checklistItem: ChecklistItem, evidence: String) {
-        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
-           let milestoneIndex = bucketItems[itemIndex].milestones.firstIndex(where: { $0.id == milestone.id }),
-           let checklistIndex = bucketItems[itemIndex].milestones[milestoneIndex].checklist.firstIndex(where: { $0.id == checklistItem.id }) {
+    func renameStep(_ item: BucketListItem, _ stepID: UUID, to title: String) {
+        changeStep(item, stepID) { $0.title = title }
+    }
 
-            // 체크리스트 아이템 완료 처리
-            bucketItems[itemIndex].milestones[milestoneIndex].checklist[checklistIndex].isCompleted = true
-            bucketItems[itemIndex].milestones[milestoneIndex].checklist[checklistIndex].evidence = evidence
-            bucketItems[itemIndex].milestones[milestoneIndex].checklist[checklistIndex].completedDate = Date()
+    func deleteSteps(_ item: BucketListItem, at offsets: IndexSet) {
+        change(item) { $0.milestones.remove(atOffsets: offsets) }
+    }
 
-            // 모든 체크리스트가 완료되었는지 확인하고 마일스톤 자동 완료
-            let allCompleted = bucketItems[itemIndex].milestones[milestoneIndex].allChecklistCompleted
-            if allCompleted && !bucketItems[itemIndex].milestones[milestoneIndex].isCompleted {
-                bucketItems[itemIndex].milestones[milestoneIndex].isCompleted = true
-                bucketItems[itemIndex].milestones[milestoneIndex].completedDate = Date()
+    func moveSteps(_ item: BucketListItem, from offsets: IndexSet, to destination: Int) {
+        change(item) { $0.milestones.move(fromOffsets: offsets, toOffset: destination) }
+    }
+
+    // MARK: - 기록
+
+    func addRecord(_ item: BucketListItem, text: String, photos: [String]) {
+        change(item) { $0.records.append(ProgressRecord(note: text, photos: photos)) }
+    }
+
+    func deleteRecord(_ item: BucketListItem, _ recordID: UUID) {
+        change(item) { item in
+            for photo in item.records.first(where: { $0.id == recordID })?.photos ?? [] {
+                GoalPhotos.delete(photo)
             }
-
-            saveData()
+            item.records.removeAll { $0.id == recordID }
         }
     }
 
-    // 체크리스트 완료 해제
-    func uncompleteChecklistItem(item: BucketListItem, milestone: Milestone, checklistItem: ChecklistItem) {
-        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
-           let milestoneIndex = bucketItems[itemIndex].milestones.firstIndex(where: { $0.id == milestone.id }),
-           let checklistIndex = bucketItems[itemIndex].milestones[milestoneIndex].checklist.firstIndex(where: { $0.id == checklistItem.id }) {
+    // MARK: - 예전 추천 목록
 
-            // 체크리스트 아이템 완료 해제
-            bucketItems[itemIndex].milestones[milestoneIndex].checklist[checklistIndex].isCompleted = false
-            bucketItems[itemIndex].milestones[milestoneIndex].checklist[checklistIndex].evidence = nil
-            bucketItems[itemIndex].milestones[milestoneIndex].checklist[checklistIndex].completedDate = nil
-
-            // 마일스톤 자동 완료 해제
-            if bucketItems[itemIndex].milestones[milestoneIndex].isCompleted {
-                bucketItems[itemIndex].milestones[milestoneIndex].isCompleted = false
-                bucketItems[itemIndex].milestones[milestoneIndex].completedDate = nil
-            }
-
-            saveData()
-        }
-    }
-
-    // 기존 toggle 함수 - 하위 호환성 유지 (근거 없이 단순 토글, 완료 해제용)
-    func toggleChecklistItem(item: BucketListItem, milestone: Milestone, checklistItem: ChecklistItem) {
-        if checklistItem.isCompleted {
-            uncompleteChecklistItem(item: item, milestone: milestone, checklistItem: checklistItem)
-        }
-        // 완료되지 않은 경우는 UI에서 근거 입력 모달을 통해 completeChecklistItem 호출
-    }
-
-    // 체크리스트 항목 추가
-    func addChecklistItem(item: BucketListItem, milestone: Milestone, text: String) {
-        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
-           let milestoneIndex = bucketItems[itemIndex].milestones.firstIndex(where: { $0.id == milestone.id }) {
-            let newItem = ChecklistItem(text: text)
-            bucketItems[itemIndex].milestones[milestoneIndex].checklist.append(newItem)
-            bucketItems[itemIndex].milestones[milestoneIndex].successCriteria.append(text)
-            saveData()
-        }
-    }
-
-    // 체크리스트 항목 삭제
-    func deleteChecklistItem(item: BucketListItem, milestone: Milestone, checklistItem: ChecklistItem) {
-        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
-           let milestoneIndex = bucketItems[itemIndex].milestones.firstIndex(where: { $0.id == milestone.id }),
-           let checklistIndex = bucketItems[itemIndex].milestones[milestoneIndex].checklist.firstIndex(where: { $0.id == checklistItem.id }) {
-            let text = bucketItems[itemIndex].milestones[milestoneIndex].checklist[checklistIndex].text
-            bucketItems[itemIndex].milestones[milestoneIndex].checklist.remove(at: checklistIndex)
-            if let criteriaIndex = bucketItems[itemIndex].milestones[milestoneIndex].successCriteria.firstIndex(of: text) {
-                bucketItems[itemIndex].milestones[milestoneIndex].successCriteria.remove(at: criteriaIndex)
-            }
-            saveData()
-        }
-    }
-
-    func addMilestone(item: BucketListItem, title: String, description: String, successCriteria: [String] = []) {
-        if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
-            let newCamp = Milestone(title: title, description: description, successCriteria: successCriteria)
-            bucketItems[index].milestones.append(newCamp)
-            saveData()
-        }
-    }
-
-    func generatePresetMilestones(for item: BucketListItem) {
-        guard let index = bucketItems.firstIndex(where: { $0.id == item.id }) else { return }
-
-        let milestones = getMilestonesForBucket(title: item.title, category: item.category)
-        bucketItems[index].milestones = milestones
-        saveData()
-    }
-
+    /// 예전 판의 추천 목록에서 고른 목표라면 그 목록에 딸린 단계를 돌려준다. 아니면 빈 배열.
     private func getMilestonesForBucket(title: String, category: BucketCategory) -> [Milestone] {
-        // 카테고리별 enum에서 해당 버킷 항목의 milestones를 조회
+        // 분류별 enum에서 같은 제목의 항목을 찾아 그 단계를 돌려준다
         let bucketItem = getBucketItem(title: title, category: category)
         if let item = bucketItem, item.hasCustomMilestones {
             return item.milestones
         }
-        return getDefaultMilestones(for: category)
+        return []
     }
 
     private func getBucketItem(title: String, category: BucketCategory) -> BucketItem? {
@@ -328,260 +239,7 @@ class BucketListViewModel: ObservableObject {
         return nil
     }
 
-    private func getDefaultMilestones(for category: BucketCategory) -> [Milestone] {
-        switch category {
-        case .travel:
-            return [
-                Milestone(title: "여행 정보 조사", description: "목적지, 시즌, 예산 리서치", successCriteria: ["최적의 방문 시기를 알고 있나요?", "대략적인 예산을 계산했나요?", "주요 관광지를 파악했나요?"]),
-                Milestone(title: "예산 마련", description: "여행 경비 저축", successCriteria: ["목표 금액을 설정했나요?", "매달 저축 금액을 정했나요?", "예산의 80% 이상 모았나요?"]),
-                Milestone(title: "항공권/숙소 예약", description: "주요 예약 완료", successCriteria: ["항공권을 예매했나요?", "숙소를 예약했나요?", "여행자 보험에 가입했나요?"]),
-                Milestone(title: "여행 준비물", description: "짐 꾸리기", successCriteria: ["체크리스트를 작성했나요?", "필수 준비물을 챙겼나요?", "여권/비자를 확인했나요?"])
-            ]
-        case .experience:
-            return [
-                Milestone(title: "체험 정보 조사", description: "업체, 비용, 준비물 파악", successCriteria: ["신뢰할 수 있는 업체를 찾았나요?", "비용을 확인했나요?", "필요한 조건을 파악했나요?"]),
-                Milestone(title: "예약하기", description: "날짜와 시간 확정", successCriteria: ["예약을 완료했나요?", "취소 정책을 확인했나요?", "동행자를 확정했나요?"]),
-                Milestone(title: "사전 준비", description: "필요한 것들 챙기기", successCriteria: ["복장을 준비했나요?", "건강 상태를 확인했나요?", "주의사항을 숙지했나요?"]),
-                Milestone(title: "체험 완료", description: "버킷리스트 달성", successCriteria: ["체험을 완료했나요?", "사진/영상을 남겼나요?", "소감을 기록했나요?"])
-            ]
-        case .achievement:
-            return [
-                Milestone(title: "목표 구체화", description: "달성 기준 명확히", successCriteria: ["측정 가능한 목표인가요?", "기한을 설정했나요?", "현실적인 목표인가요?"]),
-                Milestone(title: "계획 수립", description: "단계별 실행 계획", successCriteria: ["세부 계획을 세웠나요?", "필요한 자원을 파악했나요?", "장애물을 예상했나요?"]),
-                Milestone(title: "꾸준한 실행", description: "매일/매주 실천", successCriteria: ["계획대로 실행하고 있나요?", "진행 상황을 기록하나요?", "중간 점검을 하나요?"]),
-                Milestone(title: "목표 달성", description: "최종 목표 완수", successCriteria: ["목표를 달성했나요?", "성취감을 느끼나요?", "다음 목표를 세웠나요?"])
-            ]
-        case .learning:
-            return [
-                Milestone(title: "학습 계획 수립", description: "커리큘럼 및 일정", successCriteria: ["학습 자료를 선정했나요?", "일일 학습 시간을 정했나요?", "목표 수준을 설정했나요?"]),
-                Milestone(title: "기초 학습", description: "기본기 다지기", successCriteria: ["기초 개념을 이해했나요?", "꾸준히 학습하고 있나요?", "복습을 하고 있나요?"]),
-                Milestone(title: "심화 학습", description: "실력 향상", successCriteria: ["응용 문제를 풀 수 있나요?", "실전 경험을 쌓고 있나요?", "약점을 보완하고 있나요?"]),
-                Milestone(title: "목표 달성", description: "자격증/실력 인증", successCriteria: ["목표 수준에 도달했나요?", "실력을 검증받았나요?", "지속적인 발전을 계획했나요?"])
-            ]
-        case .health:
-            return [
-                Milestone(title: "현재 상태 파악", description: "건강 지표 측정", successCriteria: ["현재 상태를 기록했나요?", "목표를 설정했나요?", "실현 가능한 목표인가요?"]),
-                Milestone(title: "계획 수립", description: "운동/식단 계획", successCriteria: ["구체적인 계획을 세웠나요?", "전문가 조언을 받았나요?", "필요한 도구를 준비했나요?"]),
-                Milestone(title: "습관 형성", description: "21일 연속 실천", successCriteria: ["매일 실천하고 있나요?", "기록을 남기고 있나요?", "변화를 느끼나요?"]),
-                Milestone(title: "목표 달성", description: "건강 목표 완수", successCriteria: ["목표에 도달했나요?", "유지 계획을 세웠나요?", "건강해진 것을 느끼나요?"])
-            ]
-        case .relationship:
-            return [
-                Milestone(title: "관계 목표 정의", description: "원하는 관계 모습", successCriteria: ["어떤 관계를 원하는지 명확한가요?", "현재 관계 상태를 파악했나요?", "개선점을 알고 있나요?"]),
-                Milestone(title: "시간 투자", description: "함께하는 시간 확보", successCriteria: ["정기적으로 시간을 내나요?", "질 높은 시간을 보내나요?", "대화를 충분히 하나요?"]),
-                Milestone(title: "관계 개선 노력", description: "소통과 이해", successCriteria: ["상대방의 입장을 이해하려 하나요?", "감사를 표현하나요?", "갈등을 건강하게 해결하나요?"]),
-                Milestone(title: "목표 관계 달성", description: "원하던 관계 형성", successCriteria: ["관계가 개선되었나요?", "서로 만족하나요?", "지속적인 노력을 계획했나요?"])
-            ]
-        }
-    }
-
-    func deleteMilestone(item: BucketListItem, milestone: Milestone) {
-        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
-           let campIndex = bucketItems[itemIndex].milestones.firstIndex(where: { $0.id == milestone.id }) {
-            bucketItems[itemIndex].milestones.remove(at: campIndex)
-            saveData()
-        }
-    }
-
-    func updateMilestone(item: BucketListItem, milestone: Milestone, newTitle: String, newDescription: String, newSuccessCriteria: [String]? = nil) {
-        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
-           let campIndex = bucketItems[itemIndex].milestones.firstIndex(where: { $0.id == milestone.id }) {
-            bucketItems[itemIndex].milestones[campIndex].title = newTitle
-            bucketItems[itemIndex].milestones[campIndex].description = newDescription
-            if let criteria = newSuccessCriteria {
-                bucketItems[itemIndex].milestones[campIndex].successCriteria = criteria
-            }
-            saveData()
-        }
-    }
-
-    func setMilestoneDeadline(item: BucketListItem, milestone: Milestone, deadline: Date?) {
-        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
-           let milestoneIndex = bucketItems[itemIndex].milestones.firstIndex(where: { $0.id == milestone.id }) {
-            bucketItems[itemIndex].milestones[milestoneIndex].deadline = deadline
-            saveData()
-        }
-    }
-
-    func reorderMilestones(item: BucketListItem, fromOffsets: IndexSet, toOffset: Int) {
-        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }) {
-            bucketItems[itemIndex].milestones.move(fromOffsets: fromOffsets, toOffset: toOffset)
-            saveData()
-        }
-    }
-
-    func moveMilestone(item: BucketListItem, milestone: Milestone, direction: Int) {
-        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
-           let milestoneIndex = bucketItems[itemIndex].milestones.firstIndex(where: { $0.id == milestone.id }) {
-            let newIndex = milestoneIndex + direction
-            guard newIndex >= 0 && newIndex < bucketItems[itemIndex].milestones.count else { return }
-            bucketItems[itemIndex].milestones.swapAt(milestoneIndex, newIndex)
-            saveData()
-        }
-    }
-
-    func addObstacle(item: BucketListItem, type: ObstacleType, description: String, targetValue: Double, unit: String, relatedMilestoneId: UUID? = nil, customNote: String? = nil) {
-        if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
-            let newObstacle = Obstacle(type: type, description: description, currentValue: 0, targetValue: targetValue, unit: unit, relatedMilestoneId: relatedMilestoneId, customNote: customNote)
-            bucketItems[index].obstacles.append(newObstacle)
-            saveData()
-        }
-    }
-
-    func deleteObstacle(item: BucketListItem, obstacle: Obstacle) {
-        if let itemIndex = bucketItems.firstIndex(where: { $0.id == item.id }),
-           let obstacleIndex = bucketItems[itemIndex].obstacles.firstIndex(where: { $0.id == obstacle.id }) {
-            bucketItems[itemIndex].obstacles.remove(at: obstacleIndex)
-            saveData()
-        }
-    }
-
-    func updateBucketTitle(item: BucketListItem, newTitle: String) {
-        if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
-            bucketItems[index].title = newTitle
-            saveData()
-        }
-    }
-
-    private func generateObstacles(for item: BucketListItem) {
-        var obstacles: [Obstacle] = []
-        // milestones는 generatePresetMilestones에서 생성
-        var height: Double = 3.0
-
-        // 카테고리와 제목 기반 지능형 장애물 생성
-        let title = item.title.lowercased()
-
-        // 여행 관련
-        if item.category == .travel || title.contains("여행") || title.contains("가기") {
-            if title.contains("아이슬란드") || title.contains("오로라") {
-                obstacles = [
-                    Obstacle(type: .money, description: "여행 경비", currentValue: 0, targetValue: DreamMoney.scaled(2500000), unit: "원"),
-                    Obstacle(type: .time, description: "휴가 일수", currentValue: 0, targetValue: 7, unit: "일"),
-                    Obstacle(type: .timing, description: "적절한 시즌 예약", currentValue: 0, targetValue: 1, unit: "완료"),
-                    Obstacle(type: .knowledge, description: "여행 계획 수립", currentValue: 0, targetValue: 1, unit: "완료")
-                ]
-                height = 2.5
-            } else if title.contains("유럽") || title.contains("세계여행") {
-                obstacles = [
-                    Obstacle(type: .money, description: "여행 경비", currentValue: 0, targetValue: DreamMoney.scaled(5000000), unit: "원"),
-                    Obstacle(type: .time, description: "휴가 일수", currentValue: 0, targetValue: 14, unit: "일"),
-                    Obstacle(type: .knowledge, description: "여행 계획", currentValue: 0, targetValue: 1, unit: "완료"),
-                    Obstacle(type: .timing, description: "비자/예약", currentValue: 0, targetValue: 1, unit: "완료")
-                ]
-                height = 5.0
-            } else {
-                obstacles = [
-                    Obstacle(type: .money, description: "여행 경비", currentValue: 0, targetValue: DreamMoney.scaled(1500000), unit: "원"),
-                    Obstacle(type: .time, description: "휴가 일수", currentValue: 0, targetValue: 5, unit: "일"),
-                    Obstacle(type: .knowledge, description: "여행 계획", currentValue: 0, targetValue: 1, unit: "완료")
-                ]
-                height = 1.5
-            }
-        }
-        // 성취 관련 (산악, 마라톤, 시험 등)
-        else if item.category == .achievement || title.contains("성취") || title.contains("도전") {
-            if title.contains("에베레스트") || title.contains("베이스캠프") || title.contains("트레킹") {
-                obstacles = [
-                    Obstacle(type: .money, description: "트레킹 비용", currentValue: 0, targetValue: DreamMoney.scaled(8000000), unit: "원"),
-                    Obstacle(type: .skill, description: "체력 훈련", currentValue: 0, targetValue: 100, unit: "일"),
-                    Obstacle(type: .time, description: "휴가 일수", currentValue: 0, targetValue: 21, unit: "일"),
-                    Obstacle(type: .knowledge, description: "고산병 대비", currentValue: 0, targetValue: 1, unit: "완료")
-                ]
-                height = 5.3
-            } else if title.contains("마라톤") || title.contains("풀코스") {
-                obstacles = [
-                    Obstacle(type: .skill, description: "달리기 훈련", currentValue: 0, targetValue: 90, unit: "일"),
-                    Obstacle(type: .money, description: "준비 비용", currentValue: 0, targetValue: DreamMoney.scaled(500000), unit: "원"),
-                    Obstacle(type: .knowledge, description: "훈련 계획", currentValue: 0, targetValue: 1, unit: "완료")
-                ]
-                height = 4.2
-            } else {
-                obstacles = [
-                    Obstacle(type: .time, description: "투자 시간", currentValue: 0, targetValue: 100, unit: "시간"),
-                    Obstacle(type: .skill, description: "역량 개발", currentValue: 0, targetValue: 10, unit: "단계"),
-                    Obstacle(type: .knowledge, description: "학습", currentValue: 0, targetValue: 1, unit: "완료")
-                ]
-                height = 3.8
-            }
-        }
-        // 학습 관련
-        else if item.category == .learning || title.contains("배우") || title.contains("공부") || title.contains("어") && (title.contains("유창") || title.contains("구사")) {
-            if title.contains("영어") || title.contains("프랑스어") || title.contains("일본어") || title.contains("중국어") {
-                obstacles = [
-                    Obstacle(type: .time, description: "학습 시간", currentValue: 0, targetValue: 500, unit: "시간"),
-                    Obstacle(type: .money, description: "학습 비용", currentValue: 0, targetValue: DreamMoney.scaled(2000000), unit: "원"),
-                    Obstacle(type: .knowledge, description: "교재/강의 완료", currentValue: 0, targetValue: 10, unit: "권")
-                ]
-                height = 4.0
-            } else if title.contains("자격증") || title.contains("시험") {
-                obstacles = [
-                    Obstacle(type: .time, description: "학습 시간", currentValue: 0, targetValue: 300, unit: "시간"),
-                    Obstacle(type: .money, description: "학습 비용", currentValue: 0, targetValue: DreamMoney.scaled(1000000), unit: "원"),
-                    Obstacle(type: .knowledge, description: "과목 이수", currentValue: 0, targetValue: 5, unit: "과목")
-                ]
-                height = 2.8
-            } else {
-                obstacles = [
-                    Obstacle(type: .time, description: "학습 시간", currentValue: 0, targetValue: 200, unit: "시간"),
-                    Obstacle(type: .money, description: "학습 비용", currentValue: 0, targetValue: DreamMoney.scaled(500000), unit: "원")
-                ]
-                height = 2.0
-            }
-        }
-        // 건강 관련
-        else if item.category == .health {
-            if title.contains("다이어트") || title.contains("감량") || title.contains("kg") {
-                obstacles = [
-                    Obstacle(type: .time, description: "운동 일수", currentValue: 0, targetValue: 90, unit: "일"),
-                    Obstacle(type: .skill, description: "식단 관리", currentValue: 0, targetValue: 90, unit: "일"),
-                    Obstacle(type: .money, description: "헬스장 비용", currentValue: 0, targetValue: DreamMoney.scaled(500000), unit: "원")
-                ]
-                height = 3.0
-            } else {
-                obstacles = [
-                    Obstacle(type: .time, description: "건강 관리", currentValue: 0, targetValue: 60, unit: "일"),
-                    Obstacle(type: .skill, description: "습관 형성", currentValue: 0, targetValue: 21, unit: "일")
-                ]
-                height = 2.5
-            }
-        }
-        // 경험 관련
-        else if item.category == .experience {
-            obstacles = [
-                Obstacle(type: .money, description: "필요 비용", currentValue: 0, targetValue: DreamMoney.scaled(800000), unit: "원"),
-                Obstacle(type: .time, description: "소요 시간", currentValue: 0, targetValue: 10, unit: "시간"),
-                Obstacle(type: .knowledge, description: "사전 준비", currentValue: 0, targetValue: 1, unit: "완료")
-            ]
-            height = 1.8
-        }
-        // 관계 관련
-        else if item.category == .relationship {
-            obstacles = [
-                Obstacle(type: .time, description: "함께하는 시간", currentValue: 0, targetValue: 50, unit: "시간"),
-                Obstacle(type: .skill, description: "노력과 실천", currentValue: 0, targetValue: 30, unit: "일")
-            ]
-            height = 2.2
-        }
-        // 기본 템플릿
-        else {
-            obstacles = [
-                Obstacle(type: .money, description: "필요 비용", currentValue: 0, targetValue: DreamMoney.scaled(1000000), unit: "원"),
-                Obstacle(type: .time, description: "필요 시간", currentValue: 0, targetValue: 100, unit: "시간"),
-                Obstacle(type: .knowledge, description: "학습 및 준비", currentValue: 0, targetValue: 1, unit: "완료")
-            ]
-            height = 3.0
-        }
-
-        // 업데이트
-        if let index = bucketItems.firstIndex(where: { $0.id == item.id }) {
-            bucketItems[index].obstacles = obstacles
-            // milestones는 generatePresetMilestones에서 따로 생성
-            bucketItems[index].mountainHeight = height
-            saveData()
-        }
-    }
-
-    private func saveData() {
+    func saveData() {
         if let encoded = try? JSONEncoder().encode(bucketItems) {
             UserDefaults.standard.set(encoded, forKey: saveKey)
         }
@@ -597,79 +255,58 @@ class BucketListViewModel: ObservableObject {
         bucketItems = decoded
     }
 
-    // 기존 데이터에 위치 정보가 없는 경우 마이그레이션
-    private func migrateLocationData() {
-        var needsSave = false
-        Logger().info("🔄 [마이그레이션] 위치 정보 업데이트 시작")
-
-        for (index, item) in bucketItems.enumerated() {
-            // 이미 위치 정보가 있으면 스킵
-            if item.location != nil {
-                continue
-            }
-
-            // 제목으로 매칭되는 BucketItem 찾기
-            if let matchingBucket = allBucketItems.first(where: { $0.title == item.title }),
-               let location = matchingBucket.location {
-                Logger().info("  ✅ '\(item.title)' 위치 업데이트: \(location.name)")
-                bucketItems[index].location = location
-                needsSave = true
-            } else {
-                Logger().info("  ⏭️ '\(item.title)' - 매칭되는 위치 정보 없음")
+    /// 예전 판에서 추천 목록의 목표를 담아만 두고 시작하지 않았으면 단계가 비어 있다. 그 목록의 단계를 채운다.
+    private func fillCatalogSteps() {
+        var changed = false
+        for item in bucketItems where item.status == .inBucket && item.milestones.isEmpty {
+            let steps = getMilestonesForBucket(title: item.title, category: item.category)
+            if !steps.isEmpty {
+                item.milestones = steps
+                changed = true
             }
         }
-
-        if needsSave {
-            Logger().info("  💾 마이그레이션 완료 - 데이터 저장")
-            saveData()
-        } else {
-            Logger().info("  ℹ️ 마이그레이션 불필요")
-        }
+        if changed { saveData() }
     }
-
 }
 
-// MARK: - 꿈 기록 내보내기 (무료)
+// MARK: - 기록 내보내기 (무료)
 
 extension BucketListViewModel {
-    /// 꿈 · 단계 · 기록을 사람이 읽는 글 한 덩이로. 설정 ▸ 나의 기록에서 공유 시트로 내보낸다.
+    /// 목표 · 단계 · 기록을 사람이 읽는 글 한 덩이로. 설정에서 공유 시트로 내보낸다.
     /// 기본 내보내기라 잠그지 않는다. 사진은 파일 이름만 있어 글에서 뺀다.
     var exportText: String {
         let date = { (d: Date) in d.formatted(date: .abbreviated, time: .omitted) }
-        var lines = [String(localized: "꿈 기록", comment: "Export: title of the exported text"), date(Date())]
-        let ordered = bucketItems.filter { $0.status != .completed } + itemsCompleted
+        var lines = [String(localized: "목표 기록", comment: "Export: title of the exported text"), date(Date())]
+        let ordered = bucketItems.filter { $0.status != .completed } + doneGoals + stoppedGoals
         for item in ordered {
             lines.append("")
             lines.append("■ " + item.title.localizedBucket)
-            let state = item.isAbandoned ? String(localized: "잠시 멈춘 꿈") : item.status.displayName
-            lines.append(item.category.displayName + " · " + state)
-            var dates = [String(localized: "담은 날 \(date(item.dateAdded))", comment: "Export: date the dream was added")]
+            let state = item.isAbandoned ? String(localized: "그만둠", comment: "Status of a goal the person stopped pursuing") : item.status.displayName
+            lines.append(state)
+            var dates = [String(localized: "추가한 날 \(date(item.dateAdded))", comment: "Export: date the goal was added")]
             if let done = item.dateCompleted, !item.isAbandoned {
-                dates.append(String(localized: "이룬 날 \(date(done))", comment: "Export: date the dream was achieved"))
+                dates.append(String(localized: "완료한 날 \(date(done))", comment: "Export: date the goal was completed"))
             }
             lines.append(dates.joined(separator: " · "))
+            for blank in GoalBlank.allCases where !item.answer(blank).isEmpty {
+                lines.append(blank.question + " " + item.answer(blank))
+            }
             if !item.milestones.isEmpty {
-                lines.append(String(localized: "이루기 위한 단계들"))
+                lines.append(String(localized: "단계"))
                 for step in item.milestones {
                     var line = (step.isCompleted ? "✓ " : "○ ") + step.title.localizedBucket
                     if let done = step.completedDate, step.isCompleted {
                         line += " (\(date(done)))"
-                    } else if let deadline = step.deadline {
-                        line += " · " + String(localized: "마감 \(date(deadline))", comment: "Export: deadline of a step")
                     }
                     lines.append(line)
                 }
             }
-            let notes = item.notes.components(separatedBy: "\n").filter { !$0.hasPrefix("📷 ") }
-                .joined(separator: "\n").trimmingCharacters(in: .whitespacesAndNewlines)
-            if !notes.isEmpty {
-                lines.append(String(localized: "남긴 기록", comment: "Export: heading for the notes and answers written for a dream"))
-                lines.append(notes)
-            }
-            if !item.dailyProgress.isEmpty {
-                lines.append(String(localized: "일일 진행 기록"))
-                for progress in item.dailyProgress.sorted(by: { $0.date < $1.date }) {
-                    lines.append(date(progress.date) + " — " + progress.action)
+            let timeline = item.timeline
+            if !timeline.isEmpty {
+                lines.append(String(localized: "기록"))
+                for record in timeline.reversed() where !record.text.isEmpty {
+                    let head = [record.date.map(date), record.step?.localizedBucket].compactMap { $0 }.joined(separator: " · ")
+                    lines.append(head.isEmpty ? record.text : head + " — " + record.text)
                 }
             }
         }

@@ -2,7 +2,7 @@
 // CategoryBuckets.swift
 // BucketClimb
 //
-// 카테고리별로 관리되는 버킷리스트 항목 enum
+// 예전 판의 추천 목록. 화면에는 더 내놓지 않는다 — 그 목록에서 고른 목표의 단계 · 위치 · 번역을 채울 때만 읽는다.
 // Auto-generated
 //
 

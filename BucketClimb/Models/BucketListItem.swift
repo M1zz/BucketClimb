@@ -56,6 +56,7 @@ enum BucketCategory: String, Codable, CaseIterable {
     }
 }
 
+/// rawValue 는 저장 데이터라 바꾸지 않는다. 화면에는 `displayName` 만 쓴다.
 enum BucketStatus: String, Codable {
     case inBucket = "버킷에 담김"
     case climbing = "등반 중"
@@ -63,8 +64,8 @@ enum BucketStatus: String, Codable {
 
     var displayName: String {
         switch self {
-        case .inBucket: return String(localized: "버킷에 담김")
-        case .climbing: return String(localized: "등반 중")
+        case .inBucket: return String(localized: "시작 전")
+        case .climbing: return String(localized: "진행 중")
         case .completed: return String(localized: "완료")
         }
     }
@@ -98,7 +99,7 @@ struct Obstacle: Identifiable, Codable, Hashable {
     }
 }
 
-enum ObstacleType: String, Codable {
+enum ObstacleType: String, Codable, CaseIterable {
     case money = "💰 비용"
     case time = "⏰ 시간"
     case skill = "💪 체력/스킬"
@@ -107,11 +108,32 @@ enum ObstacleType: String, Codable {
 
     var displayName: String {
         switch self {
-        case .money: return String(localized: "💰 비용")
-        case .time: return String(localized: "⏰ 시간")
-        case .skill: return String(localized: "💪 체력/스킬")
-        case .knowledge: return String(localized: "📚 지식")
-        case .timing: return String(localized: "📅 타이밍")
+        case .money: return String(localized: "비용")
+        case .time: return String(localized: "시간")
+        case .skill: return String(localized: "체력 · 기술")
+        case .knowledge: return String(localized: "지식")
+        case .timing: return String(localized: "시기")
+        }
+    }
+
+    var icon: String {
+        switch self {
+        case .money: return "banknote"
+        case .time: return "clock"
+        case .skill: return "figure.strengthtraining.traditional"
+        case .knowledge: return "book"
+        case .timing: return "calendar"
+        }
+    }
+
+    /// 새 장애물을 만들 때 채워 두는 단위. 저장 값이라 한국어 그대로 두고 화면에서만 옮긴다 (→ GoalMoney.unit).
+    var defaultUnit: String {
+        switch self {
+        case .money: return "원"
+        case .time: return "시간"
+        case .skill: return "일"
+        case .knowledge: return "완료"
+        case .timing: return "완료"
         }
     }
 }
@@ -121,12 +143,15 @@ struct ProgressRecord: Identifiable, Codable, Hashable {
     var date: Date
     var note: String
     var photos: [String] // 사진 파일 이름들
+    /// 이 기록이 붙은 단계. 목표 전체에 남긴 기록이면 nil.
+    var stepID: UUID?
 
-    init(id: UUID = UUID(), date: Date = Date(), note: String = "", photos: [String] = []) {
+    init(id: UUID = UUID(), date: Date = Date(), note: String = "", photos: [String] = [], stepID: UUID? = nil) {
         self.id = id
         self.date = date
         self.note = note
         self.photos = photos
+        self.stepID = stepID
     }
 
     func hash(into hasher: inout Hasher) {
@@ -209,7 +234,9 @@ struct Milestone: Identifiable, Codable, Hashable {
             return .completed
         }
 
-        let daysRemaining = calendar.dateComponents([.day], from: now, to: deadline).day ?? 0
+        // 날짜끼리 센다. 시각까지 재면 사흘 뒤 마감이 "D-2" 로 보인다.
+        let daysRemaining = calendar.dateComponents([.day], from: calendar.startOfDay(for: now),
+                                                    to: calendar.startOfDay(for: deadline)).day ?? 0
 
         if daysRemaining < 0 {
             return .overdue
@@ -261,6 +288,24 @@ struct DailyProgress: Identifiable, Codable {
     var distance: Double
 }
 
+/// 목표를 구체화하는 빈칸. 목표마다 여섯 가지를 묻는다. rawValue 는 저장에 쓰이므로 바꾸지 않는다.
+enum GoalBlank: String, CaseIterable, Identifiable {
+    case when, who, how, whyNot, obstacle, value
+
+    var id: String { rawValue }
+
+    var question: String {
+        switch self {
+        case .when: return String(localized: "언제 할 건가요?")
+        case .who: return String(localized: "누구와 할 건가요?")
+        case .how: return String(localized: "어떻게 할 건가요?")
+        case .whyNot: return String(localized: "지금은 왜 못 하나요?")
+        case .obstacle: return String(localized: "지금 장애물은 무엇인가요?")
+        case .value: return String(localized: "나에게 얼마나 가치 있는 일인가요?")
+        }
+    }
+}
+
 class BucketListItem: Identifiable, Codable, ObservableObject {
     var id = UUID()
     @Published var title: String
@@ -280,6 +325,13 @@ class BucketListItem: Identifiable, Codable, ObservableObject {
     @Published var location: LocationInfo?
     @Published var milestonesPhaseCompleted: Bool
     @Published var isAbandoned: Bool
+    /// 목표에 남긴 기록(메모 · 사진). 예전 판이 `notes` · 단계 안 · `dailyProgress` 에 적은 기록은
+    /// 그대로 두고 `timeline` 이 함께 읽는다.
+    @Published var records: [ProgressRecord]
+    /// 마지막으로 손댄 때: 단계를 더했거나, 다시 시작했거나, '계속하기'를 고른 때. 단계 체크와 기록은 제 날짜를 따로 갖는다.
+    @Published var touchedAt: Date?
+    /// 목표를 구체화하는 빈칸의 답. 열쇠는 `GoalBlank` 의 rawValue.
+    @Published var answers: [String: String] = [:]
 
     init(title: String, category: BucketCategory, mountainHeight: Double = 8.8, thumbnail: String? = nil, backgroundImage: String? = nil, location: LocationInfo? = nil) {
         self.title = title
@@ -297,11 +349,12 @@ class BucketListItem: Identifiable, Codable, ObservableObject {
         self.location = location
         self.milestonesPhaseCompleted = false
         self.isAbandoned = false
+        self.records = []
     }
 
     enum CodingKeys: String, CodingKey {
         case id, title, category, status, dateAdded, dateStarted, dateCompleted
-        case obstacles, milestones, dailyProgress, notes, photos, mountainHeight, thumbnail, backgroundImage, location, milestonesPhaseCompleted, isAbandoned
+        case obstacles, milestones, dailyProgress, notes, photos, mountainHeight, thumbnail, backgroundImage, location, milestonesPhaseCompleted, isAbandoned, records, touchedAt, answers
     }
     
     required init(from decoder: Decoder) throws {
@@ -325,6 +378,9 @@ class BucketListItem: Identifiable, Codable, ObservableObject {
         location = try container.decodeIfPresent(LocationInfo.self, forKey: .location)
         milestonesPhaseCompleted = try container.decodeIfPresent(Bool.self, forKey: .milestonesPhaseCompleted) ?? false
         isAbandoned = try container.decodeIfPresent(Bool.self, forKey: .isAbandoned) ?? false
+        records = try container.decodeIfPresent([ProgressRecord].self, forKey: .records) ?? []
+        touchedAt = try container.decodeIfPresent(Date.self, forKey: .touchedAt)
+        answers = try container.decodeIfPresent([String: String].self, forKey: .answers) ?? [:]
     }
     
     func encode(to encoder: Encoder) throws {
@@ -347,20 +403,125 @@ class BucketListItem: Identifiable, Codable, ObservableObject {
         try container.encode(location, forKey: .location)
         try container.encode(milestonesPhaseCompleted, forKey: .milestonesPhaseCompleted)
         try container.encode(isAbandoned, forKey: .isAbandoned)
+        try container.encode(records, forKey: .records)
+        try container.encodeIfPresent(touchedAt, forKey: .touchedAt)
+        try container.encode(answers, forKey: .answers)
     }
     
-    var totalProgress: Double {
+    // MARK: 진행
+
+    var doneStepCount: Int { milestones.filter(\.isCompleted).count }
+
+    /// 마친 단계 / 전체 단계 (0...1). 단계가 없으면 0.
+    var progress: Double {
         guard !milestones.isEmpty else { return 0 }
-        let completedCount = milestones.filter { $0.isCompleted }.count
-        return Double(completedCount) / Double(milestones.count) * 100
+        return Double(doneStepCount) / Double(milestones.count)
     }
-    
-    var climbedDistance: Double {
-        dailyProgress.reduce(0.0) { $0 + $1.distance }
+
+    /// 아직 마치지 않은 첫 단계.
+    var nextStep: Milestone? { milestones.first { !$0.isCompleted } }
+
+    var allStepsDone: Bool { !milestones.isEmpty && nextStep == nil }
+
+    // MARK: 구체화
+
+    func answer(_ blank: GoalBlank) -> String { answers[blank.rawValue] ?? "" }
+
+    /// 채운 빈칸 수.
+    var filledBlankCount: Int { GoalBlank.allCases.filter { !answer($0).isEmpty }.count }
+
+    // MARK: 오래 손대지 않은 목표
+
+    /// 이만큼 아무 진행이 없으면 계속할지 그만둘지 묻는다.
+    static let staleAfterDays = 30
+
+    /// 마지막으로 진행이 있던 때: 추가 · 시작 · 단계 체크 · 기록 · 손댄 때 가운데 가장 늦은 것.
+    var lastActivity: Date {
+        let dates = [dateAdded, dateStarted, touchedAt].compactMap { $0 }
+            + milestones.compactMap(\.completedDate)
+            + records.map(\.date)
+        return dates.max() ?? dateAdded
     }
-    
-    var climbedPercentage: Double {
-        let totalCm = mountainHeight * 100000
-        return min((climbedDistance / totalCm) * 100, 100)
+
+    /// 완료하지 않았고 한 달 넘게 진행이 없다.
+    var isStale: Bool {
+        guard status != .completed else { return false }
+        let days = Calendar.current.dateComponents([.day], from: lastActivity, to: Date()).day ?? 0
+        return days >= Self.staleAfterDays
+    }
+}
+
+// MARK: - 기록 모아 보기
+
+/// 화면에 보이는 기록 한 건. 새 기록(`records`)과 예전 판이 여러 자리에 남긴 기록을 한 줄로 모은다.
+struct GoalRecord: Identifiable {
+    let id: String
+    /// 예전 판의 글 기록에는 날짜가 없다.
+    let date: Date?
+    /// 붙은 단계의 제목(저장된 원문).
+    let step: String?
+    let text: String
+    let photos: [String]
+    /// `records` 에 있는 기록이면 그 id. 지울 수 있는 기록이다.
+    let recordID: UUID?
+}
+
+extension BucketListItem {
+    /// 이 목표의 모든 기록. 날짜가 있는 것부터 최신순, 날짜 없는 예전 기록은 끝에.
+    var timeline: [GoalRecord] {
+        var dated: [GoalRecord] = []
+        var undated: [GoalRecord] = []
+        let stepTitle = { (id: UUID?) in id.flatMap { id in self.milestones.first { $0.id == id }?.title } }
+
+        for record in records {
+            dated.append(GoalRecord(id: record.id.uuidString, date: record.date, step: stepTitle(record.stepID),
+                                    text: record.note, photos: record.photos, recordID: record.id))
+        }
+        for step in milestones {
+            for record in step.progressRecords {
+                dated.append(GoalRecord(id: record.id.uuidString, date: record.date, step: step.title,
+                                        text: record.note, photos: record.photos, recordID: nil))
+            }
+            for check in step.checklist {
+                if let evidence = check.evidence, !evidence.isEmpty {
+                    let text = check.text + "\n" + evidence
+                    let record = GoalRecord(id: "evidence-" + check.id.uuidString, date: check.completedDate,
+                                            step: step.title, text: text, photos: [], recordID: nil)
+                    if record.date == nil { undated.append(record) } else { dated.append(record) }
+                }
+                for record in check.progressRecords {
+                    dated.append(GoalRecord(id: record.id.uuidString, date: record.date, step: step.title,
+                                            text: record.note, photos: record.photos, recordID: nil))
+                }
+            }
+        }
+        for entry in dailyProgress where !entry.action.isEmpty {
+            dated.append(GoalRecord(id: entry.id.uuidString, date: entry.date, step: nil,
+                                    text: entry.action, photos: [], recordID: nil))
+        }
+        undated.append(contentsOf: notesRecords)
+        return dated.sorted { ($0.date ?? .distantPast) > ($1.date ?? .distantPast) } + undated
+    }
+
+    /// 예전 판이 `notes` 에 글로 적은 기록. 한 덩이는 "[단계] 질문 / → 답 / 📷 파일" 꼴이고,
+    /// 그 꼴이 아닌 덩이는 메모로 본다.
+    private var notesRecords: [GoalRecord] {
+        guard !notes.isEmpty else { return [] }
+        return notes.components(separatedBy: "\n\n").enumerated().compactMap { index, block in
+            var lines = block.components(separatedBy: "\n")
+            let photos = lines.filter { $0.hasPrefix("📷 ") }
+                .map { String($0.dropFirst(2)).trimmingCharacters(in: .whitespaces) }
+            lines.removeAll { $0.hasPrefix("📷 ") }
+            guard let first = lines.first else { return nil }
+            var step: String?
+            if first.hasPrefix("["), let end = first.firstIndex(of: "]") {
+                step = String(first[first.index(after: first.startIndex)..<end])
+                lines[0] = String(first[first.index(after: end)...]).trimmingCharacters(in: .whitespaces)
+            }
+            let text = lines.map { $0.hasPrefix("→ ") ? String($0.dropFirst(2)) : $0 }
+                .joined(separator: "\n").trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !text.isEmpty || !photos.isEmpty else { return nil }
+            return GoalRecord(id: "notes-\(index)", date: nil, step: step, text: text, photos: photos, recordID: nil)
+        }
     }
 }

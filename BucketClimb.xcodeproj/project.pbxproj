@@ -12,12 +12,10 @@
 		2A000003000000000000000000000003 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000003000000000000000000000013 /* ContentView.swift */; };
 		2A000004000000000000000000000004 /* BucketListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000004000000000000000000000014 /* BucketListItem.swift */; };
 		2A000005000000000000000000000005 /* BucketListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000005000000000000000000000015 /* BucketListViewModel.swift */; };
-		2A000006000000000000000000000006 /* AllViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000006000000000000000000000016 /* AllViews.swift */; };
-		2A000007000000000000000000000007 /* TreasureKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000007000000000000000000000017 /* TreasureKeyView.swift */; };
-		2A000008000000000000000000000008 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000008000000000000000000000018 /* OnboardingView.swift */; };
-		2A000009000000000000000000000009 /* UnsplashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000009000000000000000000000029 /* UnsplashService.swift */; };
-		2A00000A00000000000000000000000A /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A00000A00000000000000000000002A /* ImageCacheManager.swift */; };
-		2A00000B00000000000000000000000B /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A00000B00000000000000000000002B /* CachedAsyncImage.swift */; };
+		2A000006000000000000000000000006 /* GoalViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000006000000000000000000000016 /* GoalViews.swift */; };
+		2A000007000000000000000000000007 /* GoalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000007000000000000000000000017 /* GoalDetailView.swift */; };
+		5E000001000000000000000000000001 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E000001000000000000000000000011 /* SettingsView.swift */; };
+		2A000008000000000000000000000008 /* AddGoalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000008000000000000000000000018 /* AddGoalSheet.swift */; };
 		308362403C0F94027614E27A /* BucketIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A318FE94747CF45034F9CA30 /* BucketIntents.swift */; };
 		4C0000010000000000000001 /* BucketClimbPro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0000010000000000000011 /* BucketClimbPro.swift */; };
 		4C0000020000000000000002 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0000020000000000000012 /* PaywallView.swift */; };
@@ -45,12 +43,10 @@
 		2A000003000000000000000000000013 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2A000004000000000000000000000014 /* BucketListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListItem.swift; sourceTree = "<group>"; };
 		2A000005000000000000000000000015 /* BucketListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListViewModel.swift; sourceTree = "<group>"; };
-		2A000006000000000000000000000016 /* AllViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllViews.swift; sourceTree = "<group>"; };
-		2A000007000000000000000000000017 /* TreasureKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureKeyView.swift; sourceTree = "<group>"; };
-		2A000008000000000000000000000018 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		2A000009000000000000000000000029 /* UnsplashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashService.swift; sourceTree = "<group>"; };
-		2A00000A00000000000000000000002A /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
-		2A00000B00000000000000000000002B /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
+		2A000006000000000000000000000016 /* GoalViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViews.swift; sourceTree = "<group>"; };
+		2A000007000000000000000000000017 /* GoalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailView.swift; sourceTree = "<group>"; };
+		5E000001000000000000000000000011 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2A000008000000000000000000000018 /* AddGoalSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalSheet.swift; sourceTree = "<group>"; };
 		3B000001000000000000000000000011 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		3B000002000000000000000000000012 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		3B000003000000000000000000000013 /* Buckets.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Buckets.xcstrings; sourceTree = "<group>"; };
@@ -107,7 +103,6 @@
 				2A000020000000000000000000000020 /* Models */,
 				2A000021000000000000000000000021 /* ViewModels */,
 				2A000022000000000000000000000022 /* Views */,
-				2A000023000000000000000000000023 /* Services */,
 				580DFD272ED5E8D6008F8FC9 /* BucketItem.swift */,
 				580DFD262ED5E8D6008F8FC9 /* AchievementBucket.swift */,
 				580DFD282ED5E8D6008F8FC9 /* ExperienceBucket.swift */,
@@ -152,21 +147,12 @@
 			children = (
 				2A000003000000000000000000000013 /* ContentView.swift */,
 				4C0000020000000000000012 /* PaywallView.swift */,
-				2A000006000000000000000000000016 /* AllViews.swift */,
-				2A000007000000000000000000000017 /* TreasureKeyView.swift */,
-				2A000008000000000000000000000018 /* OnboardingView.swift */,
-				2A00000B00000000000000000000002B /* CachedAsyncImage.swift */,
+				2A000006000000000000000000000016 /* GoalViews.swift */,
+				2A000007000000000000000000000017 /* GoalDetailView.swift */,
+				2A000008000000000000000000000018 /* AddGoalSheet.swift */,
+				5E000001000000000000000000000011 /* SettingsView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		2A000023000000000000000000000023 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				2A000009000000000000000000000029 /* UnsplashService.swift */,
-				2A00000A00000000000000000000002A /* ImageCacheManager.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,9 +262,6 @@
 				2A000003000000000000000000000003 /* ContentView.swift in Sources */,
 				2A000004000000000000000000000004 /* BucketListItem.swift in Sources */,
 				2A000005000000000000000000000005 /* BucketListViewModel.swift in Sources */,
-				2A000009000000000000000000000009 /* UnsplashService.swift in Sources */,
-				2A00000A00000000000000000000000A /* ImageCacheManager.swift in Sources */,
-				2A00000B00000000000000000000000B /* CachedAsyncImage.swift in Sources */,
 				580DFD2D2ED5E8D6008F8FC9 /* TravelBucket.swift in Sources */,
 				580DFD2E2ED5E8D6008F8FC9 /* HealthBucket.swift in Sources */,
 				580DFD2F2ED5E8D6008F8FC9 /* BucketItem.swift in Sources */,
@@ -286,9 +269,10 @@
 				580DFD312ED5E8D6008F8FC9 /* AchievementBucket.swift in Sources */,
 				580DFD322ED5E8D6008F8FC9 /* LearningBucket.swift in Sources */,
 				580DFD332ED5E8D6008F8FC9 /* RelationshipBucket.swift in Sources */,
-				2A000006000000000000000000000006 /* AllViews.swift in Sources */,
-				2A000007000000000000000000000007 /* TreasureKeyView.swift in Sources */,
-				2A000008000000000000000000000008 /* OnboardingView.swift in Sources */,
+				2A000006000000000000000000000006 /* GoalViews.swift in Sources */,
+				2A000007000000000000000000000007 /* GoalDetailView.swift in Sources */,
+				2A000008000000000000000000000008 /* AddGoalSheet.swift in Sources */,
+				5E000001000000000000000000000001 /* SettingsView.swift in Sources */,
 				3B000001000000000000000000000001 /* Localization.swift in Sources */,
 				3B000006000000000000000000000006 /* ScreenshotSeed.swift in Sources */,
 				308362403C0F94027614E27A /* BucketIntents.swift in Sources */,

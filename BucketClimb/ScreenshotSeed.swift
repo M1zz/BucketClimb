@@ -2,15 +2,12 @@
 import Foundation
 
 /// 스토어 스크린샷용 예시 데이터. 디버그 빌드에서 `-ScreenshotSeed` 로 실행할 때만 쓰인다.
-/// `-ScreenshotTab <번호>` 로 시작 탭, `-ScreenshotForge` 로 첫 꿈의 열쇠 화면을 연다.
+/// `-ScreenshotDetail` 로 첫 목표의 화면을, `-ScreenshotDone` 으로 완료한 목표 화면을 연다.
 enum ScreenshotSeed {
     static let arguments = ProcessInfo.processInfo.arguments
     static var isOn: Bool { arguments.contains("-ScreenshotSeed") }
-    static var opensForge: Bool { arguments.contains("-ScreenshotForge") }
-    static var tab: Int? {
-        guard let i = arguments.firstIndex(of: "-ScreenshotTab"), i + 1 < arguments.count else { return nil }
-        return Int(arguments[i + 1])
-    }
+    static var opensDetail: Bool { arguments.contains("-ScreenshotDetail") }
+    static var opensDone: Bool { arguments.contains("-ScreenshotDone") }
 
     static func apply(to viewModel: BucketListViewModel) {
         let day: TimeInterval = 86_400
@@ -50,10 +47,12 @@ enum ScreenshotSeed {
             item(.travel(.산토리니에서_일몰_감상하기), status: .completed, done: 99, daysAgo: 300),
             item(.travel(.일본_벚꽃_시즌_교토_여행하기), status: .completed, done: 99, daysAgo: 200),
             item(.achievement(.후지산_등정하기), status: .completed, done: 99, daysAgo: 120),
-            item(.travel(.페루_마추픽추_방문하기), status: .climbing, done: 0, daysAgo: 5),
+            item(.travel(.페루_마추픽추_방문하기), status: .inBucket, done: 0, daysAgo: arguments.contains("-ScreenshotStale") ? 50 : 5),
+        ]
+        viewModel.bucketItems[0].records = [
+            ProgressRecord(date: Date().addingTimeInterval(-2 * day), note: viewModel.bucketItems[0].milestones.first?.description ?? "")
         ]
         viewModel.hasCompletedOnboarding = true
-        viewModel.useClassicMode = false
     }
 }
 #endif

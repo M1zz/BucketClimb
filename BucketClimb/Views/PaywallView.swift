@@ -2,11 +2,11 @@
 //  PaywallView.swift
 //  BucketClimb
 //
-//  꿈을 찾아서 Pro 를 파는 한 장, 구독 졸업 시트, 설정의 Pro 줄, 첫 보물함 뒤의 작은 카드.
+//  Pro 를 파는 한 장, 구독 졸업 시트, 설정의 Pro 줄, 첫 목표를 완료한 뒤의 작은 카드.
 //
-//  **무료인 것을 먼저 말한다.** 비교표의 여섯 줄은 무료 · Pro 모두 ✓ 다. 이 화면은
-//  "안 사면 못 쓴다"가 아니라 "꿈 다섯 개로 열쇠를 만들고 보물함을 여는 건 전부 무료이고,
-//  꿈을 더 걸거나 프로젝트처럼 챙기고 싶은 날만 값을 받는다"는 말이다.
+//  **무료인 것을 먼저 말한다.** 비교표의 앞 줄들은 무료 · Pro 모두 ✓ 다. 이 화면은
+//  "안 사면 못 쓴다"가 아니라 "목표 다섯 개를 단계로 나눠 체크하고 기록하는 건 전부 무료이고,
+//  목표를 더 두고 싶은 날만 값을 받는다"는 말이다.
 //
 //  고르는 길: 연 구독(기본) · 평생, 펼치면 주 · 월. 첫 해 할인(App Store 첫 구독 할인)과
 //  "연 구독 N년치" 한 줄은 `LeeoTermPicker` 가 알아서 보인다.
@@ -39,7 +39,7 @@ struct PaywallView: View {
                     header
                     comparison
                     if store.hasPro {
-                        Label("꿈을 찾아서 Pro를 쓰고 있어요. 고마워요.", systemImage: "checkmark.seal.fill")
+                        Label("Pro를 쓰고 있습니다. 고맙습니다.", systemImage: "checkmark.seal.fill")
                             .font(.body.weight(.semibold))
                             .foregroundStyle(.green)
                     } else {
@@ -82,7 +82,7 @@ struct PaywallView: View {
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Image(systemName: "key.fill")
+            Image(systemName: "checklist")
                 .font(.system(size: 40, weight: .semibold))
                 .foregroundStyle(Color.proAccent)
                 .frame(width: 72, height: 72)
@@ -91,12 +91,12 @@ struct PaywallView: View {
             Text("꿈을 찾아서 Pro")
                 .font(.largeTitle.bold())
                 .accessibilityAddTraits(.isHeader)
-            Text("이루고 싶은 꿈을 몇 개든 함께 키우세요. 연 구독이나 평생 중에 고르세요.")
+            Text("Pro에서는 목표를 개수 제한 없이 둘 수 있습니다.")
                 .font(.body)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
             if let reason, !store.isPro {
-                Label(reason, systemImage: highlight == .dreams ? "shippingbox.fill" : "mountain.2.fill")
+                Label(reason, systemImage: "list.bullet")
                     .font(.body.weight(.semibold))
                     .foregroundStyle(Color.proAccent)
                     .fixedSize(horizontal: false, vertical: true)
@@ -107,12 +107,9 @@ struct PaywallView: View {
     /// 막혀 들어온 까닭.
     private var reason: String? {
         switch highlight {
-        case .dreams?:
-            String(localized: "무료로 함께 키울 수 있는 꿈 \(ProStore.freeDreamLimit)개가 모두 찼어요.",
-                   comment: "Paywall: why it opened — the free limit of dreams in progress is full")
-        case .growMode?:
-            String(localized: "꿈 키우기 모드에서는 단계마다 마감일을 정하고 비용 · 시간 같은 장애물을 챙길 수 있어요.",
-                   comment: "Paywall: why it opened — Climb Mode (project-style mode) is Pro")
+        case .goals?:
+            String(localized: "무료로 둘 수 있는 목표 \(ProStore.freeGoalLimit)개가 모두 찼습니다.",
+                   comment: "Paywall: why it opened — the free limit of open goals is full")
         case nil:
             nil
         }
@@ -131,16 +128,11 @@ struct PaywallView: View {
             .foregroundStyle(.secondary)
             .accessibilityHidden(true)
             Divider().gridCellColumns(3)
-            row("꿈의 바다 · 나만의 꿈 만들기")
-            row("동시에 키우는 꿈", free: String(localized: "\(ProStore.freeDreamLimit)개"),
-                pro: String(localized: "무제한"), feature: .dreams)
-            row("열쇠 톱니 · 질문 · 사진 기록")
-            row("보물함 · 멈춘 꿈 다시 시작")
-            row("꿈지도")
-            row("이룬 꿈 · 기록 보기 · 지우기")
-            row("꿈 키우기 모드", feature: .growMode)
-            row("단계별 마감일 · 장애물 관리", feature: .growMode)
-            row("하루 진행 기록 · 아카이브 탭", feature: .growMode)
+            row("목표 수", free: String(localized: "\(ProStore.freeGoalLimit)개"),
+                pro: String(localized: "무제한"), feature: .goals)
+            row("단계")
+            row("기록 (메모 · 사진)")
+            row("기록 내보내기 · 백업")
         }
         .padding(16)
         .background(Color.cardBackgroundAdaptive, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
@@ -353,7 +345,7 @@ struct ProGraduationSheet: View {
 
 // MARK: - 설정의 Pro 줄
 
-/// 설정 ▸ 꿈을 찾아서 Pro. 무료면 페이월로, 구독 중이면 구독 관리와 '평생으로 바꾸기', 복원은 늘.
+/// 설정 ▸ Pro. 무료면 페이월로, 구독 중이면 구독 관리와 '평생으로 바꾸기', 복원은 늘.
 struct ProSettingsSection: View {
     @State private var showingPaywall = false
     @State private var showingGraduation = false
@@ -368,7 +360,7 @@ struct ProSettingsSection: View {
                 // 아직 살 수 있는 상품이 없으면 줄을 세우지 않는다 — 누르면 '불러오지 못했다' 만 보인다.
                 if store.sellsPro {
                     Button { showingPaywall = true } label: {
-                        Label("꿈 무제한 · 꿈 키우기 모드", systemImage: "sparkles")
+                        Label("Pro 보기", systemImage: "sparkles")
                     }
                 }
             } else if store.ownsLifetime {
@@ -408,11 +400,10 @@ struct ProSettingsSection: View {
     }
 }
 
-// MARK: - 첫 보물함 뒤 한 번
+// MARK: - 첫 목표를 완료한 뒤 한 번
 
-/// 첫 상자를 연 뒤 보물함 맨 위에 한 번 서는 작은 카드. 닫으면 다시 서지 않는다.
-/// 작은 단계로 꿈 하나를 해냈다는 걸 처음 본 날, 다음 꿈을 여럿 걸 수 있다고 알려 준다.
-struct FirstTreasureProCard: View {
+/// 첫 목표를 완료한 뒤 완료 탭 맨 위에 한 번 서는 작은 카드. 닫으면 다시 서지 않는다.
+struct FirstDoneProCard: View {
     @AppStorage("pro.firstTreasureCardDismissed") private var dismissed = false
     @State private var showingPaywall = false
 
@@ -426,13 +417,13 @@ struct FirstTreasureProCard: View {
                     .foregroundStyle(Color.proAccent)
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("첫 꿈을 이뤘어요!")
+                    Text("첫 목표를 완료했습니다")
                         .font(.headline)
-                    Text("다음 꿈은 몇 개든 함께 키워 보세요.")
+                    Text("Pro에서는 목표를 개수 제한 없이 둘 수 있습니다.")
                         .font(.body)
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
-                    Button("꿈을 찾아서 Pro 보기") { showingPaywall = true }
+                    Button("Pro 보기") { showingPaywall = true }
                         .font(.body.weight(.semibold))
                         .tint(Color.proAccent)
                 }
@@ -450,7 +441,7 @@ struct FirstTreasureProCard: View {
             .padding(16)
             .background(Color.cardBackgroundAdaptive, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
             .sheet(isPresented: $showingPaywall, onDismiss: { dismissed = true }) {
-                PaywallView(highlight: .dreams)
+                PaywallView(highlight: .goals)
             }
         }
     }
@@ -459,7 +450,7 @@ struct FirstTreasureProCard: View {
 // MARK: - 색
 
 extension Color {
-    /// Pro 화면의 강조색. 노란 열쇠색(keyGold)은 흰 바탕에서 글자로 읽히지 않아 보물 보라를 쓴다.
+    /// Pro 화면의 강조색.
     static let proAccent = Color.purple
 }
 

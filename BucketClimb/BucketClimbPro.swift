@@ -2,14 +2,14 @@
 //  BucketClimbPro.swift
 //  BucketClimb
 //
-//  꿈을 찾아서 Pro. 칸은 둘이다 — 무료 · Pro.
+//  Pro. 칸은 둘이다 — 무료 · Pro.
 //
-//   · 무료: 꿈의 바다 · 나만의 꿈 만들기, 동시에 키우는 꿈 5개(`ProStore.freeDreamLimit`), 열쇠 톱니 · 질문 · 사진 기록,
-//           진행 타임라인 · 보물함 · 멈춘 꿈 다시 시작, 꿈 지도, 꿈 기록 내보내기.
-//   · Pro:  동시에 키우는 꿈 무제한, 꿈 키우기 모드(산 오르기 · 단계별 마감일 · 장애물 · 하루 진행 기록 · 증거 · 아카이브 탭).
+//   · 무료: 목표 5개(`ProStore.freeGoalLimit`, 완료하지 않은 목표를 센다), 단계, 기록(메모 · 사진),
+//           완료 · 그만둔 목표 다시 시작, 기록 내보내기.
+//   · Pro:  목표 무제한.
 //
-//  ⚠️ 절대 잠그지 않는 것: 접근성, 이미 만든 꿈 보기 · 지우기 · 포기하기, 꿈 기록 내보내기.
-//     한도를 넘게 가진 사람(구독이 끝난 사람)도 가진 꿈은 그대로 키운다. 새 꿈을 더할 때만 막는다.
+//  ⚠️ 절대 잠그지 않는 것: 접근성, 이미 만든 목표 보기 · 고치기 · 지우기, 기록 내보내기.
+//     한도를 넘게 가진 사람(구독이 끝난 사람)도 가진 목표는 그대로 쓴다. 새로 더할 때만 막는다.
 //
 //  상품 로드 · 구매 · 복원 · 거래 리스너(다른 기기, 가족 공유, 환불, 구독 만료) · 팁은 전부 `LeeoStore` 안에 있다.
 //  이 클래스는 그 값을 SwiftUI `@Observable` 로 옮겨 적고, "Pro 인가" 하나로 줄여 줄 뿐이다.
@@ -48,10 +48,8 @@ enum ProProduct {
 
 /// Pro 가 여는 것. 페이월이 어디서 막혀 들어왔는지 알려 줄 때 쓴다.
 enum ProFeature: String, Identifiable {
-    /// 동시에 키우는 꿈 무제한 (무료는 `ProStore.freeDreamLimit` 개)
-    case dreams
-    /// 꿈 키우기 모드 — 산 오르기 · 단계별 마감일 · 장애물 · 하루 진행 기록 · 아카이브 탭
-    case growMode
+    /// 목표 무제한 (무료는 `ProStore.freeGoalLimit` 개). rawValue 는 계약이라 바꾸지 않는다.
+    case goals = "dreams"
 
     var id: String { rawValue }
 }
@@ -63,8 +61,8 @@ enum ProFeature: String, Identifiable {
 final class ProStore {
     static let shared = ProStore()
 
-    /// 무료로 동시에 키우는 꿈 수.
-    nonisolated static let freeDreamLimit = 5
+    /// 무료로 둘 수 있는 목표 수(완료하지 않은 목표).
+    nonisolated static let freeGoalLimit = 5
 
     @ObservationIgnored let store: LeeoStore
 
@@ -91,10 +89,10 @@ final class ProStore {
     /// 평생 Pro(평생 · 구독 졸업 · 유료 시절 구매)를 가졌는가.
     var ownsLifetime: Bool { !ownedProductIDs.isDisjoint(with: ProProduct.lifetimes) || store.isGrandfathered }
 
-    /// 꿈을 하나 더 키울 수 있는가 — 내 창고에 새 꿈을 들이거나 멈춘 꿈을 다시 시작하기 전에 묻는다.
-    /// 세는 값은 지금 창고에 있는 꿈 수(→ `BucketListViewModel.activeDreamCount`).
-    var canTakeAnotherDream: Bool {
-        isPro || BucketListViewModel.shared.activeDreamCount < Self.freeDreamLimit
+    /// 목표를 하나 더 둘 수 있는가 — 새 목표를 추가하거나 끝난 목표를 다시 시작하기 전에 묻는다.
+    /// 세는 값은 완료하지 않은 목표 수(→ `BucketListViewModel.openGoalCount`).
+    var canTakeAnotherGoal: Bool {
+        isPro || BucketListViewModel.shared.openGoalCount < Self.freeGoalLimit
     }
 
     /// 팁(응원). 기능을 열지 않는다.
