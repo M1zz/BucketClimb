@@ -24,6 +24,7 @@ class BucketListViewModel: ObservableObject {
         #if DEBUG
         if ScreenshotSeed.isOn { ScreenshotSeed.apply(to: self) }
         #endif
+        GoalReminders.sync(bucketItems)
     }
 
     func completeOnboarding() {
@@ -243,6 +244,7 @@ class BucketListViewModel: ObservableObject {
         if let encoded = try? JSONEncoder().encode(bucketItems) {
             UserDefaults.standard.set(encoded, forKey: saveKey)
         }
+        GoalReminders.sync(bucketItems)
     }
 
     private func loadData() {

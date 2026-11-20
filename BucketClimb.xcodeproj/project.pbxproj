@@ -14,6 +14,7 @@
 		2A000005000000000000000000000005 /* BucketListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000005000000000000000000000015 /* BucketListViewModel.swift */; };
 		2A000006000000000000000000000006 /* GoalViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000006000000000000000000000016 /* GoalViews.swift */; };
 		2A000007000000000000000000000007 /* GoalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000007000000000000000000000017 /* GoalDetailView.swift */; };
+		5E000001000000000000000000000002 /* GoalReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E000001000000000000000000000012 /* GoalReminders.swift */; };
 		5E000001000000000000000000000001 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E000001000000000000000000000011 /* SettingsView.swift */; };
 		2A000008000000000000000000000008 /* AddGoalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A000008000000000000000000000018 /* AddGoalSheet.swift */; };
 		308362403C0F94027614E27A /* BucketIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = A318FE94747CF45034F9CA30 /* BucketIntents.swift */; };
@@ -45,6 +46,7 @@
 		2A000005000000000000000000000015 /* BucketListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListViewModel.swift; sourceTree = "<group>"; };
 		2A000006000000000000000000000016 /* GoalViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViews.swift; sourceTree = "<group>"; };
 		2A000007000000000000000000000017 /* GoalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailView.swift; sourceTree = "<group>"; };
+		5E000001000000000000000000000012 /* GoalReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalReminders.swift; sourceTree = "<group>"; };
 		5E000001000000000000000000000011 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2A000008000000000000000000000018 /* AddGoalSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalSheet.swift; sourceTree = "<group>"; };
 		3B000001000000000000000000000011 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				580DFD2B2ED5E8D6008F8FC9 /* RelationshipBucket.swift */,
 				580DFD2C2ED5E8D6008F8FC9 /* TravelBucket.swift */,
 				A318FE94747CF45034F9CA30 /* BucketIntents.swift */,
+				5E000001000000000000000000000012 /* GoalReminders.swift */,
 				4C0000010000000000000011 /* BucketClimbPro.swift */,
 				4C0000030000000000000013 /* Products.storekit */,
 				10545C633CC577FCFDB59F86 /* AppShortcuts.xcstrings */,
@@ -272,6 +275,7 @@
 				2A000006000000000000000000000006 /* GoalViews.swift in Sources */,
 				2A000007000000000000000000000007 /* GoalDetailView.swift in Sources */,
 				2A000008000000000000000000000008 /* AddGoalSheet.swift in Sources */,
+				5E000001000000000000000000000002 /* GoalReminders.swift in Sources */,
 				5E000001000000000000000000000001 /* SettingsView.swift in Sources */,
 				3B000001000000000000000000000001 /* Localization.swift in Sources */,
 				3B000006000000000000000000000006 /* ScreenshotSeed.swift in Sources */,

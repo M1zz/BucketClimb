@@ -17,7 +17,7 @@ CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 W, H = 1242, 2688
 
 # 스토어 순서 = 파일 이름 순서. 문구는 screenshot_copy.json 의 slides 와 같은 순서다.
-SHOTS = [("forge", "hero"), ("ocean", "left"), ("workshop", "bottom"), ("treasury", "rotate"), ("map", "dark")]
+SHOTS = [("goals", "hero"), ("detail", "left"), ("done", "bottom")]
 
 BASE_CSS = f"""
 * {{ margin:0; padding:0; box-sizing:border-box; }}
@@ -90,5 +90,8 @@ def render(loc, i, name, layout, headline, sub):
 if __name__ == "__main__":
     for loc in sys.argv[1:] or list(COPY):
         slides = COPY[loc]["slides"]
+        # 예전 화면 구성으로 만든 그림이 남아 스토어에 같이 올라가지 않게 지운다
+        for old in (OUT / loc).glob("*.png"):
+            old.unlink()
         for i, ((name, layout), (headline, sub)) in enumerate(zip(SHOTS, slides), 1):
             render(loc, i, name, layout, headline, sub)

@@ -62,7 +62,7 @@ struct QuestionRow: View {
                 .focused($focused)
                 .submitLabel(.done)
                 .onSubmit(commit)
-            HStack(spacing: 12) {
+            AdaptiveStack(spacing: 12) {
                 Button("저장", action: commit)
                     .disabled(trimmed.isEmpty)
                 Button("건너뛰기", action: skip)
@@ -160,7 +160,7 @@ struct GoalDetailView: View {
                 Text(item.title.localizedBucket)
                     .font(.title2.bold())
                 if !item.milestones.isEmpty {
-                    HStack(spacing: 12) {
+                    AdaptiveStack(spacing: 12) {
                         ProgressView(value: item.progress)
                         Text("\(item.doneStepCount)/\(item.milestones.count) 단계")
                             .font(.body)

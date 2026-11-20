@@ -3644,25 +3644,25 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opustit"
+            "value" : "Ukončit"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opgiv"
+            "value" : "Stop"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aufgeben"
+            "value" : "Beenden"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Εγκατάλειψη"
+            "value" : "Διακοπή"
           }
         },
         "en" : {
@@ -3680,7 +3680,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abandonar"
+            "value" : "Dejar"
           }
         },
         "fi" : {
@@ -3692,7 +3692,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abandonner"
+            "value" : "Arrêter"
           }
         },
         "id" : {
@@ -3704,7 +3704,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abbandona"
+            "value" : "Interrompi"
           }
         },
         "ja" : {
@@ -3734,13 +3734,13 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Porzuć"
+            "value" : "Przerwij"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abandonar"
+            "value" : "Parar"
           }
         },
         "ru" : {
@@ -3752,37 +3752,37 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lägg ner"
+            "value" : "Lägg åt sidan"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เลิกทำ"
+            "value" : "หยุดทำ"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bırak"
+            "value" : "Durdur"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Từ bỏ"
+            "value" : "Dừng lại"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "放弃"
+            "value" : "停止"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "放棄"
+            "value" : "停止"
           }
         }
       }
@@ -3792,25 +3792,25 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Datum opuštění"
+            "value" : "Datum ukončení"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opgivet den"
+            "value" : "Stoppet den"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aufgegeben am"
+            "value" : "Beendet am"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ημερομηνία εγκατάλειψης"
+            "value" : "Ημερομηνία διακοπής"
           }
         },
         "en" : {
@@ -3828,7 +3828,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fecha de abandono"
+            "value" : "Fecha en que la dejaste"
           }
         },
         "fi" : {
@@ -3840,7 +3840,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Date d’abandon"
+            "value" : "Date d’arrêt"
           }
         },
         "id" : {
@@ -3852,7 +3852,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Data di abbandono"
+            "value" : "Data di interruzione"
           }
         },
         "ja" : {
@@ -3882,13 +3882,13 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Data porzucenia"
+            "value" : "Data przerwania"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Data de abandono"
+            "value" : "Data em que parou"
           }
         },
         "ru" : {
@@ -3900,37 +3900,37 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nedlagt den"
+            "value" : "Lagt åt sidan den"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "วันที่เลิกทำ"
+            "value" : "วันที่หยุดทำ"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bırakma tarihi"
+            "value" : "Durdurma tarihi"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ngày từ bỏ"
+            "value" : "Ngày dừng"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "放弃日期"
+            "value" : "停止日期"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "放棄日期"
+            "value" : "停止日期"
           }
         }
       }
@@ -3940,25 +3940,25 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opuštěné cíle"
+            "value" : "Ukončené cíle"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opgivne mål"
+            "value" : "Stoppede mål"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aufgegebene Ziele"
+            "value" : "Beendete Ziele"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Στόχοι που εγκαταλείφθηκαν"
+            "value" : "Στόχοι που σταμάτησαν"
           }
         },
         "en" : {
@@ -3976,7 +3976,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Metas abandonadas"
+            "value" : "Metas que dejaste"
           }
         },
         "fi" : {
@@ -3988,7 +3988,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Objectifs abandonnés"
+            "value" : "Objectifs arrêtés"
           }
         },
         "id" : {
@@ -4000,7 +4000,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obiettivi abbandonati"
+            "value" : "Obiettivi interrotti"
           }
         },
         "ja" : {
@@ -4030,13 +4030,13 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Porzucone cele"
+            "value" : "Przerwane cele"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Metas abandonadas"
+            "value" : "Metas paradas"
           }
         },
         "ru" : {
@@ -4048,37 +4048,37 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nedlagda mål"
+            "value" : "Mål du lagt åt sidan"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เป้าหมายที่เลิกทำ"
+            "value" : "เป้าหมายที่หยุดทำ"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bırakılan hedefler"
+            "value" : "Durdurulan hedefler"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mục tiêu đã từ bỏ"
+            "value" : "Mục tiêu đã dừng"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已放弃的目标"
+            "value" : "已停止的目标"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已放棄的目標"
+            "value" : "已停止的目標"
           }
         }
       }
@@ -4089,25 +4089,25 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opuštěno"
+            "value" : "Ukončeno"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opgivet"
+            "value" : "Stoppet"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aufgegeben"
+            "value" : "Beendet"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Εγκαταλείφθηκε"
+            "value" : "Σταμάτησε"
           }
         },
         "en" : {
@@ -4125,7 +4125,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abandonada"
+            "value" : "Dejada"
           }
         },
         "fi" : {
@@ -4137,7 +4137,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abandonné"
+            "value" : "Arrêté"
           }
         },
         "id" : {
@@ -4149,7 +4149,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abbandonato"
+            "value" : "Interrotto"
           }
         },
         "ja" : {
@@ -4179,13 +4179,13 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Porzucony"
+            "value" : "Przerwany"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abandonada"
+            "value" : "Parada"
           }
         },
         "ru" : {
@@ -4197,37 +4197,37 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nedlagt"
+            "value" : "Lagt åt sidan"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เลิกทำแล้ว"
+            "value" : "หยุดทำแล้ว"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bırakıldı"
+            "value" : "Durduruldu"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Đã từ bỏ"
+            "value" : "Đã dừng"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已放弃"
+            "value" : "已停止"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已放棄"
+            "value" : "已停止"
           }
         }
       }
@@ -15590,25 +15590,25 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opustit tento cíl?"
+            "value" : "Ukončit tento cíl?"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Opgiv dette mål?"
+            "value" : "Vil du stoppe dette mål?"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dieses Ziel aufgeben?"
+            "value" : "Dieses Ziel beenden?"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Εγκατάλειψη αυτού του στόχου;"
+            "value" : "Διακοπή αυτού του στόχου;"
           }
         },
         "en" : {
@@ -15626,7 +15626,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¿Abandonar esta meta?"
+            "value" : "¿Dejar esta meta?"
           }
         },
         "fi" : {
@@ -15638,7 +15638,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abandonner cet objectif ?"
+            "value" : "Arrêter cet objectif ?"
           }
         },
         "id" : {
@@ -15650,7 +15650,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abbandonare questo obiettivo?"
+            "value" : "Interrompere questo obiettivo?"
           }
         },
         "ja" : {
@@ -15680,13 +15680,13 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Porzucić ten cel?"
+            "value" : "Przerwać ten cel?"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abandonar esta meta?"
+            "value" : "Parar esta meta?"
           }
         },
         "ru" : {
@@ -15698,37 +15698,37 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lägga ner det här målet?"
+            "value" : "Vill du lägga det här målet åt sidan?"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เลิกทำเป้าหมายนี้ใช่ไหม"
+            "value" : "หยุดทำเป้าหมายนี้ใช่ไหม"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bu hedef bırakılsın mı?"
+            "value" : "Bu hedef durdurulsun mu?"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Từ bỏ mục tiêu này?"
+            "value" : "Dừng mục tiêu này?"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "要放弃这个目标吗？"
+            "value" : "要停止这个目标吗？"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "要放棄這個目標嗎？"
+            "value" : "要停止這個目標嗎？"
           }
         }
       }
@@ -20151,7 +20151,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Puedes retomar un objetivo que dejaste cuando quieras."
+            "value" : "Puedes retomar una meta que dejaste cuando quieras."
           }
         },
         "fi" : {
@@ -20169,7 +20169,7 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tujuan yang dihentikan bisa dimulai lagi kapan saja."
+            "value" : "Target yang dihentikan bisa dimulai lagi kapan saja."
           }
         },
         "it" : {
@@ -20217,7 +20217,7 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Du kan när som helst återuppta ett avslutat mål."
+            "value" : "Du kan när som helst återuppta ett mål du lagt åt sidan."
           }
         },
         "th" : {
@@ -20248,154 +20248,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已停止的目標可以隨時重新開始。"
-          }
-        }
-      }
-    },
-    "구체화" : {
-      "localizations" : {
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "구체화"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Make it concrete"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Make it concrete"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Upřesnění"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gør det konkret"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Konkret machen"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Συγκεκριμενοποίηση"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Concretar"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tarkenna"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Préciser"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Perjelas"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rendilo concreto"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "具体化"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gjør det konkret"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Maak het concreet"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Konkrety"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tornar concreto"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Конкретика"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gör det konkret"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ทำให้ชัดเจน"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Somutlaştır"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cụ thể hóa"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "具体化"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "具體化"
           }
         }
       }
@@ -21432,6 +21284,600 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "寫在這裡"
+          }
+        }
+      }
+    },
+    "진행 없는 목표 알림" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "진행 없는 목표 알림"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remind me about idle goals"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remind me about idle goals"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Připomínat cíle bez pokroku"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Påmind om mål uden fremskridt"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An Ziele ohne Fortschritt erinnern"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Υπενθύμιση για στόχους χωρίς πρόοδο"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avisar de metas sin avances"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muistuta tavoitteista, jotka eivät etene"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rappel des objectifs sans avancée"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingatkan target tanpa kemajuan"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Promemoria per obiettivi fermi"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "進んでいない目標を通知"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Påminn om mål uten fremgang"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herinner aan doelen zonder voortgang"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przypominaj o celach bez postępów"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lembrar de metas paradas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Напоминать о целях без прогресса"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Påminn om mål utan framsteg"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เตือนเป้าหมายที่ไม่คืบหน้า"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İlerlemeyen hedefleri hatırlat"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhắc mục tiêu chưa tiến triển"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "提醒没有进展的目标"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "提醒沒有進展的目標"
+          }
+        }
+      }
+    },
+    "한 달 동안 진행이 없는 목표를 알려 줍니다." : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "한 달 동안 진행이 없는 목표를 알려 줍니다."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifies you when a goal has had no progress for a month."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifies you when a goal has had no progress for a month."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upozorní vás, když cíl měsíc nepokročil."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giver besked, når et mål ikke har haft fremskridt i en måned."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benachrichtigt dich, wenn ein Ziel einen Monat lang keinen Fortschritt hatte."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Σας ειδοποιεί όταν ένας στόχος δεν έχει πρόοδο για έναν μήνα."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Te avisa cuando una meta lleva un mes sin avances."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ilmoittaa, kun tavoite ei ole edennyt kuukauteen."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous prévient lorsqu’un objectif n’a pas avancé depuis un mois."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memberi tahu saat sebuah target tidak ada kemajuan selama sebulan."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ti avvisa quando un obiettivo è fermo da un mese."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1か月進んでいない目標をお知らせします。"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varsler når et mål ikke har hatt fremgang på en måned."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meldt wanneer een doel een maand geen voortgang heeft gehad."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powiadamia, gdy cel od miesiąca nie ma postępów."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avisa quando uma meta fica um mês sem progresso."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сообщает, когда по цели месяц нет прогресса."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meddelar när ett mål inte har haft framsteg på en månad."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "แจ้งเตือนเมื่อเป้าหมายไม่มีความคืบหน้าหนึ่งเดือน"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bir hedefte bir aydır ilerleme yoksa haber verir."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thông báo khi một mục tiêu không có tiến triển trong một tháng."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目标一个月没有进展时提醒你。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目標一個月沒有進展時提醒你。"
+          }
+        }
+      }
+    },
+    "알림이 막혀 있습니다. 설정 앱에서 알림을 허용해 주세요." : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알림이 막혀 있습니다. 설정 앱에서 알림을 허용해 주세요."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications are blocked. Allow them in the Settings app."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications are blocked. Allow them in the Settings app."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oznámení jsou blokována. Povolte je v aplikaci Nastavení."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifikationer er blokeret. Tillad dem i appen Indstillinger."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mitteilungen sind blockiert. Erlaube sie in der App „Einstellungen“."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Οι ειδοποιήσεις είναι αποκλεισμένες. Επιτρέψτε τις στην εφαρμογή Ρυθμίσεις."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Las notificaciones están bloqueadas. Permítelas en la app Ajustes."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ilmoitukset on estetty. Salli ne Asetukset-apissa."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les notifications sont bloquées. Autorisez-les dans l’app Réglages."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifikasi diblokir. Izinkan di app Pengaturan."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le notifiche sono bloccate. Consentile nell’app Impostazioni."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知がブロックされています。設定アプリで通知を許可してください。"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Varsler er blokkert. Tillat dem i Innstillinger-appen."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meldingen zijn geblokkeerd. Sta ze toe in de app Instellingen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powiadomienia są zablokowane. Zezwól na nie w aplikacji Ustawienia."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "As notificações estão bloqueadas. Permita no app Ajustes."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уведомления заблокированы. Разрешите их в приложении «Настройки»."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notiser är blockerade. Tillåt dem i appen Inställningar."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "การแจ้งเตือนถูกปิดกั้น โปรดอนุญาตในแอปการตั้งค่า"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bildirimler engellenmiş. Ayarlar uygulamasından izin ver."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thông báo đang bị chặn. Hãy cho phép trong ứng dụng Cài đặt."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知已被阻止。请在“设置”App 中允许通知。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知已被阻擋。請在「設定」App 中允許通知。"
+          }
+        }
+      }
+    },
+    "goals.title" : {
+      "comment" : "Title of the main screen: the list of goals (plural)",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "목표"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Goals"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Goals"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cíle"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mål"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ziele"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Στόχοι"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metas"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tavoitteet"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Objectifs"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Target"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obiettivi"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目標"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mål"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doelen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cele"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цели"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mål"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เป้าหมาย"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hedefler"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mục tiêu"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目标"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目標"
           }
         }
       }

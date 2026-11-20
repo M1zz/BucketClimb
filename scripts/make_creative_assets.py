@@ -102,7 +102,7 @@ def search_html(lang):
     # 기기는 안전 영역 오른쪽 몫에 서서, 위아래로 넘쳐 화면 밖까지 이어진다(기기 그림은 잘려도 된다).
     ph_w = 1040
     ph_left = l + col + int(sw * 0.04)
-    img = (RAW / lang / "forge.png").as_uri()
+    img = (RAW / lang / "goals.png").as_uri()
     return f"""
 <div class="glow" style="left:{ph_left - 300}px;top:500px;width:1700px;height:1700px;background:rgba(240,180,40,.30)"></div>
 <div class="glow" style="left:{l - 700}px;top:{t - 500}px;width:1400px;height:1000px;background:rgba(240,180,40,.12)"></div>
@@ -119,8 +119,8 @@ def header_html(lang):
     eyebrow, headline = HEADER[lang]
     sw, sh = r - l, b - t
     key = ICON.as_uri()
-    left_img = (RAW / lang / "ocean.png").as_uri()
-    right_img = (RAW / lang / "forge.png").as_uri()
+    left_img = (RAW / lang / "detail.png").as_uri()
+    right_img = (RAW / lang / "goals.png").as_uri()
     # 앱 아이콘을 안전 영역 바깥에 흩는다. 아이폰에서는 잘려도 되는 장식이다.
     keys = [(-40, 80, 300, -14), (330, 1130, 240, 12), (3330, 120, 260, 16), (3620, 1040, 300, -10),
             (2930, 1260, 200, -6), (650, 40, 190, 8)]

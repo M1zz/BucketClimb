@@ -37,7 +37,7 @@ struct GoalsView: View {
                             }
                     }
                 } footer: {
-                    if !ProStore.shared.isPro, !goals.isEmpty {
+                    if !ProStore.shared.isPro, !goals.isEmpty, !isScreenshot {
                         Text("무료로는 목표를 \(ProStore.freeGoalLimit)개까지 둘 수 있습니다. 지금 \(goals.count)개입니다.")
                             .font(.body)
                     }
@@ -66,7 +66,7 @@ struct GoalsView: View {
                     }
                 }
             }
-            .navigationTitle("목표")
+            .navigationTitle(String(localized: "goals.title", defaultValue: "목표", comment: "Title of the main screen: the list of goals (plural)"))
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button { showingSettings = true } label: {
@@ -113,10 +113,12 @@ struct GoalRow: View {
                 GoalDetailView(item: item)
             } label: {
                 VStack(alignment: .leading, spacing: 8) {
-                    HStack(alignment: .firstTextBaseline) {
+                    AdaptiveStack(spacing: 4) {
                         Text(item.title.localizedBucket)
                             .font(.title3.weight(.semibold))
-                        Spacer()
+                            .multilineTextAlignment(.leading)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         if !item.milestones.isEmpty {
                             Text(verbatim: "\(item.doneStepCount)/\(item.milestones.count)")
                                 .font(.body)
@@ -145,7 +147,7 @@ struct GoalRow: View {
                 .font(.body)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
-            HStack(spacing: 12) {
+            AdaptiveStack(spacing: 12) {
                 Button("계속하기") {
                     withAnimation { viewModel.keep(item) }
                 }
@@ -208,9 +210,11 @@ struct DoneGoalsView: View {
         List {
             if !done.isEmpty {
                 // 첫 목표를 완료한 뒤 한 번, 닫기 쉬운 작은 카드로 Pro 를 알린다 (Pro 면 서지 않는다).
-                FirstDoneProCard()
-                    .listRowInsets(EdgeInsets())
-                    .listRowBackground(Color.clear)
+                if !isScreenshot {
+                    FirstDoneProCard()
+                        .listRowInsets(EdgeInsets())
+                        .listRowBackground(Color.clear)
+                }
 
                 // 숫자가 쌓였을 때만, 드물게 응원을 부탁한다 (모달 아님). 이미 Pro 를 가진 사람에게만 한다.
                 if ProStore.shared.hasPro {
@@ -337,6 +341,32 @@ enum GoalPhotos {
         guard !name.isEmpty, FileManager.default.fileExists(atPath: url.path) else { return }
         cache.removeObject(forKey: name as NSString)
         try? FileManager.default.removeItem(at: url)
+    }
+}
+
+/// 스토어 스크린샷을 찍는 중인가. 찍을 때는 Pro 안내를 화면에서 뺀다.
+private var isScreenshot: Bool {
+    #if DEBUG
+    return ScreenshotSeed.isOn
+    #else
+    return false
+    #endif
+}
+
+// MARK: - 큰 글자
+
+/// 보통은 가로로, 손쉬운 사용의 큰 글자에서는 세로로 놓는다.
+struct AdaptiveStack<Content: View>: View {
+    @Environment(\.dynamicTypeSize) private var size
+    var spacing: CGFloat = 8
+    @ViewBuilder var content: () -> Content
+
+    var body: some View {
+        if size.isAccessibilitySize {
+            VStack(alignment: .leading, spacing: spacing, content: content)
+        } else {
+            HStack(alignment: .firstTextBaseline, spacing: spacing, content: content)
+        }
     }
 }
 

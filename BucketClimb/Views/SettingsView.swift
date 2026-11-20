@@ -11,6 +11,9 @@ import LeeoKit
 struct SettingsView: View {
     @EnvironmentObject var viewModel: BucketListViewModel
     @Environment(\.dismiss) private var dismiss
+    @State private var reminders = GoalReminders.isOn
+    /// 알림을 켜려 했지만 기기에서 허락받지 못했다.
+    @State private var remindersDenied = false
 
     private var version: String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? ""
@@ -36,6 +39,28 @@ struct SettingsView: View {
                     Text("데이터")
                 } footer: {
                     Text("목표 · 단계 · 기록을 글로 내보냅니다.")
+                        .font(.body)
+                }
+
+                Section {
+                    Toggle("진행 없는 목표 알림", isOn: $reminders)
+                        .onChange(of: reminders) { _, on in
+                            guard on != GoalReminders.isOn else { return }
+                            if on {
+                                Task {
+                                    let allowed = await GoalReminders.turnOn()
+                                    reminders = allowed
+                                    remindersDenied = !allowed
+                                    GoalReminders.sync(viewModel.bucketItems)
+                                }
+                            } else {
+                                remindersDenied = false
+                                GoalReminders.turnOff()
+                            }
+                        }
+                } footer: {
+                    Text(remindersDenied ? "알림이 막혀 있습니다. 설정 앱에서 알림을 허용해 주세요."
+                                         : "한 달 동안 진행이 없는 목표를 알려 줍니다.")
                         .font(.body)
                 }
 

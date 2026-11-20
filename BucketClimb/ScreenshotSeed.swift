@@ -52,6 +52,8 @@ enum ScreenshotSeed {
         viewModel.bucketItems[0].records = [
             ProgressRecord(date: Date().addingTimeInterval(-2 * day), note: viewModel.bucketItems[0].milestones.first?.description ?? "")
         ]
+        // 완료한 목표 화면에 '그만둔 목표'도 보이게 하나를 그만둔 것으로 둔다
+        viewModel.bucketItems[5].isAbandoned = true
         viewModel.hasCompletedOnboarding = true
     }
 }

@@ -18,37 +18,39 @@
 
 ### 프로모션 텍스트
 
-이루고 싶은 꿈을 고르면 해야 할 일이 열쇠의 톱니로 나타나요. 질문에 하나씩 답하며 톱니를 채우고, 열쇠가 완성되면 꿈 상자를 열어 보세요.
+버킷리스트를 적어만 두지 마세요. 목표를 작은 단계로 나누고 다음 단계 하나를 체크해 나가요. 한 달 넘게 멈춘 목표는 계속할지 그만둘지 물어봐요.
 
 ### 설명
 
 버킷리스트를 적어 두기만 하고 잊어버린 적 있나요?
-꿈을 찾아서는 꿈 하나를 해낼 수 있는 작은 단계로 나눠, 오늘 무엇을 하면 되는지 알려 주는 앱이에요.
+꿈을 찾아서는 목표 하나를 해낼 수 있는 작은 단계로 나누고, 지금 할 단계 하나를 보여 주는 앱이에요.
 
-■ 꿈의 바다
-여행, 경험, 성취, 건강, 배움, 관계. 여섯 가지 분야의 꿈 590여 개가 상자에 담겨 바다를 떠다녀요. 마음에 드는 상자를 탭해 내 창고로 가져오세요. 나만의 꿈을 직접 만들 수도 있어요.
+■ 목표와 다음 단계
+첫 화면에는 목표마다 진행 정도와 다음 단계 하나가 보여요. 그 자리에서 체크하면 그다음 단계가 올라와요.
+• 단계는 직접 적거나, 지원하는 기기에서는 제안을 받을 수 있어요
+• 순서를 바꾸고, 고치고, 지울 수 있어요
 
-■ 내 창고: 열쇠 만들기
-꿈 상자를 열려면 열쇠가 필요해요. 열쇠의 톱니 하나하나가 꿈을 이루는 단계예요. 아이슬란드 오로라라면 시즌 알아보기, 예산 모으기, 항공권 예매처럼요.
-• 지금 해야 할 단계가 맨 위에 보여요
-• 단계마다 준비된 질문에 답하며 하나씩 완료해요
-• 답과 사진은 내 기록에 남아 진행 타임라인으로 다시 볼 수 있어요
+■ 목표를 구체적으로
+목표 화면이 한 번에 하나씩 물어봐요. 언제 할 건지, 누구와 할 건지, 어떻게 할 건지, 지금은 왜 못 하는지, 무엇이 가로막는지, 나에게 얼마나 가치 있는지. 답하다 보면 막연하던 목표가 또렷해져요.
 
-■ 보물함
-모든 톱니를 채우면 열쇠가 완성되고, 상자를 열어 보물을 얻어요. 이룬 꿈은 보물함에 쌓이고, 잠시 멈춘 꿈도 그곳에 두었다가 언제든 다시 시작할 수 있어요.
+■ 기록
+목표마다 메모와 사진을 남겨요. 지나온 과정을 날짜순으로 다시 볼 수 있어요.
 
-■ 지도
-장소가 있는 꿈은 지도에 표시돼요. 가고 싶은 곳들을 한눈에 보세요.
+■ 늘어나기만 하는 목록은 그만
+한 달 넘게 진행이 없는 목표는 계속할지 그만둘지 물어봐요. 그만둔 목표는 따로 모아 두었다가 언제든 다시 시작할 수 있어요.
 
-■ 꿈 키우기 모드
-설정에서 산을 오르는 방식으로 바꿀 수 있어요. 단계별 마감일, 비용·시간 같은 장애물, 진행 기록을 프로젝트처럼 관리해요.
+■ 완료한 목표
+끝낸 목표는 완료한 날짜와 함께 모여요.
+
+■ Siri와 백업
+Siri로 목표를 추가하고 다음 단계를 물어볼 수 있어요. 기록은 글로 내보내거나 백업할 수 있어요.
 
 ■ 꿈을 찾아서 Pro
-꿈 다섯 개를 함께 키우며 열쇠를 만들고 보물함을 여는 것까지 모두 무료예요. 꿈을 몇 개든 함께 키우고 꿈 키우기 모드를 쓰려면 Pro를 고르세요. 주·월·연 구독이나 한 번 사는 평생 중에 고를 수 있어요. 예전에 앱을 사신 분은 그대로 Pro예요.
+목표 다섯 개까지는 모든 기능이 무료예요. 목표를 개수 제한 없이 두려면 Pro를 고르세요. 주·월·연 구독이나 한 번 사는 평생 중에 고를 수 있어요. 예전에 앱을 사신 분은 그대로 Pro예요.
 
 ■ 개인정보
 • 계정이 없고 광고나 분석 도구를 쓰지 않아요
-• 적은 꿈과 기록, 사진은 이 기기에만 저장돼요
+• 적은 목표와 기록, 사진은 이 기기에만 저장돼요
 
 이용약관: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 개인정보 처리방침: https://m1zz.github.io/BucketClimb/ko/privacy.html
@@ -81,37 +83,39 @@ wishlist,planner,travel,adventure,tracker,checklist,motivation,habit,journal,tod
 
 ### 프로모션 텍스트
 
-Pick a dream and its steps become the teeth of a key. Answer one question at a time to finish each tooth, and when the key is complete, open your treasure box.
+Don't just write a bucket list. Break each goal into small steps and check off the next one. Goals idle for over a month ask whether to keep going or stop.
 
 ### 설명
 
 Ever written a bucket list and then forgotten it?
-Dream Seeker breaks each dream into small, doable steps and shows you exactly what to do next.
+Dream Seeker breaks each goal into small, doable steps and shows you the one to do next.
 
-THE DREAM OCEAN
-More than 590 dreams across six areas (travel, experiences, achievements, health, learning and relationships) float by in treasure boxes. Tap one you love to bring it to your workshop, or create a dream of your own.
+GOALS AND THE NEXT STEP
+The first screen shows every goal with its progress and its next step. Check it off right there and the following step moves up.
+• Write your own steps, or get suggestions on supported devices
+• Reorder, edit and delete steps anytime
 
-YOUR WORKSHOP: FORGE THE KEY
-Every box needs a key, and every tooth on that key is a step toward your dream. Seeing the Northern Lights in Iceland? Research the season, save up, book the flights.
-• The step to work on now is always at the top
-• Answer a guiding question to complete each step
-• Your answers and photos are saved to your journal and progress timeline
+MAKE IT CONCRETE
+Each goal asks you one question at a time: when you will do it, who with, how, why you can't do it now, what is in the way, and how much it is worth to you. Answer them and a vague goal becomes a clear one.
 
-THE TREASURY
-Fill every tooth to finish the key, then open the box and claim your treasure. Dreams you achieve are collected in the treasury. Paused dreams wait there too, ready whenever you want to pick them back up.
+NOTES AND PHOTOS
+Add notes and photos to any goal and look back on the journey in date order.
 
-MAP
-Dreams tied to a place appear on the map, so you can see everywhere you want to go at a glance.
+A LIST THAT DOESN'T JUST GROW
+When a goal has had no progress for over a month, the app asks whether you want to keep going or stop. Stopped goals are kept separately, and you can restart them anytime.
 
-CLIMB MODE
-Prefer a mountain to climb? Switch to Climb Mode in Settings to manage dreams like projects, with step deadlines, obstacles such as cost and time, and a progress log.
+COMPLETED GOALS
+Goals you finish are collected with the date you completed them.
+
+SIRI AND BACKUP
+Add a goal or ask for your next step with Siri. Export everything as text, or back it up.
 
 DREAM SEEKER PRO
-With up to five dreams at a time, everything from forging keys to opening the treasury is free. Choose Pro to work on as many dreams as you like and to use Climb Mode. Pick a weekly, monthly or yearly subscription, or a one-time lifetime purchase. If you bought the app before, you already have Pro.
+Every feature is free for up to five goals. Choose Pro to keep as many goals as you like. Pick a weekly, monthly or yearly subscription, or a one-time lifetime purchase. If you bought the app before, you already have Pro.
 
 PRIVACY
 • No account, no ads, no analytics
-• Your dreams, notes and photos stay on your device
+• Your goals, notes and photos stay on your device
 
 Terms of Use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Privacy Policy: https://m1zz.github.io/BucketClimb/en/privacy.html
@@ -144,37 +148,39 @@ wishlist,planner,travel,adventure,tracker,checklist,motivation,habit,journal,tod
 
 ### 프로모션 텍스트
 
-Pick a dream and its steps become the teeth of a key. Answer one question at a time to finish each tooth, and when the key is complete, open your treasure box.
+Don't just write a bucket list. Break each goal into small steps and check off the next one. Goals idle for over a month ask whether to keep going or stop.
 
 ### 설명
 
 Ever written a bucket list and then forgotten it?
-Dream Seeker breaks each dream into small, doable steps and shows you exactly what to do next.
+Dream Seeker breaks each goal into small, doable steps and shows you the one to do next.
 
-THE DREAM OCEAN
-More than 590 dreams across six areas (travel, experiences, achievements, health, learning and relationships) float by in treasure boxes. Tap one you love to bring it to your workshop, or create a dream of your own.
+GOALS AND THE NEXT STEP
+The first screen shows every goal with its progress and its next step. Check it off right there and the following step moves up.
+• Write your own steps, or get suggestions on supported devices
+• Reorder, edit and delete steps anytime
 
-YOUR WORKSHOP: FORGE THE KEY
-Every box needs a key, and every tooth on that key is a step toward your dream. Seeing the Northern Lights in Iceland? Research the season, save up, book the flights.
-• The step to work on now is always at the top
-• Answer a guiding question to complete each step
-• Your answers and photos are saved to your journal and progress timeline
+MAKE IT CONCRETE
+Each goal asks you one question at a time: when you will do it, who with, how, why you can't do it now, what is in the way, and how much it is worth to you. Answer them and a vague goal becomes a clear one.
 
-THE TREASURY
-Fill every tooth to finish the key, then open the box and claim your treasure. Dreams you achieve are collected in the treasury. Paused dreams wait there too, ready whenever you want to pick them back up.
+NOTES AND PHOTOS
+Add notes and photos to any goal and look back on the journey in date order.
 
-MAP
-Dreams tied to a place appear on the map, so you can see everywhere you want to go at a glance.
+A LIST THAT DOESN'T JUST GROW
+When a goal has had no progress for over a month, the app asks whether you want to keep going or stop. Stopped goals are kept separately, and you can restart them anytime.
 
-CLIMB MODE
-Prefer a mountain to climb? Switch to Climb Mode in Settings to manage dreams like projects, with step deadlines, obstacles such as cost and time, and a progress log.
+COMPLETED GOALS
+Goals you finish are collected with the date you completed them.
+
+SIRI AND BACKUP
+Add a goal or ask for your next step with Siri. Export everything as text, or back it up.
 
 DREAM SEEKER PRO
-With up to five dreams at a time, everything from forging keys to opening the treasury is free. Choose Pro to work on as many dreams as you like and to use Climb Mode. Pick a weekly, monthly or yearly subscription, or a one-time lifetime purchase. If you bought the app before, you already have Pro.
+Every feature is free for up to five goals. Choose Pro to keep as many goals as you like. Pick a weekly, monthly or yearly subscription, or a one-time lifetime purchase. If you bought the app before, you already have Pro.
 
 PRIVACY
 • No account, no ads, no analytics
-• Your dreams, notes and photos stay on your device
+• Your goals, notes and photos stay on your device
 
 Terms of Use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Privacy Policy: https://m1zz.github.io/BucketClimb/en-GB/privacy.html
@@ -207,37 +213,39 @@ https://m1zz.github.io/BucketClimb/en-GB/index.html
 
 ### 프로모션 텍스트
 
-挑一个想实现的梦想，要做的事就会变成钥匙上的齿。回答问题，一齿一齿补齐；钥匙完成后，就能打开梦想箱子。
+别只把愿望清单写下来。把目标拆成小步骤，一次勾选下一步。超过一个月没有进展的目标，会问你是继续还是停止。
 
 ### 설명
 
 愿望清单写完就忘了吗？
-寻梦把每个梦想拆成一个个小步骤，告诉你今天该做什么。
+寻梦把每个目标拆成做得到的小步骤，并告诉你现在该做哪一步。
 
-■ 梦想之海
-旅行、体验、成就、健康、学习、关系，六大分类、590多个梦想装在箱子里，在海面上漂浮。点一下喜欢的箱子，带回自己的工坊。你也可以自己创建专属梦想。
+■ 目标和下一步
+首页会显示每个目标的进度和下一步。当场勾选，再下一步就会接上来。
+• 步骤可以自己写，在支持的设备上还能获得建议
+• 可以调整顺序、修改和删除
 
-■ 我的工坊：打造钥匙
-打开梦想箱子需要一把钥匙，钥匙上的每个齿都是通往梦想的一个步骤。比如去冰岛看极光：了解季节、攒预算、订机票。
-• 现在要做的步骤始终在最上面
-• 回答每一步准备好的问题，逐步完成
-• 你的回答和照片会保存在我的记录里，随时可在进展时间线回顾
+■ 把目标变具体
+目标页面一次只问一个问题：什么时候做、和谁一起做、怎么做、为什么现在做不了、是什么在阻碍、对你有多大价值。一边回答，模糊的目标就清晰起来。
 
-■ 宝库
-补齐所有的齿，钥匙就完成了，打开箱子即可获得宝藏。已实现的梦想会收进宝库；暂停的梦想也放在那里，想继续时随时重新开始。
+■ 记录
+为每个目标留下备注和照片，按日期回顾走过的过程。
 
-■ 地图
-有地点的梦想会标在地图上，想去的地方一目了然。
+■ 不再是只增不减的清单
+超过一个月没有进展的目标，会问你是继续还是停止。已停止的目标会单独收好，随时可以重新开始。
 
-■ 养梦模式
-在设置中可以切换成爬山的方式，像管理项目一样管理梦想：设置每一步的截止日期，记下费用、时间等障碍，并留下进展记录。
+■ 已完成的目标
+完成的目标会连同完成日期收在一起。
+
+■ Siri 和备份
+可以用 Siri 添加目标、询问下一步。记录可以导出为文本，也可以备份。
 
 ■ 寻梦 Pro
-同时培养不超过五个梦想时，从打造钥匙到打开宝库全部免费。想同时培养任意数量的梦想、使用养梦模式，请选择 Pro。可选按周、按月、按年订阅，或一次性永久买断。之前购买过本应用的用户，已直接拥有 Pro。
+五个目标以内，所有功能免费。想不限数量地添加目标，请选择 Pro。可选按周、按月、按年订阅，或一次性永久买断。之前购买过本应用的用户，已直接拥有 Pro。
 
 ■ 隐私
 • 无需账号，没有广告，也没有分析工具
-• 你写下的梦想、记录和照片只保存在这台设备上
+• 你写下的目标、记录和照片只保存在这台设备上
 
 使用条款：https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 隐私政策：https://m1zz.github.io/BucketClimb/zh-Hans/privacy.html
@@ -270,37 +278,39 @@ https://m1zz.github.io/BucketClimb/zh-Hans/index.html
 
 ### 프로모션 텍스트
 
-選一個想實現的夢想，要做的事就會變成鑰匙上的齒。回答一個個問題來補滿齒，鑰匙完成後，就能打開夢想寶箱。
+別只把願望清單寫下來。把目標拆成小步驟，一次勾選下一步。超過一個月沒有進展的目標，會問你要繼續還是停止。
 
 ### 설명
 
 願望清單寫完之後，是不是就被忘在一旁了？
-尋夢把每個夢想拆成做得到的小步驟，告訴你今天該做什麼。
+尋夢把每個目標拆成做得到的小步驟，並告訴你現在該做哪一步。
 
-■ 夢想之海
-旅行、體驗、成就、健康、學習、人際，六大分類共 590 多個夢想裝在寶箱裡，漂浮在海上。點選喜歡的寶箱，帶回我的工坊，也可以自己新增專屬的夢想。
+■ 目標和下一步
+首頁會顯示每個目標的進度和下一步。當場勾選，再下一步就會接上來。
+• 步驟可以自己寫，在支援的裝置上還能取得建議
+• 可以調整順序、修改和刪除
 
-■ 我的工坊：打造鑰匙
-要開啟寶箱，就需要一把鑰匙。鑰匙上的每一個齒，都是實現夢想的一個步驟。以冰島極光為例，就是查詢季節、存旅費、訂機票。
-• 現在該做的步驟，永遠排在最上面
-• 回答每個步驟準備好的問題，一步步完成
-• 你的回答和照片會存進我的記錄與進度時間軸
+■ 把目標變具體
+目標頁面一次只問一個問題：什麼時候做、和誰一起做、怎麼做、為什麼現在做不到、是什麼在阻礙、對你有多大的價值。一邊回答，模糊的目標就清晰起來。
 
-■ 寶藏庫
-補滿所有的齒，鑰匙就完成了，接著開啟寶箱，領取你的寶藏。實現的夢想都收藏在寶藏庫，暫停的夢想也在這裡等你，隨時都能重新開始。
+■ 記錄
+為每個目標留下備註和照片，依日期回顧走過的過程。
 
-■ 地圖
-和地點有關的夢想會標示在地圖上，想去的地方一眼就能看見。
+■ 不再是只增不減的清單
+超過一個月沒有進展的目標，會問你要繼續還是停止。已停止的目標會另外收好，隨時可以重新開始。
 
-■ 養夢模式
-喜歡像爬山一樣一步步往上？到設定開啟養夢模式，就能像管理專案一樣管理夢想，包含步驟期限、費用與時間等阻礙，還有進度記錄。
+■ 已完成的目標
+完成的目標會連同完成日期收在一起。
+
+■ Siri 和備份
+可以用 Siri 新增目標、詢問下一步。記錄可以輸出為文字，也可以備份。
 
 ■ 尋夢 Pro
-同時培養不超過五個夢想時，從打造鑰匙到打開寶藏庫全部免費。想同時培養任意數量的夢想、使用養夢模式，請選擇 Pro。可選擇週、月、年訂閱，或一次性永久買斷。之前購買過本 App 的使用者，已直接擁有 Pro。
+五個目標以內，所有功能免費。想不限數量地新增目標，請選擇 Pro。可選擇週、月、年訂閱，或一次性永久買斷。之前購買過本 App 的使用者，已直接擁有 Pro。
 
 ■ 隱私
 • 不需註冊帳號，沒有廣告，也沒有分析工具
-• 夢想、筆記和照片只存在你的裝置上
+• 你寫下的目標、記錄和照片只存在這台裝置上
 
 使用條款：https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 隱私權政策：https://m1zz.github.io/BucketClimb/zh-Hant/privacy.html
@@ -333,37 +343,39 @@ https://m1zz.github.io/BucketClimb/zh-Hant/index.html
 
 ### 프로모션 텍스트
 
-叶えたい夢を選ぶと、やることが鍵のギザギザになって現れます。質問に一つずつ答えて埋めていき、鍵が完成したら宝箱を開けましょう。
+バケットリストを書くだけで終わらせない。目標を小さなステップに分けて、次のステップをひとつずつチェック。1か月以上止まっている目標は、続けるかやめるかをおたずねします。
 
 ### 설명
 
 バケットリストを書いたまま、忘れてしまったことはありませんか。
-夢をさがしては、一つの夢を叶えられる小さなステップに分けて、今日何をすればいいかを教えてくれるアプリです。
+夢をさがしては、一つの目標をやりとげられる小さなステップに分けて、今やるステップをひとつ見せてくれるアプリです。
 
-■ 夢の海
-旅行、体験、達成、健康、学び、人間関係。6つの分野の夢590個以上が、宝箱に入って海を漂っています。気になる箱をタップして、マイ工房に持ち帰りましょう。自分だけの夢を作ることもできます。
+■ 目標と次のステップ
+最初の画面には、目標ごとに進み具合と次のステップがひとつ表示されます。その場でチェックすると、その次のステップが上がってきます。
+• ステップは自分で書くことも、対応デバイスでは提案を受けることもできます
+• 並べ替え、編集、削除ができます
 
-■ マイ工房：鍵づくり
-宝箱を開けるには鍵が必要です。鍵のギザギザ一つひとつが、夢を叶えるためのステップ。アイスランドでオーロラを見るなら、シーズンを調べる、予算を貯める、航空券を取る、というように進めます。
-• 今やるステップがいちばん上に表示されます
-• ステップごとに用意された質問に答えて、一つずつ完了します
-• 答えや写真はマイ記録と進捗タイムラインに残ります
+■ 目標を具体的に
+目標の画面が、一度にひとつずつ質問します。いつやるのか、誰とやるのか、どうやるのか、なぜ今はできないのか、何が妨げているのか、自分にとってどれくらい価値があるのか。答えていくうちに、ぼんやりしていた目標がはっきりしてきます。
 
-■ 宝物庫
-すべてのギザギザを埋めて鍵が完成したら、箱を開けて宝物を受け取りましょう。叶えた夢は宝物庫に大切に保管されます。ひと休み中の夢もここで待っていて、いつでも再開できます。
+■ 記録
+目標ごとにメモと写真を残せます。これまでの過程を日付順に振り返れます。
 
-■ マップ
-場所のある夢はマップに表示されます。行ってみたい場所をひと目で見渡せます。
+■ 増えるだけのリストは、もうおしまい
+1か月以上進んでいない目標は、続けるかやめるかをおたずねします。やめた目標は別にまとめておき、いつでも再開できます。
 
-■ 夢を育てるモード
-山を登るように夢を進めたい方は、設定で夢を育てるモードをオンに。ステップの期限、費用や時間といった障害、進捗の記録を使って、プロジェクトのように夢を管理できます。
+■ 完了した目標
+やりとげた目標は、完了した日付と一緒にまとまります。
+
+■ Siriとバックアップ
+Siriで目標を追加したり、次のステップをたずねたりできます。記録はテキストで書き出したり、バックアップしたりできます。
 
 ■ 夢をさがして Pro
-同時に育てる夢が5つまでなら、鍵づくりから宝物庫を開けるまですべて無料です。夢をいくつでも一緒に育てたいときや、夢を育てるモードを使いたいときはProをお選びください。週額・月額・年額のサブスクリプションか、1回限りの買い切りから選べます。以前にアプリを購入された方は、そのままProをお使いいただけます。
+目標5つまでは、すべての機能が無料です。目標を数の制限なく持ちたいときはProをお選びください。週額・月額・年額のサブスクリプションか、1回限りの買い切りから選べます。以前にアプリを購入された方は、そのままProをお使いいただけます。
 
 ■ プライバシー
-• アカウント登録なし、広告なし、分析なし
-• 夢もメモも写真も、お使いの端末の中だけに保存されます
+• アカウント登録なし、広告なし、分析ツールなし
+• 書いた目標も記録も写真も、お使いの端末の中だけに保存されます
 
 利用規約: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 プライバシーポリシー: https://m1zz.github.io/BucketClimb/ja/privacy.html
@@ -396,37 +408,39 @@ Dream Seeker: Список желаний
 
 ### 프로모션 텍스트
 
-Выберите мечту, и её шаги станут зубцами ключа. Отвечайте на вопросы по одному, закрывайте зубцы, а когда ключ будет готов, откройте сундук мечты.
+Не просто записывайте список желаний. Разбейте цель на небольшие шаги и отмечайте следующий. Если цель стоит больше месяца, приложение спросит: продолжить или прекратить?
 
 ### 설명
 
 Записали список желаний и забыли о нём?
-Dream Seeker разбивает каждую мечту на небольшие шаги и подсказывает, что сделать сегодня.
+Dream Seeker разбивает каждую цель на небольшие выполнимые шаги и показывает один шаг, который нужно сделать сейчас.
 
-ОКЕАН МЕЧТАНИЙ
-Более 590 мечт в шести разделах: путешествия, впечатления, достижения, здоровье, учёба и отношения. Они плывут по океану в сундуках. Коснитесь понравившегося сундука, чтобы взять его в мастерскую, или придумайте свою мечту.
+ЦЕЛИ И СЛЕДУЮЩИЙ ШАГ
+На первом экране у каждой цели видны прогресс и следующий шаг. Отметьте его прямо там, и на его место поднимется следующий.
+• Шаги можно написать самостоятельно, а на поддерживаемых устройствах получить предложения
+• Шаги можно переставлять, редактировать и удалять
 
-МОЯ МАСТЕРСКАЯ: КОВКА КЛЮЧА
-Чтобы открыть сундук, нужен ключ, и каждый его зубец это шаг к мечте. Хотите увидеть северное сияние в Исландии? Узнайте сезон, накопите бюджет, купите билеты.
-• Шаг, который нужно сделать сейчас, всегда наверху
-• К каждому шагу есть вопросы, ответив на них, вы завершаете шаг
-• Ответы и фото сохраняются в ваших записях и на хронологии прогресса
+КОНКРЕТНАЯ ЦЕЛЬ
+Экран цели задаёт по одному вопросу за раз: когда вы это сделаете, с кем, как, почему не можете сейчас, что мешает и насколько это для вас ценно. Отвечая, вы превращаете расплывчатую цель в чёткую.
 
-СОКРОВИЩНИЦА
-Заполните все зубцы, и ключ готов: откройте сундук и получите сокровище. Осуществлённые мечты хранятся в сокровищнице. Мечты на паузе тоже ждут там, и вы можете вернуться к ним в любой момент.
+ЗАПИСИ
+Добавляйте к каждой цели заметки и фото. Всё, что уже сделано, можно просмотреть по датам.
 
-КАРТА
-Мечты, привязанные к месту, отмечаются на карте. Все места, где хочется побывать, видны сразу.
+СПИСОК, КОТОРЫЙ НЕ ТОЛЬКО РАСТЁТ
+Если по цели больше месяца нет прогресса, приложение спросит, продолжить её или прекратить. Прекращённые цели хранятся отдельно, и их можно возобновить в любой момент.
 
-РЕЖИМ «РАСТИМ МЕЧТУ»
-Предпочитаете взбираться на гору? Включите этот режим в настройках и ведите мечты как проекты: со сроками для шагов, препятствиями вроде денег и времени и журналом прогресса.
+ЗАВЕРШЁННЫЕ ЦЕЛИ
+Завершённые цели собраны вместе с датой завершения.
+
+SIRI И РЕЗЕРВНАЯ КОПИЯ
+С помощью Siri можно добавить цель и узнать следующий шаг. Записи можно экспортировать в виде текста или сохранить в резервной копии.
 
 DREAM SEEKER PRO
-Пока вы растите до пяти мечтаний одновременно, всё — от ковки ключа до сокровищницы — бесплатно. Чтобы растить сколько угодно мечтаний и пользоваться режимом «Растим мечту», выберите Pro: подписку на неделю, месяц или год либо разовую покупку навсегда. Если вы уже покупали приложение, Pro у вас уже есть.
+До пяти целей все функции бесплатны. Чтобы вести сколько угодно целей, выберите Pro: подписку на неделю, месяц или год либо разовую покупку навсегда. Если вы уже покупали приложение, Pro у вас уже есть.
 
 КОНФИДЕНЦИАЛЬНОСТЬ
 • Без аккаунта, рекламы и аналитики
-• Мечты, записи и фото хранятся только на вашем устройстве
+• Цели, записи и фото хранятся только на этом устройстве
 
 Условия использования: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Политика конфиденциальности: https://m1zz.github.io/BucketClimb/ru/privacy.html
@@ -459,37 +473,39 @@ deseos,objetivos,viajes,aventura,planificador,motivación,hábitos,diario,tareas
 
 ### 프로모션 텍스트
 
-Elige un sueño y sus pasos se convierten en los dientes de una llave. Responde una pregunta a la vez para completarlos y, con la llave lista, abre tu cofre del tesoro.
+No escribas solo tu lista de sueños. Divide cada meta en pasos pequeños y marca el siguiente. Si una meta lleva más de un mes parada, te pregunta si seguir o dejarla.
 
 ### 설명
 
 ¿Alguna vez escribiste una lista de sueños y la olvidaste?
-Dream Seeker divide cada sueño en pasos pequeños y alcanzables, y te dice qué hacer hoy.
+Dream Seeker divide cada meta en pasos pequeños y alcanzables, y te muestra el que toca ahora.
 
-OCÉANO DE SUEÑOS
-Más de 590 sueños en seis áreas (viajes, experiencias, logros, salud, aprendizaje y relaciones) flotan en cofres por el mar. Toca el que más te guste para llevarlo a tu taller, o crea un sueño propio.
+METAS Y SIGUIENTE PASO
+La primera pantalla muestra cada meta con su progreso y su siguiente paso. Márcalo ahí mismo y sube el que viene después.
+• Escribe tus propios pasos o recibe sugerencias en los dispositivos compatibles
+• Puedes reordenarlos, editarlos y eliminarlos
 
-MI TALLER: FORJA LA LLAVE
-Cada cofre necesita una llave, y cada diente de esa llave es un paso hacia tu sueño. ¿Ver auroras boreales en Islandia? Investigar la temporada, ahorrar, reservar los vuelos.
-• El paso que toca ahora aparece siempre arriba
-• Responde a una pregunta preparada para completar cada paso
-• Tus respuestas y fotos se guardan en tu registro y en la cronología de progreso
+CONCRETA TU META
+La pantalla de la meta te hace una pregunta a la vez: cuándo lo harás, con quién, cómo, por qué no puedes ahora, qué te lo impide y cuánto vale para ti. Al responder, una meta difusa se vuelve clara.
 
-TESORO
-Completa todos los dientes para terminar la llave, abre el cofre y consigue tu tesoro. Los sueños cumplidos se guardan en el Tesoro. Los sueños en pausa esperan allí también, listos para retomarlos cuando quieras.
+REGISTROS
+Añade notas y fotos a cada meta y repasa todo el proceso por orden de fecha.
 
-MAPA
-Los sueños con un lugar asociado aparecen en el mapa, para ver de un vistazo todos los sitios a los que quieres ir.
+UNA LISTA QUE NO SOLO CRECE
+Cuando una meta lleva más de un mes sin avances, la app te pregunta si quieres seguir o dejarla. Las metas que dejaste se guardan aparte y puedes retomarlas cuando quieras.
 
-MODO ESCALADA
-¿Prefieres escalar una montaña? Activa el Modo Escalada en Ajustes para gestionar tus sueños como proyectos, con fechas límite por paso, obstáculos como el coste y el tiempo, y un registro de progreso.
+METAS COMPLETADAS
+Las metas que terminas se reúnen junto con la fecha en que las completaste.
+
+SIRI Y COPIA DE SEGURIDAD
+Añade una meta o pregunta por tu siguiente paso con Siri. Exporta tus registros como texto o haz una copia de seguridad.
 
 DREAM SEEKER PRO
-Con hasta cinco sueños a la vez, todo es gratis: desde forjar la llave hasta abrir el tesoro. Elige Pro para trabajar en todos los sueños que quieras y usar el modo Escalada. Puedes elegir una suscripción semanal, mensual o anual, o un pago único de por vida. Si ya compraste la app, ya tienes Pro.
+Con hasta cinco metas, todas las funciones son gratis. Elige Pro para tener metas sin límite. Puedes elegir una suscripción semanal, mensual o anual, o un pago único de por vida. Si ya compraste la app, ya tienes Pro.
 
 PRIVACIDAD
 • Sin cuenta, sin anuncios y sin herramientas de análisis
-• Tus sueños, notas y fotos se quedan solo en tu dispositivo
+• Tus metas, registros y fotos se guardan solo en este dispositivo
 
 Términos de uso: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Política de privacidad: https://m1zz.github.io/BucketClimb/es/privacy.html
@@ -522,37 +538,39 @@ Löffelliste,Wunschliste,Reiseplaner,Abenteuer,Träume,Motivation,Gewohnheit,Tag
 
 ### 프로모션 텍스트
 
-Wähle einen Traum, und seine Schritte werden zu den Zähnen eines Schlüssels. Beantworte Frage für Frage, und ist der Schlüssel fertig, öffnest du deine Schatztruhe.
+Schreib deine Bucketlist nicht nur auf. Teile Ziele in kleine Schritte und hake den nächsten ab. Ruht ein Ziel über einen Monat, fragt die App: weitermachen oder beenden?
 
 ### 설명
 
 Schon mal eine Bucketlist geschrieben und dann vergessen?
-Dream Seeker teilt jeden Traum in kleine, machbare Schritte auf und zeigt dir genau, was als Nächstes dran ist.
+Dream Seeker teilt jedes Ziel in kleine, machbare Schritte auf und zeigt dir den einen, der jetzt dran ist.
 
-DER TRAUMOZEAN
-Über 590 Träume aus sechs Bereichen (Reisen, Erlebnis, Erfolg, Gesundheit, Lernen und Beziehung) treiben in Truhen vorbei. Tippe auf eine, die dir gefällt, und hol sie in deine Werkstatt. Oder erfinde einen ganz eigenen Traum.
+ZIELE UND DER NÄCHSTE SCHRITT
+Der erste Bildschirm zeigt zu jedem Ziel den Fortschritt und den nächsten Schritt. Hake ihn direkt dort ab, und der folgende Schritt rückt nach.
+• Schreib deine Schritte selbst oder lass dir auf unterstützten Geräten Vorschläge machen
+• Du kannst Schritte umsortieren, bearbeiten und löschen
 
-DEINE WERKSTATT: DEN SCHLÜSSEL SCHMIEDEN
-Jede Truhe braucht einen Schlüssel, und jeder Zahn daran ist ein Schritt zu deinem Traum. Polarlichter in Island? Reisezeit recherchieren, Geld sparen, Flüge buchen.
-• Was jetzt dran ist, steht immer ganz oben
-• Beantworte zu jedem Schritt eine Leitfrage, um ihn abzuschließen
-• Deine Antworten und Fotos landen in Meine Einträge und im Fortschrittsverlauf
+ZIELE KONKRET MACHEN
+Der Zielbildschirm stellt dir immer nur eine Frage: wann du es machst, mit wem, wie, warum es jetzt noch nicht geht, was dich aufhält und wie viel es dir wert ist. Mit jeder Antwort wird aus einem vagen Ziel ein klares.
 
-DIE SCHATZKAMMER
-Fülle alle Zähne, dann ist der Schlüssel fertig. Öffne die Truhe und hol dir deinen Schatz. Erfüllte Träume sammeln sich in der Schatzkammer. Pausierte Träume warten dort ebenfalls, bis du sie wieder aufgreifst.
+NOTIZEN
+Halte zu jedem Ziel Notizen und Fotos fest. Den bisherigen Verlauf kannst du dir nach Datum sortiert noch einmal ansehen.
 
-KARTE
-Träume mit einem Ort erscheinen auf der Karte, sodass du alle Ziele deiner Wünsche auf einen Blick siehst.
+SCHLUSS MIT LISTEN, DIE NUR WACHSEN
+Hat ein Ziel seit über einem Monat keinen Fortschritt, fragt die App, ob du weitermachen oder es beenden möchtest. Beendete Ziele werden getrennt aufbewahrt, und du kannst sie jederzeit wieder aufnehmen.
 
-WACHSTUMSMODUS
-Lieber einen Berg besteigen? Schalte in den Einstellungen den Wachstumsmodus ein und verwalte Träume wie Projekte: mit Fristen für jeden Schritt, Hindernissen wie Kosten und Zeit sowie einem Fortschrittsprotokoll.
+ABGESCHLOSSENE ZIELE
+Ziele, die du geschafft hast, werden mit dem Datum des Abschlusses gesammelt.
+
+SIRI UND BACKUP
+Mit Siri kannst du ein Ziel hinzufügen und nach deinem nächsten Schritt fragen. Deine Notizen kannst du als Text exportieren oder sichern.
 
 DREAM SEEKER PRO
-Mit bis zu fünf Träumen gleichzeitig ist alles kostenlos, vom Schmieden des Schlüssels bis zur Schatzkammer. Mit Pro arbeitest du an beliebig vielen Träumen und nutzt den Wachstumsmodus. Wähle ein Wochen-, Monats- oder Jahresabo oder einen einmaligen Kauf für immer. Wenn du die App schon gekauft hast, hast du Pro bereits.
+Mit bis zu fünf Zielen sind alle Funktionen kostenlos. Mit Pro legst du beliebig viele Ziele an. Wähle ein Wochen-, Monats- oder Jahresabo oder einen einmaligen Kauf für immer. Wenn du die App schon gekauft hast, hast du Pro bereits.
 
 DATENSCHUTZ
-• Kein Konto, keine Werbung, keine Analyse
-• Träume, Notizen und Fotos bleiben auf deinem Gerät
+• Kein Konto, keine Werbung, keine Analysetools
+• Deine Ziele, Notizen und Fotos werden nur auf diesem Gerät gespeichert
 
 Nutzungsbedingungen: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Datenschutzerklärung: https://m1zz.github.io/BucketClimb/de/privacy.html
@@ -585,37 +603,39 @@ bucket,envies,souhaits,voyage,aventure,motivation,habitudes,journal,défis,carne
 
 ### 프로모션 텍스트
 
-Choisissez un rêve : ses étapes deviennent les dents d'une clé. Répondez à une question à la fois, puis ouvrez votre coffre au trésor quand la clé est prête.
+N'écrivez pas juste votre liste de rêves. Divisez un objectif en petites étapes et cochez la suivante. Après un mois sans progrès, l'app demande : continuer ou arrêter ?
 
 ### 설명
 
 Vous avez déjà écrit une liste de rêves avant de l'oublier ?
-Dream Seeker découpe chaque rêve en petites étapes faciles à réaliser et vous montre ce qu'il faut faire ensuite.
+Dream Seeker découpe chaque objectif en petites étapes réalisables et vous montre celle à faire maintenant.
 
-L'OCÉAN DES RÊVES
-Plus de 590 rêves répartis en six thèmes (voyage, expérience, réussite, santé, apprentissage et relations) flottent dans des coffres. Touchez celui qui vous plaît pour le prendre dans votre atelier, ou créez votre propre rêve.
+OBJECTIFS ET ÉTAPE SUIVANTE
+Le premier écran affiche chaque objectif avec sa progression et son étape suivante. Cochez-la sur place et l'étape d'après remonte.
+• Écrivez vos propres étapes ou recevez des suggestions sur les appareils compatibles
+• Réorganisez, modifiez et supprimez les étapes
 
-MON ATELIER : FORGER LA CLÉ
-Chaque coffre a besoin d'une clé, et chaque dent de cette clé est une étape vers votre rêve. Voir les aurores boréales en Islande ? Se renseigner sur la saison, mettre de l'argent de côté, réserver les vols.
-• L'étape à faire maintenant est toujours tout en haut
-• Répondez à une question pour terminer chaque étape
-• Vos réponses et vos photos sont enregistrées dans votre journal et votre chronologie
+UN OBJECTIF CONCRET
+L'écran de l'objectif vous pose une question à la fois : quand vous le ferez, avec qui, comment, pourquoi ce n'est pas possible maintenant, ce qui vous bloque et ce qu'il vaut pour vous. Au fil des réponses, un objectif flou devient clair.
 
-TRÉSORS
-Complétez toutes les dents pour terminer la clé, puis ouvrez le coffre et récupérez votre trésor. Les rêves réalisés sont rangés dans les trésors. Les rêves en pause y attendent aussi, prêts à être repris quand vous voulez.
+NOTES
+Ajoutez des notes et des photos à chaque objectif. Vous pouvez revoir tout ce que vous avez fait par ordre de date.
 
-CARTE
-Les rêves liés à un lieu apparaissent sur la carte : vous voyez d'un coup d'œil tous les endroits où vous voulez aller.
+UNE LISTE QUI NE FAIT PAS QUE S'ALLONGER
+Quand un objectif n'a pas progressé depuis plus d'un mois, l'app vous demande si vous voulez continuer ou arrêter. Les objectifs arrêtés sont conservés à part et vous pouvez les reprendre à tout moment.
 
-MODE ASCENSION
-Vous préférez gravir une montagne ? Activez le mode Ascension dans les Réglages pour gérer vos rêves comme des projets, avec des échéances par étape, des obstacles comme le coût et le temps, et un suivi de progression.
+OBJECTIFS TERMINÉS
+Les objectifs que vous terminez sont regroupés avec leur date de fin.
+
+SIRI ET SAUVEGARDE
+Ajoutez un objectif ou demandez votre prochaine étape avec Siri. Exportez vos notes sous forme de texte ou sauvegardez-les.
 
 DREAM SEEKER PRO
-Jusqu'à cinq rêves à la fois, tout est gratuit, de la forge de la clé jusqu'aux trésors. Choisissez Pro pour faire grandir autant de rêves que vous voulez et utiliser le mode Ascension. Optez pour un abonnement hebdomadaire, mensuel ou annuel, ou pour un achat unique à vie. Si vous aviez déjà acheté l'app, vous avez déjà Pro.
+Jusqu'à cinq objectifs, toutes les fonctionnalités sont gratuites. Choisissez Pro pour garder autant d'objectifs que vous voulez. Optez pour un abonnement hebdomadaire, mensuel ou annuel, ou pour un achat unique à vie. Si vous aviez déjà acheté l'app, vous avez déjà Pro.
 
 CONFIDENTIALITÉ
-• Aucun compte, aucune publicité, aucune analyse
-• Vos rêves, notes et photos restent sur votre appareil
+• Aucun compte, aucune publicité, aucun outil d'analyse
+• Vos objectifs, notes et photos sont enregistrés uniquement sur cet appareil
 
 Conditions d'utilisation : https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Politique de confidentialité : https://m1zz.github.io/BucketClimb/fr/privacy.html
@@ -648,37 +668,39 @@ lista,desideri,obiettivi,viaggi,avventura,pianificatore,motivazione,diario,tragu
 
 ### 프로모션 텍스트
 
-Scegli un sogno e i suoi passi diventano i denti di una chiave. Rispondi a una domanda alla volta per completarli e, a chiave finita, apri il tuo scrigno del tesoro.
+Non limitarti a scrivere una bucket list. Dividi ogni obiettivo in piccoli passaggi e spunta il prossimo. Fermo da oltre un mese? Scegli se continuare o interromperlo.
 
 ### 설명
 
 Hai mai scritto una bucket list per poi dimenticartene?
-Dream Seeker divide ogni sogno in piccoli passi concreti e ti mostra sempre cosa fare adesso.
+Dream Seeker divide ogni obiettivo in piccoli passaggi alla tua portata e ti mostra quello da fare adesso.
 
-IL MARE DEI SOGNI
-Più di 590 sogni in sei categorie (viaggi, esperienze, traguardi, salute, studio e relazioni) navigano in scrigni del tesoro. Tocca quello che ti piace per portarlo nella tua officina, oppure crea un sogno tutto tuo.
+OBIETTIVI E PROSSIMO PASSAGGIO
+La prima schermata mostra, per ogni obiettivo, l'avanzamento e il prossimo passaggio. Spuntalo direttamente lì e sale quello successivo.
+• Scrivi tu i passaggi oppure, sui dispositivi compatibili, fatteli suggerire
+• Puoi riordinarli, modificarli ed eliminarli
 
-LA MIA OFFICINA: FORGIA LA CHIAVE
-Ogni scrigno ha bisogno di una chiave, e ogni dente della chiave è un passo verso il tuo sogno. Vuoi vedere l'aurora boreale in Islanda? Scopri la stagione giusta, metti da parte i soldi, prenota i voli.
-• Il passo da fare adesso è sempre in cima
-• Rispondi a una domanda guida per completare ogni passo
-• Risposte e foto finiscono nelle tue note e nella cronologia dei progressi
+RENDI CONCRETO L'OBIETTIVO
+La schermata dell'obiettivo ti fa una domanda alla volta: quando lo farai, con chi, come, perché non puoi farlo adesso, che cosa ti ostacola e quanto vale per te. Risposta dopo risposta, un obiettivo vago diventa chiaro.
 
-IL TESORO
-Completa tutti i denti per finire la chiave, poi apri lo scrigno e prendi il tuo tesoro. I sogni realizzati si raccolgono qui. Anche quelli in pausa aspettano nel tesoro, pronti a ripartire quando vuoi.
+NOTE
+Aggiungi note e foto a ogni obiettivo. Puoi rivedere tutti i progressi fatti in ordine di data.
 
-MAPPA
-I sogni legati a un luogo compaiono sulla mappa, così vedi a colpo d'occhio tutti i posti che vuoi raggiungere.
+UNA LISTA CHE NON SI LIMITA AD ALLUNGARSI
+Quando un obiettivo non fa progressi da più di un mese, l'app ti chiede se vuoi continuare o interromperlo. Gli obiettivi interrotti vengono raccolti a parte e puoi riprenderli quando vuoi.
 
-MODALITÀ COLTIVA I SOGNI
-Preferisci una montagna da scalare? Attiva la modalità nelle Impostazioni per gestire i sogni come progetti, con scadenze per ogni passo, ostacoli come costi e tempo e un registro dei progressi.
+OBIETTIVI COMPLETATI
+Gli obiettivi che porti a termine vengono raccolti con la data di completamento.
+
+SIRI E BACKUP
+Con Siri puoi aggiungere un obiettivo e chiedere qual è il prossimo passaggio. Puoi esportare le note come testo o farne un backup.
 
 DREAM SEEKER PRO
-Fino a cinque sogni alla volta è tutto gratis, dalla forgia della chiave fino al tesoro. Scegli Pro per coltivare tutti i sogni che vuoi e usare la modalità Coltiva i sogni. Puoi scegliere un abbonamento settimanale, mensile o annuale, oppure un acquisto unico a vita. Se avevi già acquistato l'app, hai già Pro.
+Fino a cinque obiettivi, tutte le funzioni sono gratuite. Scegli Pro per avere obiettivi senza limiti di numero. Puoi scegliere un abbonamento settimanale, mensile o annuale, oppure un acquisto unico a vita. Se avevi già acquistato l'app, hai già Pro.
 
 PRIVACY
-• Nessun account, nessuna pubblicità, nessuna analisi
-• Sogni, note e foto restano sul tuo dispositivo
+• Nessun account, nessuna pubblicità, nessuno strumento di analisi
+• Obiettivi, note e foto restano solo su questo dispositivo
 
 Condizioni d'uso: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Informativa sulla privacy: https://m1zz.github.io/BucketClimb/it/privacy.html
@@ -711,37 +733,39 @@ bucket,planner,viagem,aventura,objetivos,motivação,hábitos,diário,inspiraç�
 
 ### 프로모션 텍스트
 
-Escolha um sonho e as etapas viram os dentes de uma chave. Responda uma pergunta de cada vez para completar cada dente e, com a chave pronta, abra a sua caixa do tesouro.
+Não deixe sua lista de desejos só no papel. Divida cada meta em pequenas etapas e marque a próxima. Meta parada há mais de um mês? Escolha entre continuar ou parar.
 
 ### 설명
 
-Você já fez uma lista de sonhos e acabou esquecendo dela?
-O Dream Seeker divide cada sonho em etapas pequenas e possíveis e mostra o que fazer agora.
+Você já fez uma lista de desejos e acabou esquecendo dela?
+O Dream Seeker divide cada meta em etapas pequenas e possíveis e mostra a que você deve fazer agora.
 
-MAR DE SONHOS
-Mais de 590 sonhos em seis áreas (viagem, experiência, conquista, saúde, aprendizado e relacionamentos) flutuam em caixas de tesouro. Toque numa que você ama para levá-la à sua oficina ou crie um sonho só seu.
+METAS E A PRÓXIMA ETAPA
+A primeira tela mostra o progresso e a próxima etapa de cada meta. Marque ali mesmo e a etapa seguinte sobe.
+• Escreva suas próprias etapas ou, nos aparelhos compatíveis, receba sugestões
+• Você pode reordenar, editar e apagar as etapas
 
-MINHA OFICINA: FORJE A CHAVE
-Toda caixa precisa de uma chave, e cada dente dela é uma etapa rumo ao seu sonho. Ver a aurora boreal na Islândia? Pesquise a melhor época, junte dinheiro, compre as passagens.
-• A etapa da vez fica sempre no topo
-• Responda a uma pergunta guia para concluir cada etapa
-• Suas respostas e fotos ficam nos seus registros e na linha do tempo do progresso
+DEIXE A META CONCRETA
+A tela da meta faz uma pergunta de cada vez: quando você vai fazer, com quem, como, por que não dá para fazer agora, o que está atrapalhando e quanto isso vale para você. Respondendo, uma meta vaga fica clara.
 
-TESOURO
-Preencha todos os dentes para completar a chave, abra a caixa e receba o seu tesouro. Os sonhos realizados ficam guardados no tesouro. Os sonhos em pausa também esperam por lá, prontos para quando você quiser retomá-los.
+REGISTROS
+Guarde anotações e fotos em cada meta. Dá para rever todo o processo em ordem de data.
 
-MAPA
-Os sonhos ligados a um lugar aparecem no mapa, e você vê de relance todos os destinos que quer conhecer.
+CHEGA DE LISTA QUE SÓ CRESCE
+Quando uma meta fica mais de um mês sem progresso, o app pergunta se você quer continuar ou parar. As metas paradas ficam reunidas à parte, e você pode recomeçá-las quando quiser.
 
-MODO CULTIVAR SONHOS
-Prefere escalar uma montanha? Ative o Modo Cultivar Sonhos nos Ajustes para cuidar dos sonhos como projetos, com prazos para cada etapa, obstáculos como custo e tempo e um registro do progresso.
+METAS CONCLUÍDAS
+As metas que você termina ficam reunidas com a data de conclusão.
+
+SIRI E BACKUP
+Com a Siri, você adiciona uma meta e pergunta qual é a próxima etapa. Os registros podem ser exportados como texto ou salvos em backup.
 
 DREAM SEEKER PRO
-Com até cinco sonhos ao mesmo tempo, tudo é grátis, de forjar a chave a abrir o tesouro. Escolha o Pro para cultivar quantos sonhos quiser e usar o Modo Cultivar Sonhos. Escolha uma assinatura semanal, mensal ou anual, ou uma compra única vitalícia. Se você já tinha comprado o app, já tem o Pro.
+Com até cinco metas, todos os recursos são grátis. Escolha o Pro para ter metas sem limite de quantidade. Escolha uma assinatura semanal, mensal ou anual, ou uma compra única vitalícia. Se você já tinha comprado o app, já tem o Pro.
 
 PRIVACIDADE
-• Sem conta, sem anúncios, sem análise de uso
-• Seus sonhos, anotações e fotos ficam só no seu aparelho
+• Sem conta, sem anúncios, sem ferramentas de análise
+• Suas metas, registros e fotos ficam só neste aparelho
 
 Termos de Uso: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Política de Privacidade: https://m1zz.github.io/BucketClimb/pt-BR/privacy.html
@@ -774,37 +798,39 @@ Dream Seeker: บักเก็ตลิสต์
 
 ### 프로모션 텍스트
 
-เลือกความฝันที่อยากทำ แล้วสิ่งที่ต้องทำจะกลายเป็นฟันกุญแจ ตอบคำถามทีละข้อเพื่อเติมฟันกุญแจให้ครบ เมื่อกุญแจสมบูรณ์ก็เปิดกล่องความฝันได้เลย
+อย่าแค่จดบักเก็ตลิสต์ไว้เฉยๆ แบ่งเป้าหมายเป็นขั้นตอนเล็กๆ แล้วเช็กขั้นต่อไปทีละขั้น เป้าหมายที่ไม่คืบหน้าเกินหนึ่งเดือน แอปจะถามว่าจะทำต่อหรือหยุดทำ
 
 ### 설명
 
 เคยจดบักเก็ตลิสต์ไว้แล้วลืมไปเลยไหม
-Dream Seeker แบ่งความฝันแต่ละข้อเป็นขั้นตอนเล็กๆ ที่ทำได้จริง และบอกชัดๆ ว่าวันนี้ต้องทำอะไรต่อ
+Dream Seeker แบ่งเป้าหมายแต่ละข้อเป็นขั้นตอนเล็กๆ ที่ทำได้จริง และแสดงขั้นตอนเดียวที่ต้องทำตอนนี้
 
-■ ทะเลแห่งความฝัน
-ความฝันกว่า 590 ข้อใน 6 หมวด ได้แก่ ท่องเที่ยว ประสบการณ์ ความสำเร็จ สุขภาพ การเรียนรู้ และความสัมพันธ์ ลอยอยู่ในกล่องสมบัติกลางทะเล แตะกล่องที่ถูกใจเพื่อนำเข้าคลังของฉัน หรือจะสร้างความฝันของคุณเองก็ได้
+■ เป้าหมายและขั้นต่อไป
+หน้าแรกแสดงความคืบหน้าและขั้นต่อไปหนึ่งขั้นของแต่ละเป้าหมาย เช็กได้ตรงนั้นเลย แล้วขั้นถัดไปจะเลื่อนขึ้นมา
+• เขียนขั้นตอนเองได้ หรือรับคำแนะนำบนอุปกรณ์ที่รองรับ
+• เรียงลำดับใหม่ แก้ไข และลบได้
 
-■ คลังของฉัน: หล่อกุญแจ
-กล่องทุกใบต้องมีกุญแจ และฟันกุญแจแต่ละซี่คือขั้นตอนสู่ความฝัน อยากดูแสงเหนือที่ไอซ์แลนด์ ก็เริ่มจากหาข้อมูลฤดูกาล เก็บเงิน แล้วจองตั๋วเครื่องบิน
-• ขั้นตอนที่ต้องทำตอนนี้อยู่บนสุดเสมอ
-• ตอบคำถามที่เตรียมไว้ในแต่ละขั้นเพื่อทำให้เสร็จทีละข้อ
-• คำตอบและรูปถ่ายจะเก็บไว้ในบันทึกของฉันและไทม์ไลน์ความคืบหน้า
+■ ทำให้เป้าหมายชัดเจน
+หน้าเป้าหมายจะถามทีละคำถาม จะทำเมื่อไร ทำกับใคร ทำอย่างไร ทำไมตอนนี้ยังทำไม่ได้ อะไรเป็นอุปสรรค และมีค่ากับคุณแค่ไหน ตอบไปเรื่อยๆ เป้าหมายที่เคยเลือนรางก็ชัดขึ้น
 
-■ คลังสมบัติ
-เมื่อเติมฟันกุญแจครบทุกซี่ ก็เปิดกล่องรับสมบัติได้เลย ความฝันที่สำเร็จจะเก็บไว้ในคลังสมบัติ ความฝันที่พักไว้ก็รออยู่ที่นี่ พร้อมให้เริ่มต่อได้ทุกเมื่อ
+■ บันทึก
+เก็บโน้ตและรูปภาพไว้ในแต่ละเป้าหมาย ย้อนดูสิ่งที่ผ่านมาตามลำดับวันที่ได้
 
-■ แผนที่
-ความฝันที่มีสถานที่จะปรากฏบนแผนที่ ทำให้เห็นทุกที่ที่อยากไปได้ในพริบตา
+■ ไม่ปล่อยให้รายการยาวขึ้นเรื่อยๆ
+เป้าหมายที่ไม่มีความคืบหน้าเกินหนึ่งเดือน แอปจะถามว่าจะทำต่อหรือหยุดทำ เป้าหมายที่หยุดทำจะเก็บแยกไว้ และเริ่มใหม่ได้ทุกเมื่อ
 
-■ โหมดปลูกฝัน
-ชอบปีนเขามากกว่า? เปิดโหมดปลูกฝันในตั้งค่า เพื่อจัดการความฝันแบบการปีนภูเขา มีกำหนดเสร็จของแต่ละขั้น อุปสรรคอย่างค่าใช้จ่ายและเวลา และบันทึกความคืบหน้า
+■ เป้าหมายที่เสร็จแล้ว
+เป้าหมายที่ทำเสร็จจะรวมไว้พร้อมวันที่ทำเสร็จ
+
+■ Siri และการสำรองข้อมูล
+ใช้ Siri เพิ่มเป้าหมายและถามขั้นต่อไปได้ ส่งออกบันทึกเป็นข้อความหรือสำรองข้อมูลได้
 
 ■ Dream Seeker Pro
-ถ้าปลูกความฝันพร้อมกันไม่เกินห้าข้อ ทุกอย่างตั้งแต่หล่อกุญแจไปจนถึงเปิดคลังสมบัติใช้ได้ฟรี เลือก Pro เพื่อปลูกความฝันพร้อมกันได้ไม่จำกัดและใช้โหมดปลูกฝัน เลือกได้ทั้งแบบรายสัปดาห์ รายเดือน รายปี หรือซื้อครั้งเดียวใช้ตลอดชีพ ใครที่เคยซื้อแอปไว้แล้วจะได้ Pro ทันที
+มีเป้าหมายไม่เกินห้าข้อ ใช้ทุกฟีเจอร์ได้ฟรี เลือก Pro เพื่อมีเป้าหมายได้ไม่จำกัดจำนวน เลือกได้ทั้งแบบรายสัปดาห์ รายเดือน รายปี หรือซื้อครั้งเดียวใช้ตลอดชีพ ใครที่เคยซื้อแอปไว้แล้วจะได้ Pro อยู่แล้ว
 
 ■ ความเป็นส่วนตัว
-• ไม่มีบัญชี ไม่มีโฆษณา ไม่มีการวิเคราะห์ข้อมูล
-• ความฝัน บันทึก และรูปภาพอยู่ในเครื่องของคุณเท่านั้น
+• ไม่มีบัญชี ไม่ใช้โฆษณาหรือเครื่องมือวิเคราะห์
+• เป้าหมาย บันทึก และรูปภาพที่คุณเขียนไว้จะเก็บในเครื่องนี้เท่านั้น
 
 เงื่อนไขการใช้งาน: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 นโยบายความเป็นส่วนตัว: https://m1zz.github.io/BucketClimb/th/privacy.html
@@ -837,37 +863,39 @@ bucket,list,kế,hoạch,du,lịch,động,lực,thói,quen,nhật,ký,ghi,chú,
 
 ### 프로모션 텍스트
 
-Chọn một ước mơ, các bước thực hiện sẽ hiện thành răng của chiếc chìa khóa. Trả lời từng câu hỏi để hoàn thành từng răng, khi chìa khóa xong, hãy mở hộp kho báu của bạn.
+Đừng chỉ viết bucket list rồi để đó. Chia mục tiêu thành các bước nhỏ và đánh dấu bước tiếp theo. Mục tiêu đứng yên hơn một tháng sẽ được hỏi: tiếp tục hay dừng lại?
 
 ### 설명
 
 Bạn từng viết bucket list rồi quên mất nó chưa?
-Dream Seeker chia mỗi ước mơ thành những bước nhỏ dễ làm và cho bạn biết hôm nay nên làm gì tiếp theo.
+Dream Seeker chia mỗi mục tiêu thành những bước nhỏ dễ làm và cho bạn thấy một bước cần làm ngay lúc này.
 
-BIỂN ƯỚC MƠ
-Hơn 590 ước mơ thuộc sáu lĩnh vực (du lịch, trải nghiệm, thành tựu, sức khỏe, học hỏi và các mối quan hệ) trôi trên biển trong những chiếc hộp. Chạm vào hộp bạn thích để mang về xưởng của mình, hoặc tự tạo ước mơ riêng.
+MỤC TIÊU VÀ BƯỚC TIẾP THEO
+Màn hình đầu tiên hiển thị tiến độ và một bước tiếp theo của từng mục tiêu. Đánh dấu ngay tại đó, bước kế tiếp sẽ hiện lên.
+• Tự viết các bước, hoặc nhận gợi ý trên thiết bị được hỗ trợ
+• Có thể đổi thứ tự, sửa và xóa các bước
 
-XƯỞNG CỦA TÔI: RÈN CHÌA KHÓA
-Mỗi chiếc hộp cần một chiếc chìa khóa, và mỗi răng của chìa là một bước trên đường đến ước mơ. Muốn ngắm cực quang ở Iceland? Tìm hiểu mùa đẹp nhất, tiết kiệm tiền, đặt vé máy bay.
-• Bước cần làm lúc này luôn nằm trên cùng
-• Trả lời câu hỏi gợi ý để hoàn thành từng bước
-• Câu trả lời và ảnh của bạn được lưu vào ghi chép và dòng thời gian tiến trình
+LÀM RÕ MỤC TIÊU
+Màn hình mục tiêu hỏi bạn từng câu một: khi nào làm, làm cùng ai, làm bằng cách nào, vì sao bây giờ chưa làm được, điều gì đang cản trở, và nó đáng giá với bạn đến đâu. Trả lời dần, mục tiêu mơ hồ sẽ trở nên rõ ràng.
 
-KHO BÁU
-Lấp đầy mọi răng để hoàn thành chìa khóa, rồi mở hộp và nhận kho báu của bạn. Những ước mơ đã thực hiện được cất giữ ở đây. Ước mơ tạm dừng cũng chờ sẵn, bạn có thể bắt đầu lại bất cứ lúc nào.
+GHI CHÉP
+Lưu ghi chú và ảnh cho từng mục tiêu. Bạn có thể xem lại quá trình đã qua theo thứ tự ngày.
 
-BẢN ĐỒ
-Những ước mơ gắn với một địa điểm sẽ hiện trên bản đồ, để bạn nhìn thấy mọi nơi mình muốn đến chỉ trong một cái nhìn.
+DANH SÁCH KHÔNG CHỈ DÀI THÊM
+Khi một mục tiêu không có tiến triển hơn một tháng, ứng dụng sẽ hỏi bạn muốn tiếp tục hay dừng lại. Mục tiêu đã dừng được gom riêng, và bạn có thể bắt đầu lại bất cứ lúc nào.
 
-CHẾ ĐỘ VUN ƯỚC MƠ
-Thích leo núi hơn? Bật Chế độ Vun ước mơ trong Cài đặt để quản lý ước mơ như một dự án, với hạn chót cho từng bước, các trở ngại như chi phí và thời gian, cùng nhật ký tiến trình.
+MỤC TIÊU ĐÃ HOÀN THÀNH
+Những mục tiêu bạn làm xong được tập hợp lại cùng ngày hoàn thành.
+
+SIRI VÀ SAO LƯU
+Bạn có thể dùng Siri để thêm mục tiêu và hỏi bước tiếp theo. Ghi chép có thể xuất thành văn bản hoặc sao lưu.
 
 DREAM SEEKER PRO
-Khi vun đắp tối đa năm ước mơ cùng lúc, mọi thứ từ rèn chìa khóa đến mở kho báu đều miễn phí. Chọn Pro để vun đắp bao nhiêu ước mơ tùy thích và dùng chế độ Vun ước mơ. Bạn có thể chọn gói tuần, tháng, năm hoặc mua trọn đời một lần. Nếu bạn đã mua ứng dụng trước đây, bạn đã có Pro.
+Với tối đa năm mục tiêu, mọi tính năng đều miễn phí. Chọn Pro để có số mục tiêu không giới hạn. Bạn có thể chọn gói tuần, tháng, năm hoặc mua trọn đời một lần. Nếu bạn đã mua ứng dụng trước đây, bạn đã có Pro.
 
 QUYỀN RIÊNG TƯ
-• Không cần tài khoản, không quảng cáo, không phân tích dữ liệu
-• Ước mơ, ghi chú và ảnh của bạn chỉ nằm trên thiết bị
+• Không có tài khoản, không dùng quảng cáo hay công cụ phân tích
+• Mục tiêu, ghi chép và ảnh của bạn chỉ được lưu trên thiết bị này
 
 Điều khoản sử dụng: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Chính sách quyền riêng tư: https://m1zz.github.io/BucketClimb/vi/privacy.html
@@ -900,37 +928,39 @@ sny,cestování,dobrodružství,plánovač,motivace,deník,návyky,úkoly,vize,i
 
 ### 프로모션 텍스트
 
-Vyberte si sen a jeho kroky se stanou zuby klíče. Odpovídejte na jednu otázku po druhé, dokončete každý zub, a až bude klíč hotový, otevřete svou truhlu s pokladem.
+Nenechte seznam přání jen na papíře. Rozdělte každý cíl na malé kroky a odškrtněte ten další. Když cíl déle než měsíc stojí, aplikace se zeptá: pokračovat, nebo ukončit?
 
 ### 설명
 
 Napsali jste si někdy seznam přání a pak na něj zapomněli?
-Dream Seeker rozdělí každý sen na malé, splnitelné kroky a vždy ukáže, co udělat dál.
+Dream Seeker rozdělí každý cíl na malé, zvládnutelné kroky a ukáže vám ten jeden, který je teď na řadě.
 
-OCEÁN SNŮ
-Více než 590 snů ze šesti oblastí (cestování, zážitky, úspěchy, zdraví, učení a vztahy) pluje kolem v truhlách s pokladem. Klepněte na ten, který se vám líbí, a vezměte si ho do dílny, nebo si vytvořte vlastní sen.
+CÍLE A DALŠÍ KROK
+Na první obrazovce vidíte u každého cíle jeho postup a další krok. Odškrtnete ho přímo tam a nahoru se posune následující.
+• Kroky si napíšete sami, nebo si je na podporovaných zařízeních necháte navrhnout
+• Můžete je přeskládat, upravit i smazat
 
-MOJE DÍLNA: VYKOVEJTE KLÍČ
-Každá truhla potřebuje klíč a každý zub na něm je krok k vašemu snu. Chcete vidět polární záři na Islandu? Zjistěte vhodné období, našetřete a zarezervujte letenky.
-• Krok, na kterém právě pracujete, je vždy nahoře
-• Každý krok dokončíte odpovědí na vodicí otázku
-• Vaše odpovědi a fotky se ukládají do záznamů a časové osy postupu
+UPŘESNĚTE SVŮJ CÍL
+Obrazovka cíle se ptá vždy na jednu věc: kdy to uděláte, s kým, jak, proč to nejde teď, co vám v tom brání a jakou to pro vás má hodnotu. Jak odpovídáte, z mlhavého cíle se stává jasný.
 
-POKLADNICE
-Když vyplníte všechny zuby, klíč je hotový. Otevřete truhlu a vyzvedněte si poklad. Splněné sny se shromažďují v pokladnici. Čekají tam i pozastavené sny, připravené, kdykoli se k nim budete chtít vrátit.
+ZÁZNAMY
+Ke každému cíli si ukládejte poznámky a fotky. Celý dosavadní průběh si můžete projít podle data.
 
-MAPA
-Sny spojené s konkrétním místem se zobrazí na mapě, takže na první pohled vidíte všechna místa, kam se chcete podívat.
+KONEC SEZNAMŮ, KTERÉ JEN ROSTOU
+Když cíl déle než měsíc nepostupuje, aplikace se zeptá, zda chcete pokračovat, nebo ho ukončit. Ukončené cíle se ukládají zvlášť a kdykoli je můžete začít znovu.
 
-REŽIM PĚSTOVÁNÍ SNŮ
-Bližší je vám horolezectví? V Nastavení zapněte Režim pěstování snů a spravujte sny jako projekty: s termíny kroků, překážkami, jako jsou náklady a čas, a záznamem postupu.
+DOKONČENÉ CÍLE
+Cíle, které dokončíte, se shromažďují spolu s datem dokončení.
+
+SIRI A ZÁLOHA
+Přes Siri můžete přidat cíl nebo se zeptat na další krok. Záznamy lze exportovat jako text nebo zálohovat.
 
 DREAM SEEKER PRO
-S nejvýš pěti sny najednou je všechno zdarma, od kování klíče až po pokladnici. Zvolte Pro, pokud chcete pěstovat tolik snů, kolik chcete, a používat režim pěstování snů. Vybrat si můžete týdenní, měsíční nebo roční předplatné, nebo jednorázový doživotní nákup. Pokud jste si aplikaci už dříve koupili, Pro už máte.
+Do pěti cílů jsou všechny funkce zdarma. Pokud chcete mít cílů neomezeně, zvolte Pro. Vybrat si můžete týdenní, měsíční nebo roční předplatné, nebo jednorázový doživotní nákup. Pokud jste si aplikaci už dříve koupili, Pro už máte.
 
 SOUKROMÍ
-• Bez účtu, bez reklam, bez analytiky
-• Vaše sny, poznámky a fotky zůstávají jen v zařízení
+• Bez účtu, bez reklam, bez analytických nástrojů
+• Vaše cíle, záznamy a fotky se ukládají jen v tomto zařízení
 
 Podmínky použití: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Zásady ochrany osobních údajů: https://m1zz.github.io/BucketClimb/cs/privacy.html
@@ -963,37 +993,39 @@ Nå dine mål trin for trin
 
 ### 프로모션 텍스트
 
-Vælg en drøm, og dens trin bliver til tænderne på en nøgle. Svar på ét spørgsmål ad gangen for at fuldføre hver tand, og når nøglen er færdig, kan du åbne skattekisten.
+Nøjes ikke med at skrive en bucket list. Del hvert mål op i små trin, og kryds det næste af. Står et mål stille i over en måned, vælger du: fortsæt eller stop.
 
 ### 설명
 
-Har du skrevet en drømmeliste og så glemt den igen?
-Dream Seeker deler hver drøm op i små trin, du kan klare, og viser dig præcis, hvad du skal gøre som det næste.
+Har du skrevet en bucket list og så glemt den igen?
+Dream Seeker deler hvert mål op i små trin, du kan klare, og viser dig det ene trin, du skal tage nu.
 
-DRØMMEHAVET
-Over 590 drømme inden for seks områder (rejse, oplevelse, præstation, sundhed, læring og relationer) driver forbi i skattekister. Tryk på en, du holder af, og hent den til dit værksted. Du kan også lave din helt egen drøm.
+MÅL OG NÆSTE TRIN
+På den første skærm ser du for hvert mål, hvor langt du er, og det næste trin. Kryds det af med det samme, så rykker det følgende trin op.
+• Skriv selv dine trin, eller få forslag på understøttede enheder
+• Du kan ændre rækkefølgen, redigere og slette trin
 
-MIT VÆRKSTED: SMED NØGLEN
-Hver kiste kræver en nøgle, og hver tand på nøglen er et trin mod din drøm. Vil du se nordlyset på Island? Find ud af, hvornår sæsonen er, spar op og book flybilletterne.
-• Det trin, du skal arbejde på nu, ligger altid øverst
-• Svar på et spørgsmål for at fuldføre hvert trin
-• Dine svar og fotos gemmes i Mine optegnelser og på tidslinjen
+GØR MÅLET KONKRET
+Målets skærm stiller ét spørgsmål ad gangen: hvornår du vil gøre det, hvem du vil gøre det med, hvordan, hvorfor du ikke kan nu, hvad der forhindrer dig, og hvor meget det er værd for dig. Mens du svarer, bliver et vagt mål tydeligt.
 
-SKATKAMMERET
-Fyld alle tænder for at gøre nøglen færdig, åbn så kisten, og tag din skat. Drømme, du har opfyldt, samles i skatkammeret. Her venter også drømme på pause, så du kan tage dem op igen, når du har lyst.
+NOTER
+Gem noter og fotos til hvert mål. Du kan se hele forløbet igen i datorækkefølge.
 
-KORT
-Drømme med et sted vises på kortet, så du med et blik kan se alle de steder, du vil hen.
+SLUT MED LISTER, DER BARE VOKSER
+Når et mål ikke har haft fremskridt i over en måned, spørger appen, om du vil fortsætte eller stoppe. Stoppede mål gemmes for sig, og du kan starte dem igen når som helst.
 
-VÆKST-TILSTAND
-Hellere et bjerg at bestige? Slå Vækst-tilstand til under Indstillinger, og styr dine drømme som projekter med frister for trin, forhindringer som pris og tid og en log over fremskridt.
+FULDFØRTE MÅL
+De mål, du gør færdige, samles med datoen for, hvornår du fuldførte dem.
+
+SIRI OG SIKKERHEDSKOPI
+Med Siri kan du tilføje et mål og spørge om dit næste trin. Dine noter kan eksporteres som tekst eller sikkerhedskopieres.
 
 DREAM SEEKER PRO
-Med op til fem drømme ad gangen er alt gratis, fra at smede nøglen til at åbne skatkammeret. Vælg Pro for at arbejde med så mange drømme, du vil, og bruge vækst-tilstand. Vælg et uge-, måneds- eller årsabonnement eller et engangskøb for livet. Hvis du allerede har købt appen, har du allerede Pro.
+Med op til fem mål er alle funktioner gratis. Vælg Pro for at have så mange mål, du vil. Vælg et uge-, måneds- eller årsabonnement eller et engangskøb for livet. Hvis du allerede har købt appen, har du allerede Pro.
 
 PRIVATLIV
-• Ingen konto, ingen reklamer, ingen analyse
-• Dine drømme, noter og fotos bliver på din enhed
+• Ingen konto, ingen reklamer, ingen analyseværktøjer
+• Dine mål, noter og fotos gemmes kun på denne enhed
 
 Brugsvilkår: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Privatlivspolitik: https://m1zz.github.io/BucketClimb/da/privacy.html
@@ -1026,37 +1058,39 @@ Dream Seeker: Λίστα Επιθυμιών
 
 ### 프로모션 텍스트
 
-Διάλεξε ένα όνειρο και τα βήματά του γίνονται τα δόντια ενός κλειδιού. Απάντα σε μία ερώτηση τη φορά και, όταν το κλειδί ολοκληρωθεί, άνοιξε το κουτί σου.
+Μη γράφεις απλώς μια λίστα επιθυμιών. Χώρισε κάθε στόχο σε μικρά βήματα και σημείωσε το επόμενο. Στόχος στάσιμος πάνω από μήνα; Διαλέγεις: συνέχεια ή διακοπή.
 
 ### 설명
 
 Έγραψες ποτέ μια λίστα επιθυμιών και την ξέχασες;
-Το Dream Seeker χωρίζει κάθε όνειρο σε μικρά, εφικτά βήματα και σου δείχνει ακριβώς τι να κάνεις στη συνέχεια.
+Το Dream Seeker χωρίζει κάθε στόχο σε μικρά, εφικτά βήματα και σου δείχνει το ένα βήμα που έχεις να κάνεις τώρα.
 
-ΩΚΕΑΝΟΣ ΤΩΝ ΟΝΕΙΡΩΝ
-Πάνω από 590 όνειρα σε έξι κατηγορίες (ταξίδι, εμπειρία, επίτευγμα, υγεία, μάθηση και σχέσεις) επιπλέουν μέσα σε κουτιά. Πάτησε αυτό που αγαπάς για να το μεταφέρεις στο εργαστήρι σου ή δημιούργησε το δικό σου όνειρο.
+ΣΤΟΧΟΙ ΚΑΙ ΕΠΟΜΕΝΟ ΒΗΜΑ
+Η πρώτη οθόνη δείχνει για κάθε στόχο την πρόοδό του και το επόμενο βήμα. Σημείωσέ το εκεί ως ολοκληρωμένο και ανεβαίνει το αμέσως επόμενο.
+• Γράψε τα δικά σου βήματα ή, σε υποστηριζόμενες συσκευές, δέξου προτάσεις
+• Μπορείς να αλλάξεις τη σειρά τους, να τα επεξεργαστείς και να τα διαγράψεις
 
-ΤΟ ΕΡΓΑΣΤΗΡΙ ΜΟΥ: ΦΤΙΑΞΕ ΤΟ ΚΛΕΙΔΙ
-Κάθε κουτί θέλει ένα κλειδί και κάθε δόντι του κλειδιού είναι ένα βήμα προς το όνειρό σου. Θες να δεις το βόρειο σέλας στην Ισλανδία; Μάθε την καλύτερη εποχή, μάζεψε χρήματα, κλείσε τα εισιτήρια.
-• Το βήμα που πρέπει να κάνεις τώρα είναι πάντα στην κορυφή
-• Απάντα σε μια ερώτηση για να ολοκληρώσεις κάθε βήμα
-• Οι απαντήσεις και οι φωτογραφίες σου αποθηκεύονται στις καταγραφές σου και στο χρονολόγιο προόδου
+ΚΑΝΕ ΤΟΝ ΣΤΟΧΟ ΣΥΓΚΕΚΡΙΜΕΝΟ
+Η οθόνη του στόχου σε ρωτά ένα πράγμα τη φορά: πότε θα το κάνεις, με ποιον, πώς, γιατί δεν μπορείς τώρα, τι σε εμποδίζει και πόσο αξίζει για σένα. Απαντώντας, ένας αόριστος στόχος γίνεται ξεκάθαρος.
 
-ΘΗΣΑΥΡΟΦΥΛΑΚΙΟ
-Συμπλήρωσε όλα τα δόντια για να ολοκληρώσεις το κλειδί, μετά άνοιξε το κουτί και πάρε τον θησαυρό σου. Τα όνειρα που πραγματοποιείς φυλάσσονται στο θησαυροφυλάκιο. Εκεί περιμένουν και τα όνειρα σε παύση, έτοιμα να συνεχίσεις όποτε θέλεις.
+ΚΑΤΑΓΡΑΦΕΣ
+Κράτα σημειώσεις και φωτογραφίες για κάθε στόχο. Μπορείς να ξαναδείς όλη την πορεία με χρονολογική σειρά.
 
-ΧΑΡΤΗΣ
-Τα όνειρα που συνδέονται με ένα μέρος εμφανίζονται στον χάρτη, ώστε να βλέπεις με μια ματιά όλους τους προορισμούς σου.
+ΤΕΛΟΣ ΣΤΙΣ ΛΙΣΤΕΣ ΠΟΥ ΑΠΛΩΣ ΜΕΓΑΛΩΝΟΥΝ
+Όταν ένας στόχος δεν έχει πρόοδο για πάνω από έναν μήνα, η εφαρμογή σε ρωτά αν θέλεις να συνεχίσεις ή να σταματήσεις. Οι στόχοι που σταμάτησαν φυλάσσονται ξεχωριστά και μπορείς να τους ξαναρχίσεις όποτε θέλεις.
 
-ΛΕΙΤΟΥΡΓΙΑ ΑΝΑΠΤΥΞΗΣ ΟΝΕΙΡΩΝ
-Προτιμάς να σκαρφαλώνεις ένα βουνό; Ενεργοποίησε τη λειτουργία στις Ρυθμίσεις και διαχειρίσου τα όνειρα σαν έργα, με προθεσμίες βημάτων, εμπόδια όπως το κόστος και ο χρόνος, και καταγραφή προόδου.
+ΟΛΟΚΛΗΡΩΜΕΝΟΙ ΣΤΟΧΟΙ
+Οι στόχοι που ολοκληρώνεις συγκεντρώνονται μαζί με την ημερομηνία ολοκλήρωσης.
+
+SIRI ΚΑΙ ΑΝΤΙΓΡΑΦΟ ΑΣΦΑΛΕΙΑΣ
+Με το Siri μπορείς να προσθέσεις έναν στόχο και να ρωτήσεις ποιο είναι το επόμενο βήμα. Οι καταγραφές εξάγονται ως κείμενο ή αποθηκεύονται σε αντίγραφο ασφαλείας.
 
 DREAM SEEKER PRO
-Με έως πέντε όνειρα ταυτόχρονα, όλα είναι δωρεάν, από το σφυρηλάτημα του κλειδιού μέχρι το θησαυροφυλάκιο. Διάλεξε το Pro για να καλλιεργείς όσα όνειρα θέλεις και να χρησιμοποιείς τη λειτουργία ανάπτυξης ονείρων. Επίλεξε εβδομαδιαία, μηνιαία ή ετήσια συνδρομή ή εφάπαξ αγορά εφ' όρου ζωής. Αν είχες ήδη αγοράσει την εφαρμογή, έχεις ήδη το Pro.
+Με έως πέντε στόχους, όλες οι λειτουργίες είναι δωρεάν. Διάλεξε το Pro για να έχεις στόχους χωρίς όριο. Επίλεξε εβδομαδιαία, μηνιαία ή ετήσια συνδρομή ή εφάπαξ αγορά εφ' όρου ζωής. Αν είχες ήδη αγοράσει την εφαρμογή, έχεις ήδη το Pro.
 
 ΙΔΙΩΤΙΚΟΤΗΤΑ
-• Χωρίς λογαριασμό, χωρίς διαφημίσεις, χωρίς αναλυτικά στοιχεία
-• Τα όνειρα, οι σημειώσεις και οι φωτογραφίες σου μένουν στη συσκευή σου
+• Χωρίς λογαριασμό, χωρίς διαφημίσεις, χωρίς εργαλεία ανάλυσης
+• Οι στόχοι, οι καταγραφές και οι φωτογραφίες σου αποθηκεύονται μόνο σε αυτή τη συσκευή
 
 Όροι χρήσης: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Πολιτική απορρήτου: https://m1zz.github.io/BucketClimb/el/privacy.html
@@ -1089,37 +1123,39 @@ bucketlist,haaveet,matkailu,seikkailu,suunnittelija,muistilista,motivaatio,päiv
 
 ### 프로모션 텍스트
 
-Valitse unelma, niin sen vaiheista tulee avaimen hampaita. Vastaa yhteen kysymykseen kerrallaan, ja kun avain on valmis, avaa aarrearkkusi.
+Älä jätä unelmalistaa pelkäksi listaksi. Jaa tavoitteet pieniin vaiheisiin ja merkitse seuraava tehdyksi. Yli kuukauden paikallaan ollut tavoite kysyy: jatka vai lopeta?
 
 ### 설명
 
 Oletko joskus kirjoittanut unelmalistan ja unohtanut sen?
-Dream Seeker jakaa jokaisen unelman pieniin, tehtävissä oleviin vaiheisiin ja näyttää, mitä kannattaa tehdä seuraavaksi.
+Dream Seeker jakaa jokaisen tavoitteen pieniin, tehtävissä oleviin vaiheisiin ja näyttää sen yhden vaiheen, joka kannattaa tehdä nyt.
 
-UNELMIEN MERI
-Yli 590 unelmaa kuudelta alueelta (matkailu, kokemukset, saavutukset, terveys, oppiminen ja ihmissuhteet) kelluu ohitse aarrearkuissa. Napauta mieleistäsi ja tuo se omaan työpajaasi, tai luo kokonaan oma unelma.
+TAVOITTEET JA SEURAAVA VAIHE
+Ensimmäisellä näytöllä näet jokaisen tavoitteen edistymisen ja seuraavan vaiheen. Merkitse se tehdyksi suoraan siinä, niin tilalle nousee sitä seuraava vaihe.
+• Kirjoita vaiheet itse tai pyydä ehdotuksia tuetuilla laitteilla
+• Voit muuttaa vaiheiden järjestystä, muokata niitä ja poistaa niitä
 
-OMA TYÖPAJA: TAO AVAIN
-Jokainen arkku tarvitsee avaimen, ja avaimen jokainen hammas on yksi vaihe kohti unelmaasi. Haluatko nähdä revontulet Islannissa? Selvitä paras ajankohta, säästä rahaa ja varaa lennot.
-• Seuraava tehtävä on aina ylimpänä
-• Vastaa opastavaan kysymykseen, niin vaihe on valmis
-• Vastauksesi ja kuvasi tallentuvat omiin merkintöihin ja edistymisen aikajanalle
+TEE TAVOITTEESTA KONKREETTINEN
+Tavoitteen näkymä kysyy yhden kysymyksen kerrallaan: milloin teet sen, kenen kanssa, miten, miksi et voi tehdä sitä nyt, mikä on tiellä ja kuinka arvokas se sinulle on. Vastatessasi epämääräinen tavoite selkiytyy.
 
-AARREKAMMIO
-Kun täytät kaikki hampaat, avain on valmis. Avaa arkku ja ota aarteesi. Toteutuneet unelmat säilyvät aarrekammiossa, ja myös tauolle jättämäsi unelmat odottavat siellä, kunnes haluat jatkaa niitä.
+MERKINNÄT
+Lisää jokaiseen tavoitteeseen muistiinpanoja ja kuvia. Voit katsoa koko etenemisen uudelleen päivämääräjärjestyksessä.
 
-KARTTA
-Paikkaan liittyvät unelmat näkyvät kartalla, joten näet yhdellä silmäyksellä, minne kaikkialle haluat matkustaa.
+LISTA, JOKA EI VAIN KASVA
+Jos tavoite ei ole edennyt yli kuukauteen, sovellus kysyy, haluatko jatkaa vai lopettaa. Lopetetut tavoitteet säilyvät erikseen, ja voit aloittaa ne uudelleen milloin tahansa.
 
-UNELMIEN KASVATUSTILA
-Tykkäätkö enemmän vuoren valloittamisesta? Ota Asetuksista käyttöön Unelmien kasvatustila ja hallitse unelmia kuin projekteja: vaiheille voi asettaa määräajan, esteiksi voi merkitä esimerkiksi kustannukset ja ajan, ja edistymistä voi kirjata.
+VALMIIT TAVOITTEET
+Valmiiksi saamasi tavoitteet kootaan yhteen valmistumispäivän kanssa.
+
+SIRI JA VARMUUSKOPIOINTI
+Lisää tavoite tai kysy seuraavaa vaihetta Sirillä. Voit viedä merkinnät tekstinä tai varmuuskopioida ne.
 
 DREAM SEEKER PRO
-Kun kasvatat enintään viittä unelmaa kerrallaan, kaikki avaimen takomisesta aarrekammion avaamiseen on ilmaista. Valitse Pro, jos haluat kasvattaa niin monta unelmaa kuin haluat ja käyttää unelmien kasvatustilaa. Valittavana on viikko-, kuukausi- tai vuositilaus tai kertaosto. Jos olet jo ostanut sovelluksen, sinulla on jo Pro.
+Viiteen tavoitteeseen asti kaikki ominaisuudet ovat ilmaisia. Valitse Pro, jos haluat pitää tavoitteita ilman määrärajaa. Valittavana on viikko-, kuukausi- tai vuositilaus tai elinikäinen kertaosto. Jos olet jo ostanut sovelluksen, sinulla on jo Pro.
 
 YKSITYISYYS
 • Ei tiliä, ei mainoksia, ei analytiikkaa
-• Unelmasi, muistiinpanosi ja kuvasi pysyvät laitteellasi
+• Tavoitteesi, merkintäsi ja kuvasi pysyvät vain laitteellasi
 
 Käyttöehdot: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Tietosuojakäytäntö: https://m1zz.github.io/BucketClimb/fi/privacy.html
@@ -1152,37 +1188,39 @@ bucket,list,target,hidup,rencana,liburan,petualangan,motivasi,jurnal,resolusi,tu
 
 ### 프로모션 텍스트
 
-Pilih satu mimpi, lalu langkahnya menjadi gigi kunci. Jawab satu pertanyaan setiap kali untuk melengkapi tiap gigi, dan saat kunci selesai, buka peti harta karunmu.
+Jangan cuma menulis daftar impian. Bagi target jadi langkah kecil dan centang langkah berikutnya. Target yang diam sebulan lebih akan bertanya: lanjutkan atau berhenti?
 
 ### 설명
 
 Pernah menulis daftar impian lalu melupakannya?
-Dream Seeker memecah setiap mimpi menjadi langkah-langkah kecil yang bisa dikerjakan, dan menunjukkan apa yang perlu kamu lakukan berikutnya.
+Dream Seeker memecah setiap target menjadi langkah-langkah kecil yang bisa dikerjakan, dan menunjukkan satu langkah yang perlu kamu lakukan sekarang.
 
-LAUT MIMPI
-Lebih dari 590 mimpi dalam enam bidang (perjalanan, pengalaman, pencapaian, kesehatan, belajar, dan hubungan) mengambang di lautan dalam peti harta. Ketuk peti yang kamu suka untuk membawanya ke gudangmu, atau buat mimpimu sendiri.
+TARGET DAN LANGKAH BERIKUTNYA
+Layar pertama menampilkan progres dan satu langkah berikutnya dari setiap target. Centang langsung di sana, lalu langkah sesudahnya naik menggantikannya.
+• Tulis langkahmu sendiri, atau dapatkan saran di perangkat yang didukung
+• Ubah urutan, edit, dan hapus langkah
 
-GUDANG SAYA: TEMPA KUNCINYA
-Setiap peti butuh kunci, dan setiap gigi pada kunci itu adalah satu langkah menuju mimpimu. Ingin melihat aurora di Islandia? Cari tahu musimnya, kumpulkan dana, pesan tiket pesawat.
-• Langkah yang harus dikerjakan sekarang selalu ada di paling atas
-• Jawab pertanyaan pemandu untuk menyelesaikan tiap langkah
-• Jawaban dan fotomu tersimpan di catatan dan linimasa progres
+BUAT TARGETMU KONKRET
+Layar target bertanya satu per satu: kapan kamu akan melakukannya, dengan siapa, bagaimana caranya, kenapa belum bisa sekarang, apa yang menghalangi, dan seberapa berharga target itu bagimu. Sambil menjawab, target yang samar jadi jelas.
 
-BRANKAS
-Lengkapi semua gigi untuk menyelesaikan kunci, lalu buka peti dan ambil hartamu. Mimpi yang sudah terwujud tersimpan di brankas. Mimpi yang dijeda juga menunggu di sana, siap dilanjutkan kapan pun kamu mau.
+CATATAN
+Tambahkan memo dan foto ke setiap target. Kamu bisa melihat kembali prosesnya menurut urutan tanggal.
 
-PETA
-Mimpi yang terkait dengan suatu tempat muncul di peta, jadi kamu bisa melihat semua tempat impianmu sekaligus.
+DAFTAR YANG TIDAK HANYA BERTAMBAH PANJANG
+Kalau sebuah target tidak ada kemajuan lebih dari sebulan, aplikasi akan bertanya apakah kamu mau lanjutkan atau berhenti. Target yang dihentikan disimpan terpisah dan bisa dimulai lagi kapan saja.
 
-MODE TUMBUHKAN MIMPI
-Lebih suka mendaki gunung? Aktifkan Mode Tumbuhkan Mimpi di Pengaturan untuk mengelola mimpi seperti proyek, lengkap dengan tenggat tiap langkah, rintangan seperti biaya dan waktu, serta catatan progres.
+TARGET SELESAI
+Target yang kamu selesaikan terkumpul beserta tanggal selesainya.
+
+SIRI DAN CADANGAN
+Tambah target atau tanyakan langkah berikutnya lewat Siri. Catatan bisa diekspor sebagai teks atau dicadangkan.
 
 DREAM SEEKER PRO
-Untuk hingga lima mimpi sekaligus, semuanya gratis, dari menempa kunci sampai membuka brankas. Pilih Pro untuk menumbuhkan mimpi sebanyak yang kamu mau dan memakai Mode Tumbuhkan Mimpi. Pilih langganan mingguan, bulanan, atau tahunan, atau beli sekali untuk seumur hidup. Kalau kamu sudah pernah membeli aplikasinya, kamu sudah punya Pro.
+Sampai lima target, semua fitur gratis. Pilih Pro untuk menyimpan target tanpa batas jumlah. Pilih langganan mingguan, bulanan, atau tahunan, atau beli sekali untuk seumur hidup. Kalau kamu sudah pernah membeli aplikasinya, kamu sudah punya Pro.
 
 PRIVASI
 • Tanpa akun, tanpa iklan, tanpa analitik
-• Mimpi, catatan, dan fotomu tetap ada di perangkatmu
+• Target, catatan, dan fotomu hanya tersimpan di perangkatmu
 
 Syarat Penggunaan: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Kebijakan Privasi: https://m1zz.github.io/BucketClimb/id/privacy.html
@@ -1215,37 +1253,39 @@ Nå livsmålene trinn for trinn
 
 ### 프로모션 텍스트
 
-Velg en drøm, så blir trinnene tennene på en nøkkel. Svar på ett spørsmål om gangen for å fullføre hver tann, og når nøkkelen er ferdig, kan du åpne skattekisten din.
+Ikke bare skriv en drømmeliste. Del hvert mål i små trinn og kryss av det neste. Når et mål har stått stille i over en måned, spør appen om du vil fortsette eller stoppe.
 
 ### 설명
 
 Har du skrevet en drømmeliste og så glemt den?
-Dream Seeker deler hver drøm opp i små trinn du faktisk kan gjennomføre, og viser deg hva du skal gjøre videre.
+Dream Seeker deler hvert mål opp i små trinn du faktisk kan gjennomføre, og viser deg det ene trinnet du skal ta nå.
 
-DRØMMEHAVET
-Mer enn 590 drømmer innen seks områder (reise, opplevelse, prestasjon, helse, læring og relasjoner) flyter forbi i eskene sine. Trykk på en du liker for å ta den med til verkstedet, eller lag din egen drøm.
+MÅL OG NESTE TRINN
+Den første skjermen viser framdriften og neste trinn for hvert mål. Kryss det av der og da, så rykker trinnet etter opp.
+• Skriv trinnene selv, eller få forslag på enheter som støtter det
+• Endre rekkefølgen, rediger og slett trinn
 
-VERKSTEDET MITT: SMI NØKKELEN
-Hver eske trenger en nøkkel, og hver tann på nøkkelen er et trinn mot drømmen din. Vil du se nordlyset på Island? Finn ut når sesongen er, spar penger og bestill flybilletter.
-• Trinnet du bør gjøre nå, ligger alltid øverst
-• Svar på et veiledende spørsmål for å fullføre hvert trinn
-• Svarene og bildene dine lagres i loggen din og i framdriftstidslinjen
+GJØR MÅLET KONKRET
+Målskjermen stiller ett spørsmål om gangen: når du skal gjøre det, hvem du skal gjøre det med, hvordan, hvorfor du ikke kan gjøre det nå, hva som står i veien, og hvor mye det er verdt for deg. Mens du svarer, blir et vagt mål tydelig.
 
-SKATTKAMMER
-Fyll alle tennene for å fullføre nøkkelen, åpne så esken og ta imot skatten. Drømmene du oppfyller, samles i skattkammeret. Drømmer du har satt på pause, venter der også, klare til du vil ta dem fram igjen.
+NOTATER
+Legg til notater og bilder på hvert mål. Du kan se tilbake på hele forløpet i datorekkefølge.
 
-KART
-Drømmer knyttet til et sted vises på kartet, så du ser alle stedene du vil dra til med et blikk.
+EN LISTE SOM IKKE BARE VOKSER
+Når et mål ikke har hatt framdrift på over en måned, spør appen om du vil fortsette eller stoppe. Stoppede mål samles for seg, og du kan når som helst ta dem opp igjen.
 
-DRØMMEKLATRINGSMODUS
-Får du mer ut av å bestige et fjell? Slå på drømmeklatringsmodus i innstillingene, så kan du styre drømmer som prosjekter, med frister for trinnene, hindre som kostnader og tid, og en logg over framdriften.
+FULLFØRTE MÅL
+Målene du fullfører, samles med datoen du fullførte dem.
+
+SIRI OG SIKKERHETSKOPI
+Legg til et mål eller spør om neste trinn med Siri. Notatene kan eksporteres som tekst eller sikkerhetskopieres.
 
 DREAM SEEKER PRO
-Med opptil fem drømmer om gangen er alt gratis, fra å smi nøkkelen til å åpne skattkammeret. Velg Pro for å jobbe med så mange drømmer du vil og bruke drømmeklatringsmodus. Velg ukes-, måneds- eller årsabonnement eller et engangskjøp for livet. Hvis du allerede har kjøpt appen, har du allerede Pro.
+Med opptil fem mål er alle funksjoner gratis. Velg Pro for å ha så mange mål du vil. Velg ukes-, måneds- eller årsabonnement eller et engangskjøp for livet. Hvis du allerede har kjøpt appen, har du allerede Pro.
 
 PERSONVERN
 • Ingen konto, ingen reklame, ingen analyse
-• Drømmene, notatene og bildene dine blir på enheten din
+• Målene, notatene og bildene dine lagres bare på enheten din
 
 Bruksvilkår: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Personvernerklæring: https://m1zz.github.io/BucketClimb/nb/privacy.html
@@ -1278,37 +1318,39 @@ wensenlijst,dromen,plannen,reizen,avontuur,motivatie,gewoontes,checklist,uitdagi
 
 ### 프로모션 텍스트
 
-Kies een droom en de stappen worden de tanden van een sleutel. Beantwoord steeds één vraag om een tand te vullen. Is de sleutel klaar, dan open je je schatkist.
+Schrijf je bucketlist niet alleen op. Verdeel doelen in kleine stappen en vink de volgende af. Ligt een doel ruim een maand stil? Dan vraagt de app: doorgaan of stoppen?
 
 ### 설명
 
 Ooit een bucketlist geschreven en daarna vergeten?
-Dream Seeker verdeelt elke droom in kleine, haalbare stappen en laat zien wat je nu kunt doen.
+Dream Seeker verdeelt elk doel in kleine, haalbare stappen en laat die ene stap zien die je nu kunt zetten.
 
-DE DROOMOCEAAN
-Meer dan 590 dromen in zes categorieën (reizen, ervaringen, prestaties, gezondheid, leren en relaties) drijven voorbij in schatkisten. Tik op een kist die je aanspreekt en haal hem naar je werkplaats, of bedenk zelf een droom.
+DOELEN EN DE VOLGENDE STAP
+Op het eerste scherm zie je bij elk doel de voortgang en de volgende stap. Vink die daar meteen af en de stap erna schuift op.
+• Schrijf je stappen zelf of krijg suggesties op ondersteunde apparaten
+• Verander de volgorde, pas stappen aan of verwijder ze
 
-JOUW WERKPLAATS: SMEED DE SLEUTEL
-Elke kist heeft een sleutel nodig en elke tand van die sleutel is een stap naar je droom. Het noorderlicht zien in IJsland? Zoek het juiste seizoen uit, spaar en boek de vluchten.
-• De stap die nu aan de beurt is staat altijd bovenaan
-• Beantwoord een vraag om elke stap af te ronden
-• Je antwoorden en foto's worden bewaard in je notities en de tijdlijn van je voortgang
+MAAK JE DOEL CONCREET
+Het doelscherm stelt één vraag tegelijk: wanneer je het gaat doen, met wie, hoe, waarom het nu niet kan, wat je tegenhoudt en hoeveel het je waard is. Al antwoordend wordt een vaag doel helder.
 
-DE SCHATKAMER
-Vul alle tanden, open de kist en pak je schat. Bereikte dromen verzamel je in de schatkamer. Gepauzeerde dromen wachten daar ook, klaar voor als je weer verder wilt.
+NOTITIES
+Voeg bij elk doel notities en foto's toe. Je kunt het hele verloop op datum terugkijken.
 
-KAART
-Dromen met een locatie verschijnen op de kaart, zodat je in één oogopslag ziet waar je nog heen wilt.
+EEN LIJST DIE NIET ALLEEN MAAR GROEIT
+Zit er al meer dan een maand geen voortgang in een doel, dan vraagt de app of je wilt doorgaan of stoppen. Gestopte doelen worden apart bewaard en je kunt ze altijd weer oppakken.
 
-GROEIMODUS
-Liever een berg beklimmen? Zet de groeimodus aan in Instellingen en beheer je dromen als projecten, met deadlines per stap, obstakels zoals kosten en tijd, en een voortgangslogboek.
+VOLTOOIDE DOELEN
+Doelen die je afrondt, worden verzameld met de datum waarop je ze hebt voltooid.
+
+SIRI EN BACK-UP
+Voeg een doel toe of vraag naar je volgende stap met Siri. Je notities kun je als tekst exporteren of in een back-up bewaren.
 
 DREAM SEEKER PRO
-Met maximaal vijf dromen tegelijk is alles gratis, van het smeden van de sleutel tot het openen van de schatkamer. Kies Pro om aan zoveel dromen te werken als je wilt en de groeimodus te gebruiken. Kies een week-, maand- of jaarabonnement of een eenmalige aankoop voor altijd. Heb je de app al eerder gekocht? Dan heb je Pro al.
+Tot vijf doelen zijn alle functies gratis. Kies Pro om zoveel doelen te bewaren als je wilt. Kies een week-, maand- of jaarabonnement of een eenmalige aankoop voor altijd. Heb je de app al eerder gekocht? Dan heb je Pro al.
 
 PRIVACY
 • Geen account, geen advertenties, geen analyses
-• Je dromen, notities en foto's blijven op je apparaat
+• Je doelen, notities en foto's staan alleen op je apparaat
 
 Gebruiksvoorwaarden: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Privacybeleid: https://m1zz.github.io/BucketClimb/nl/privacy.html
@@ -1341,37 +1383,39 @@ plan,podróże,przygody,motywacja,nawyki,dziennik,wishlist,planer,checklista,roz
 
 ### 프로모션 텍스트
 
-Wybierz marzenie, a jego kroki staną się zębami klucza. Odpowiadaj na jedno pytanie naraz, by dokończyć każdy ząb, a gdy klucz będzie gotowy, otwórz skrzynię ze skarbem.
+Nie poprzestawaj na spisaniu listy marzeń. Podziel każdy cel na małe kroki i odhaczaj następny. Gdy cel stoi ponad miesiąc, aplikacja zapyta: kontynuować czy przerwać?
 
 ### 설명
 
 Spisałeś kiedyś listę marzeń, a potem o niej zapomniałeś?
-Dream Seeker dzieli każde marzenie na małe, wykonalne kroki i pokazuje, co masz zrobić teraz.
+Dream Seeker dzieli każdy cel na małe, wykonalne kroki i pokazuje ten jeden, który masz zrobić teraz.
 
-OCEAN MARZEŃ
-Ponad 590 marzeń z sześciu dziedzin (podróże, przeżycia, osiągnięcia, zdrowie, nauka i relacje) płynie po oceanie w skrzyniach. Dotknij tej, która Ci się podoba, i zabierz ją do warsztatu. Możesz też stworzyć własne marzenie.
+CELE I NASTĘPNY KROK
+Na pierwszym ekranie przy każdym celu widać postęp i następny krok. Odhacz go od razu w tym miejscu, a na jego miejsce wskoczy kolejny.
+• Zapisuj kroki samodzielnie albo skorzystaj z podpowiedzi na obsługiwanych urządzeniach
+• Zmieniaj kolejność kroków, edytuj je i usuwaj
 
-MÓJ WARSZTAT: WYKUJ KLUCZ
-Każda skrzynia potrzebuje klucza, a każdy ząb tego klucza to krok ku Twojemu marzeniu. Zorza polarna na Islandii? Sprawdź najlepszą porę, odłóż pieniądze, kup bilety.
-• Krok do zrobienia teraz jest zawsze na samej górze
-• Aby ukończyć krok, odpowiedz na pytanie pomocnicze
-• Odpowiedzi i zdjęcia trafiają do Twojego zapisu i na oś postępów
+SPRECYZUJ SWÓJ CEL
+Ekran celu zadaje jedno pytanie naraz: kiedy to zrobisz, z kim, w jaki sposób, dlaczego nie możesz zrobić tego teraz, co stoi na przeszkodzie i ile ten cel jest dla Ciebie wart. Z każdą odpowiedzią mglisty cel staje się wyraźniejszy.
 
-SKARBIEC
-Wypełnij każdy ząb, by dokończyć klucz, potem otwórz skrzynię i odbierz skarb. Spełnione marzenia gromadzą się w skarbcu. Wstrzymane marzenia też tam czekają, aż zechcesz do nich wrócić.
+WPISY
+Do każdego celu dodawaj notatki i zdjęcia. Cały dotychczasowy przebieg możesz przejrzeć według dat.
 
-MAPA
-Marzenia związane z miejscem pojawiają się na mapie, więc jednym spojrzeniem zobaczysz wszystkie miejsca, które chcesz odwiedzić.
+LISTA, KTÓRA NIE TYLKO ROŚNIE
+Gdy cel od ponad miesiąca stoi w miejscu, aplikacja zapyta, czy chcesz kontynuować, czy przerwać. Przerwane cele są przechowywane osobno i możesz je wznowić w każdej chwili.
 
-TRYB ROZWOJU MARZEŃ
-Wolisz wspinaczkę na szczyt? Włącz tryb rozwoju marzeń w Ustawieniach, by zarządzać marzeniami jak projektami: z terminami kroków, przeszkodami takimi jak koszty i czas oraz zapisem postępów.
+UKOŃCZONE CELE
+Cele, które ukończysz, zbierają się w jednym miejscu razem z datą ukończenia.
+
+SIRI I KOPIA ZAPASOWA
+Dodaj cel albo zapytaj o następny krok za pomocą Siri. Wpisy możesz wyeksportować jako tekst albo zapisać w kopii zapasowej.
 
 DREAM SEEKER PRO
-Przy maksymalnie pięciu marzeniach naraz wszystko jest bezpłatne, od wykuwania klucza po otwarcie skarbca. Wybierz Pro, aby rozwijać tyle marzeń, ile chcesz, i korzystać z trybu rozwoju marzeń. Do wyboru jest subskrypcja tygodniowa, miesięczna lub roczna albo jednorazowy zakup na zawsze. Jeśli aplikacja została już przez Ciebie kupiona, masz już Pro.
+Do pięciu celów wszystkie funkcje są bezpłatne. Wybierz Pro, aby mieć dowolną liczbę celów. Do wyboru jest subskrypcja tygodniowa, miesięczna lub roczna albo jednorazowy zakup na zawsze. Jeśli aplikacja została już przez Ciebie kupiona, masz już Pro.
 
 PRYWATNOŚĆ
 • Bez konta, bez reklam, bez analityki
-• Marzenia, notatki i zdjęcia zostają na Twoim urządzeniu
+• Cele, wpisy i zdjęcia są zapisane tylko na Twoim urządzeniu
 
 Warunki użytkowania: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Polityka prywatności: https://m1zz.github.io/BucketClimb/pl/privacy.html
@@ -1404,37 +1448,39 @@ livsmål,drömmar,resa,äventyr,checklista,motivation,vanor,dagbok,planerare,må
 
 ### 프로모션 텍스트
 
-Välj en dröm så blir stegen tänderna på en nyckel. Svara på en fråga i taget för att fylla varje tand, och när nyckeln är klar öppnar du din skattkista.
+Nöj dig inte med en önskelista. Dela upp varje mål i små steg och bocka av nästa. Står ett mål stilla i över en månad frågar appen: fortsätta eller lägga åt sidan?
 
 ### 설명
 
 Har du skrivit en önskelista och sedan glömt bort den?
-Dream Seeker delar upp varje dröm i små steg du klarar av och visar exakt vad du ska göra härnäst.
+Dream Seeker delar upp varje mål i små steg du klarar av och visar det enda steg du ska ta nu.
 
-DRÖMHAVET
-Mer än 590 drömmar inom sex områden (resor, upplevelser, prestationer, hälsa, lärande och relationer) flyter förbi i lådor. Tryck på en du gillar och hämta den till din verkstad, eller skapa en alldeles egen dröm.
+MÅL OCH NÄSTA STEG
+På första skärmen ser du framstegen och nästa steg för varje mål. Bocka av det direkt där, så flyttas steget efter upp.
+• Skriv stegen själv eller få förslag på enheter som stöder det
+• Ändra ordning, redigera och radera steg
 
-MIN VERKSTAD: SMED NYCKELN
-Varje låda behöver en nyckel, och varje tand på nyckeln är ett steg mot din dröm. Vill du se norrskenet på Island? Ta reda på säsongen, spara ihop pengar och boka flyg.
-• Steget du ska göra nu ligger alltid överst
-• Svara på en vägledande fråga för att klara varje steg
-• Dina svar och foton sparas i Mina anteckningar och i framstegstidslinjen
+GÖR MÅLET KONKRET
+Målskärmen ställer en fråga i taget: när du ska göra det, med vem, hur, varför du inte kan göra det nu, vad som står i vägen och hur mycket det är värt för dig. Medan du svarar blir ett vagt mål tydligt.
 
-SKATTKAMMAREN
-Fyll varje tand så är nyckeln klar. Öppna sedan lådan och ta din skatt. Uppfyllda drömmar samlas i skattkammaren. Pausade drömmar väntar där också, redo när du vill ta upp dem igen.
+ANTECKNINGAR
+Lägg till anteckningar och foton för varje mål. Du kan se tillbaka på hela förloppet i datumordning.
 
-KARTA
-Drömmar som hör till en plats visas på kartan, så du ser alla ställen du vill besöka med en blick.
+EN LISTA SOM INTE BARA VÄXER
+När ett mål inte har gått framåt på över en månad frågar appen om du vill fortsätta eller lägga det åt sidan. Mål du lagt åt sidan sparas för sig, och du kan när som helst återuppta dem.
 
-ODLINGSLÄGE
-Vill du hellre bestiga ett berg? Slå på Odlingsläge i Inställningar och hantera drömmar som projekt, med tidsfrister för stegen, hinder som kostnad och tid samt en framstegslogg.
+SLUTFÖRDA MÅL
+Målen du slutför samlas tillsammans med datumet då du slutförde dem.
+
+SIRI OCH SÄKERHETSKOPIA
+Lägg till ett mål eller fråga efter nästa steg med Siri. Anteckningarna kan exporteras som text eller säkerhetskopieras.
 
 DREAM SEEKER PRO
-Med upp till fem drömmar åt gången är allt gratis, från att smida nyckeln till att öppna skattkammaren. Välj Pro för att arbeta med så många drömmar du vill och använda odlingsläget. Välj vecko-, månads- eller årsprenumeration eller ett engångsköp för livet. Har du redan köpt appen har du redan Pro.
+Med upp till fem mål är alla funktioner gratis. Välj Pro för att ha så många mål du vill. Välj vecko-, månads- eller årsprenumeration eller ett engångsköp för livet. Har du redan köpt appen har du redan Pro.
 
 INTEGRITET
 • Inget konto, inga annonser, ingen analys
-• Dina drömmar, anteckningar och foton stannar på din enhet
+• Dina mål, anteckningar och foton sparas bara på din enhet
 
 Användarvillkor: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Integritetspolicy: https://m1zz.github.io/BucketClimb/sv/privacy.html
@@ -1467,37 +1513,39 @@ dilek,plan,seyahat,macera,motivasyon,alışkanlık,günlük,yapılacaklar,vizyon
 
 ### 프로모션 텍스트
 
-Bir hayal seç, yapman gerekenler bir anahtarın dişlerine dönüşsün. Soruları tek tek yanıtlayarak dişleri tamamla; anahtar bitince hazine sandığını aç.
+Hayal listeni yazıp bırakma. Her hedefi küçük adımlara böl ve sonraki adımı işaretle. Bir aydan uzun süredir duran hedefler için uygulama sorar: devam mı, durdur mu?
 
 ### 설명
 
 Hayal listesi yazıp sonra unuttun mu hiç?
-Dream Seeker her hayali küçük, yapılabilir adımlara böler ve sıradaki işin ne olduğunu net biçimde gösterir.
+Dream Seeker her hedefi küçük, yapılabilir adımlara böler ve şimdi yapacağın tek adımı gösterir.
 
-HAYAL OKYANUSU
-Seyahat, deneyim, başarı, sağlık, öğrenme ve ilişkiler olmak üzere altı alanda 590'tan fazla hayal sandıklarda okyanusta süzülür. Beğendiğin sandığa dokun, Atölyene al. İstersen kendi hayalini de oluşturabilirsin.
+HEDEFLER VE SONRAKİ ADIM
+İlk ekranda her hedefin ilerlemesini ve sonraki adımını görürsün. Adımı hemen orada işaretle, ardından gelen adım yukarı çıksın.
+• Adımları kendin yaz ya da desteklenen cihazlarda öneri al
+• Adımların sırasını değiştir, düzenle, sil
 
-ATÖLYEM: ANAHTARI YAP
-Her sandığın bir anahtarı vardır ve anahtarın her dişi hayale giden bir adımdır. İzlanda'da Kuzey Işıkları'nı görmek mi istiyorsun? Sezonu araştır, bütçeni biriktir, uçak biletini al.
-• Şimdi yapılacak adım hep en üstte durur
-• Her adım için hazırlanmış soruyu yanıtlayarak adımı tamamlarsın
-• Yanıtların ve fotoğrafların kayıtlarına ve ilerleme zaman çizelgene eklenir
+HEDEFİNİ SOMUTLAŞTIR
+Hedef ekranı soruları tek tek sorar: ne zaman yapacaksın, kiminle, nasıl, şimdi neden yapamıyorsun, önünde ne duruyor ve bu hedef senin için ne kadar değerli. Yanıtladıkça belirsiz hedef netleşir.
 
-HAZİNEM
-Tüm dişleri doldurunca anahtar tamamlanır; sandığı aç ve hazineni al. Gerçekleştirdiğin hayaller Hazinem'de saklanır. Ara verdiğin hayaller de orada bekler, istediğin zaman yeniden başlayabilirsin.
+KAYITLAR
+Her hedefe not ve fotoğraf ekle. Geçtiğin süreci tarih sırasıyla yeniden görebilirsin.
 
-HARİTA
-Bir yere bağlı hayaller haritada görünür. Gitmek istediğin her yeri tek bakışta görürsün.
+SADECE UZAYIP GİTMEYEN BİR LİSTE
+Bir hedefte bir aydan uzun süredir ilerleme yoksa uygulama devam etmek mi yoksa durdurmak mı istediğini sorar. Durdurulan hedefler ayrı bir yerde tutulur; istediğin zaman yeniden başlayabilirsin.
 
-HAYAL BÜYÜTME MODU
-Dağa tırmanır gibi ilerlemeyi mi seversin? Ayarlar'dan Hayal Büyütme Modu'nu aç; hayallerini adım son tarihleri, maliyet ve zaman gibi engeller ve ilerleme kaydıyla bir proje gibi yönet.
+TAMAMLANAN HEDEFLER
+Bitirdiğin hedefler tamamlandıkları tarihle birlikte bir arada durur.
+
+Siri VE YEDEKLEME
+Siri ile hedef ekle ya da sonraki adımını sor. Kayıtlarını metin olarak dışa aktarabilir veya yedekleyebilirsin.
 
 DREAM SEEKER PRO
-Aynı anda en fazla beş hayalle, anahtarı yapmaktan hazineyi açmaya kadar her şey ücretsiz. İstediğin kadar hayali birlikte büyütmek ve Hayal Büyütme Modu'nu kullanmak için Pro'yu seç. Haftalık, aylık ya da yıllık abonelik veya tek seferlik ömür boyu satın alma arasından seçebilirsin. Uygulamayı daha önce satın aldıysan Pro zaten sende.
+Beş hedefe kadar tüm özellikler ücretsiz. Hedef sayısında sınır olmasın istersen Pro'yu seç. Haftalık, aylık ya da yıllık abonelik veya tek seferlik ömür boyu satın alma arasından seçebilirsin. Uygulamayı daha önce satın aldıysan Pro zaten sende.
 
 GİZLİLİK
 • Hesap, reklam ve analiz yok
-• Hayallerin, notların ve fotoğrafların yalnızca cihazında kalır
+• Hedeflerin, kayıtların ve fotoğrafların yalnızca cihazında kalır
 
 Kullanım Koşulları: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Gizlilik Politikası: https://m1zz.github.io/BucketClimb/tr/privacy.html

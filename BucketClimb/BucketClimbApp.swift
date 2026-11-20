@@ -8,7 +8,10 @@ struct BucketClimbApp: App {
 
     init() {
         // 백업 금고: 저장소를 읽기 전에 예약된 복원을 적용하고 업데이트 직전 백업을 뜬다.
-        LeeoVault.start(BucketClimbSpec.self)    }
+        LeeoVault.start(BucketClimbSpec.self)
+        // 한 달 동안 진행이 없는 목표 알림 (→ GoalReminders.swift)
+        GoalReminders.start()
+    }
 
     var body: some Scene {
         WindowGroup {

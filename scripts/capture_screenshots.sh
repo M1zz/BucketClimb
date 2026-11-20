@@ -3,7 +3,7 @@
 #
 # 사용법: sh scripts/capture_screenshots.sh <시뮬레이터 UDID> <BucketClimb.app 경로> [로케일 ...]
 #   앱은 Debug 로 빌드한다(예시 데이터는 디버그 빌드에만 있다).
-#   결과: docs/screenshots/raw/<로케일>/{forge,ocean,workshop,treasury,map}.png  (1320×2868)
+#   결과: docs/screenshots/raw/<로케일>/{goals,detail,done}.png  (1320×2868)
 # 이어서: python3 scripts/make_marketing_screenshots.py · python3 scripts/make_creative_assets.py
 set -e
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
