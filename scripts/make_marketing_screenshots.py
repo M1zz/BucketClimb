@@ -45,6 +45,19 @@ LAYOUTS = {
                ".text{top:230px;text-align:center}", "left:150px;top:840px;width:940px"),
 }
 
+# 오른쪽에서 왼쪽으로 쓰는 언어(아랍어): 글은 오른쪽에 맞추고, 기울인 기기는 거울처럼 놓는다.
+# 가운데 맞춘 장면(hero · bottom)은 dir=rtl 만으로 맞는다.
+RTL = {"ar", "he"}
+# 아랍어는 글자가 이어 쓰여서 글자 사이를 좁히면 끊어진다.
+RTL_CSS = """
+body { font-family:"SF Arabic","Geeza Pro",-apple-system,sans-serif; }
+.headline, .sub { letter-spacing:0; }
+.headline { line-height:1.3; }
+"""
+RTL_LAYOUTS = {
+    "left": (".text{top:250px;text-align:right}", "left:42px;top:900px;width:900px;transform:rotate(-4deg)"),
+}
+
 # 글이 상자를 넘으면 줄인다. 끝까지 안 맞으면 그림을 만들지 않는다.
 FIT_JS = """<script>
 function fit(el,max,min,maxLines){let s=max;el.style.fontSize=s+'px';
@@ -60,12 +73,16 @@ def html_lang(loc):
 
 
 def render(loc, i, name, layout, headline, sub):
-    text_css, phone_style = LAYOUTS[layout]
+    rtl = loc in RTL
+    text_css, phone_style = RTL_LAYOUTS.get(layout, LAYOUTS[layout]) if rtl else LAYOUTS[layout]
+    if rtl:
+        text_css += RTL_CSS
+    dir_attr = ' dir="rtl"' if rtl else ""
     img = (RAW / loc / f"{name}.png").as_uri()
     body = (f'<div class="glow" style="left:200px;top:1100px;width:900px;height:900px"></div>'
             f'<div class="phone" style="{phone_style}"><img src="{img}"></div>'
             f'<div class="text"><div class="headline">{headline}</div><div class="sub">{sub}</div></div>')
-    page = (f'<!doctype html><html lang="{html_lang(loc)}"><head><meta charset="utf-8"><style>{BASE_CSS}{text_css}'
+    page = (f'<!doctype html><html lang="{html_lang(loc)}"{dir_attr}><head><meta charset="utf-8"><style>{BASE_CSS}{text_css}'
             f'</style></head><body>{body}{FIT_JS}</body></html>')
     html = pathlib.Path(tempfile.gettempdir()) / f"bucketclimb-shot-{loc}-{i}.html"
     html.write_text(page, encoding="utf-8")

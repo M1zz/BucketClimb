@@ -60,6 +60,15 @@ body { background:linear-gradient(180deg,#fdf8ec 0%%,#f6efdc 100%%); position:re
 .key { position:absolute; opacity:.22; border-radius:22%%; }
 """
 
+# 오른쪽에서 왼쪽으로 쓰는 언어. 검색 결과 그림은 글과 기기 자리를 맞바꾼다(헤더는 가운데라 그대로).
+RTL = {"ar", "he"}
+# 아랍어는 글자가 이어 쓰여서 글자 사이를 좁히면 끊어진다.
+RTL_CSS = """
+body { font-family:"SF Arabic","Geeza Pro",-apple-system,sans-serif; }
+.headline, .sub, .eyebrow { letter-spacing:0; }
+.headline { line-height:1.3; }
+"""
+
 # 글이 상자를 넘지 않을 때까지 줄인다. 잘리는 글은 없다 - 끝까지 안 맞으면 표시하고 멈춘다.
 FIT_JS = """
 <script>
@@ -102,12 +111,17 @@ def search_html(lang):
     # 기기는 안전 영역 오른쪽 몫에 서서, 위아래로 넘쳐 화면 밖까지 이어진다(기기 그림은 잘려도 된다).
     ph_w = 1040
     ph_left = l + col + int(sw * 0.04)
+    text_left = l
+    if lang in RTL:
+        # 거울처럼: 글은 안전 영역 오른쪽, 기기는 왼쪽
+        ph_left = W - ph_left - ph_w
+        text_left = r - col
     img = (RAW / lang / "goals.png").as_uri()
     return f"""
 <div class="glow" style="left:{ph_left - 300}px;top:500px;width:1700px;height:1700px;background:rgba(240,180,40,.30)"></div>
 <div class="glow" style="left:{l - 700}px;top:{t - 500}px;width:1400px;height:1000px;background:rgba(240,180,40,.12)"></div>
 {phone(img, ph_left, t - 360, ph_w, 0)}
-<div class="text" style="left:{l}px;top:{t}px;width:{col}px;height:{sh}px">
+<div class="text" style="left:{text_left}px;top:{t}px;width:{col}px;height:{sh}px">
   <div class="eyebrow" style="font-size:96px">{eyebrow}</div>
   <div class="headline" data-max="250" data-min="140" style="margin-top:36px">{headline}</div>
   <div class="sub" style="font-size:84px;margin-top:52px">{sub}</div>
@@ -144,8 +158,10 @@ def html_lang(lang):
 def render(lang, kind):
     W, H, _ = SPEC[kind]
     body = search_html(lang) if kind == "search" else header_html(lang)
-    page = (f'<!doctype html><html lang="{html_lang(lang)}"><head><meta charset="utf-8"><style>'
-            f'{BASE_CSS % {"W": W, "H": H}}</style></head><body>{body}{FIT_JS}</body></html>')
+    css = BASE_CSS % {"W": W, "H": H} + (RTL_CSS if lang in RTL else "")
+    rtl = ' dir="rtl"' if lang in RTL else ""
+    page = (f'<!doctype html><html lang="{html_lang(lang)}"{rtl}><head><meta charset="utf-8"><style>'
+            f'{css}</style></head><body>{body}{FIT_JS}</body></html>')
     html_path = pathlib.Path(tempfile.gettempdir()) / f"bucketclimb-creative-{lang}-{kind}.html"
     html_path.write_text(page, encoding="utf-8")
     # 글이 끝까지 안 맞으면 그림을 만들지 않는다(잘린 글이 스토어에 올라가는 것보다 낫다).
