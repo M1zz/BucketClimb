@@ -4,7 +4,8 @@
     "ko": "꿈을 찾아서",
     "ja": "夢をさがして",
     "zh-Hans": "寻梦",
-    "zh-Hant": "尋夢"
+    "zh-Hant": "尋夢",
+    "ar": "بحثًا عن الحلم"
   },
   "url": "https://m1zz.github.io/BucketClimb/",
   "appStoreId": "6755934506",
@@ -145,6 +146,11 @@
       "code": "tr",
       "path": "tr/",
       "name": "Türkçe"
+    },
+    {
+      "code": "ar",
+      "path": "ar/",
+      "name": "العربية"
     }
   ]
 }
