@@ -204,10 +204,17 @@ enum GoalPlanner {
     /// 이 기기에서 단계를 제안받을 수 있는가. 안 되면 제안 단추를 세우지 않는다.
     static var isAvailable: Bool {
         #if canImport(FoundationModels)
-        if #available(iOS 26.0, *) { return SystemLanguageModel.default.isAvailable }
+        if #available(iOS 26.0, *) {
+            // 앱 언어를 이 기기의 모델이 못 쓰면(예: 아랍어를 아직 모르는 모델) 다른 언어로 답이 오므로 단추를 세우지 않는다.
+            return SystemLanguageModel.default.isAvailable
+                && SystemLanguageModel.default.supportsLocale(Locale(identifier: GoalPlanner.appLanguage))
+        }
         #endif
         return false
     }
+
+    /// 앱 화면의 언어 코드. 단계는 화면과 같은 언어로 받는다.
+    static var appLanguage: String { Bundle.main.preferredLocalizations.first ?? "en" }
 
     static func plan(_ dream: String) async -> Plan {
         #if canImport(FoundationModels)
@@ -233,7 +240,7 @@ private struct GeneratedPlan {
 @available(iOS 26.0, *)
 private enum ModelPlanner {
     static func make(_ dream: String) async throws -> GoalPlanner.Plan {
-        let language = Locale(identifier: "en").localizedString(forLanguageCode: Locale.current.language.languageCode?.identifier ?? "ko") ?? "Korean"
+        let language = Locale(identifier: "en").localizedString(forIdentifier: GoalPlanner.appLanguage) ?? "English"
         let session = LanguageModelSession(instructions: """
             You help someone turn a life goal into small first steps they can actually start.
             Be practical and specific. Never invent facts about the person. Write the steps in \(language).

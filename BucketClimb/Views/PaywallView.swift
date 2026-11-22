@@ -109,6 +109,7 @@ struct PaywallView: View {
         switch highlight {
         case .goals?:
             String(localized: "무료로 둘 수 있는 목표 \(ProStore.freeGoalLimit)개가 모두 찼습니다.",
+                   locale: AppLocale.display,
                    comment: "Paywall: why it opened — the free limit of open goals is full")
         case nil:
             nil
@@ -128,7 +129,7 @@ struct PaywallView: View {
             .foregroundStyle(.secondary)
             .accessibilityHidden(true)
             Divider().gridCellColumns(3)
-            row("목표 수", free: String(localized: "\(ProStore.freeGoalLimit)개"),
+            row("목표 수", free: String(localized: "\(ProStore.freeGoalLimit)개", locale: AppLocale.display),
                 pro: String(localized: "무제한"), feature: .goals)
             row("단계")
             row("기록 (메모 · 사진)")

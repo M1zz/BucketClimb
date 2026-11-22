@@ -5,6 +5,12 @@
       "comment" : "Bundle display name",
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بحثًا عن الحلم"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",

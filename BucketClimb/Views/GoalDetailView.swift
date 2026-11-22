@@ -302,7 +302,7 @@ struct GoalDetailView: View {
             if item.status == .completed {
                 if let date = item.dateCompleted {
                     LabeledContent(item.isAbandoned ? "그만둔 날" : "완료한 날",
-                                   value: date.formatted(date: .abbreviated, time: .omitted))
+                                   value: date.dayText)
                         .font(.body)
                 }
                 Button {
@@ -434,7 +434,7 @@ struct RecordRow: View {
     }
 
     private var head: String {
-        [record.date?.formatted(date: .abbreviated, time: .omitted),
+        [record.date?.dayText,
          showsStep ? record.step?.localizedBucket : nil]
             .compactMap { $0 }.joined(separator: " · ")
     }

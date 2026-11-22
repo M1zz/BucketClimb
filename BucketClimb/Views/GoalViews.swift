@@ -48,7 +48,7 @@ struct GoalsView: View {
                         NavigationLink {
                             DoneGoalsView()
                         } label: {
-                            LabeledContent("완료한 목표", value: viewModel.doneGoals.count.formatted())
+                            LabeledContent("완료한 목표", value: viewModel.doneGoals.count.formatted(.number.locale(AppLocale.display)))
                                 .font(.body)
                         }
                     }
@@ -268,7 +268,7 @@ struct DoneGoalsView: View {
                 Text(item.title.localizedBucket)
                     .font(.body.weight(.semibold))
                 if let date = item.dateCompleted {
-                    Text(date.formatted(date: .abbreviated, time: .omitted))
+                    Text(date.dayText)
                         .font(.body)
                         .foregroundStyle(.secondary)
                 }

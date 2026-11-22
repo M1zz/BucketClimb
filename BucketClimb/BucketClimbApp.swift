@@ -18,6 +18,9 @@ struct BucketClimbApp: App {
             ContentView()
                 // 개발자가 보낸 의견에 답장하면, 앱이 앞으로 올 때 답장을 시트로 보여 준다 (LeeoKit).
                 .leeoFeedbackReplyNotice(BucketClimbSpec.self)
+                // 아랍어는 숫자를 0-9, 날짜를 양력으로 맞춘다. 다른 언어는 기기 설정 그대로 (→ AppLocale)
+                .environment(\.locale, AppLocale.display)
+                .environment(\.calendar, AppLocale.calendar)
                 .environmentObject(viewModel)
                 // Pro — 산 것을 다시 읽는다. 팁 상품 · 끝나지 않은 팁도 LeeoStore 가 함께 챙긴다 (→ BucketClimbPro.swift)
                 .task { await ProStore.shared.refresh() }
@@ -78,11 +81,13 @@ enum BucketClimbTipMoments {
         let byDreams = dreams.filter { dreamsAchieved >= $0 }.map { threshold in
             LeeoTipMoment(id: "dreams.\(threshold)",
                           message: String(localized: "지금까지 목표 \(dreamsAchieved)개를 완료했습니다",
+                                          locale: AppLocale.display,
                                           comment: "Tip ask card: how many goals the person has completed"))
         }
         let bySteps = steps.filter { stepsDone >= $0 }.map { threshold in
             LeeoTipMoment(id: "steps.\(threshold)",
                           message: String(localized: "지금까지 \(stepsDone)단계를 마쳤습니다",
+                                          locale: AppLocale.display,
                                           comment: "Tip ask card: how many steps the person has completed toward their goals"))
         }
         return byDreams + bySteps

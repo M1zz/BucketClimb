@@ -277,7 +277,7 @@ extension BucketListViewModel {
     /// 목표 · 단계 · 기록을 사람이 읽는 글 한 덩이로. 설정에서 공유 시트로 내보낸다.
     /// 기본 내보내기라 잠그지 않는다. 사진은 파일 이름만 있어 글에서 뺀다.
     var exportText: String {
-        let date = { (d: Date) in d.formatted(date: .abbreviated, time: .omitted) }
+        let date = { (d: Date) in d.dayText }
         var lines = [String(localized: "목표 기록", comment: "Export: title of the exported text"), date(Date())]
         let ordered = bucketItems.filter { $0.status != .completed } + doneGoals + stoppedGoals
         for item in ordered {
