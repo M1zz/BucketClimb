@@ -22,6 +22,10 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
+                Section {
+                    MochimoMoveCard()
+                }
+
                 ProSettingsSection()
 
                 Section {

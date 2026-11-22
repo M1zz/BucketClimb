@@ -24,6 +24,11 @@ struct GoalsView: View {
 
         NavigationStack(path: $path) {
             List {
+                // 이 앱은 모찌모로 합쳐졌다. 목표가 있는 사람에게 옮기는 길을 맨 위에 둔다.
+                if !viewModel.bucketItems.isEmpty, !isScreenshot {
+                    Section { MochimoMoveCard() }
+                }
+
                 Section {
                     ForEach(goals) { item in
                         GoalRow(item: item)
@@ -78,6 +83,14 @@ struct GoalsView: View {
                 }
             }
             .sheet(isPresented: $showingSettings) { SettingsView() }
+            #if DEBUG
+            // 확인용: `-DebugMoveToMochimo` 로 켜면 곧바로 모찌모로 옮긴다.
+            .task {
+                guard ProcessInfo.processInfo.arguments.contains("-DebugMoveToMochimo") else { return }
+                try? await Task.sleep(for: .seconds(1))
+                if MochimoTransfer.write(viewModel.bucketItems) { MochimoTransfer.openMochimo() }
+            }
+            #endif
             .confirmationDialog("이 목표를 삭제할까요?", isPresented: Binding(get: { deleting != nil }, set: { if !$0 { deleting = nil } }),
                                 titleVisibility: .visible, presenting: deleting) { item in
                 Button("삭제", role: .destructive) { viewModel.delete(item) }
