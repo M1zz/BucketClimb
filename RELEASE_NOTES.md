@@ -193,3 +193,11 @@ Her cevaba en fazla 5 fotoğraf ekle
 Ayarlar'dan Instagram'la bize yaz
 Geliştiriciye bahşiş gönderebilirsiniz
 VoiceOver ve Sesle Denetim ile daha iyi
+
+### 앱스토어 (아랍어)
+
+التطبيق متاح الآن بـ25 لغة منها العربية
+أضف حتى 5 صور إلى كل ملاحظة
+راسلنا عبر إنستغرام من الإعدادات
+أرسل للمطوّر إكرامية صغيرة شكرًا له
+استخدام أسهل مع VoiceOver والتحكم الصوتي
